@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
-import { nav, wa } from '../data/contenido.js'
-import { IconoWhatsApp } from './Iconos.jsx'
+import { BotonWA } from './Comunes.jsx'
+import { TEL, CORREO, nav } from '../data/contenido.js'
 
 export default function Header() {
   const [abierto, setAbierto] = useState(false)
@@ -16,8 +16,8 @@ export default function Header() {
   }, [abierto])
 
   return (
-    <header className="cabecera">
-      <div className="cabecera__barra">
+    <header className="cabecera" data-abierto={abierto}>
+      <div className="cabecera__pildora">
         <a className="cabecera__logo" href="#inicio" aria-label="Soltherra S.A.S., ir al inicio">
           <img src="/img/logo.webp" alt="Soltherra S.A.S. Energía Sostenible" width="105" height="56" />
         </a>
@@ -28,15 +28,7 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <a
-          className="boton boton--corto"
-          href={wa('Hola Soltherra, quiero cotizar un sistema solar.')}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <IconoWhatsApp />
-          <span>WhatsApp</span>
-        </a>
+        <BotonWA texto="Cotizar" variante="boton--viva" corto />
         <button
           type="button"
           className="cabecera__menu"
@@ -47,9 +39,9 @@ export default function Header() {
           <span className="sr">{abierto ? 'Cerrar menú' : 'Abrir menú'}</span>
           <span className="cabecera__barras" aria-hidden="true" />
         </button>
+        <span className="progreso" aria-hidden="true" />
       </div>
-      <div className="progreso" aria-hidden="true" />
-      <div id="menu-movil" className="menu-movil" data-abierto={abierto} hidden={!abierto}>
+      <div id="menu-movil" className="menu-movil" hidden={!abierto}>
         <nav aria-label="Menú móvil">
           {nav.map(([t, h]) => (
             <a key={h} href={h} onClick={() => setAbierto(false)}>
@@ -57,15 +49,11 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <a
-          className="boton boton--viva"
-          href={wa('Hola Soltherra, quiero cotizar un sistema solar.')}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <IconoWhatsApp />
-          <span>Escríbenos por WhatsApp</span>
-        </a>
+        <div className="menu-movil__pie">
+          <a href="tel:+573138130046">{TEL}</a>
+          <a href={`mailto:${CORREO}`}>{CORREO}</a>
+          <BotonWA texto="Escríbenos por WhatsApp" variante="boton--viva" />
+        </div>
       </div>
     </header>
   )

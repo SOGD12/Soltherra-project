@@ -1,15 +1,16 @@
 import { useEffect } from 'react'
 
-/** Publica en --progreso (0 a 1) cuánto se ha avanzado en la página, para la barra bajo la cabecera. */
+/** Publica --progreso (0 a 1) para la barra de la cabecera y marca si la cabecera debe encogerse (siempre queda visible). */
 export default function useProgresoScroll() {
   useEffect(() => {
+    const raiz = document.documentElement
     let marco = 0
     const medir = () => {
       marco = 0
       const y = window.scrollY
-      const max = document.documentElement.scrollHeight - window.innerHeight
-      const root = document.documentElement.style
-      root.setProperty('--progreso', max > 0 ? (y / max).toFixed(4) : '0')
+      const max = raiz.scrollHeight - window.innerHeight
+      raiz.style.setProperty('--progreso', max > 0 ? (y / max).toFixed(4) : '0')
+      raiz.dataset.desplazado = y > 40 ? 'si' : 'no'
     }
     const alScroll = () => {
       if (!marco) marco = requestAnimationFrame(medir)

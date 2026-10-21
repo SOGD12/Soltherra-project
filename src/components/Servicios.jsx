@@ -1,116 +1,94 @@
-import { fotovoltaico, termico, wa } from '../data/contenido.js'
-import { IconoWhatsApp } from './Iconos.jsx'
+import { Icono } from './Iconos.jsx'
+import { BotonWA, Chip } from './Comunes.jsx'
+import { fotovoltaico, termico } from '../data/contenido.js'
 
 function Lista({ items }) {
   return (
     <ul className="filas">
       {items.map((t) => (
-        <li key={t}>{t}</li>
+        <li key={t}>
+          <Icono nombre="check_circle" />
+          <span>{t}</span>
+        </li>
       ))}
     </ul>
+  )
+}
+
+function Servicio({ id, inversa, icono, chip, titulo, texto, items, cierre, mensaje, fotos }) {
+  return (
+    <section className={`seccion servicio ${inversa ? 'servicio--inversa' : ''}`} id={id}>
+      <div className="contenedor servicio__rejilla">
+        <div className="servicio__fotos">
+          <figure className="foto servicio__principal" data-parallax>
+            <img src={fotos[0].src} alt={fotos[0].alt} width={fotos[0].width} height={fotos[0].height} loading="lazy" />
+          </figure>
+          <figure className="foto servicio__inserto" data-flotar>
+            <img src={fotos[1].src} alt={fotos[1].alt} width={fotos[1].width} height={fotos[1].height} loading="lazy" />
+          </figure>
+        </div>
+        <div className="servicio__texto">
+          <Chip>
+            <Icono nombre={icono} /> {chip}
+          </Chip>
+          <h2 data-titulo>{titulo}</h2>
+          <p>{texto}</p>
+          <Lista items={items} />
+          <p className="servicio__cierre">{cierre}</p>
+          <BotonWA texto="Hablar con un experto" mensaje={mensaje} />
+        </div>
+      </div>
+    </section>
   )
 }
 
 export default function Servicios() {
   return (
     <>
-      <section className="seccion servicio servicio--fv" id="servicios">
-        <div className="contenedor servicio__rejilla">
-          <div className="servicio__fotos">
-            <figure className="foto foto--ancha">
-              <img
-                src="/img/instalacion.webp"
-                alt="Dos técnicos instalando módulos fotovoltaicos sobre una cubierta"
-                width="1200"
-                height="667"
-                loading="lazy"
-              />
-            </figure>
-            <figure className="foto foto--cuadrada servicio__inserto">
-              <img
-                src="/img/inversor.webp"
-                alt="Inversor solar instalado en pared con canalización eléctrica"
-                width="1000"
-                height="1333"
-                loading="lazy"
-              />
-            </figure>
-          </div>
-          <div className="servicio__texto">
-            <h2>Diseño e instalación de sistemas solares fotovoltaicos</h2>
-            <p>
-              Soluciones integrales en energía solar, desde el diseño hasta la puesta en marcha de sistemas
-              fotovoltaicos adaptados a hogares, empresas e instituciones, garantizando eficiencia, seguridad y
-              cumplimiento normativo.
-            </p>
-            <Lista items={fotovoltaico} />
-            <p className="servicio__cierre">Reduce costos energéticos y dependencia de la red eléctrica.</p>
-            <a
-              className="boton boton--viva"
-              href={wa('Hola Soltherra, quiero información sobre sistemas solares fotovoltaicos.')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconoWhatsApp />
-              <span>Hablar con un experto</span>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <section className="seccion servicio servicio--termico">
-        <div className="contenedor servicio__rejilla servicio__rejilla--inversa">
-          <div className="servicio__texto">
-            <h2>Diseño e instalación de sistemas solares térmicos</h2>
-            <p>
-              Diseñamos e instalamos sistemas solares térmicos para el aprovechamiento eficiente de la radiación
-              solar, ofreciendo soluciones sostenibles para climatización y calentamiento de agua en hogares,
-              empresas e instituciones.
-            </p>
-            <Lista items={termico} />
-            <p className="servicio__cierre">Ahorro energético sostenible con confort térmico continuo.</p>
-            <a
-              className="boton"
-              href={wa('Hola Soltherra, quiero información sobre sistemas solares térmicos.')}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <IconoWhatsApp />
-              <span>Hablar con un experto</span>
-            </a>
-          </div>
-          <div className="servicio__fotos">
-            <figure className="foto foto--ancha">
-              <img
-                src="/img/colectores.webp"
-                alt="Colectores solares térmicos de tubos al vacío instalados junto a una casa"
-                width="1600"
-                height="1200"
-                loading="lazy"
-              />
-            </figure>
-            <figure className="foto foto--cuadrada servicio__inserto">
-              <img
-                src="/img/tanque.webp"
-                alt="Calentador solar de agua con tanque sobre una terraza"
-                width="900"
-                height="1200"
-                loading="lazy"
-              />
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <figure className="franja foto" data-revelar>
-        <img
-          src="/img/piscina.webp"
-          alt="Piscina en una finca con una estructura de colectores solares térmicos sobre la terraza"
-          width="1600"
-          height="640"
-          decoding="async"
-        />
-      </figure>
+      <Servicio
+        id="servicios"
+        icono="solar_power"
+        chip="Fotovoltaico"
+        titulo="Diseño e instalación de sistemas solares fotovoltaicos"
+        texto="Soluciones integrales en energía solar, desde el diseño hasta la puesta en marcha de sistemas fotovoltaicos adaptados a hogares, empresas e instituciones, garantizando eficiencia, seguridad y cumplimiento normativo."
+        items={fotovoltaico}
+        cierre="Reduce costos energéticos y dependencia de la red eléctrica."
+        mensaje="Hola Soltherra, quiero información sobre sistemas solares fotovoltaicos."
+        fotos={[
+          {
+            src: '/img/trabajo-cubierta-blanca.webp',
+            alt: 'Paneles solares y soportes sobre una cubierta clara',
+            width: 1000,
+            height: 1333,
+          },
+          {
+            src: '/img/inversor.webp',
+            alt: 'Inversor solar instalado en pared con canalización eléctrica',
+            width: 1000,
+            height: 1333,
+          },
+        ]}
+      />
+      <Servicio
+        id="termico"
+        inversa
+        icono="thermostat"
+        chip="Térmico"
+        titulo="Diseño e instalación de sistemas solares térmicos"
+        texto="Diseñamos e instalamos sistemas solares térmicos para el aprovechamiento eficiente de la radiación solar, ofreciendo soluciones sostenibles para climatización y calentamiento de agua en hogares, empresas e instituciones."
+        items={termico}
+        cierre="Ahorro energético sostenible con confort térmico continuo."
+        mensaje="Hola Soltherra, quiero información sobre sistemas solares térmicos."
+        fotos={[
+          {
+            src: '/img/colectores.webp',
+            alt: 'Colectores solares térmicos de tubos al vacío instalados junto a una casa',
+            width: 1600,
+            height: 1200,
+          },
+          { src: '/img/tanque.webp', alt: 'Calentador solar de agua con tanque sobre una terraza', width: 900, height: 1200 },
+        ]}
+      />
     </>
   )
 }

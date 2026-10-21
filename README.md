@@ -42,3 +42,24 @@ Soltherra diseña, instala y mantiene **sistemas solares fotovoltaicos** y **sis
 | Facebook | [Soltherra](https://web.facebook.com/profile.php?id=61587216064854) |
 
 
+
+## Desarrollo
+
+```bash
+npm install
+npm run dev
+```
+
+Stack: React 19 + Vite, Anime.js 4 (animaciones de scroll), Zdog (escena 3D), Material Symbols (iconos en SVG en línea), fuentes Archivo y Hanken Grotesk locales. El SEO que depende del dominio se activa con `VITE_SITE_URL` (ver `vite.config.js`).
+
+### Estructura
+
+- `src/data/contenido.js`: todos los textos y datos reales (contacto, servicios, pasos, beneficios, menú). `src/data/trabajos.json` alimenta «Nuestros trabajos» (18 obras con `categoria`), leído por `src/api/trabajos.js`.
+- `src/components/`: una sección por archivo, en el orden de `App.jsx`: Hero, Cinta, Nosotros, MisionVision, Soluciones, Gestiones, Servicios, Recorrido, Proceso, Franja, Trabajos, Beneficios, Contacto y Pie. `Comunes.jsx` tiene el botón de WhatsApp y la etiqueta en píldora; `Iconos.jsx` los iconos.
+- `src/animaciones.js`: animaciones de scroll con Anime.js (titulares palabra a palabra, párrafos que se llenan al leer, paralaje, bloques oscuros que crecen, línea del proceso, franja de la piscina, beneficios). Se carga aparte desde `hooks/useAnimaciones.js`.
+- `src/escena.js`: escena 3D con Zdog de la sección «Cómo funciona». El avance del scroll mueve la historia (sol → panel → inversor → casa) y la casa se puede girar arrastrando.
+- `hooks/useProgresoScroll.js`: barra de progreso y estado de la cabecera flotante (se encoge y se esconde al bajar).
+
+### Diseño
+
+Página clara con bloques oscuros redondeados, cabecera flotante en píldora con desenfoque, mosaico de soluciones y escenas atadas al scroll. Paleta del logo: marino `#072a41`, verde `#187a41` / `#3bb86a` para acciones y sol `#fdb62e` como acento. Con `prefers-reduced-motion` todo queda quieto y visible.

@@ -1,10 +1,13 @@
+import { Icono } from './Iconos.jsx'
+import { Chip } from './Comunes.jsx'
+
 export default function Nosotros() {
   return (
     <section className="seccion nosotros" id="nosotros">
       <div className="contenedor nosotros__rejilla">
         <div className="nosotros__texto">
-          <h2 className="sr">Quiénes somos</h2>
-          <p className="destacado">
+          <Chip>¿Quiénes somos?</Chip>
+          <p className="destacado" data-llenar>
             Somos una empresa especializada en el diseño, instalación y mantenimiento de sistemas solares
             fotovoltaicos y sistemas solares térmicos.
           </p>
@@ -13,13 +16,24 @@ export default function Nosotros() {
             instituciones. Soltherra acompaña a sus clientes desde la ingeniería hasta la puesta en marcha,
             garantizando cumplimiento normativo, ahorro económico y reducción del impacto ambiental.
           </p>
+          <ul className="para-quien" aria-label="Para quién trabajamos">
+            <li>
+              <Icono nombre="home" /> Hogares
+            </li>
+            <li>
+              <Icono nombre="apartment" /> Empresas
+            </li>
+            <li>
+              <Icono nombre="account_balance" /> Instituciones
+            </li>
+          </ul>
         </div>
-        <figure className="foto foto--vertical nosotros__foto">
+        <figure className="foto nosotros__foto" data-parallax>
           <img
-            src="/img/cableado.webp"
-            alt="Técnico ajustando las conexiones de un inversor solar"
-            width="900"
-            height="1200"
+            src="/img/instalacion.webp"
+            alt="Dos técnicos instalando módulos fotovoltaicos sobre una cubierta"
+            width="1200"
+            height="667"
             loading="lazy"
           />
         </figure>

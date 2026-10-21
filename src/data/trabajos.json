@@ -1,52 +1,164 @@
 [
   {
     "id": 1,
-    "cliente": "Empresa 1",
     "titulo": "Sistema fotovoltaico en cubierta metálica",
+    "categoria": "fotovoltaico",
     "foto": "/img/trabajo-cubierta-azul.webp",
-    "alt": "Módulos fotovoltaicos instalados sobre una cubierta metálica azul",
+    "alt": "Módulos fotovoltaicos instalados sobre una cubierta metálica azul con montañas al fondo",
     "ancho": 1400,
-    "alto": 1050,
-    "posicion": "a"
+    "alto": 1400
   },
   {
     "id": 2,
-    "cliente": "Empresa 2",
-    "titulo": "Sistema fotovoltaico en cubierta",
-    "foto": "/img/trabajo-cubierta-blanca.webp",
-    "alt": "Paneles solares y soportes sobre una cubierta clara",
-    "ancho": 1000,
-    "alto": 1333,
-    "posicion": "b"
+    "titulo": "Colectores solares térmicos junto a la piscina",
+    "categoria": "termico",
+    "foto": "/img/colectores.webp",
+    "alt": "Colectores solares térmicos de tubos al vacío instalados junto a una casa",
+    "ancho": 1600,
+    "alto": 1200
   },
   {
     "id": 3,
-    "cliente": "Empresa 3",
-    "titulo": "Colectores solares térmicos en terraza",
-    "foto": "/img/trabajo-terraza-lago.webp",
-    "alt": "Colectores solares en una terraza con vista a un lago",
-    "ancho": 1400,
-    "alto": 1050,
-    "posicion": "c"
+    "titulo": "Instalación de módulos fotovoltaicos",
+    "categoria": "fotovoltaico",
+    "foto": "/img/instalacion.webp",
+    "alt": "Dos técnicos instalando módulos fotovoltaicos sobre una cubierta",
+    "ancho": 768,
+    "alto": 428
   },
   {
     "id": 4,
-    "cliente": "Empresa 4",
-    "titulo": "Fotovoltaico y térmico en una misma cubierta",
-    "foto": "/img/trabajo-mixto.webp",
-    "alt": "Paneles fotovoltaicos y colectores de tubos al vacío sobre un mismo techo",
-    "ancho": 1400,
-    "alto": 1050,
-    "posicion": "d"
+    "titulo": "Sistema fotovoltaico en cubierta",
+    "categoria": "fotovoltaico",
+    "foto": "/img/trabajo-cubierta-blanca.webp",
+    "alt": "Paneles solares y soportes sobre una cubierta clara",
+    "ancho": 1000,
+    "alto": 1334
   },
   {
     "id": 5,
-    "cliente": "Empresa 5",
+    "titulo": "Colectores térmicos en terraza",
+    "categoria": "termico",
+    "foto": "/img/trabajo-terraza-lago.webp",
+    "alt": "Colectores solares en una terraza con vista a un lago",
+    "ancho": 1400,
+    "alto": 1050
+  },
+  {
+    "id": 6,
+    "titulo": "Fotovoltaico y térmico en una misma cubierta",
+    "categoria": "termico",
+    "foto": "/img/trabajo-mixto.webp",
+    "alt": "Paneles fotovoltaicos y colectores de tubos al vacío sobre un mismo techo",
+    "ancho": 1400,
+    "alto": 1050
+  },
+  {
+    "id": 7,
+    "titulo": "Calentadores solares de agua",
+    "categoria": "termico",
+    "foto": "/img/termosifones.webp",
+    "alt": "Tres calentadores solares de agua con colectores planos sobre un techo",
+    "ancho": 1280,
+    "alto": 916
+  },
+  {
+    "id": 8,
+    "titulo": "Conexión y ajuste de inversor",
+    "categoria": "fotovoltaico",
+    "foto": "/img/cableado.webp",
+    "alt": "Técnico ajustando las conexiones de un inversor solar",
+    "ancho": 900,
+    "alto": 1200
+  },
+  {
+    "id": 9,
     "titulo": "Colectores de tubos al vacío",
-    "foto": "/img/trabajo-tubos.webp",
-    "alt": "Colectores solares de tubos al vacío sobre un techo",
+    "categoria": "termico",
+    "foto": "/img/tubos-cubierta.webp",
+    "alt": "Colectores solares de tubos al vacío sobre una cubierta azul",
+    "ancho": 1200,
+    "alto": 1200
+  },
+  {
+    "id": 10,
+    "titulo": "Inversor con canalización eléctrica",
+    "categoria": "fotovoltaico",
+    "foto": "/img/inversor.webp",
+    "alt": "Inversor solar instalado en pared con canalización eléctrica",
     "ancho": 1000,
-    "alto": 1333,
-    "posicion": "e"
+    "alto": 750
+  },
+  {
+    "id": 11,
+    "titulo": "Calentador solar con tanque",
+    "categoria": "termico",
+    "foto": "/img/tanque.webp",
+    "alt": "Calentador solar de agua con tanque sobre una terraza",
+    "ancho": 900,
+    "alto": 1200
+  },
+  {
+    "id": 12,
+    "titulo": "Inversor y protecciones",
+    "categoria": "fotovoltaico",
+    "foto": "/img/inversor-advertencia.webp",
+    "alt": "Inversor solar con señalización de seguridad y protecciones eléctricas",
+    "ancho": 1000,
+    "alto": 750
+  },
+  {
+    "id": 13,
+    "titulo": "Medición con multímetro",
+    "categoria": "mantenimiento",
+    "foto": "/img/multimetro.webp",
+    "alt": "Multímetro midiendo el voltaje de un banco de baterías",
+    "ancho": 900,
+    "alto": 1200
+  },
+  {
+    "id": 14,
+    "titulo": "Análisis de calidad de energía",
+    "categoria": "mantenimiento",
+    "foto": "/img/osciloscopio.webp",
+    "alt": "Pantalla de un analizador de energía mostrando formas de onda",
+    "ancho": 1400,
+    "alto": 662
+  },
+  {
+    "id": 15,
+    "titulo": "Inversor y baterías",
+    "categoria": "fotovoltaico",
+    "foto": "/img/inversor-bateria.webp",
+    "alt": "Inversor y banco de baterías instalados en una pared",
+    "ancho": 864,
+    "alto": 1348
+  },
+  {
+    "id": 16,
+    "titulo": "Monitoreo de producción y consumo",
+    "categoria": "mantenimiento",
+    "foto": "/img/monitoreo.webp",
+    "alt": "Panel de monitoreo con flujo de energía entre paneles, baterías, red y consumo",
+    "ancho": 652,
+    "alto": 590
+  },
+  {
+    "id": 17,
+    "titulo": "Bomba y tuberías del sistema térmico",
+    "categoria": "mantenimiento",
+    "foto": "/img/bomba-solar.webp",
+    "alt": "Tubería y bomba roja de circulación de un sistema solar térmico",
+    "ancho": 900,
+    "alto": 1106
+  },
+  {
+    "id": 18,
+    "titulo": "Inversor compacto en pared",
+    "categoria": "fotovoltaico",
+    "foto": "/img/inversor-blanco.webp",
+    "alt": "Inversor solar blanco compacto montado en pared",
+    "ancho": 900,
+    "alto": 1200
   }
 ]
