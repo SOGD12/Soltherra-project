@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "cliente": "Empresa 1",
+    "titulo": "Sistema fotovoltaico en cubierta metálica",
+    "foto": "/img/trabajo-cubierta-azul.webp",
+    "alt": "Módulos fotovoltaicos instalados sobre una cubierta metálica azul",
+    "ancho": 1400,
+    "alto": 1050,
+    "posicion": "a"
+  },
+  {
+    "id": 2,
+    "cliente": "Empresa 2",
+    "titulo": "Sistema fotovoltaico en cubierta",
+    "foto": "/img/trabajo-cubierta-blanca.webp",
+    "alt": "Paneles solares y soportes sobre una cubierta clara",
+    "ancho": 1000,
+    "alto": 1333,
+    "posicion": "b"
+  },
+  {
+    "id": 3,
+    "cliente": "Empresa 3",
+    "titulo": "Colectores solares térmicos en terraza",
+    "foto": "/img/trabajo-terraza-lago.webp",
+    "alt": "Colectores solares en una terraza con vista a un lago",
+    "ancho": 1400,
+    "alto": 1050,
+    "posicion": "c"
+  },
+  {
+    "id": 4,
+    "cliente": "Empresa 4",
+    "titulo": "Fotovoltaico y térmico en una misma cubierta",
+    "foto": "/img/trabajo-mixto.webp",
+    "alt": "Paneles fotovoltaicos y colectores de tubos al vacío sobre un mismo techo",
+    "ancho": 1400,
+    "alto": 1050,
+    "posicion": "d"
+  },
+  {
+    "id": 5,
+    "cliente": "Empresa 5",
+    "titulo": "Colectores de tubos al vacío",
+    "foto": "/img/trabajo-tubos.webp",
+    "alt": "Colectores solares de tubos al vacío sobre un techo",
+    "ancho": 1000,
+    "alto": 1333,
+    "posicion": "e"
+  }
+]
