@@ -103,14 +103,13 @@ export function iniciarAnimaciones() {
 
     // ---------- Islas oscuras: crecen desde una tarjeta hasta casi todo el ancho ----------
     todos('[data-isla]').forEach((isla) => {
+      // Solo escala: el radio de las esquinas queda fijo en CSS, porque animarlo obliga a repintar todo el bloque.
       animate(isla, {
         scale: [0.9, 1],
-        borderRadius: ['64px', escritorio ? '36px' : '28px'],
         ease: 'linear',
         autoplay: atado(isla, 'end start', 'start+=35% end'),
       })
     })
-    animate('.isla__brillo', { scale: [0.85, 1.15], opacity: [0.55, 0.9], duration: 4200, loop: true, alternate: true, ease: 'inOutSine' })
 
     // ---------- Entradas únicas ----------
     alEntrar('.nosotros__texto .chip, .nosotros__texto > p:not(.destacado), .para-quien li', '.nosotros', { y: 24, delay: 70 })
@@ -131,8 +130,9 @@ export function iniciarAnimaciones() {
     // ---------- Franja de la piscina: se abre de tarjeta a pantalla completa ----------
     const franja = document.querySelector('[data-franja]')
     if (franja) {
+      // Escala en vez de clip-path: el recorte no lo acelera la GPU y repintaba la foto en cada fotograma.
       animate(franja, {
-        clipPath: ['inset(0% 9% 0% 9% round 40px)', 'inset(0% 0% 0% 0% round 0px)'],
+        scale: [0.86, 1],
         ease: 'linear',
         autoplay: atado(franja, 'end start', 'center center'),
       })

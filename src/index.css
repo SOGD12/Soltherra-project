@@ -219,10 +219,8 @@ a {
 }
 .chip--claro {
   border-color: var(--vidrio-borde);
-  background: var(--vidrio);
+  background: rgb(255 255 255 / 0.08);
   color: var(--texto-claro-suave);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
 }
 .chip--claro .mi {
   color: var(--hoja-viva);
@@ -329,8 +327,8 @@ a {
   background: rgb(7 42 65 / 0.42);
   border: 1px solid rgb(255 255 255 / 0.14);
   border-radius: 999px;
-  -webkit-backdrop-filter: blur(20px) saturate(140%);
-  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
   overflow: hidden;
   transition:
     max-width 0.7s var(--ease),
@@ -492,6 +490,7 @@ a {
   outline-color: var(--sol);
 }
 .hero__medio {
+  will-change: transform;
   position: absolute;
   inset: 0;
   z-index: -2;
@@ -586,6 +585,7 @@ a {
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 .cinta__pista {
+  will-change: transform;
   display: flex;
   width: max-content;
   animation: deslizar 48s linear infinite;
@@ -635,6 +635,7 @@ a {
 }
 [data-parallax] img {
   transform: scale(1.18);
+  will-change: transform;
 }
 
 /* ---------- Nosotros ---------- */
@@ -779,6 +780,7 @@ a {
   padding-inline: clamp(8px, 1.4vw, 18px);
 }
 .isla {
+  will-change: transform;
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -951,13 +953,20 @@ a {
   display: grid;
   align-items: center;
   overflow: hidden;
-  background:
-    radial-gradient(
-      circle at 30% 18%,
-      rgb(253 182 46 / calc(var(--avance) * 0.3)) 0%,
-      rgb(253 182 46 / 0) 45%
-    ),
-    var(--suelo);
+  background: var(--suelo);
+  isolation: isolate;
+}
+/* El cielo se calienta al salir el sol. Es una capa aparte que solo cambia de opacidad: así el
+   navegador no repinta un degradado de pantalla completa en cada fotograma de scroll. */
+.recorrido__fijo::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at 30% 18%, rgb(253 182 46 / 0.3) 0%, rgb(253 182 46 / 0) 45%);
+  opacity: var(--avance);
+  will-change: opacity;
+  pointer-events: none;
 }
 .recorrido__rejilla {
   display: grid;
@@ -1037,6 +1046,39 @@ a {
 }
 .recorrido__escena canvas.arrastrando {
   cursor: grabbing;
+}
+.recorrido__escena figcaption:has(.recorrido__girar) {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+/* Botón táctil para girar la casa: se mantiene presionado y se desliza */
+.recorrido__girar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+  border: 1px solid var(--vidrio-borde);
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.1);
+  color: var(--texto-claro);
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  transition:
+    background-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+.recorrido__girar[data-girando] {
+  background: var(--sol);
+  border-color: var(--sol);
+  color: var(--suelo);
+  transform: scale(1.05);
 }
 .recorrido__escena figcaption {
   position: absolute;
@@ -1133,10 +1175,12 @@ a {
 
 .franja {
   position: relative;
-  margin: 0;
+  margin: 0 clamp(8px, 1.4vw, 18px);
   height: clamp(340px, 70vh, 720px);
   overflow: hidden;
+  border-radius: var(--r-isla);
   background: var(--suelo);
+  will-change: transform;
 }
 .franja img {
   width: 100%;
@@ -1155,15 +1199,13 @@ a {
   max-width: 20ch;
   padding: 16px 22px;
   border-radius: 20px;
-  background: rgb(7 42 65 / 0.6);
+  background: rgb(7 42 65 / 0.82);
   color: var(--texto-claro);
   font-family: var(--display);
   font-weight: 600;
   font-size: clamp(1.15rem, 1rem + 1vw, 1.8rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
 }
 
 /* ---------- Trabajos ---------- */
@@ -1329,21 +1371,23 @@ a {
   width: 56px;
 }
 .carrusel__puntos button::after {
+  right: 0;
   background: var(--hoja);
-  width: 0;
+  transform: scaleX(0);
+  transform-origin: left;
 }
 .carrusel__puntos button[aria-current='true']::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 .carrusel__puntos button[data-auto='si']::after {
   animation: llenar 3s linear both;
 }
 @keyframes llenar {
   from {
-    width: 0;
+    transform: scaleX(0);
   }
   to {
-    width: 100%;
+    transform: scaleX(1);
   }
 }
 
@@ -1799,6 +1843,13 @@ a {
 /* ---------- Móvil ---------- */
 
 @media (max-width: 899px) {
+  /* En celular el desenfoque de la cabecera se recalcula en cada fotograma de scroll: fondo opaco */
+  .cabecera__pildora,
+  [data-desplazado='si'] .cabecera__pildora {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgb(7 42 65 / 0.9);
+  }
   .recorrido {
     height: 360vh;
   }

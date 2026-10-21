@@ -4,11 +4,18 @@ import { Chip } from './Comunes.jsx'
 import { historia } from '../data/contenido.js'
 import { sinMovimiento } from '../movimiento.js'
 
+// Pantallas táctiles: el dedo sobre la casa hace scroll; el giro se hace con el botón.
+const esTactil = () => window.matchMedia('(pointer: coarse)').matches
+
 export default function Recorrido() {
   const seccion = useRef(null)
   const lienzo = useRef(null)
   const [paso, setPaso] = useState(0)
   const [lista, setLista] = useState(false)
+  const [tactil] = useState(esTactil)
+  const [girando, setGirando] = useState(false)
+  const escenaRef = useRef(null)
+  const inicioX = useRef(0)
 
   useEffect(() => {
     let vivo = true
@@ -34,7 +41,8 @@ export default function Recorrido() {
 
     import('../escena.js').then(({ crearEscena }) => {
       if (!vivo || !lienzo.current) return
-      escena = crearEscena(lienzo.current, { reducido })
+      escena = crearEscena(lienzo.current, { reducido, tactil: esTactil() })
+      escenaRef.current = escena
       setLista(true)
       if (reducido) return
       medir()
@@ -51,8 +59,25 @@ export default function Recorrido() {
       window.removeEventListener('resize', alScroll)
       io?.disconnect()
       escena?.destruir()
+      escenaRef.current = null
     }
   }, [])
+
+  // Botón "mantén para girar": captura el dedo mientras está presionado y lo suelta al levantarlo.
+  const empezar = (e) => {
+    e.currentTarget.setPointerCapture(e.pointerId)
+    inicioX.current = e.clientX
+    escenaRef.current?.empezarGiro()
+    setGirando(true)
+  }
+  const mover = (e) => {
+    if (girando) escenaRef.current?.moverGiro(e.clientX - inicioX.current)
+  }
+  const soltar = () => {
+    if (!girando) return
+    escenaRef.current?.soltarGiro()
+    setGirando(false)
+  }
 
   return (
     <section className="recorrido" id="recorrido" ref={seccion} aria-labelledby="t-recorrido">
@@ -83,9 +108,27 @@ export default function Recorrido() {
               role="img"
               aria-label="Escena en 3D: el sol ilumina el panel solar del techo, la energía pasa por el inversor y se encienden las ventanas de la casa"
             />
-            <figcaption>
-              <Icono nombre="rotate_360" /> Arrastra para girar la casa
-            </figcaption>
+            {tactil ? (
+              <figcaption>
+                <button
+                  type="button"
+                  className="recorrido__girar"
+                  data-girando={girando || undefined}
+                  onPointerDown={empezar}
+                  onPointerMove={mover}
+                  onPointerUp={soltar}
+                  onPointerCancel={soltar}
+                  onContextMenu={(e) => e.preventDefault()}
+                >
+                  <Icono nombre="rotate_360" />
+                  {girando ? 'Desliza para girar' : 'Mantén y desliza para girar'}
+                </button>
+              </figcaption>
+            ) : (
+              <figcaption>
+                <Icono nombre="rotate_360" /> Arrastra para girar la casa
+              </figcaption>
+            )}
           </figure>
         </div>
         <span className="recorrido__barra" aria-hidden="true" />
