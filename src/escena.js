@@ -244,7 +244,8 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
   let ultimo = 0
   const inicioTiempo = performance.now()
   // En celular el lienzo se dibuja a ~30 fps: la escena se ve igual de fluida y libera el scroll.
-  const intervalo = tactil ? 1000 / 30 : 0
+  // En escritorio se limita a ~45 fps: ahorra CPU sin que se note.
+  const intervalo = tactil ? 1000 / 30 : 1000 / 45
 
   // Con ratón se gira arrastrando sobre el lienzo. En pantallas táctiles el dedo sobre la casa
   // debe seguir bajando la página, así que el giro va por un botón (ver girar* abajo).

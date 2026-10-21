@@ -32,7 +32,10 @@ function alEntrar(objetivos, referencia, { y = 40, delay = 80, duracion = 900, x
 }
 
 // Atado al scroll: la animación avanza y retrocede con la posición de la página.
-const atado = (target, enter = 'end start', leave = 'start end') => observar({ target, enter, leave, sync: 0.35 })
+// En celular el suavizado (sync) mantiene el motor activo en cada fotograma: se usa uno más corto.
+const ligero = () => window.matchMedia('(max-width: 899px), (pointer: coarse)').matches
+const atado = (target, enter = 'end start', leave = 'start end') =>
+  observar({ target, enter, leave, sync: ligero() ? 0.12 : 0.35 })
 
 export function iniciarAnimaciones() {
   if (sinMovimiento()) {
@@ -40,6 +43,7 @@ export function iniciarAnimaciones() {
     return () => {}
   }
   const escritorio = window.matchMedia('(min-width: 900px)').matches
+  const movil = ligero()
   const textos = []
   observadores = []
 
@@ -82,7 +86,8 @@ export function iniciarAnimaciones() {
     })
 
     // ---------- Párrafos que se "llenan" de tinta palabra a palabra al hacer scroll ----------
-    todos('[data-llenar]').forEach((p) => {
+    // En celular no se parte el texto en cientos de palabras animadas: el párrafo aparece completo.
+    if (!movil) todos('[data-llenar]').forEach((p) => {
       const partido = splitText(p, { words: true })
       textos.push(partido)
       animate(partido.words, {
@@ -94,10 +99,10 @@ export function iniciarAnimaciones() {
     })
 
     // ---------- Fotos con paralaje ----------
-    todos('[data-parallax] img').forEach((img) => {
+    if (!movil) todos('[data-parallax] img').forEach((img) => {
       animate(img, { y: ['-9%', '9%'], scale: [1.18, 1.18], ease: 'linear', autoplay: atado(img.parentElement) })
     })
-    todos('[data-flotar]').forEach((f) => {
+    if (!movil) todos('[data-flotar]').forEach((f) => {
       animate(f, { y: [70, -40], rotate: [-4, 2], ease: 'linear', autoplay: atado(f) })
     })
 
@@ -150,7 +155,7 @@ export function iniciarAnimaciones() {
     })
 
     // ---------- Pie: el nombre gigante sube mientras aparece ----------
-    animate('.pie__gigante', { y: ['40%', '0%'], ease: 'linear', autoplay: atado('.pie', 'end start', 'end end') })
+    if (!movil) animate('.pie__gigante', { y: ['40%', '0%'], ease: 'linear', autoplay: atado('.pie', 'end start', 'end end') })
   })
 
   // Las fuentes y las imágenes terminan de cargar después: al cambiar el alto de la página se recalcula todo.
