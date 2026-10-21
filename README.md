@@ -1,16 +1,44 @@
-# React + Vite
+# Soltherra S.A.S. — Landing page
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Sitio web de una sola página de **Soltherra S.A.S.**, empresa colombiana de energía solar con sede en Cali. Su lema es *"Energía Sostenible"*.
 
-Currently, two official plugins are available:
+## La empresa
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Soltherra diseña, instala y mantiene **sistemas solares fotovoltaicos** y **sistemas solares térmicos** para hogares, empresas e instituciones. Acompaña al cliente desde la ingeniería hasta la puesta en marcha, con cumplimiento normativo, ahorro económico y menor impacto ambiental.
 
-## React Compiler
+**Misión.** Brindar soluciones energéticas sostenibles a través de sistemas solares fotovoltaicos y térmicos, contribuyendo al ahorro económico, al cuidado del medio ambiente y al bienestar de las comunidades, con un servicio confiable, innovador y de alta calidad.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Visión.** Ser una empresa líder en energías limpias en Colombia, reconocida por su compromiso con la sostenibilidad, la innovación tecnológica y la transformación positiva de los hogares, empresas y comunidades hacia un futuro energético responsable.
 
-## Expanding the Oxlint configuration
+### Servicios
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+**Sistemas solares fotovoltaicos**
+- Ingeniería detallada para proyectos solares.
+- Trámites de conexión ante el operador de red.
+- Trámites para beneficios tributarios.
+- Estudio de conexión simplificada para sistemas fotovoltaicos (AGPE y GD).
+- Mantenimiento preventivo y correctivo.
+
+**Sistemas solares térmicos**
+- Climatización de piscinas con energía solar térmica.
+- Calentamiento de aguas sanitarias con sistemas solares térmicos.
+- Mantenimiento preventivo y correctivo.
+
+### Beneficios para el cliente
+- Reducción significativa en costos de energía.
+- Contribución directa al cuidado del medio ambiente.
+- Cumplimiento total de normativas técnicas y legales.
+- Soluciones personalizadas según cada necesidad.
+- Mayor independencia energética y retorno de inversión.
+
+### Contacto
+
+| | |
+|---|---|
+| Celular / WhatsApp | +57 313 813 0046 |
+| Correo | soltherra23@gmail.com |
+| Dirección | Calle 28 N° 86 - 70, Cali, Valle del Cauca |
+| Instagram | [@soltherra_energiasostenible](https://www.instagram.com/soltherra_energiasostenible/) |
+| Facebook | [Soltherra](https://web.facebook.com/profile.php?id=61587216064854) |
+
+
