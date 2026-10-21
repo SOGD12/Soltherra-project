@@ -30,9 +30,9 @@ export const beneficios = [
 
 
 export const nav = [
+  ['Nosotros', '#nosotros'],
   ['Servicios', '#servicios'],
   ['Trabajos', '#trabajos'],
-  ['Nosotros', '#nosotros'],
   ['Beneficios', '#beneficios'],
   ['Contacto', '#contacto'],
 ]
