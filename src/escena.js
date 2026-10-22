@@ -57,7 +57,10 @@ function punteroEnRecorrido(puntos, t) {
   return puntos[puntos.length - 1]
 }
 
-export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
+// `baja` es para celulares de baja gama (ver rendimiento.js): la casa se muestra igual, pero sin los
+// movimientos que corren solos (balanceo, rayos, pulsos) y solo se redibuja cuando algo cambia.
+export function crearEscena(canvas, { reducido = false, tactil = false, baja = false } = {}) {
+  const sinBucle = reducido || baja
   const illo = new Zdog.Illustration({
     element: canvas,
     // El tamaño lo controla el ResizeObserver de abajo, no el evento resize de la ventana.
@@ -69,9 +72,11 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     },
   })
   // Zdog dibuja a la densidad de píxeles del equipo (3x en muchos celulares). Por encima de 2x no se nota
-  // la diferencia y el lienzo cuesta más del doble de pintar, así que se limita a 2x.
+  // la diferencia y el lienzo cuesta más del doble de pintar, así que se limita a 2x. En celulares de baja
+  // gama, que pintan el lienzo con el procesador, el tope es 1,5x.
+  const densidadMaxima = baja ? 1.5 : 2
   illo.setSizeCanvas = function (ancho, alto) {
-    const densidad = (this.pixelRatio = Math.min(window.devicePixelRatio || 1, 2))
+    const densidad = (this.pixelRatio = Math.min(window.devicePixelRatio || 1, densidadMaxima))
     this.width = ancho
     this.height = alto
     this.element.width = this.canvasWidth = ancho * densidad
@@ -94,6 +99,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
       if (Math.round(r.width) === Math.round(illo.width) && Math.round(r.height) === Math.round(illo.height)) return
       illo.setMeasuredSize()
       illo.onResize(illo.width, illo.height)
+      sucio = true
       if (!activo) dibujar(performance.now())
     })
   })
@@ -263,10 +269,11 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
   let activo = false
   let ultimo = 0
   const inicioTiempo = performance.now()
-  // Tope de 60 fps en todos los equipos: en pantallas de 120 Hz (iPhone Pro) dibujar el doble de
-  // fotogramas no se nota en esta escena y gasta batería. Todo el movimiento va por tiempo real,
-  // así que la velocidad es la misma a 30, 60 o 120 fps.
-  const intervalo = 1000 / 60
+  // Tope de 60 fps, y de 30 en celulares de baja gama: Zdog pinta en el hilo principal y a 60 fps le quita
+  // tiempo al scroll. Todo el movimiento va por tiempo real, así que la velocidad es la misma a 30, 60 o 120 fps.
+  const intervalo = 1000 / (baja ? 30 : 60)
+  // En baja gama solo se dibuja si algo cambió (scroll, giro, arrastre): parado, la escena no gasta nada.
+  let sucio = true
 
   // Con ratón se gira arrastrando sobre el lienzo. En pantallas táctiles el dedo sobre la casa
   // debe seguir bajando la página, así que el giro va por un botón (ver girar* abajo).
@@ -278,6 +285,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     },
     onDragMove(_p, dx) {
       giroUsuario = giroInicio - (dx / canvas.clientWidth) * TAU * 0.8
+      sucio = true
       if (!activo) dibujar(performance.now())
     },
     onDragEnd() {
@@ -289,6 +297,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     const t = (ahora - inicioTiempo) / 1000
     const dt = ultimo ? Math.min((ahora - ultimo) / 1000, 0.1) : 0
     ultimo = ahora
+    sucio = false
     // Al soltar el botón la casa sigue girando sola, despacio.
     if (giroSolo && !reducido) giroUsuario += dt * 0.6
     // Sigue al scroll con la misma suavidad sin importar los fps: recorre ~99 % del camino en 0,75 s.
@@ -296,7 +305,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     const p = progreso
 
     // Cámara: gira de tres cuartos izquierdo a tres cuartos derecho mientras avanza la historia.
-    const balanceo = reducido ? 0 : Math.sin(t * 0.5) * 0.04
+    const balanceo = sinBucle ? 0 : Math.sin(t * 0.5) * 0.04
     illo.rotate.y = -TAU / 9 + p * (TAU / 7) + balanceo + giroUsuario
     illo.rotate.x = -TAU / 22 - p * 0.08
 
@@ -305,8 +314,8 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     Object.assign(sol.translate, lerp3(SOL_BAJO, SOL_ALTO, subida))
     frenteSol.rotate.y = -illo.rotate.y
     frenteSol.rotate.x = -illo.rotate.x
-    rayos.rotate.z = reducido ? 0 : t * 0.35
-    aro.scale = 1 + (reducido ? 0 : Math.sin(t * 2.4) * 0.08)
+    rayos.rotate.z = sinBucle ? 0 : t * 0.35
+    aro.scale = 1 + (sinBucle ? 0 : Math.sin(t * 2.4) * 0.08)
 
     // 2. Los haces se extienden hasta el panel
     const alcance = suave(tramo(p, 0.22, 0.42))
@@ -325,7 +334,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     const encendido = tramo(p, 0.36, 0.58)
     celdas.forEach((celda, i) => {
       const k = limitar(encendido * 1.6 - i * 0.05)
-      const brillo = reducido ? 1 : 0.92 + Math.sin(t * 3 + i * 0.6) * 0.08
+      const brillo = sinBucle ? 1 : 0.92 + Math.sin(t * 3 + i * 0.6) * 0.08
       celda.color = mezclar(C.celda, C.sol, k * brillo)
     })
 
@@ -334,7 +343,8 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     cargas.forEach((carga, i) => {
       carga.visible = flujo > 0
       if (!carga.visible) return
-      const fase = reducido ? i / 4 : (t * 0.45 + i / 4) % 1
+      // En baja gama las cargas avanzan con el scroll en vez de moverse solas.
+      const fase = reducido ? i / 4 : baja ? (p * 6 + i / 4) % 1 : (t * 0.45 + i / 4) % 1
       Object.assign(carga.translate, punteroEnRecorrido(RECORRIDO, fase))
       carga.scale = flujo
     })
@@ -357,7 +367,8 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
   }
 
   function bucle(ahora) {
-    if (ahora - ultimo >= intervalo - 1) dibujar(ahora)
+    const quieto = baja && !sucio && !giroSolo && Math.abs(objetivo - progreso) < 0.0005
+    if (!quieto && ahora - ultimo >= intervalo - 1) dibujar(ahora)
     marco = activo ? requestAnimationFrame(bucle) : 0
   }
 
@@ -367,6 +378,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     // El progreso del scroll (0 a 1) define en qué paso de la historia está la escena.
     progreso(valor) {
       objetivo = reducido ? 1 : limitar(valor)
+      sucio = true
     },
     reproducir(si) {
       if (reducido) return
@@ -381,6 +393,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     },
     moverGiro(dx) {
       giroUsuario = giroInicio - (dx / canvas.clientWidth) * TAU * 0.8
+      sucio = true
       if (!activo) dibujar(performance.now())
     },
     soltarGiro() {

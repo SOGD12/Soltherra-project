@@ -1850,6 +1850,35 @@ a {
     backdrop-filter: none;
     background: rgb(7 42 65 / 0.9);
   }
+  /* Lo mismo para el botón de vidrio del hero, que queda sobre una foto con paralaje */
+  .boton--vidrio {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgb(7 42 65 / 0.5);
+  }
+  /* Sin animación de escala en celular, no hace falta reservar capas de GPU gigantes */
+  .isla,
+  .franja {
+    will-change: auto;
+  }
+  /* El navegador no calcula ni pinta estas secciones mientras están lejos de la pantalla. "auto" en el tamaño
+     reservado hace que, una vez vistas, recuerde su alto real y la barra de scroll no salte. */
+  .nosotros,
+  .proceso,
+  .trabajos {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+  /* Alturas aproximadas medidas en un celular de 375 px, para que la barra de scroll casi no cambie */
+  .nosotros {
+    contain-intrinsic-size: auto 1000px;
+  }
+  .proceso {
+    contain-intrinsic-size: auto 950px;
+  }
+  .trabajos {
+    contain-intrinsic-size: auto 800px;
+  }
   .recorrido {
     height: 360vh;
   }
@@ -1987,6 +2016,82 @@ a {
   .bento__tarjeta:not(.bento__tarjeta--a):not(.bento__tarjeta--d) .bento__titulo {
     font-size: 1rem;
     line-height: 1.12;
+  }
+}
+
+/* ---------- Fundido ligero (celular) ----------
+   animaciones.js marca con data-fade lo que debe entrar con fundido y le añade .visto al llegar a pantalla.
+   Solo se anima opacidad y translate: el navegador lo hace en la tarjeta gráfica. */
+.js [data-fade] {
+  opacity: 0;
+  translate: 0 var(--desplazar, 22px);
+}
+/* La transición va solo en el estado final: así, al marcar el elemento, se oculta de golpe y no hace un
+   fundido de salida; el fundido de entrada ocurre cuando se añade .visto. */
+.js [data-fade].visto {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity var(--duracion-fundido) var(--curva-fundido) var(--retraso, 0ms),
+    translate var(--duracion-fundido) var(--curva-fundido) var(--retraso, 0ms);
+}
+:root {
+  /* Más alto = más lento. La curva frena de forma gradual (sin el arranque brusco de --ease). */
+  --duracion-fundido: 1.1s;
+  --curva-fundido: cubic-bezier(0.25, 0.6, 0.3, 1);
+}
+
+/* ---------- Proceso: título por palabras y línea, solo con CSS ----------
+   Título: cada palabra va en una caja (.pal, en el marcado de Proceso.jsx) con recorte; animaciones.js marca el
+   título con data-pal y le añade .visto al llegar a pantalla, y entonces las palabras suben una tras otra.
+   Línea: se dibuja con el scroll mediante una línea de tiempo de CSS. Donde el navegador no la soporta, o con
+   movimiento reducido, la línea queda completa. */
+.pal {
+  display: inline-block;
+  overflow: clip;
+  vertical-align: top;
+  /* Con el interletrado negativo la última letra y las colas de g, p y j sobresalen de la caja */
+  padding: 0 0.1em 0.12em;
+  margin: 0 -0.1em -0.12em;
+}
+.pal > span {
+  display: inline-block;
+}
+[data-pal] .pal > span {
+  transform: translateY(105%);
+}
+[data-pal].visto .pal > span {
+  transform: none;
+  transition: transform 1.3s cubic-bezier(0.25, 1, 0.5, 1) calc(var(--i) * 80ms);
+}
+
+@keyframes dibujar-y {
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes dibujar-x {
+  to {
+    transform: scaleX(1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .pasos__caja {
+      view-timeline: --caja block;
+    }
+    .pasos__linea span {
+      transform: scaleY(0);
+      animation: dibujar-y linear both;
+      animation-timeline: --caja;
+      animation-range: cover 5% cover 50%;
+    }
+    @media (min-width: 900px) {
+      .pasos__linea span {
+        transform: scaleX(0);
+        animation-name: dibujar-x;
+      }
+    }
   }
 }
 

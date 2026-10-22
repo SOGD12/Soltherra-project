@@ -1,18 +1,21 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { historia } from '../data/contenido.js'
 import { sinMovimiento } from '../movimiento.js'
+import { gama } from '../rendimiento.js'
 
 // Pantallas táctiles: el dedo sobre la casa hace scroll; el giro se hace con el botón.
 const esTactil = () => window.matchMedia('(pointer: coarse)').matches
+const sinSuscripcion = () => () => {}
 
 export default function Recorrido() {
   const seccion = useRef(null)
   const lienzo = useRef(null)
   const [paso, setPaso] = useState(0)
   const [lista, setLista] = useState(false)
-  const [tactil] = useState(esTactil)
+  // En el servidor (HTML pre-renderizado) y al hidratar vale false; después refleja el dispositivo real.
+  const tactil = useSyncExternalStore(sinSuscripcion, esTactil, () => false)
   const [girando, setGirando] = useState(false)
   const escenaRef = useRef(null)
   const inicioX = useRef(0)
@@ -41,7 +44,7 @@ export default function Recorrido() {
 
     import('../escena.js').then(({ crearEscena }) => {
       if (!vivo || !lienzo.current) return
-      escena = crearEscena(lienzo.current, { reducido, tactil: esTactil() })
+      escena = crearEscena(lienzo.current, { reducido, tactil: esTactil(), baja: gama() === 'baja' })
       escenaRef.current = escena
       setLista(true)
       if (reducido) return
@@ -85,7 +88,7 @@ export default function Recorrido() {
         <div className="contenedor recorrido__rejilla">
           <div className="recorrido__texto">
             <Chip claro>Cómo funciona</Chip>
-            <h2 id="t-recorrido">
+            <h2 id="t-recorrido" data-titulo>
               Del <em className="acento">sol</em> a tu casa
             </h2>
             <ol className="recorrido__pasos">

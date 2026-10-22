@@ -9,8 +9,16 @@ export default function Proceso() {
         <div className="titulo-seccion titulo-seccion--fila">
           <div>
             <Chip>Proceso</Chip>
-            <h2 id="t-proceso" data-titulo>
-              Cómo <em className="acento">trabajamos</em>
+            {/* Las palabras van en cajas para que el CSS las haga subir una a una (ver .pal en index.css) */}
+            <h2 id="t-proceso" data-palabras>
+              <span className="pal" style={{ '--i': 0 }}>
+                <span>Cómo</span>
+              </span>{' '}
+              <em className="acento">
+                <span className="pal" style={{ '--i': 1 }}>
+                  <span>trabajamos</span>
+                </span>
+              </em>
             </h2>
           </div>
           <p>Te acompañamos desde la ingeniería hasta la puesta en marcha, y después del arranque también.</p>

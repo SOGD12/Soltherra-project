@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { categorias } from '../data/contenido.js'
@@ -7,18 +7,16 @@ import { sinMovimiento } from '../movimiento.js'
 
 const INTERVALO = 3000
 
-function useVisibles() {
-  const calc = () =>
-    window.matchMedia('(min-width: 900px)').matches ? 3 : window.matchMedia('(min-width: 640px)').matches ? 2 : 1
-  const [n, setN] = useState(calc)
-  useEffect(() => {
-    const qs = [window.matchMedia('(min-width: 900px)'), window.matchMedia('(min-width: 640px)')]
-    const f = () => setN(calc())
-    qs.forEach((m) => m.addEventListener('change', f))
-    return () => qs.forEach((m) => m.removeEventListener('change', f))
-  }, [])
-  return n
+const calcVisibles = () =>
+  window.matchMedia('(min-width: 900px)').matches ? 3 : window.matchMedia('(min-width: 640px)').matches ? 2 : 1
+const suscribirAncho = (aviso) => {
+  const qs = [window.matchMedia('(min-width: 900px)'), window.matchMedia('(min-width: 640px)')]
+  qs.forEach((m) => m.addEventListener('change', aviso))
+  return () => qs.forEach((m) => m.removeEventListener('change', aviso))
 }
+
+// En el servidor (HTML pre-renderizado) y al hidratar vale 3; después se ajusta al ancho real.
+const useVisibles = () => useSyncExternalStore(suscribirAncho, calcVisibles, () => 3)
 
 export default function Trabajos() {
   const [trabajos, setTrabajos] = useState(trabajosIniciales)

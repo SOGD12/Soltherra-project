@@ -24,6 +24,7 @@ function Formulario() {
           type="text"
           name="nombre"
           required
+          maxLength={80}
           autoComplete="name"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
@@ -41,7 +42,7 @@ function Formulario() {
       </label>
       <label>
         <span>Mensaje (opcional)</span>
-        <textarea name="mensaje" rows="3" value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
+        <textarea name="mensaje" rows="3" maxLength={500} value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
       </label>
       <button type="submit" className="boton">
         <IconoWhatsApp />
