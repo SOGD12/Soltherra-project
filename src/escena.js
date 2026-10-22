@@ -60,7 +60,8 @@ function punteroEnRecorrido(puntos, t) {
 export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
   const illo = new Zdog.Illustration({
     element: canvas,
-    resize: true,
+    // El tamaño lo controla el ResizeObserver de abajo, no el evento resize de la ventana.
+    resize: false,
     rotate: { x: -TAU / 22, y: -TAU / 10 },
     translate: { y: 10 },
     onResize(ancho, alto) {
@@ -76,8 +77,27 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     this.element.width = this.canvasWidth = ancho * densidad
     this.element.height = this.canvasHeight = alto * densidad
   }
+  // Con resize: false, Zdog fija en línea el tamaño inicial del lienzo (300x150) en pantallas de alta
+  // densidad. Se quita para que mande el CSS (100% de su caja).
+  canvas.style.width = ''
+  canvas.style.height = ''
   illo.setMeasuredSize()
   illo.onResize(illo.width, illo.height)
+
+  // En iPhone, Safari lanza "resize" cada vez que esconde o muestra su barra al hacer scroll. Rehacer el
+  // lienzo en cada uno de esos eventos daba tirones, así que solo se rehace si el lienzo cambia de tamaño.
+  let medida = 0
+  const observador = new ResizeObserver(() => {
+    cancelAnimationFrame(medida)
+    medida = requestAnimationFrame(() => {
+      const r = canvas.getBoundingClientRect()
+      if (Math.round(r.width) === Math.round(illo.width) && Math.round(r.height) === Math.round(illo.height)) return
+      illo.setMeasuredSize()
+      illo.onResize(illo.width, illo.height)
+      if (!activo) dibujar(performance.now())
+    })
+  })
+  observador.observe(canvas)
 
   // Orden de pintado: el suelo siempre al fondo; encima, "cosas" se ordena por profundidad.
   // La casa es un solo Group convexo con caras de una sola cara (backface: false): cada cara
@@ -243,9 +263,10 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
   let activo = false
   let ultimo = 0
   const inicioTiempo = performance.now()
-  // En celular el lienzo se dibuja a ~30 fps: la escena se ve igual de fluida y libera el scroll.
-  // En escritorio se limita a ~45 fps: ahorra CPU sin que se note.
-  const intervalo = tactil ? 1000 / 30 : 1000 / 45
+  // Tope de 60 fps en todos los equipos: en pantallas de 120 Hz (iPhone Pro) dibujar el doble de
+  // fotogramas no se nota en esta escena y gasta batería. Todo el movimiento va por tiempo real,
+  // así que la velocidad es la misma a 30, 60 o 120 fps.
+  const intervalo = 1000 / 60
 
   // Con ratón se gira arrastrando sobre el lienzo. En pantallas táctiles el dedo sobre la casa
   // debe seguir bajando la página, así que el giro va por un botón (ver girar* abajo).
@@ -270,7 +291,8 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     ultimo = ahora
     // Al soltar el botón la casa sigue girando sola, despacio.
     if (giroSolo && !reducido) giroUsuario += dt * 0.6
-    progreso += (objetivo - progreso) * (reducido ? 1 : 0.1)
+    // Sigue al scroll con la misma suavidad sin importar los fps: recorre ~99 % del camino en 0,75 s.
+    progreso = reducido ? objetivo : progreso + (objetivo - progreso) * (1 - Math.exp(-dt * 6))
     const p = progreso
 
     // Cámara: gira de tres cuartos izquierdo a tres cuartos derecho mientras avanza la historia.
@@ -367,6 +389,8 @@ export function crearEscena(canvas, { reducido = false, tactil = false } = {}) {
     destruir() {
       activo = false
       cancelAnimationFrame(marco)
+      cancelAnimationFrame(medida)
+      observador.disconnect()
     },
   }
 }

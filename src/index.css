@@ -479,8 +479,9 @@ a {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  /* svh y no dvh: en iPhone dvh cambia cada vez que Safari esconde o muestra su barra al hacer scroll,
+     y eso cambiaba el alto de la página y obligaba a recalcular todas las animaciones de scroll */
   min-height: 100svh;
-  min-height: 100dvh;
   background: var(--suelo);
   color: var(--texto-claro);
   overflow: hidden;
@@ -949,7 +950,6 @@ a {
   position: sticky;
   top: 0;
   height: 100svh;
-  height: 100dvh;
   display: grid;
   align-items: center;
   overflow: hidden;
