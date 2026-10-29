@@ -10,11 +10,11 @@ export const FACEBOOK = 'https://web.facebook.com/profile.php?id=61587216064854'
 export const MENSAJE = 'Hola Soltherra, quiero cotizar un sistema solar.'
 
 export const nav = [
-  ['Nosotros', '#nosotros'],
-  ['Servicios', '#servicios'],
-  ['Cómo funciona', '#recorrido'],
-  ['Trabajos', '#trabajos'],
-  ['Contacto', '#contacto'],
+  ['Inicio', '/home'],
+  ['Servicios', '/servicios'],
+  ['Cómo funciona', '/como-funciona'],
+  ['Trabajos', '/trabajos'],
+  ['Contacto', '/contacto'],
 ]
 
 export const gestiones = [
@@ -43,15 +43,42 @@ export const gestiones = [
 export const fotovoltaico = [
   'Ingeniería detallada para proyectos solares',
   'Trámites de conexión ante el operador de red',
-  'Trámites para beneficios tributarios',
   'Estudio de conexión simplificada para sistemas solares fotovoltaicos (AGPE y GD)',
-  'Mantenimiento preventivo y correctivo',
+  'Instalación y puesta en marcha con cumplimiento normativo',
 ]
 
 export const termico = [
-  'Climatización de piscinas con energía solar térmica',
   'Calentamiento de aguas sanitarias con sistemas solares térmicos',
-  'Mantenimiento preventivo y correctivo',
+  'Colectores y tanques dimensionados al consumo de agua caliente',
+  'Climatización de ambientes con energía solar térmica',
+]
+
+export const piscina = [
+  'Diseño del sistema según el tamaño y uso de la piscina',
+  'Colectores solares térmicos y equipo de bombeo',
+  'Instalación y puesta en marcha',
+  'Temperatura agradable durante todo el año, sin gastar en gas o electricidad',
+]
+
+export const mantenimiento = [
+  'Mantenimiento preventivo y correctivo de sistemas fotovoltaicos',
+  'Mantenimiento de sistemas solares térmicos',
+  'Revisión del cableado, conexiones e inversor',
+  'Mediciones eléctricas y monitoreo del rendimiento',
+]
+
+export const cargaEV = [
+  'Diseño e instalación de puestos de carga para vehículos eléctricos',
+  'Cargadores para casas, edificios, empresas y parqueaderos',
+  'Carga alimentada con energía solar para movilidad limpia',
+  'Protecciones eléctricas, puesta en marcha y cumplimiento normativo',
+]
+
+export const tramites = [
+  'Deducción especial de renta por tus inversiones en energía solar',
+  'Exclusión de IVA en equipos y servicios del proyecto',
+  'Exención de aranceles en la importación de equipos',
+  'Depreciación acelerada de los activos del sistema',
 ]
 
 export const pasos = [
@@ -93,49 +120,41 @@ export const soluciones = [
   {
     clase: 'bento__tarjeta--a',
     titulo: 'Sistemas fotovoltaicos',
-    texto: 'Diseño e instalación para hogares, empresas e instituciones.',
-    href: '#servicios',
-    foto: '/img/trabajo-cubierta-azul.webp',
-    alt: 'Módulos fotovoltaicos instalados sobre una cubierta metálica azul con montañas al fondo',
-    ancho: 1400,
-    alto: 1400,
+    href: '/servicios#servicios',
+    imagen: 'fotovoltaicos',
   },
   {
     clase: 'bento__tarjeta--b',
     titulo: 'Sistemas solares térmicos',
-    texto: 'Climatización de piscinas y calentamiento de agua sanitaria.',
-    href: '#termico',
-    foto: '/img/termosifones.webp',
-    alt: 'Tres calentadores solares de agua con colectores planos sobre un techo',
-    ancho: 1280,
-    alto: 916,
+    href: '/servicios#termico',
+    imagen: 'termicos',
   },
   {
     clase: 'bento__tarjeta--c',
     titulo: 'Mantenimiento',
-    texto: 'Preventivo y correctivo.',
-    href: '#trabajos',
-    foto: '/img/bomba-solar.webp',
-    alt: 'Tubería y bomba roja de circulación de un sistema solar térmico',
-    ancho: 900,
-    alto: 1106,
+    href: '/servicios#mantenimiento',
+    imagen: 'mantenimiento',
   },
   {
     clase: 'bento__tarjeta--d',
     titulo: 'Trámites y conexión',
-    texto: 'Operador de red y beneficios tributarios.',
-    href: '#gestiones',
-    foto: '/img/inversor-blanco.webp',
-    alt: 'Inversor solar blanco compacto montado en pared',
-    ancho: 900,
-    alto: 1200,
+    href: '/servicios#tramites',
+    imagen: 'tramites',
+  },
+  {
+    clase: 'bento__tarjeta--e',
+    titulo: 'Carga de vehículos eléctricos',
+    href: '/servicios#carga-ev',
+    imagen: 'carga-ev',
   },
 ]
 
 export const categorias = [
   ['fotovoltaico', 'Fotovoltaico', 'solar_power'],
   ['termico', 'Térmico', 'thermostat'],
+  ['piscina', 'Climatización de piscina', 'pool'],
   ['mantenimiento', 'Mantenimiento y medición', 'build'],
+  ['ev', 'Carga de vehículos eléctricos', 'ev_station'],
 ]
 
 export const cinta = [

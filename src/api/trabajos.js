@@ -1,4 +1,4 @@
-import datos from '../data/trabajos.json'
+import datos from '../data/imagenes/trabajos.json'
 
 export async function obtenerTrabajos() {
   return datos

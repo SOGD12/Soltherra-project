@@ -1,16 +1,29 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BotonWA } from './Comunes.jsx'
 import { TEL, CORREO, nav } from '../data/contenido.js'
 
-export default function Header() {
+const pagina_de = (h) => (h === '/home' ? 'inicio' : h.slice(1))
+
+export default function Header({ pagina }) {
   const [abierto, setAbierto] = useState(false)
+  const botonMenu = useRef(null)
 
   useEffect(() => {
     document.body.classList.toggle('sin-scroll', abierto)
-    const cerrar = (e) => e.key === 'Escape' && setAbierto(false)
+    if (!abierto) return () => document.body.classList.remove('sin-scroll')
+    const cerrar = (e) => {
+      if (e.key !== 'Escape') return
+      setAbierto(false)
+      botonMenu.current?.focus()
+    }
+    // Si se pasa a escritorio con el menú abierto, el botón desaparece: se cierra para no dejar el scroll bloqueado.
+    const ancho = window.matchMedia('(min-width: 900px)')
+    const alCambiar = (e) => e.matches && setAbierto(false)
     window.addEventListener('keydown', cerrar)
+    ancho.addEventListener('change', alCambiar)
     return () => {
       window.removeEventListener('keydown', cerrar)
+      ancho.removeEventListener('change', alCambiar)
       document.body.classList.remove('sin-scroll')
     }
   }, [abierto])
@@ -18,12 +31,12 @@ export default function Header() {
   return (
     <header className="cabecera" data-abierto={abierto}>
       <div className="cabecera__pildora">
-        <a className="cabecera__logo" href="#inicio" aria-label="Soltherra S.A.S., ir al inicio">
+        <a className="cabecera__logo" href="/home" aria-label="Soltherra S.A.S., ir al inicio">
           <img src="/img/logo.webp" alt="Soltherra S.A.S. Energía Sostenible" width="105" height="56" />
         </a>
         <nav className="cabecera__nav" aria-label="Principal">
           {nav.map(([t, h]) => (
-            <a key={h} href={h}>
+            <a key={h} href={h} aria-current={pagina_de(h) === pagina ? 'page' : undefined}>
               {t}
             </a>
           ))}
@@ -31,6 +44,7 @@ export default function Header() {
         <BotonWA texto="Cotizar" variante="boton--viva" corto />
         <button
           type="button"
+          ref={botonMenu}
           className="cabecera__menu"
           aria-expanded={abierto}
           aria-controls="menu-movil"
@@ -44,7 +58,7 @@ export default function Header() {
       <div id="menu-movil" className="menu-movil" hidden={!abierto}>
         <nav aria-label="Menú móvil">
           {nav.map(([t, h]) => (
-            <a key={h} href={h} onClick={() => setAbierto(false)}>
+            <a key={h} href={h} aria-current={pagina_de(h) === pagina ? 'page' : undefined} onClick={() => setAbierto(false)}>
               {t}
             </a>
           ))}

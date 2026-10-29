@@ -5,7 +5,7 @@ import { historia } from '../data/contenido.js'
 import { sinMovimiento } from '../movimiento.js'
 import { gama } from '../rendimiento.js'
 
-// Pantallas táctiles: el dedo sobre la casa hace scroll; el giro se hace con el botón.
+// Pantallas táctiles: el dedo en vertical sobre la casa hace scroll y en horizontal la gira (ver escena.js).
 const esTactil = () => window.matchMedia('(pointer: coarse)').matches
 const sinSuscripcion = () => () => {}
 
@@ -14,11 +14,10 @@ export default function Recorrido() {
   const lienzo = useRef(null)
   const [paso, setPaso] = useState(0)
   const [lista, setLista] = useState(false)
-  // En el servidor (HTML pre-renderizado) y al hidratar vale false; después refleja el dispositivo real.
-  const tactil = useSyncExternalStore(sinSuscripcion, esTactil, () => false)
   const [girando, setGirando] = useState(false)
   const escenaRef = useRef(null)
-  const inicioX = useRef(0)
+  // En el servidor (HTML pre-renderizado) y al hidratar vale false; después refleja el dispositivo real.
+  const tactil = useSyncExternalStore(sinSuscripcion, esTactil, () => false)
 
   useEffect(() => {
     let vivo = true
@@ -66,20 +65,10 @@ export default function Recorrido() {
     }
   }, [])
 
-  // Botón "mantén para girar": captura el dedo mientras está presionado y lo suelta al levantarlo.
-  const empezar = (e) => {
-    e.currentTarget.setPointerCapture(e.pointerId)
-    inicioX.current = e.clientX
-    escenaRef.current?.empezarGiro()
-    setGirando(true)
-  }
-  const mover = (e) => {
-    if (girando) escenaRef.current?.moverGiro(e.clientX - inicioX.current)
-  }
-  const soltar = () => {
-    if (!girando) return
-    escenaRef.current?.soltarGiro()
-    setGirando(false)
+  const alternarGiro = () => {
+    const nuevo = !girando
+    setGirando(nuevo)
+    escenaRef.current?.girar(nuevo)
   }
 
   return (
@@ -112,21 +101,10 @@ export default function Recorrido() {
               aria-label="Escena en 3D: el sol ilumina el panel solar del techo, la energía pasa por el inversor y se encienden las ventanas de la casa"
             />
             {tactil ? (
-              <figcaption>
-                <button
-                  type="button"
-                  className="recorrido__girar"
-                  data-girando={girando || undefined}
-                  onPointerDown={empezar}
-                  onPointerMove={mover}
-                  onPointerUp={soltar}
-                  onPointerCancel={soltar}
-                  onContextMenu={(e) => e.preventDefault()}
-                >
-                  <Icono nombre="rotate_360" />
-                  {girando ? 'Desliza para girar' : 'Mantén y desliza para girar'}
-                </button>
-              </figcaption>
+              // En el celular la casa solo se gira con el dedo después de tocar este botón, para que un roce al hacer scroll no la mueva.
+              <button type="button" className="recorrido__girar" aria-pressed={girando} onClick={alternarGiro}>
+                <Icono nombre="rotate_360" /> {girando ? 'Desliza la casa · Toca para soltar' : 'Toca para girar la casa'}
+              </button>
             ) : (
               <figcaption>
                 <Icono nombre="rotate_360" /> Arrastra para girar la casa

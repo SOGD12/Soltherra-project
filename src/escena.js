@@ -15,10 +15,10 @@ const C = {
   muroFondo: '#a9c2d3',
   techo: '#187a41',
   techoSombra: '#146636',
-  ventana: '#16486b',
-  puerta: '#0b3b5a',
-  suelo: '#0f4a6f',
-  sendero: '#1a5a82',
+  ventana: '#2a6a94',
+  puerta: '#134b6f',
+  suelo: '#1d5f8a',
+  sendero: '#2f75a3',
   hoja: '#3bb86a',
   hojaOscura: '#187a41',
   tronco: '#7a5233',
@@ -68,7 +68,13 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
     rotate: { x: -TAU / 22, y: -TAU / 10 },
     translate: { y: 10 },
     onResize(ancho, alto) {
-      this.zoom = Math.min(ancho / 500, alto / 460)
+      // El sol sale muy a la izquierda (≈ 350 unidades del centro) y la casa llega a ≈ 270 por la derecha:
+      // se desplaza la escena 40 unidades a la derecha y se deja ancho para que el sol no se corte.
+      // En celulares estrechos, con el barrido de giro y los rayos del sol, 650 unidades no dan margen y la casita
+      // se corta en los bordes: se reserva más ancho y algo más de alto.
+      const estrecho = ancho < 500
+      this.zoom = Math.min(ancho / (estrecho ? 760 : 650), alto / (estrecho ? 500 : 460))
+      this.translate.x = 40
     },
   })
   // Zdog dibuja a la densidad de píxeles del equipo (3x en muchos celulares). Por encima de 2x no se nota
@@ -99,7 +105,6 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
       if (Math.round(r.width) === Math.round(illo.width) && Math.round(r.height) === Math.round(illo.height)) return
       illo.setMeasuredSize()
       illo.onResize(illo.width, illo.height)
-      sucio = true
       if (!activo) dibujar(performance.now())
     })
   })
@@ -264,7 +269,11 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
   let progreso = objetivo
   let giroUsuario = 0
   let giroInicio = 0
-  let giroSolo = false
+  let fase = 0
+  let arrastrando = false
+  // En pantallas táctiles el giro con el dedo solo funciona cuando el visitante lo activa con el botón (girar()):
+  // así un roce al hacer scroll no mueve la casa. Con ratón siempre está activo.
+  let libre = !tactil
   let marco = 0
   let activo = false
   let ultimo = 0
@@ -272,41 +281,65 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
   // Tope de 60 fps, y de 30 en celulares de baja gama: Zdog pinta en el hilo principal y a 60 fps le quita
   // tiempo al scroll. Todo el movimiento va por tiempo real, así que la velocidad es la misma a 30, 60 o 120 fps.
   const intervalo = 1000 / (baja ? 30 : 60)
-  // En baja gama solo se dibuja si algo cambió (scroll, giro, arrastre): parado, la escena no gasta nada.
-  let sucio = true
 
-  // Con ratón se gira arrastrando sobre el lienzo. En pantallas táctiles el dedo sobre la casa
-  // debe seguir bajando la página, así que el giro va por un botón (ver girar* abajo).
+  // Con ratón se gira arrastrando sobre el lienzo. En pantallas táctiles el lienzo tiene touch-action: pan-y:
+  // el arrastre vertical sigue bajando la página y el horizontal gira la casa (ver más abajo).
   if (!tactil) new Zdog.Dragger({
     startElement: canvas,
     onDragStart() {
+      arrastrando = true
       giroInicio = giroUsuario
       canvas.classList.add('arrastrando')
     },
     onDragMove(_p, dx) {
       giroUsuario = giroInicio - (dx / canvas.clientWidth) * TAU * 0.8
-      sucio = true
       if (!activo) dibujar(performance.now())
     },
     onDragEnd() {
+      arrastrando = false
       canvas.classList.remove('arrastrando')
     },
   })
+
+  if (tactil) {
+    let x0 = null
+    canvas.addEventListener('pointerdown', (e) => {
+      if (!libre) return
+      x0 = e.clientX
+      arrastrando = true
+      giroInicio = giroUsuario
+      canvas.classList.add('arrastrando')
+    })
+    canvas.addEventListener('pointermove', (e) => {
+      if (x0 === null) return
+      giroUsuario = giroInicio - ((e.clientX - x0) / canvas.clientWidth) * TAU * 0.8
+      if (!activo) dibujar(performance.now())
+    })
+    const soltar = () => {
+      x0 = null
+      arrastrando = false
+      canvas.classList.remove('arrastrando')
+    }
+    canvas.addEventListener('pointerup', soltar)
+    canvas.addEventListener('pointercancel', soltar)
+  }
 
   function dibujar(ahora) {
     const t = (ahora - inicioTiempo) / 1000
     const dt = ultimo ? Math.min((ahora - ultimo) / 1000, 0.1) : 0
     ultimo = ahora
-    sucio = false
-    // Al soltar el botón la casa sigue girando sola, despacio.
-    if (giroSolo && !reducido) giroUsuario += dt * 0.6
     // Sigue al scroll con la misma suavidad sin importar los fps: recorre ~99 % del camino en 0,75 s.
     progreso = reducido ? objetivo : progreso + (objetivo - progreso) * (1 - Math.exp(-dt * 6))
     const p = progreso
 
     // Cámara: gira de tres cuartos izquierdo a tres cuartos derecho mientras avanza la historia.
-    const balanceo = sinBucle ? 0 : Math.sin(t * 0.5) * 0.04
-    illo.rotate.y = -TAU / 9 + p * (TAU / 7) + balanceo + giroUsuario
+    // Barrido lento y continuo para que la casa no se vea quieta (~20 s por ida y vuelta). Se detiene mientras
+    // se arrastra y sigue desde donde quedó, así que la casa nunca da el salto. Va por tiempo real: igual a cualquier fps.
+    if (!arrastrando && !reducido) fase += dt
+    // Al desactivar el giro manual en táctil, la casa vuelve suave al ángulo de la historia.
+    if (tactil && !libre && !arrastrando) giroUsuario *= Math.exp(-dt * 3)
+    const barrido = reducido ? 0 : Math.sin(fase * 0.32) * 0.5
+    illo.rotate.y = -TAU / 9 + p * (TAU / 7) + barrido + giroUsuario
     illo.rotate.x = -TAU / 22 - p * 0.08
 
     // 1. Sale el sol
@@ -367,8 +400,8 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
   }
 
   function bucle(ahora) {
-    const quieto = baja && !sucio && !giroSolo && Math.abs(objetivo - progreso) < 0.0005
-    if (!quieto && ahora - ultimo >= intervalo - 1) dibujar(ahora)
+    // El barrido lento mueve la casa siempre, así que mientras la sección está a la vista se dibuja (a 30 fps en baja gama).
+    if (ahora - ultimo >= intervalo - 1) dibujar(ahora)
     marco = activo ? requestAnimationFrame(bucle) : 0
   }
 
@@ -378,26 +411,15 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
     // El progreso del scroll (0 a 1) define en qué paso de la historia está la escena.
     progreso(valor) {
       objetivo = reducido ? 1 : limitar(valor)
-      sucio = true
+    },
+    /** Activa o desactiva el giro con el dedo (solo importa en pantallas táctiles). */
+    girar(si) {
+      libre = !tactil || si
     },
     reproducir(si) {
       if (reducido) return
       activo = si
       if (si && !marco) marco = requestAnimationFrame(bucle)
-    },
-    // Botón táctil: mientras se mantiene presionado, el desplazamiento del dedo gira la casa;
-    // al soltarlo la casa deja de seguir el dedo y gira sola.
-    empezarGiro() {
-      giroSolo = false
-      giroInicio = giroUsuario
-    },
-    moverGiro(dx) {
-      giroUsuario = giroInicio - (dx / canvas.clientWidth) * TAU * 0.8
-      sucio = true
-      if (!activo) dibujar(performance.now())
-    },
-    soltarGiro() {
-      giroSolo = true
     },
     destruir() {
       activo = false

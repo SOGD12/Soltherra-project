@@ -1,13 +1,15 @@
 
 
+import inicio from '../data/imagenes/inicio.json'
+
 export default function Franja() {
   return (
     <figure className="franja" data-franja>
       <img
-        src="/img/piscina.webp"
-        alt="Piscina en una finca con una estructura de colectores solares térmicos sobre la terraza"
-        width="1600"
-        height="640"
+        src={inicio.franja.foto}
+        alt={inicio.franja.alt}
+        width={inicio.franja.ancho}
+        height={inicio.franja.alto}
         loading="lazy"
         decoding="async"
       />

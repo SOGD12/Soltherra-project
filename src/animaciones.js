@@ -22,20 +22,37 @@ const t = (ms) => Math.round(ms * LENTITUD)
 // 'outQuart' frena de forma más gradual que 'outExpo', que arranca muy rápido y parece brusco.
 const SUAVE = 'outQuart'
 
-// Entrada única: el grupo arranca cuando su referencia entra en pantalla.
-function alEntrar(objetivos, referencia, { y = 40, delay = 80, duracion = 900, x, escala } = {}) {
-  const els = todos(objetivos)
-  const ref = document.querySelector(referencia)
+// Entrada única: el grupo arranca cuando su referencia entra en pantalla. Se vigila con IntersectionObserver
+// (no con el cruce de una marca de scroll) para que también arranque si la página llega ya bajada, p. ej. al
+// entrar por un enlace con ancla (/servicios#carga-ev): un salto no "cruza" la marca y el grupo quedaba invisible.
+// Con `por`, cada bloque (p. ej. cada .servicio) anima sus propios elementos con su propia referencia.
+const ioEntradas = []
+function entrada(els, ref, { y = 40, delay = 80, duracion = 900, x, escala } = {}) {
   if (!els.length || !ref) return
-  animate(els, {
+  const a = animate(els, {
     opacity: [0, 1],
     ...(x === undefined ? { y: [y, 0] } : { x: [x, 0] }),
     ...(escala ? { scale: [escala, 1] } : {}),
     duration: t(duracion),
     delay: stagger(t(delay)),
     ease: SUAVE,
-    autoplay: observar({ target: ref, enter: 'bottom-=10% top', repeat: false }),
+    autoplay: false,
   })
+  a.seek(0)
+  const io = new IntersectionObserver(
+    ([e]) => {
+      if (!e.isIntersecting) return
+      io.disconnect()
+      a.play()
+    },
+    { rootMargin: '0px 0px -10% 0px' },
+  )
+  io.observe(ref)
+  ioEntradas.push(io)
+}
+function alEntrar(objetivos, referencia, { por, ...opciones } = {}) {
+  if (por) return todos(por).forEach((b) => entrada([...b.querySelectorAll(objetivos)], b.querySelector(referencia), opciones))
+  entrada(todos(objetivos), document.querySelector(referencia), opciones)
 }
 
 // Atado al scroll: la animación avanza y retrocede con la posición de la página.
@@ -58,6 +75,7 @@ export function iniciarAnimaciones() {
   const recortar = movil && gama() === 'baja'
   const textos = []
   observadores = []
+  ioEntradas.length = 0
 
   // ---------- Fundido ligero (celular): opacidad y desplazamiento con CSS, una sola vez al entrar ----------
   // El navegador lo resuelve en la tarjeta gráfica, sin motor de animación. Al terminar se quitan las marcas
@@ -80,7 +98,7 @@ export function iniciarAnimaciones() {
         vistos.unobserve(e.target)
         ;(grupos.get(e.target) ?? [e.target]).forEach((el) => el.classList.add('visto'))
       }),
-    { rootMargin: '0px 0px -6% 0px' },
+    { rootMargin: '0px 0px -2% 0px' },
   )
   // paso: retraso entre elementos (ms). referencia: elemento que dispara a todo el grupo.
   // desplazar y duracion cambian el recorrido y el tiempo del fundido (por defecto, los de index.css).
@@ -215,7 +233,7 @@ export function iniciarAnimaciones() {
       alEntrar('.nosotros__texto .chip, .nosotros__texto > p:not(.destacado), .para-quien li', '.nosotros', { y: 24, delay: 70 })
       alEntrar('.bento__tarjeta', '.bento', { y: 60, delay: 110, duracion: 1100, escala: 0.94 })
       alEntrar('.gestiones__lista li', '.gestiones__lista', { y: 40, delay: 110 })
-      alEntrar('.servicio .filas li', '.servicio .filas', { x: -24, delay: 80 })
+      alEntrar('.filas li', '.filas', { por: '.servicio', x: -24, delay: 80 })
       alEntrar('.carrusel', '.carrusel', { y: 40, duracion: 1000 })
 
       // ---------- Franja de la piscina: se abre de tarjeta a pantalla completa ----------
@@ -266,6 +284,7 @@ export function iniciarAnimaciones() {
 
   return () => {
     precarga.disconnect()
+    ioEntradas.forEach((io) => io.disconnect())
     vistos.disconnect()
     marcados.forEach(quitar)
     ro.disconnect()

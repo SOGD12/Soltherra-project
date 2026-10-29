@@ -26,6 +26,7 @@ function Formulario() {
           required
           maxLength={80}
           autoComplete="name"
+          placeholder="Nombre y apellido"
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
         />
@@ -37,12 +38,13 @@ function Formulario() {
           <option>Sistema solar térmico</option>
           <option>Climatización de piscina</option>
           <option>Mantenimiento</option>
+          <option>Puestos de carga para vehículos eléctricos</option>
           <option>Trámites y beneficios tributarios</option>
         </select>
       </label>
       <label>
         <span>Mensaje (opcional)</span>
-        <textarea name="mensaje" rows="3" maxLength={500} value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
+        <textarea name="mensaje" rows="3" placeholder="Ej. casa de 4 personas en Cali, factura de $400.000" maxLength={500} value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
       </label>
       <button type="submit" className="boton">
         <IconoWhatsApp />

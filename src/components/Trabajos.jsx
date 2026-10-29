@@ -62,6 +62,47 @@ export default function Trabajos() {
     setCategoria(c)
     setIndice(0)
   }
+  // Deslizar con el dedo (o el ratón): la pista sigue al puntero y al soltar pasa al trabajo vecino si se movió lo bastante.
+  const toque = useRef(null)
+  const [arrastre, setArrastre] = useState(0)
+  const [arrastrando, setArrastrando] = useState(false)
+  const empezarArrastre = (e) => {
+    if (e.pointerType === 'mouse' && e.button !== 0) return
+    toque.current = { x: e.clientX, ancho: e.currentTarget.clientWidth, dx: 0, activo: false }
+  }
+  const moverArrastre = (e) => {
+    const t = toque.current
+    if (!t) return
+    const dx = e.clientX - t.x
+    if (!t.activo && Math.abs(dx) < 8) return
+    if (!t.activo) e.currentTarget.setPointerCapture?.(e.pointerId) // si el puntero sale de la ventana sigue llegando pointerup
+    t.activo = true
+    // Sin hueco más allá del primero y el último: el borde se resiste.
+    const tope = (posicion === 0 && dx > 0) || (posicion === maximo && dx < 0)
+    t.dx = tope ? dx / 4 : dx
+    setArrastrando(true)
+    setArrastre(t.dx)
+  }
+  const terminarArrastre = () => {
+    const t = toque.current
+    toque.current = null
+    if (!t?.activo) return
+    const umbral = Math.min(60, t.ancho / 5)
+    if (t.dx < -umbral) setIndice(Math.min(posicion + 1, maximo))
+    else if (t.dx > umbral) setIndice(Math.max(posicion - 1, 0))
+    setArrastre(0)
+    setArrastrando(false)
+  }
+  // Patrón de pestañas: flechas, Inicio y Fin cambian de pestaña y mueven el foco
+  const teclasPestana = (e) => {
+    const k = categorias.findIndex(([c]) => c === categoria)
+    const n = categorias.length
+    const nuevo = { ArrowRight: (k + 1) % n, ArrowLeft: (k - 1 + n) % n, Home: 0, End: n - 1 }[e.key]
+    if (nuevo === undefined) return
+    e.preventDefault()
+    elegir(categorias[nuevo][0])
+    document.getElementById(`tab-${categorias[nuevo][0]}`)?.focus()
+  }
   const mover = (d) => setIndice(posicion + d < 0 ? maximo : posicion + d > maximo ? 0 : posicion + d)
 
   return (
@@ -85,6 +126,8 @@ export default function Trabajos() {
                 role="tab"
                 id={`tab-${clave}`}
                 aria-selected={categoria === clave}
+                tabIndex={categoria === clave ? 0 : -1}
+                onKeyDown={teclasPestana}
                 aria-controls="carrusel"
                 className="pestanas__boton"
                 onClick={() => elegir(clave)}
@@ -110,7 +153,8 @@ export default function Trabajos() {
           role="tabpanel"
           aria-labelledby={`tab-${categoria}`}
           aria-roledescription="carrusel"
-          style={{ '--v': visibles, '--i': posicion }}
+          style={{ '--v': visibles, '--i': posicion, '--dx': `${arrastre}px` }}
+          data-arrastrando={arrastrando || undefined}
           onMouseEnter={() => setPausa(true)}
           onMouseLeave={() => setPausa(false)}
           onFocus={() => setPausa(true)}
@@ -118,7 +162,13 @@ export default function Trabajos() {
           onTouchStart={() => setPausa(true)}
           onTouchEnd={() => setPausa(false)}
         >
-          <div className="carrusel__ventana">
+          <div
+            className="carrusel__ventana"
+            onPointerDown={empezarArrastre}
+            onPointerMove={moverArrastre}
+            onPointerUp={terminarArrastre}
+            onPointerCancel={terminarArrastre}
+          >
             <ul className="carrusel__pista">
               {lista.map((t, k) => {
                 const dentro = k >= posicion && k < posicion + visibles

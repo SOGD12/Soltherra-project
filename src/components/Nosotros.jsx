@@ -1,5 +1,6 @@
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
+import inicio from '../data/imagenes/inicio.json'
 
 export default function Nosotros() {
   return (
@@ -30,10 +31,10 @@ export default function Nosotros() {
         </div>
         <figure className="foto nosotros__foto" data-parallax>
           <img
-            src="/img/instalacion.webp"
-            alt="Dos técnicos instalando módulos fotovoltaicos sobre una cubierta"
-            width="1200"
-            height="667"
+            src={inicio.nosotros.foto}
+            alt={inicio.nosotros.alt}
+            width={inicio.nosotros.ancho}
+            height={inicio.nosotros.alto}
             loading="lazy"
           />
         </figure>

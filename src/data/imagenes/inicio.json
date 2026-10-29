@@ -1,0 +1,15 @@
+{
+  "hero": { "foto": "/img/hero.webp", "alt": "", "ancho": 1800, "alto": 1350 },
+  "nosotros": {
+    "foto": "/img/instalacion.webp",
+    "alt": "Dos técnicos instalando módulos fotovoltaicos sobre una cubierta",
+    "ancho": 1200,
+    "alto": 667
+  },
+  "franja": {
+    "foto": "/img/piscina.webp",
+    "alt": "Piscina en una finca con una estructura de colectores solares térmicos sobre la terraza",
+    "ancho": 1600,
+    "alto": 640
+  }
+}

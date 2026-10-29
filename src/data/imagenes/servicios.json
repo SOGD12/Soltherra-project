@@ -1,0 +1,26 @@
+{
+  "fotovoltaico": [
+    { "foto": "/img/trabajo-cubierta-blanca.webp", "alt": "Paneles solares y soportes sobre una cubierta clara", "ancho": 1000, "alto": 1333 },
+    { "foto": "/img/inversor.webp", "alt": "Inversor solar instalado en pared con canalización eléctrica", "ancho": 1000, "alto": 1333 }
+  ],
+  "termico": [
+    { "foto": "/img/colectores.webp", "alt": "Colectores solares térmicos de tubos al vacío instalados junto a una casa", "ancho": 1600, "alto": 1200 },
+    { "foto": "/img/tanque.webp", "alt": "Calentador solar de agua con tanque sobre una terraza", "ancho": 900, "alto": 1200 }
+  ],
+  "piscina": [
+    { "foto": "/img/piscina.webp", "alt": "Piscina con paneles solares sobre una estructura junto al agua", "ancho": 1600, "alto": 640 },
+    { "foto": "/img/bomba-solar.webp", "alt": "Bomba de agua y tuberías de un sistema solar térmico", "ancho": 900, "alto": 1106 }
+  ],
+  "carga-ev": [
+    { "foto": "/img/carga-ev-1.webp", "alt": "Conector de carga enchufado en un vehículo eléctrico", "ancho": 1400, "alto": 931 },
+    { "foto": "/img/carga-ev-2.webp", "alt": "Cable de carga conectado al puerto de un auto eléctrico", "ancho": 1400, "alto": 931 }
+  ],
+  "mantenimiento": [
+    { "foto": "/img/multimetro.webp", "alt": "Multímetro midiendo el voltaje de un banco de baterías", "ancho": 900, "alto": 1200 },
+    { "foto": "/img/cableado.webp", "alt": "Técnico ajustando el cableado de un sistema solar con una llave", "ancho": 900, "alto": 1200 }
+  ],
+  "tramites": [
+    { "foto": "/img/inversor-blanco.webp", "alt": "Inversor solar instalado y señalizado en la pared", "ancho": 900, "alto": 1200 },
+    { "foto": "/img/monitoreo.webp", "alt": "Pantalla de monitoreo con la producción y el consumo de energía", "ancho": 652, "alto": 590 }
+  ]
+}

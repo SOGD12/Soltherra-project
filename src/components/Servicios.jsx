@@ -1,6 +1,7 @@
 import { Icono } from './Iconos.jsx'
 import { BotonWA, Chip } from './Comunes.jsx'
-import { fotovoltaico, termico } from '../data/contenido.js'
+import fotosServicio from '../data/imagenes/servicios.json'
+import { fotovoltaico, termico, piscina, cargaEV, mantenimiento, tramites } from '../data/contenido.js'
 
 function Lista({ items }) {
   return (
@@ -15,16 +16,16 @@ function Lista({ items }) {
   )
 }
 
-function Servicio({ id, inversa, icono, chip, titulo, texto, items, cierre, mensaje, fotos }) {
+function Servicio({ id, inversa, panoramica, icono, chip, titulo, texto, items, cierre, mensaje, fotos }) {
   return (
-    <section className={`seccion servicio ${inversa ? 'servicio--inversa' : ''}`} id={id}>
+    <section className={`seccion servicio ${inversa ? 'servicio--inversa' : ''} ${panoramica ? 'servicio--panoramica' : ''}`} id={id}>
       <div className="contenedor servicio__rejilla">
         <div className="servicio__fotos">
           <figure className="foto servicio__principal" data-parallax>
-            <img src={fotos[0].src} alt={fotos[0].alt} width={fotos[0].width} height={fotos[0].height} loading="lazy" />
+            <img src={fotos[0].foto} alt={fotos[0].alt} width={fotos[0].ancho} height={fotos[0].alto} loading="lazy" />
           </figure>
           <figure className="foto servicio__inserto" data-flotar>
-            <img src={fotos[1].src} alt={fotos[1].alt} width={fotos[1].width} height={fotos[1].height} loading="lazy" />
+            <img src={fotos[1].foto} alt={fotos[1].alt} width={fotos[1].ancho} height={fotos[1].alto} loading="lazy" />
           </figure>
         </div>
         <div className="servicio__texto">
@@ -45,8 +46,16 @@ function Servicio({ id, inversa, icono, chip, titulo, texto, items, cierre, mens
 export default function Servicios() {
   return (
     <>
+      <section className="seccion servicios__intro" id="servicios" aria-labelledby="t-servicios">
+        <div className="contenedor titulo-seccion">
+          <Chip>Servicios</Chip>
+          <h2 id="t-servicios" data-titulo>
+            Todo lo que hacemos con <em className="acento">energía solar</em>
+          </h2>
+        </div>
+      </section>
       <Servicio
-        id="servicios"
+        id="fotovoltaico"
         icono="solar_power"
         chip="Fotovoltaico"
         titulo="Diseño e instalación de sistemas solares fotovoltaicos"
@@ -54,20 +63,7 @@ export default function Servicios() {
         items={fotovoltaico}
         cierre="Reduce costos energéticos y dependencia de la red eléctrica."
         mensaje="Hola Soltherra, quiero información sobre sistemas solares fotovoltaicos."
-        fotos={[
-          {
-            src: '/img/trabajo-cubierta-blanca.webp',
-            alt: 'Paneles solares y soportes sobre una cubierta clara',
-            width: 1000,
-            height: 1333,
-          },
-          {
-            src: '/img/inversor.webp',
-            alt: 'Inversor solar instalado en pared con canalización eléctrica',
-            width: 1000,
-            height: 1333,
-          },
-        ]}
+        fotos={fotosServicio['fotovoltaico']}
       />
       <Servicio
         id="termico"
@@ -79,15 +75,54 @@ export default function Servicios() {
         items={termico}
         cierre="Ahorro energético sostenible con confort térmico continuo."
         mensaje="Hola Soltherra, quiero información sobre sistemas solares térmicos."
-        fotos={[
-          {
-            src: '/img/colectores.webp',
-            alt: 'Colectores solares térmicos de tubos al vacío instalados junto a una casa',
-            width: 1600,
-            height: 1200,
-          },
-          { src: '/img/tanque.webp', alt: 'Calentador solar de agua con tanque sobre una terraza', width: 900, height: 1200 },
-        ]}
+        fotos={fotosServicio['termico']}
+      />
+      <Servicio
+        id="piscina"
+        panoramica
+        icono="pool"
+        chip="Climatización de piscina"
+        titulo="Climatización de piscinas con energía solar"
+        texto="Calentamos tu piscina aprovechando el sol: sistemas solares térmicos dimensionados para tu piscina, con instalación completa y puesta en marcha."
+        items={piscina}
+        cierre="Disfruta tu piscina todo el año con energía limpia."
+        mensaje="Hola Soltherra, quiero información sobre climatización de piscina con energía solar."
+        fotos={fotosServicio['piscina']}
+      />
+      <Servicio
+        id="carga-ev"
+        inversa
+        icono="ev_station"
+        chip="Carga de vehículos eléctricos"
+        titulo="Puestos de carga para vehículos eléctricos"
+        texto="Instalamos puestos de carga para tu vehículo eléctrico en casa, edificio, empresa o parqueadero, y los podemos alimentar con tu propio sistema solar para moverte con energía limpia."
+        items={cargaEV}
+        cierre="Carga tu vehículo con el sol y gasta menos en cada recorrido."
+        mensaje="Hola Soltherra, quiero información sobre puestos de carga para vehículos eléctricos."
+        fotos={fotosServicio['carga-ev']}
+      />
+      <Servicio
+        id="mantenimiento"
+        icono="build"
+        chip="Mantenimiento"
+        titulo="Mantenimiento preventivo y correctivo"
+        texto="Mantenemos tu sistema solar funcionando como el primer día: revisamos, medimos y corregimos para que siga rindiendo y cuidando tu inversión."
+        items={mantenimiento}
+        cierre="Un sistema bien cuidado rinde más y dura más."
+        mensaje="Hola Soltherra, quiero información sobre mantenimiento de mi sistema solar."
+        fotos={fotosServicio['mantenimiento']}
+      />
+      <Servicio
+        id="tramites"
+        inversa
+        icono="receipt_long"
+        chip="Trámites y beneficios"
+        titulo="Trámites y beneficios tributarios"
+        texto="La ley colombiana premia a quien invierte en energía solar. Te acompañamos ante las entidades para que tu proyecto acceda a los incentivos tributarios que le corresponden."
+        items={tramites}
+        cierre="Menos impuestos y una inversión que se paga más rápido."
+        mensaje="Hola Soltherra, quiero información sobre trámites y beneficios tributarios."
+        fotos={fotosServicio['tramites']}
       />
     </>
   )

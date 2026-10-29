@@ -26,3 +26,13 @@ Mismas condiciones (fotos reales del sitio actual, imgur, convertidas a WebP el 
 | trabajo-terraza-lago.webp | CEPfSSC.png |
 | trabajo-mixto.webp | 9e4nHeZ.png |
 | trabajo-tubos.webp | 4v4pkNf.png |
+
+## Carga de vehículos eléctricos (fotos de ejemplo)
+
+Fotos de ejemplo de Unsplash (licencia Unsplash), convertidas a WebP el 2026-10-28. **Pendiente: reemplazar por fotos de instalaciones reales de Soltherra.**
+
+| Archivo | Origen (Unsplash photo id) |
+|---|---|
+| carga-ev-1.webp | 1593941707882-a5bba14938c7 |
+| carga-ev-2.webp | 1593941707874-ef25b8b4a92b |
+| carga-ev-auto.webp | 1560958089-b8a1929cea89 |

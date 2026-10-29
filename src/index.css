@@ -1,18 +1,22 @@
 :root {
-  --suelo: #072a41;
-  --suelo-2: #0b3b5a;
+  --suelo: #1a5b88;
+  --suelo-2: #2a72a3;
   --fondo: #eef3f6;
   --piedra: #ffffff;
   --piedra-2: #e3edf3;
   --sol: #fdb62e;
   --hoja: #187a41;
   --hoja-viva: #3bb86a;
+  --hoja-clara: #7be0a2; /* verde para texto sobre el azul: 4,5:1 sobre --suelo */
   --hoja-oscura: #146636;
+  --hoja-boton: #168446; /* verde de botón: texto blanco ≥ 4.5:1 */
+  --tinta-sobre-viva: var(--texto); /* texto/icono oscuro sobre --hoja-viva (≈4.6:1); --suelo no llega */
+  --texto-sobre-hoja: #ffffff;
   --menta: #e3f4e9;
   --texto: #0b3b5a;
   --texto-suave: #4a6275;
   --texto-claro: #f2f8fb;
-  --texto-claro-suave: #b9cfdc;
+  --texto-claro-suave: #d0e1ec;
   --linea: rgb(11 59 90 / 0.16);
   --linea-claro: rgb(242 248 251 / 0.16);
   --vidrio: rgb(255 255 255 / 0.05);
@@ -61,9 +65,14 @@ body.sin-scroll {
   overflow: hidden;
 }
 
+/* El <main> recibe el foco al cambiar de página (App.jsx); no es un control, sin anillo. */
+main:focus {
+  outline: none;
+}
+
 ::selection {
   background: var(--sol);
-  color: var(--suelo);
+  color: var(--texto);
 }
 
 img {
@@ -105,7 +114,6 @@ a {
 :focus-visible {
   outline: 3px solid var(--texto);
   outline-offset: 3px;
-  border-radius: 4px;
 }
 
 .sr {
@@ -115,20 +123,6 @@ a {
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
-}
-
-.salto {
-  position: absolute;
-  left: 12px;
-  top: -60px;
-  z-index: 100;
-  background: var(--suelo);
-  color: var(--piedra);
-  padding: 10px 16px;
-  border-radius: 999px;
-}
-.salto:focus {
-  top: 12px;
 }
 
 .contenedor {
@@ -157,6 +151,10 @@ a {
   color: var(--texto-suave);
   margin: 0;
 }
+/* El chip lleva aire hasta el título (la regla anterior le quitaba el margen) */
+.titulo-seccion .chip {
+  margin-bottom: 22px;
+}
 
 /* Palabra destacada dentro de un título */
 .acento {
@@ -166,7 +164,7 @@ a {
 .isla .acento,
 .hero .acento,
 .recorrido .acento {
-  color: var(--hoja-viva);
+  color: var(--hoja-clara);
 }
 
 /* Palabras partidas por Anime.js: cada palabra va en una caja con overflow: clip para la entrada.
@@ -220,7 +218,7 @@ a {
 .chip--claro {
   border-color: var(--vidrio-borde);
   background: rgb(255 255 255 / 0.08);
-  color: var(--texto-claro-suave);
+  color: var(--texto-claro);
 }
 .chip--claro .mi {
   color: var(--hoja-viva);
@@ -236,7 +234,7 @@ a {
   min-height: 54px;
   padding: 0 28px;
   background: var(--hoja);
-  color: #ffffff;
+  color: var(--texto-sobre-hoja);
   font-family: var(--cuerpo);
   font-weight: 700;
   font-size: 1rem;
@@ -254,11 +252,11 @@ a {
   translate: 0 -2px;
 }
 .boton--viva {
-  background: var(--hoja-viva);
-  color: var(--suelo);
+  background: var(--hoja-boton);
+  color: var(--texto-sobre-hoja);
 }
 .boton--viva:hover {
-  background: #55c47f;
+  background: var(--hoja-oscura);
   box-shadow: 0 10px 30px -8px rgb(59 184 106 / 0.6);
 }
 .boton--vidrio {
@@ -344,7 +342,7 @@ a {
   height: 48px;
   padding: 0 16px;
   margin-right: auto;
-  background: #ffffff;
+  background: var(--piedra);
   border-radius: 999px;
   line-height: 0;
 }
@@ -361,10 +359,26 @@ a {
   font-size: 0.95rem;
   padding: 10px 14px;
   border-radius: 999px;
+  position: relative;
+  color: var(--texto-claro);
   transition: background-color 0.3s var(--ease);
 }
 .cabecera__nav a:hover {
   background: rgb(255 255 255 / 0.1);
+}
+.cabecera__nav a[aria-current='page'] {
+  background: rgb(255 255 255 / 0.18);
+}
+.cabecera__nav a[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 3px;
+  width: 16px;
+  height: 3px;
+  margin-left: -8px;
+  border-radius: 3px;
+  background: var(--sol);
 }
 .cabecera :focus-visible {
   outline-color: var(--sol);
@@ -431,6 +445,8 @@ a {
   gap: 28px;
   padding: 24px;
   border-radius: 28px;
+  border: 1px solid rgb(255 255 255 / 0.14);
+  box-shadow: 0 24px 60px rgb(4 24 40 / 0.45);
   overflow-y: auto;
   animation: desplegar 0.5s var(--ease) both;
 }
@@ -449,6 +465,9 @@ a {
   text-decoration: none;
   padding-block: 12px;
   border-bottom: 1px solid var(--linea-claro);
+}
+.menu-movil nav a[aria-current='page'] {
+  color: var(--sol);
 }
 .menu-movil__pie {
   display: grid;
@@ -508,7 +527,7 @@ a {
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(180deg, rgb(7 42 65 / 0.55) 0%, rgb(7 42 65 / 0.25) 35%, rgb(7 42 65 / 0.9) 100%),
+    linear-gradient(180deg, rgb(7 42 65 / 0.55) 0%, rgb(7 42 65 / 0.3) 35%, rgb(7 42 65 / 0.9) 100%),
     rgb(7 42 65 / 0.2);
 }
 .hero__texto {
@@ -572,6 +591,21 @@ a {
 @keyframes mostrar {
   to {
     visibility: visible;
+  }
+}
+
+/* Portátiles y ventanas bajas: el titular se mide también por el alto para que el subtítulo y los botones queden a la vista */
+@media (min-width: 700px) and (max-height: 780px) {
+  .hero__texto {
+    padding-block: calc(var(--alto-cabecera) + 32px) clamp(48px, 9vh, 72px);
+  }
+  .hero__titulo {
+    font-size: min(clamp(2.7rem, 0.9rem + 7.4vw, 6.6rem), 10.5vh);
+    max-width: 18ch;
+    margin-bottom: 18px;
+  }
+  .hero__sub {
+    margin-bottom: 24px;
   }
 }
 
@@ -716,7 +750,7 @@ a {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgb(7 42 65 / 0.78) 0%, rgb(7 42 65 / 0.35) 45%, rgb(7 42 65 / 0.88) 100%);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--suelo) 78%, transparent) 0%, color-mix(in srgb, var(--suelo) 35%, transparent) 45%, color-mix(in srgb, var(--suelo) 88%, transparent) 100%);
   transition: opacity 0.5s var(--ease);
 }
 .bento__titulo {
@@ -750,29 +784,19 @@ a {
   width: 1.5rem;
   height: 1.5rem;
 }
-.bento__texto {
-  position: absolute;
-  left: 24px;
-  right: 24px;
-  bottom: 22px;
-  max-width: 34ch;
-  font-size: 1rem;
-  font-weight: 500;
-  line-height: 1.35;
-  transition: transform 0.6s var(--ease);
-}
 .bento__tarjeta:hover img {
   transform: scale(1.08);
 }
 .bento__tarjeta:hover .bento__flecha {
   background: var(--hoja-viva);
+  color: var(--texto);
   transform: rotate(45deg);
-}
-.bento__tarjeta:hover .bento__texto {
-  transform: translateY(-4px);
 }
 .bento__tarjeta--d img {
   object-position: 50% 35%;
+}
+.bento__tarjeta--e img {
+  object-position: 50% 55%;
 }
 
 /* ---------- Islas oscuras ---------- */
@@ -791,7 +815,10 @@ a {
   border-radius: var(--r-isla);
   transform-origin: 50% 0;
 }
-.isla :focus-visible {
+.isla :focus-visible,
+.recorrido :focus-visible,
+.franja :focus-visible,
+.menu-movil :focus-visible {
   outline-color: var(--sol);
 }
 .isla .titulo-seccion p {
@@ -816,11 +843,30 @@ a {
   background: radial-gradient(circle, rgb(253 182 46 / 0.22) 0%, rgb(253 182 46 / 0) 65%);
 }
 
+/* Subtítulo "Servicios" encima del primer servicio */
+.seccion.servicios__intro {
+  padding-bottom: 0;
+}
+.servicios__intro .titulo-seccion {
+  margin-bottom: 0;
+}
+/* El primer servicio queda pegado al subtítulo: se lee como el encabezado de esa lista */
+.servicios__intro h2 {
+  margin-bottom: 0;
+}
+.servicios__intro + .servicio {
+  padding-top: clamp(24px, 3vw, 40px);
+}
+
 /* ---------- Ingeniería y trámites ---------- */
 
+/* Primera isla de Servicios: el título arranca por debajo de la cabecera flotante */
+.gestiones {
+  padding-top: calc(var(--alto-cabecera) + var(--margen-cabecera, 12px) * 2 + 32px);
+}
 .gestiones__rejilla {
   display: grid;
-  gap: 8px;
+  gap: 0;
 }
 .gestiones__lista {
   display: grid;
@@ -852,7 +898,7 @@ a {
   margin-bottom: 14px;
   border-radius: 16px;
   background: var(--hoja-viva);
-  color: var(--suelo);
+  color: var(--texto);
 }
 .gestiones__icono .mi {
   width: 1.6rem;
@@ -866,7 +912,7 @@ a {
 .gestiones__lista p {
   margin: 0;
   max-width: none;
-  color: var(--texto-claro-suave);
+  color: var(--texto-claro);
   font-size: 0.975rem;
   line-height: 1.5;
 }
@@ -876,9 +922,34 @@ a {
 .servicio + .servicio {
   padding-top: 0;
 }
+/* Último bloque de la página: cierra más cerca del pie, sin hueco de más */
+.servicio:last-child {
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+/* Tarjetas de gestiones compactas en móvil: icono a la izquierda, texto a la derecha */
+@media (max-width: 639px) {
+  .gestiones__lista li {
+    grid-template-columns: auto 1fr;
+    column-gap: 16px;
+    row-gap: 6px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .gestiones__icono {
+    grid-row: span 2;
+    width: 46px;
+    height: 46px;
+    margin-bottom: 0;
+  }
+}
 .servicio__rejilla {
   display: grid;
   gap: 56px;
+}
+@media (max-width: 639px) {
+  .servicio__rejilla {
+    gap: 40px;
+  }
 }
 .servicio__fotos {
   position: relative;
@@ -895,11 +966,18 @@ a {
   aspect-ratio: 3 / 4;
   border: 6px solid var(--fondo);
   border-radius: 22px;
-  box-shadow: 0 30px 60px -24px rgb(7 42 65 / 0.45);
+  box-shadow: 0 30px 60px -24px color-mix(in srgb, var(--suelo) 45%, transparent);
 }
 .servicio--inversa .servicio__inserto {
   right: auto;
   left: -4px;
+}
+/* Foto panorámica (piscina 1600x640): marco apaisado para no recortarla a vertical */
+.servicio--panoramica .servicio__principal {
+  aspect-ratio: 16 / 9;
+}
+.servicio--panoramica .servicio__inserto {
+  width: 30%;
 }
 .servicio h2 {
   font-size: clamp(2rem, 1.2rem + 2.6vw, 3.4rem);
@@ -928,13 +1006,13 @@ a {
   color: var(--hoja);
   margin-top: 1px;
 }
-.servicio__cierre {
+.servicio__texto > .servicio__cierre {
   font-family: var(--display);
   font-weight: 600;
   font-size: 1.25rem;
   line-height: 1.25;
-  color: var(--texto) !important;
-  margin-bottom: 24px !important;
+  color: var(--texto);
+  margin-bottom: 24px;
 }
 
 /* ---------- Recorrido 3D (Zdog) ---------- */
@@ -984,6 +1062,10 @@ a {
 .recorrido .chip {
   margin-bottom: 16px;
 }
+/* Verde más claro que --hoja-viva: sobre el azul de fondo da 4,5:1 (con --hoja-viva daba 2,85:1) */
+.recorrido h2 .acento {
+  color: #7be0a2;
+}
 .recorrido__pasos li {
   display: grid;
   grid-template-columns: 48px 1fr;
@@ -1015,16 +1097,16 @@ a {
 .recorrido__pasos li[aria-current] .recorrido__icono {
   background: var(--sol);
   border-color: var(--sol);
-  color: var(--suelo);
+  color: var(--texto);
 }
 .recorrido__pasos h3 {
-  font-size: 1.3rem;
+  font-size: clamp(1.3rem, 0.7rem + 0.95vw, 1.9rem);
   margin: 4px 0 6px;
 }
 .recorrido__pasos p {
   margin: 0;
   color: var(--texto-claro-suave);
-  font-size: 1rem;
+  font-size: clamp(1.05rem, 0.6rem + 0.7vw, 1.3rem);
   line-height: 1.45;
 }
 .recorrido__escena {
@@ -1047,40 +1129,18 @@ a {
 .recorrido__escena canvas.arrastrando {
   cursor: grabbing;
 }
-.recorrido__escena figcaption:has(.recorrido__girar) {
-  padding: 0;
-  border: 0;
-  background: none;
-}
-/* Botón táctil para girar la casa: se mantiene presionado y se desliza */
 .recorrido__girar {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 48px;
-  padding: 0 20px;
-  border: 1px solid var(--vidrio-borde);
-  border-radius: 999px;
-  background: rgb(255 255 255 / 0.1);
-  color: var(--texto-claro);
   font: inherit;
-  font-size: 0.95rem;
-  font-weight: 700;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  transition:
-    background-color 0.3s var(--ease),
-    transform 0.3s var(--ease);
+  cursor: pointer;
+  min-height: 44px;
 }
-.recorrido__girar[data-girando] {
+.recorrido__girar[aria-pressed='true'] {
   background: var(--sol);
   border-color: var(--sol);
-  color: var(--suelo);
-  transform: scale(1.05);
+  color: var(--texto);
 }
-.recorrido__escena figcaption {
+.recorrido__escena figcaption,
+.recorrido__girar {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -1110,13 +1170,38 @@ a {
 .proceso {
   background: var(--piedra);
 }
+/* Cierre de sección con botón de WhatsApp (Proceso y Trabajos) */
+.experto-seccion {
+  padding-block: clamp(40px, 6vw, 72px);
+}
+.experto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding: clamp(28px, 5vw, 56px) clamp(20px, 4vw, 40px);
+  border-radius: var(--r-tarjeta);
+  background: var(--piedra-2);
+  border: 1px solid var(--linea);
+  color: var(--texto);
+}
+.experto h3 {
+  font-size: clamp(1.3rem, 1rem + 1.2vw, 1.9rem);
+  margin: 0 0 8px;
+}
+.experto p {
+  margin: 0 auto;
+  max-width: 52ch;
+}
 .pasos__caja {
   position: relative;
 }
 .pasos__linea {
   position: absolute;
   top: 28px;
-  bottom: 28px;
+  /* La línea termina en el centro de la última marca, no debajo de su texto (--cola = alto del último paso menos 28 px) */
+  bottom: var(--cola, 57px);
   left: 27px;
   width: 2px;
   background: var(--linea);
@@ -1175,7 +1260,7 @@ a {
 
 .franja {
   position: relative;
-  margin: 0 clamp(8px, 1.4vw, 18px);
+  margin: 0 clamp(8px, 1.4vw, 18px) clamp(16px, 3vw, 40px);
   height: clamp(340px, 70vh, 720px);
   overflow: hidden;
   border-radius: var(--r-isla);
@@ -1199,7 +1284,7 @@ a {
   max-width: 20ch;
   padding: 16px 22px;
   border-radius: 20px;
-  background: rgb(7 42 65 / 0.82);
+  background: color-mix(in srgb, var(--suelo) 82%, transparent);
   color: var(--texto-claro);
   font-family: var(--display);
   font-weight: 600;
@@ -1240,11 +1325,15 @@ a {
   background: var(--suelo);
   color: var(--texto-claro);
 }
-.pestanas__boton[aria-selected='true'] .mi {
-  color: var(--hoja-viva);
+.pestanas__boton:focus-visible {
+  border-radius: 999px; /* el foco global fija 4px y deformaba la píldora */
 }
 .pestanas__boton .mi {
   color: var(--hoja);
+}
+/* Sobre --suelo el verde vivo daba 2.85:1; el sol sí contrasta */
+.pestanas__boton[aria-selected='true'] .mi {
+  color: var(--sol);
 }
 
 .trabajos__barra {
@@ -1274,6 +1363,9 @@ a {
   background: var(--hoja);
   transform: scale(1.06);
 }
+.carrusel__flechas button:focus-visible {
+  border-radius: 50%;
+}
 .carrusel__flechas .mi {
   width: 1.4rem;
   height: 1.4rem;
@@ -1285,11 +1377,30 @@ a {
 .carrusel__ventana {
   overflow: hidden;
   border-radius: var(--r-tarjeta);
+  /* El arrastre vertical sigue desplazando la página; el horizontal mueve el carrusel (ver Trabajos.jsx) */
+  touch-action: pan-y;
+  cursor: grab;
+}
+.carrusel[data-arrastrando] .carrusel__ventana {
+  cursor: grabbing;
+  user-select: none;
+}
+.carrusel[data-arrastrando] .carrusel__pista {
+  transition: none;
+}
+.carrusel[data-arrastrando] .tarjeta img {
+  pointer-events: none;
+}
+.tarjeta img {
+  -webkit-user-drag: none;
+  user-select: none;
 }
 .carrusel__pista {
   display: flex;
   gap: var(--gap);
-  transform: translateX(calc(var(--i) * -1 * ((100% - (var(--v) - 1) * var(--gap)) / var(--v) + var(--gap))));
+  transform: translateX(
+    calc(var(--i) * -1 * ((100% - (var(--v) - 1) * var(--gap)) / var(--v) + var(--gap)) + var(--dx, 0px))
+  );
   transition: transform 1s var(--ease);
 }
 .tarjeta {
@@ -1299,7 +1410,7 @@ a {
   overflow: hidden;
   border-radius: var(--r-tarjeta);
   background: var(--suelo);
-  color: #ffffff;
+  color: var(--texto-claro);
   isolation: isolate;
 }
 .tarjeta img {
@@ -1315,7 +1426,11 @@ a {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(180deg, rgb(7 42 65 / 0) 40%, rgb(7 42 65 / 0.9) 100%);
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--suelo) 0%, transparent) 40%,
+    color-mix(in srgb, var(--suelo) 90%, transparent) 100%
+  );
 }
 .tarjeta:hover img {
   transform: scale(1.06);
@@ -1335,10 +1450,14 @@ a {
 }
 .tarjeta__texto p {
   margin: 0;
-  color: var(--texto-claro-suave);
+  color: var(--texto-claro); /* --texto-claro-suave daba ~4.2:1 sobre el velo de --suelo */
+}
+.carrusel__puntos button:focus-visible {
+  border-radius: 2px;
 }
 .carrusel__puntos {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 6px;
   margin-top: 20px;
@@ -1365,7 +1484,7 @@ a {
 }
 .carrusel__puntos button::before {
   right: 0;
-  background: var(--linea);
+  background: rgb(11 59 90 / 0.6); /* indicador inactivo ≥3:1 sobre el fondo */
 }
 .carrusel__puntos button[aria-current='true'] {
   width: 56px;
@@ -1397,17 +1516,34 @@ a {
   display: grid;
   gap: 56px;
 }
-.mision p {
+.mision p:not(.chip) {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(1.3rem, 1rem + 1.3vw, 2.1rem);
+  font-size: clamp(1.15rem, 0.9rem + 1.3vw, 2.1rem);
   line-height: 1.22;
   letter-spacing: -0.02em;
   margin-bottom: 0;
+  /* Texto justificado: todas las líneas del mismo largo; la última queda a la izquierda */
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
 }
 
 /* ---------- Beneficios ---------- */
 
+/* Trabajos y Beneficios comparten fondo: sin esto el hueco entre ambos es el doble que el de las demás secciones */
+.seccion.trabajos + .seccion.beneficios {
+  padding-top: var(--sep-trabajos);
+}
+/* Primera sección de la página: arranca bajo la cabecera flotante (antes quedaba debajo de ella en móvil y tableta) */
+.seccion.trabajos {
+  --sep-trabajos: clamp(48px, 5vw, 72px);
+  padding-top: calc(var(--alto-cabecera) + var(--margen-cabecera) + clamp(36px, 4vw, 56px));
+  padding-bottom: var(--sep-trabajos);
+}
+.seccion.beneficios {
+  --sep-trabajos: clamp(48px, 5vw, 72px);
+}
 .beneficios__rejilla {
   display: grid;
   gap: 32px;
@@ -1449,6 +1585,27 @@ a {
 
 /* ---------- Contacto ---------- */
 
+.contacto {
+  padding-top: calc(var(--alto-cabecera) + var(--margen-cabecera) * 2 + clamp(24px, 5vw, 64px));
+}
+body:has(main > .seccion-isla:only-child) {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+main:has(> .seccion-isla:only-child) {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+main > .seccion-isla:only-child {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+main > .seccion-isla:only-child > .isla {
+  flex: 1;
+}
 .contacto__lema {
   font-size: clamp(2.3rem, 1rem + 5.6vw, 5.6rem);
   font-stretch: 110%;
@@ -1480,7 +1637,7 @@ a {
   margin-bottom: 2px;
 }
 .contacto dt .mi {
-  color: var(--hoja-viva);
+  color: var(--sol);
 }
 .contacto dd {
   margin: 0;
@@ -1541,11 +1698,20 @@ a {
   color: var(--texto);
   font: inherit;
   font-weight: 400;
-  border: 1px solid transparent;
+  border: 1px solid var(--linea);
   border-radius: 14px;
   transition:
     border-color 0.3s var(--ease),
     background-color 0.3s var(--ease);
+}
+.formulario ::placeholder {
+  color: var(--texto-suave);
+  opacity: 1;
+}
+.formulario input:user-invalid,
+.formulario select:user-invalid,
+.formulario textarea:user-invalid {
+  border-color: #b3261e;
 }
 .formulario input:focus,
 .formulario select:focus,
@@ -1564,6 +1730,92 @@ a {
   margin: 0;
   font-size: 0.9rem;
   color: var(--texto-suave);
+}
+
+/* ---------- Cierre de Inicio ---------- */
+
+/* Soluciones y el cierre comparten fondo: el hueco entre ambos es uno solo, y el cierre queda cerca del pie */
+.soluciones:has(+ .cierre) {
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+.cierre {
+  padding-top: 0;
+  padding-bottom: clamp(56px, 8vw, 112px);
+}
+.cierre__cabeza {
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+.cierre__cabeza h2 {
+  font-size: clamp(2rem, 1.1rem + 3.4vw, 3.6rem);
+  font-stretch: 108%;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.cierre__lista {
+  display: grid;
+  gap: 12px;
+}
+.cierre__enlace {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 88px;
+  padding: 0 14px 0 28px;
+  background: var(--piedra);
+  border-radius: var(--r-tarjeta);
+  color: var(--texto);
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 106%;
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.8rem);
+  letter-spacing: -0.025em;
+  transition:
+    background-color 0.4s var(--ease),
+    color 0.4s var(--ease);
+}
+.cierre__flecha {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--suelo);
+  color: #ffffff;
+  transition:
+    background-color 0.4s var(--ease),
+    transform 0.5s var(--ease);
+}
+.cierre__enlace:hover {
+  background: var(--suelo);
+  color: var(--texto-claro);
+}
+.cierre__enlace:hover .cierre__flecha {
+  background: var(--hoja-viva);
+  color: var(--texto);
+  transform: rotate(45deg);
+}
+@media (min-width: 900px) {
+  .cierre__cabeza {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    justify-items: stretch;
+  }
+  .cierre__lista {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .cierre__enlace {
+    min-height: 140px;
+    align-items: flex-end;
+    padding: 24px;
+  }
 }
 
 /* ---------- Pie ---------- */
@@ -1601,7 +1853,7 @@ a {
   text-decoration: none;
 }
 .pie ul a:hover {
-  color: #ffffff;
+  color: var(--piedra);
   text-decoration: underline;
 }
 .pie__cols {
@@ -1640,9 +1892,6 @@ a {
   }
   .bento__tarjeta--a {
     grid-row: span 2;
-  }
-  .bento__tarjeta--d {
-    grid-column: 1 / -1;
   }
   .gestiones__lista {
     grid-template-columns: 1fr 1fr;
@@ -1699,7 +1948,7 @@ a {
 
   .bento {
     grid-template-columns: 1.25fr 1fr 1fr;
-    grid-template-rows: 300px 300px;
+    grid-template-rows: 300px 300px 240px;
     grid-auto-rows: auto;
     gap: 16px;
   }
@@ -1709,18 +1958,20 @@ a {
   .bento__tarjeta--b {
     grid-column: 2 / 4;
   }
-  .bento__tarjeta--d {
-    grid-column: auto;
+  .bento__tarjeta--e {
+    grid-column: 1 / -1;
   }
 
+  .gestiones {
+    /* Primera isla de Servicios: el contenido arranca por debajo de la cabecera flotante, con aire */
+    padding-top: calc(var(--alto-cabecera) + var(--margen-cabecera) * 2 + clamp(48px, 6vw, 88px));
+  }
   .gestiones__rejilla {
     grid-template-columns: 5fr 7fr;
     gap: 72px;
-    align-items: start;
+    align-items: center;
   }
   .gestiones .titulo-seccion {
-    position: sticky;
-    top: calc(var(--alto-cabecera) + 64px);
     margin: 0;
   }
   .gestiones .titulo-seccion h2 {
@@ -1749,17 +2000,24 @@ a {
   }
   .servicio__principal {
     aspect-ratio: 5 / 6;
+    max-height: min(72dvh, 640px);
+  }
+  .servicio--panoramica .servicio__principal {
+    aspect-ratio: 16 / 10;
   }
   .servicio__inserto {
     right: -32px;
     width: 42%;
+  }
+  .servicio--panoramica .servicio__inserto {
+    width: 30%;
   }
   .servicio--inversa .servicio__inserto {
     left: -32px;
   }
 
   .recorrido__rejilla {
-    grid-template-columns: 5fr 7fr;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
     grid-template-rows: none;
     gap: 48px;
     align-items: center;
@@ -1854,7 +2112,7 @@ a {
   .boton--vidrio {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
-    background: rgb(7 42 65 / 0.5);
+    background: color-mix(in srgb, var(--suelo) 50%, transparent);
   }
   /* Sin animación de escala en celular, no hace falta reservar capas de GPU gigantes */
   .isla,
@@ -1888,21 +2146,46 @@ a {
   .recorrido .chip {
     display: none;
   }
-  /* En móvil solo se lee el paso actual, para dejar la casa a la vista */
+  /* En móvil solo se lee el paso actual. Los cuatro pasos comparten la misma celda, así el bloque
+     siempre mide lo que el texto más largo y la casa no sube ni baja al cambiar de paso. */
+  .recorrido__pasos {
+    display: grid;
+  }
   .recorrido__pasos li {
-    display: none;
+    grid-area: 1 / 1;
     border: 0;
     padding-block: 8px 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .recorrido__pasos li[data-visto] {
+    opacity: 0;
   }
   .recorrido__pasos li[aria-current] {
-    display: grid;
+    opacity: 1;
+    visibility: visible;
     animation: aparecer 0.5s var(--ease) both;
   }
-  .recorrido__escena figcaption {
+  .recorrido__escena figcaption,
+  .recorrido__girar {
     left: 50%;
     right: auto;
     transform: translateX(-50%);
     white-space: nowrap;
+  }
+  /* La escena ocupa todo el ancho de la pantalla: sin los márgenes del contenedor la casa gana tamaño
+     y el suelo y el sol ya no se cortan en seco a 20 px del borde. */
+  .recorrido__escena {
+    margin-inline: calc(var(--gutter) * -1);
+  }
+  /* El lienzo llena la caja sin aportar alto propio: si no, la rejilla se pasa de la pantalla y el botón de giro queda cortado */
+  .recorrido__escena canvas {
+    position: absolute;
+    inset: 0;
+  }
+  .recorrido__escena figcaption,
+  .recorrido__girar {
+    bottom: 4px;
   }
 }
 @keyframes aparecer {
@@ -1919,6 +2202,9 @@ a {
   .titulo-seccion {
     margin-bottom: 28px;
   }
+  .pasos__caja {
+    --cola: 112px;
+  }
   .bento {
     grid-template-columns: 1fr 1fr;
     gap: 10px;
@@ -1928,8 +2214,7 @@ a {
     aspect-ratio: 1 / 1.1;
     border-radius: 20px;
   }
-  .bento__tarjeta--a,
-  .bento__tarjeta--d {
+  .bento__tarjeta--a {
     grid-column: 1 / -1;
     aspect-ratio: 16 / 11;
   }
@@ -1939,8 +2224,7 @@ a {
     right: 16px;
     font-size: 1.15rem;
   }
-  .bento__tarjeta--a .bento__titulo,
-  .bento__tarjeta--d .bento__titulo {
+  .bento__tarjeta--a .bento__titulo {
     font-size: 1.55rem;
     right: 80px;
     top: 20px;
@@ -1953,21 +2237,10 @@ a {
     width: 44px;
     height: 44px;
   }
-  .bento__tarjeta--a .bento__flecha,
-  .bento__tarjeta--d .bento__flecha {
+  .bento__tarjeta--a .bento__flecha {
     top: 16px;
     bottom: auto;
     right: 16px;
-  }
-  .bento__texto {
-    display: none;
-  }
-  .bento__tarjeta--a .bento__texto,
-  .bento__tarjeta--d .bento__texto {
-    display: block;
-    left: 20px;
-    right: 20px;
-    bottom: 18px;
   }
   .trabajos__barra .pestanas {
     flex-wrap: nowrap;
@@ -2013,7 +2286,7 @@ a {
 }
 
 @media (max-width: 380px) {
-  .bento__tarjeta:not(.bento__tarjeta--a):not(.bento__tarjeta--d) .bento__titulo {
+  .bento__tarjeta:not(.bento__tarjeta--a) .bento__titulo {
     font-size: 1rem;
     line-height: 1.12;
   }
@@ -2075,6 +2348,145 @@ a {
     transform: scaleX(1);
   }
 }
+/* ---------- Escritorio: tarjetas y formularios más compactos ---------- */
+@media (min-width: 900px) {
+  .recorrido__pasos li {
+    grid-template-columns: 64px 1fr;
+    gap: 20px;
+    padding-block: 14px;
+  }
+  .recorrido__icono {
+    width: 64px;
+    height: 64px;
+  }
+  .recorrido__icono .mi {
+    font-size: 30px;
+  }
+  .contacto__lema {
+    font-size: clamp(2.3rem, 1rem + 3.6vw, 4.2rem);
+    margin-bottom: clamp(32px, 4vw, 56px);
+  }
+  .contacto dl > div {
+    padding: 12px 0;
+  }
+  .contacto dd {
+    font-size: clamp(1.15rem, 1rem + 0.5vw, 1.45rem);
+  }
+  .contacto__mapa iframe {
+    height: 220px;
+  }
+  .contacto__rejilla {
+    gap: 56px;
+    align-items: start;
+  }
+  .formulario {
+    gap: 14px;
+    padding: clamp(22px, 2.4vw, 32px);
+    border-radius: 24px;
+  }
+  .formulario h3 {
+    font-size: clamp(1.4rem, 1rem + 0.9vw, 1.8rem);
+  }
+  .formulario input,
+  .formulario select,
+  .formulario textarea {
+    min-height: 44px;
+    padding: 9px 14px;
+  }
+  .formulario textarea {
+    min-height: 80px;
+  }
+  .gestiones__lista li {
+    padding: 20px;
+    gap: 8px;
+  }
+  .gestiones__icono {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 8px;
+    border-radius: 14px;
+  }
+  .servicio__rejilla {
+    gap: 64px;
+  }
+  .servicio__principal {
+    aspect-ratio: 4 / 4.2;
+    max-height: 520px;
+  }
+}
+
+/* ---------- Portátiles y pantallas bajas ----------
+   En un portátil con escala de pantalla (125 %-150 %) la ventana útil mide ~1100×600 px: el texto se veía
+   grande y el recorrido 3D, que ocupa exactamente una pantalla, se cortaba. Se reduce la base tipográfica
+   (todo está en rem) y se compacta el recorrido según el alto disponible. */
+@media (min-width: 900px) and (max-height: 820px) {
+  html {
+    font-size: 93.75%;
+  }
+  /* El texto del recorrido conserva su tamaño de lectura (≈ el de una pantalla grande): solo se compacta el espacio vertical */
+  .recorrido__rejilla {
+    gap: 32px;
+    padding-block: calc(var(--alto-cabecera) + 24px) 24px;
+  }
+  .recorrido h2 {
+    font-size: clamp(2.4rem, 1rem + 3.6vw, 4rem);
+    margin-bottom: 10px;
+  }
+  .recorrido .chip {
+    margin-bottom: 10px;
+  }
+  .recorrido__pasos li {
+    grid-template-columns: 52px 1fr;
+    gap: 16px;
+    padding-block: 9px;
+  }
+  .recorrido__icono {
+    width: 52px;
+    height: 52px;
+  }
+  .recorrido__pasos h3 {
+    font-size: 1.65rem;
+    margin: 2px 0 2px;
+  }
+  .recorrido__pasos p {
+    font-size: 1.25rem;
+    line-height: 1.35;
+  }
+  .recorrido__escena {
+    height: min(68dvh, 720px);
+  }
+}
+@media (min-width: 900px) and (max-height: 680px) {
+  html {
+    font-size: 87.5%;
+  }
+  .recorrido__rejilla {
+    gap: 24px;
+    padding-block: calc(var(--alto-cabecera) + 12px) 16px;
+  }
+  .recorrido h2 {
+    font-size: clamp(2.2rem, 1rem + 3vw, 3.2rem);
+    margin-bottom: 6px;
+  }
+  .recorrido__pasos li {
+    padding-block: 6px;
+  }
+  .recorrido__pasos h3 {
+    font-size: 1.55rem;
+  }
+  .recorrido__pasos p {
+    font-size: 1.15rem;
+    line-height: 1.3;
+  }
+}
+/* Tablet y portátil estrecho: el texto del recorrido no cabe junto a la casa */
+@media (min-width: 900px) and (max-width: 1100px) {
+  .recorrido__rejilla {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     .pasos__caja {
@@ -2136,9 +2548,12 @@ a {
     height: auto;
   }
   .recorrido__pasos li,
+  .recorrido__pasos li[data-visto],
   .recorrido__pasos li[aria-current] {
     display: grid;
+    grid-area: auto;
     opacity: 1;
+    visibility: visible;
   }
   .recorrido__escena {
     height: min(70vh, 600px);

@@ -1,0 +1,32 @@
+{
+  "fotovoltaicos": {
+    "foto": "/img/trabajo-cubierta-azul.webp",
+    "alt": "Módulos fotovoltaicos instalados sobre una cubierta metálica azul con montañas al fondo",
+    "ancho": 1400,
+    "alto": 1400
+  },
+  "termicos": {
+    "foto": "/img/termosifones.webp",
+    "alt": "Tres calentadores solares de agua con colectores planos sobre un techo",
+    "ancho": 1280,
+    "alto": 916
+  },
+  "mantenimiento": {
+    "foto": "/img/bomba-solar.webp",
+    "alt": "Tubería y bomba roja de circulación de un sistema solar térmico",
+    "ancho": 900,
+    "alto": 1106
+  },
+  "tramites": {
+    "foto": "/img/inversor-blanco.webp",
+    "alt": "Inversor solar blanco compacto montado en pared",
+    "ancho": 900,
+    "alto": 1200
+  },
+  "carga-ev": {
+    "foto": "/img/carga-ev-auto.webp",
+    "alt": "Auto eléctrico blanco estacionado en una carretera junto a una colina",
+    "ancho": 1400,
+    "alto": 933
+  }
+}

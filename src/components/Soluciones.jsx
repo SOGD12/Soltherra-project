@@ -1,6 +1,7 @@
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { soluciones } from '../data/contenido.js'
+import fotos from '../data/imagenes/soluciones.json'
 
 export default function Soluciones() {
   return (
@@ -13,17 +14,18 @@ export default function Soluciones() {
           </h2>
         </div>
         <div className="bento">
-          {soluciones.map((s) => (
+          {soluciones.map((s) => {
+            const f = fotos[s.imagen]
+            return (
             <a key={s.titulo} className={`bento__tarjeta ${s.clase}`} href={s.href}>
-              <img src={s.foto} alt={s.alt} width={s.ancho} height={s.alto} loading="lazy" decoding="async" />
+              <img src={f.foto} alt={f.alt} width={f.ancho} height={f.alto} loading="lazy" decoding="async" />
               <span className="bento__velo" aria-hidden="true" />
               <span className="bento__titulo">{s.titulo}</span>
               <span className="bento__flecha" aria-hidden="true">
                 <Icono nombre="arrow_outward" />
-              </span>
-              <span className="bento__texto">{s.texto}</span>
-            </a>
-          ))}
+              </span>            </a>
+            )
+          })}
         </div>
       </div>
     </section>

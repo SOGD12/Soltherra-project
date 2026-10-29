@@ -1,5 +1,6 @@
 import { Icono } from './Iconos.jsx'
 import { BotonWA, Chip } from './Comunes.jsx'
+import inicio from '../data/imagenes/inicio.json'
 
 export default function Hero() {
   return (
@@ -7,17 +8,17 @@ export default function Hero() {
       <div className="hero__medio" aria-hidden="true">
         <img
           className="hero__foto"
-          src="/img/hero.webp"
-          alt=""
-          width="1800"
-          height="1350"
+          src={inicio.hero.foto}
+          alt={inicio.hero.alt}
+          width={inicio.hero.ancho}
+          height={inicio.hero.alto}
           fetchPriority="high"
         />
       </div>
       <div className="hero__velo" />
       <div className="contenedor hero__texto">
         <Chip claro>
-          <Icono nombre="location_on" /> Cali, Colombia · Energía fotovoltaica y térmica
+          <Icono nombre="location_on" /> Cali, Colombia · Energía limpia que nace del sol
         </Chip>
         <h1 className="hero__titulo">
           <em className="acento">Energía solar</em> para tu hogar, tu empresa o tu institución.
@@ -28,7 +29,7 @@ export default function Hero() {
         </p>
         <div className="hero__acciones">
           <BotonWA texto="Cotizar por WhatsApp" variante="boton--viva" />
-          <a className="boton boton--vidrio" href="#servicios">
+          <a className="boton boton--vidrio" href="/servicios">
             <span>Ver servicios</span>
             <Icono nombre="arrow_forward" />
           </a>

@@ -23,6 +23,7 @@ import send from '@material-symbols/svg-400/outlined/send.svg?raw'
 import home from '@material-symbols/svg-400/outlined/home.svg?raw'
 import apartment from '@material-symbols/svg-400/outlined/apartment.svg?raw'
 import account_balance from '@material-symbols/svg-400/outlined/account_balance.svg?raw'
+import ev_station from '@material-symbols/svg-400/outlined/ev_station.svg?raw'
 import pool from '@material-symbols/svg-400/outlined/pool.svg?raw'
 import handyman from '@material-symbols/svg-400/outlined/handyman.svg?raw'
 import energy_savings_leaf from '@material-symbols/svg-400/outlined/energy_savings_leaf.svg?raw'
@@ -60,6 +61,7 @@ const iconos = {
   home,
   apartment,
   account_balance,
+  ev_station,
   pool,
   handyman,
   energy_savings_leaf,

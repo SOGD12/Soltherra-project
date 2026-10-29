@@ -11,7 +11,7 @@
   {
     "id": 2,
     "titulo": "Colectores solares térmicos junto a la piscina",
-    "categoria": "termico",
+    "categoria": "piscina",
     "foto": "/img/colectores.webp",
     "alt": "Colectores solares térmicos de tubos al vacío instalados junto a una casa",
     "ancho": 1600,
@@ -160,5 +160,41 @@
     "alt": "Inversor solar blanco compacto montado en pared",
     "ancho": 900,
     "alto": 1200
+  },
+  {
+    "id": 19,
+    "titulo": "Paneles solares junto a la piscina",
+    "categoria": "piscina",
+    "foto": "/img/piscina.webp",
+    "alt": "Piscina con paneles solares sobre una estructura junto al agua",
+    "ancho": 1600,
+    "alto": 640
+  },
+  {
+    "id": 20,
+    "titulo": "Puesto de carga para vehículo eléctrico",
+    "categoria": "ev",
+    "foto": "/img/carga-ev-1.webp",
+    "alt": "Conector de carga enchufado en un vehículo eléctrico",
+    "ancho": 1400,
+    "alto": 931
+  },
+  {
+    "id": 21,
+    "titulo": "Carga con conector tipo 2",
+    "categoria": "ev",
+    "foto": "/img/carga-ev-2.webp",
+    "alt": "Cable de carga conectado al puerto de un auto eléctrico",
+    "ancho": 1400,
+    "alto": 931
+  },
+  {
+    "id": 22,
+    "titulo": "Movilidad eléctrica con energía solar",
+    "categoria": "ev",
+    "foto": "/img/carga-ev-auto.webp",
+    "alt": "Auto eléctrico blanco estacionado en una carretera junto a una colina",
+    "ancho": 1400,
+    "alto": 933
   }
 ]
