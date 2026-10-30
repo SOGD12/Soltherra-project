@@ -14,7 +14,7 @@ export default function Franja() {
         decoding="async"
       />
       <figcaption className="contenedor">
-        <span>Climatización de piscinas con energía solar térmica</span>
+        <span>Climatización de piscinas y jacuzzis con energía solar térmica</span>
       </figcaption>
     </figure>
   )

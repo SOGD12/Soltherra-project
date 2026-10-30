@@ -81,12 +81,12 @@ export default function Servicios() {
         id="piscina"
         panoramica
         icono="pool"
-        chip="Climatización de piscina"
-        titulo="Climatización de piscinas con energía solar"
-        texto="Calentamos tu piscina aprovechando el sol: sistemas solares térmicos dimensionados para tu piscina, con instalación completa y puesta en marcha."
+        chip="Climatización de piscinas y jacuzzis"
+        titulo="Climatización de piscinas y jacuzzis con energía solar"
+        texto="Calentamos tu piscina y tu jacuzzi aprovechando el sol: sistemas solares térmicos dimensionados para tu piscina o jacuzzi, con instalación completa y puesta en marcha."
         items={piscina}
-        cierre="Disfruta tu piscina todo el año con energía limpia."
-        mensaje="Hola Soltherra, quiero información sobre climatización de piscina con energía solar."
+        cierre="Disfruta tu piscina y tu jacuzzi todo el año con energía limpia."
+        mensaje="Hola Soltherra, quiero información sobre climatización de piscinas y jacuzzis con energía solar."
         fotos={fotosServicio['piscina']}
       />
       <Servicio
@@ -94,11 +94,11 @@ export default function Servicios() {
         inversa
         icono="ev_station"
         chip="Carga de vehículos eléctricos"
-        titulo="Puestos de carga para vehículos eléctricos"
-        texto="Instalamos puestos de carga para tu vehículo eléctrico en casa, edificio, empresa o parqueadero, y los podemos alimentar con tu propio sistema solar para moverte con energía limpia."
+        titulo="Puntos de carga para vehículos eléctricos"
+        texto="Instalamos puntos de carga para tu vehículo eléctrico en casa, edificio, empresa o parqueadero, y los podemos alimentar con tu propio sistema solar para moverte con energía limpia."
         items={cargaEV}
         cierre="Carga tu vehículo con el sol y gasta menos en cada recorrido."
-        mensaje="Hola Soltherra, quiero información sobre puestos de carga para vehículos eléctricos."
+        mensaje="Hola Soltherra, quiero información sobre puntos de carga para vehículos eléctricos."
         fotos={fotosServicio['carga-ev']}
       />
       <Servicio

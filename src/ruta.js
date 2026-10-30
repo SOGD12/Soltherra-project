@@ -18,6 +18,12 @@ if (typeof window !== 'undefined') {
   if (!conocida) window.history.replaceState(null, '', `/home${search}${hash}`)
 }
 
+// Página que se pinta en el servidor (pre-renderizado); la fija entry-server.jsx antes de cada render.
+let paginaServidor = 'inicio'
+export const fijarPaginaServidor = (pagina) => {
+  paginaServidor = pagina
+}
+
 const leer = () => `${PAGINA_DE(window.location.pathname)}|${window.location.hash.slice(1)}`
 
 const suscribir = (aviso) => {
@@ -53,9 +59,12 @@ function interceptar(e) {
   navegar(url.pathname + url.hash)
 }
 
-/** Devuelve { pagina, ancla }. En el servidor (pre-render) y en la hidratación siempre es el inicio. */
+// En el servidor, la página fijada; al hidratar en el navegador, la de la dirección actual (coincide con el HTML pre-renderizado de esa ruta).
+const leerServidor = () => `${typeof window === 'undefined' ? paginaServidor : PAGINA_DE(window.location.pathname)}|`
+
+/** Devuelve { pagina, ancla }. */
 export default function useRuta() {
-  const [pagina, ancla] = useSyncExternalStore(suscribir, leer, () => 'inicio|').split('|')
+  const [pagina, ancla] = useSyncExternalStore(suscribir, leer, leerServidor).split('|')
   useEffect(() => {
     document.addEventListener('click', interceptar)
     return () => document.removeEventListener('click', interceptar)

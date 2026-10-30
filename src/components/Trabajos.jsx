@@ -111,9 +111,9 @@ export default function Trabajos() {
         <div className="titulo-seccion titulo-seccion--fila">
           <div>
             <Chip>Obras reales</Chip>
-            <h2 data-titulo>
+            <h1 data-titulo>
               Nuestros <em className="acento">trabajos</em>
-            </h2>
+            </h1>
           </div>
           <p>Elige el tipo de instalación y mira las obras realizadas por Soltherra.</p>
         </div>

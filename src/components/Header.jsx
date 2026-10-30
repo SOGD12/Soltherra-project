@@ -32,7 +32,7 @@ export default function Header({ pagina }) {
     <header className="cabecera" data-abierto={abierto}>
       <div className="cabecera__pildora">
         <a className="cabecera__logo" href="/home" aria-label="Soltherra S.A.S., ir al inicio">
-          <img src="/img/logo.webp" alt="Soltherra S.A.S. Energía Sostenible" width="105" height="56" />
+          <img src="/img/logo-claro.webp" alt="Soltherra S.A.S. Energía Sostenible" width="103" height="48" />
         </a>
         <nav className="cabecera__nav" aria-label="Principal">
           {nav.map(([t, h]) => (

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Icono, IconoWhatsApp } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
-import { TEL, CORREO, DIRECCION, wa, MAPA } from '../data/contenido.js'
+import { TEL, TEL2, CORREO, DIRECCION, wa, MAPA } from '../data/contenido.js'
 
 function Formulario() {
   const [nombre, setNombre] = useState('')
@@ -36,9 +36,9 @@ function Formulario() {
         <select name="servicio" value={servicio} onChange={(e) => setServicio(e.target.value)}>
           <option>Sistema fotovoltaico</option>
           <option>Sistema solar térmico</option>
-          <option>Climatización de piscina</option>
+          <option>Climatización de piscinas y jacuzzis</option>
           <option>Mantenimiento</option>
-          <option>Puestos de carga para vehículos eléctricos</option>
+          <option>Puntos de carga para vehículos eléctricos</option>
           <option>Trámites y beneficios tributarios</option>
         </select>
       </label>
@@ -62,9 +62,9 @@ export default function Contacto() {
         <span className="isla__brillo" aria-hidden="true" />
         <div className="contenedor">
           <Chip claro>Contacto</Chip>
-          <h2 className="contacto__lema" data-titulo>
-            Energía limpia que <em className="acento">transforma</em> tu futuro.
-          </h2>
+          <h1 className="contacto__lema" data-titulo>
+            Energía sostenible que <em className="acento">transforma</em> tu futuro.
+          </h1>
           <div className="contacto__rejilla">
             <div className="contacto__datos">
               <dl>
@@ -74,6 +74,8 @@ export default function Contacto() {
                   </dt>
                   <dd>
                     <a href="tel:+573138130046">{TEL}</a>
+                    <br />
+                    <a href="tel:+573128787181">{TEL2}</a>
                   </dd>
                 </div>
                 <div>

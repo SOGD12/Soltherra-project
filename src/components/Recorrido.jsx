@@ -77,9 +77,9 @@ export default function Recorrido() {
         <div className="contenedor recorrido__rejilla">
           <div className="recorrido__texto">
             <Chip claro>Cómo funciona</Chip>
-            <h2 id="t-recorrido" data-titulo>
+            <h1 id="t-recorrido" data-titulo>
               Del <em className="acento">sol</em> a tu casa
-            </h2>
+            </h1>
             <ol className="recorrido__pasos">
               {historia.map((h, i) => (
                 <li key={h.titulo} aria-current={i === paso ? 'step' : undefined} data-visto={i <= paso || undefined}>
@@ -87,7 +87,6 @@ export default function Recorrido() {
                     <Icono nombre={h.icono} />
                   </span>
                   <div>
-                    <h3>{h.titulo}</h3>
                     <p>{h.texto}</p>
                   </div>
                 </li>

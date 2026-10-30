@@ -1,5 +1,6 @@
 export const TEL = '+57 313 813 0046'
-export const WA = 'https://wa.me/573138130046'
+export const TEL2 = '+57 312 878 7181'
+export const WA ='https://wa.me/573138130046'
 export const CORREO = 'soltherra23@gmail.com'
 export const DIRECCION = 'Calle 28 N° 86 - 70, Cali'
 export const wa = (texto) => `${WA}?text=${encodeURIComponent(texto)}`
@@ -68,7 +69,7 @@ export const mantenimiento = [
 ]
 
 export const cargaEV = [
-  'Diseño e instalación de puestos de carga para vehículos eléctricos',
+  'Diseño e instalación de puntos de carga para vehículos eléctricos',
   'Cargadores para casas, edificios, empresas y parqueaderos',
   'Carga alimentada con energía solar para movilidad limpia',
   'Protecciones eléctricas, puesta en marcha y cumplimiento normativo',
@@ -152,14 +153,14 @@ export const soluciones = [
 export const categorias = [
   ['fotovoltaico', 'Fotovoltaico', 'solar_power'],
   ['termico', 'Térmico', 'thermostat'],
-  ['piscina', 'Climatización de piscina', 'pool'],
+  ['piscina', 'Climatización de piscinas y jacuzzis', 'pool'],
   ['mantenimiento', 'Mantenimiento y medición', 'build'],
   ['ev', 'Carga de vehículos eléctricos', 'ev_station'],
 ]
 
 export const cinta = [
   'Sistemas fotovoltaicos',
-  'Climatización de piscinas',
+  'Climatización de piscinas y jacuzzis',
   'Calentamiento de agua sanitaria',
   'Ingeniería detallada',
   'Trámites ante el operador de red',

@@ -5,11 +5,9 @@ Todas las fotos son de obras reales de Soltherra, tomadas del sitio actual (http
 | Archivo | Origen (imgur) |
 |---|---|
 | hero.webp | WaZtACv.png |
-| instalacion.webp | KCZe9Hs.jpg |
 | cableado.webp | PbfOHt7.png |
 | inversor.webp | Y26ttGQ.png |
 | colectores.webp | Eer1DyE.jpg |
-| tanque.webp | upCm3Se.png |
 | piscina.webp | qTGeaIk.png (recortada a 1600x640 para la franja panorámica) |
 | logo.webp | Logo de Soltherra exportado de Stitch (512 px), con el halo blanco del recorte eliminado (original en `_raw/logo-original.png`). **Pendiente: reemplazar por la versión de alta resolución del cliente.** |
 
@@ -21,7 +19,6 @@ Mismas condiciones (fotos reales del sitio actual, imgur, convertidas a WebP el 
 
 | Archivo | Origen (imgur) |
 |---|---|
-| trabajo-cubierta-azul.webp | bShlyh3.png |
 | trabajo-cubierta-blanca.webp | bRksMOn.png |
 | trabajo-terraza-lago.webp | CEPfSSC.png |
 | trabajo-mixto.webp | 9e4nHeZ.png |
@@ -33,6 +30,3 @@ Fotos de ejemplo de Unsplash (licencia Unsplash), convertidas a WebP el 2026-10-
 
 | Archivo | Origen (Unsplash photo id) |
 |---|---|
-| carga-ev-1.webp | 1593941707882-a5bba14938c7 |
-| carga-ev-2.webp | 1593941707874-ef25b8b4a92b |
-| carga-ev-auto.webp | 1560958089-b8a1929cea89 |

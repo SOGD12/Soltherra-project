@@ -15,3 +15,8 @@ const app = (
 // En producción el HTML ya viene pre-renderizado: se hidrata. En desarrollo la raíz está vacía.
 if (raiz.hasChildNodes()) hydrateRoot(raiz, app)
 else createRoot(raiz).render(app)
+
+// Analítica de Vercel: se carga cuando la página ya terminó, para no competir con la carga inicial.
+if (import.meta.env.PROD) {
+  addEventListener('load', () => import('@vercel/analytics').then(({ inject }) => inject()), { once: true })
+}

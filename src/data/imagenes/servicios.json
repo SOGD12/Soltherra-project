@@ -1,19 +1,19 @@
 {
   "fotovoltaico": [
-    { "foto": "/img/trabajo-cubierta-blanca.webp", "alt": "Paneles solares y soportes sobre una cubierta clara", "ancho": 1000, "alto": 1333 },
+    { "foto": "/img/fv-techo-verde.webp", "alt": "Paneles solares fotovoltaicos instalados sobre un techo de teja verde rodeado de vegetación", "ancho": 1400, "alto": 1050 },
     { "foto": "/img/inversor.webp", "alt": "Inversor solar instalado en pared con canalización eléctrica", "ancho": 1000, "alto": 1333 }
   ],
   "termico": [
     { "foto": "/img/colectores.webp", "alt": "Colectores solares térmicos de tubos al vacío instalados junto a una casa", "ancho": 1600, "alto": 1200 },
-    { "foto": "/img/tanque.webp", "alt": "Calentador solar de agua con tanque sobre una terraza", "ancho": 900, "alto": 1200 }
+    { "foto": "/img/termico-cubierta-montana.webp", "alt": "Colectores solares de tubos al vacío sobre estructuras metálicas en una cubierta, con montañas al fondo", "ancho": 1200, "alto": 1600 }
   ],
   "piscina": [
-    { "foto": "/img/piscina.webp", "alt": "Piscina con paneles solares sobre una estructura junto al agua", "ancho": 1600, "alto": 640 },
+    { "foto": "/img/piscina.webp", "alt": "Piscina con colectores solares térmicos sobre una estructura junto al agua", "ancho": 1600, "alto": 640 },
     { "foto": "/img/bomba-solar.webp", "alt": "Bomba de agua y tuberías de un sistema solar térmico", "ancho": 900, "alto": 1106 }
   ],
   "carga-ev": [
-    { "foto": "/img/carga-ev-1.webp", "alt": "Conector de carga enchufado en un vehículo eléctrico", "ancho": 1400, "alto": 931 },
-    { "foto": "/img/carga-ev-2.webp", "alt": "Cable de carga conectado al puerto de un auto eléctrico", "ancho": 1400, "alto": 931 }
+    { "foto": "/img/ev-cargador-evinka.webp", "alt": "Cargador de vehículo eléctrico instalado en la pared de un parqueadero con su tablero de protecciones", "ancho": 1400, "alto": 1050 },
+    { "foto": "/img/ev-punto-carga-auto-blanco.webp", "alt": "Auto eléctrico conectado a un punto de carga instalado en el techo de un parqueadero", "ancho": 1200, "alto": 1600 }
   ],
   "mantenimiento": [
     { "foto": "/img/multimetro.webp", "alt": "Multímetro midiendo el voltaje de un banco de baterías", "ancho": 900, "alto": 1200 },

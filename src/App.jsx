@@ -19,6 +19,7 @@ import Pie from './components/Pie.jsx'
 import useProgresoScroll from './hooks/useProgresoScroll.js'
 import useAnimaciones from './hooks/useAnimaciones.js'
 import useRuta from './ruta.js'
+import { aplicarSeo } from './seo.js'
 
 // Cada pestaña del menú es una página: solo se monta lo suyo, así no carga todo en un mismo lugar.
 const PAGINAS = {
@@ -66,14 +67,6 @@ const PAGINAS = {
   contacto: () => <Contacto />,
 }
 
-const TITULOS = {
-  inicio: 'Soltherra | Energía solar fotovoltaica y térmica en Cali',
-  servicios: 'Servicios solares | Soltherra',
-  'como-funciona': 'Cómo funciona | Soltherra',
-  trabajos: 'Nuestros trabajos | Soltherra',
-  contacto: 'Contacto | Soltherra',
-}
-
 export default function App() {
   const { pagina, ancla } = useRuta()
   const Pagina = PAGINAS[pagina]
@@ -81,10 +74,10 @@ export default function App() {
   useProgresoScroll()
   useAnimaciones(pagina)
 
-  // Al cambiar de pestaña se vuelve arriba (o se baja al bloque pedido) y se actualiza el título de la pestaña del navegador.
+  // Al cambiar de pestaña se vuelve arriba (o se baja al bloque pedido) y se actualiza el título, la descripción y el canonical.
   const anterior = useRef(pagina)
   useEffect(() => {
-    document.title = TITULOS[pagina]
+    aplicarSeo(pagina)
     const destino = ancla && document.getElementById(ancla)
     let reanclar = () => {}
     if (destino) {

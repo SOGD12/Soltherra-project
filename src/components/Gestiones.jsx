@@ -10,9 +10,9 @@ export default function Gestiones() {
         <div className="contenedor gestiones__rejilla">
           <div className="titulo-seccion">
             <Chip claro>Ingeniería y trámites</Chip>
-            <h2 id="t-gestiones" data-titulo>
+            <h1 id="t-gestiones" data-titulo>
               Lo técnico y el papeleo, <em className="acento">resueltos</em> por Soltherra
-            </h2>
+            </h1>
             <p>Nos encargamos de la parte técnica y de los trámites para que tu sistema opere con respaldo normativo.</p>
           </div>
           <ul className="gestiones__lista">

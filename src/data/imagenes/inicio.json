@@ -1,10 +1,10 @@
 {
   "hero": { "foto": "/img/hero.webp", "alt": "", "ancho": 1800, "alto": 1350 },
   "nosotros": {
-    "foto": "/img/instalacion.webp",
-    "alt": "Dos técnicos instalando módulos fotovoltaicos sobre una cubierta",
-    "ancho": 1200,
-    "alto": 667
+    "foto": "/img/fv-estructura-suelo.webp",
+    "alt": "Arreglo de paneles solares sobre una estructura metálica en una ladera con vista al valle",
+    "ancho": 1400,
+    "alto": 1050
   },
   "franja": {
     "foto": "/img/piscina.webp",

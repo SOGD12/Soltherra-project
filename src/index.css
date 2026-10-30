@@ -139,7 +139,7 @@ a {
 .titulo-seccion {
   margin-bottom: clamp(36px, 5vw, 72px);
 }
-.titulo-seccion h2 {
+.titulo-seccion :is(h1, h2) {
   font-size: clamp(2.2rem, 1.1rem + 4vw, 4.4rem);
   font-stretch: 108%;
   line-height: 0.98;
@@ -339,16 +339,15 @@ a {
 .cabecera__logo {
   display: grid;
   place-items: center;
-  height: 48px;
-  padding: 0 16px;
+  height: 100%;
+  padding: 0 12px 0 14px;
   margin-right: auto;
-  background: var(--piedra);
-  border-radius: 999px;
   line-height: 0;
 }
 .cabecera__logo img {
-  height: 40px;
+  height: 48px;
   width: auto;
+  filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.35));
 }
 .cabecera__nav {
   display: none;
@@ -796,7 +795,7 @@ a {
   object-position: 50% 35%;
 }
 .bento__tarjeta--e img {
-  object-position: 50% 55%;
+  object-position: 50% 40%;
 }
 
 /* ---------- Islas oscuras ---------- */
@@ -938,7 +937,7 @@ a {
   .gestiones__icono {
     grid-row: span 2;
     width: 46px;
-    height: 46px;
+    height: 56px;
     margin-bottom: 0;
   }
 }
@@ -1053,7 +1052,7 @@ a {
   height: 100%;
   padding-block: calc(var(--alto-cabecera) + 32px) 32px;
 }
-.recorrido h2 {
+.recorrido :is(h1, h2) {
   font-size: clamp(2.2rem, 1.1rem + 4vw, 4.6rem);
   font-stretch: 110%;
   letter-spacing: -0.04em;
@@ -1063,7 +1062,7 @@ a {
   margin-bottom: 16px;
 }
 /* Verde más claro que --hoja-viva: sobre el azul de fondo da 4,5:1 (con --hoja-viva daba 2,85:1) */
-.recorrido h2 .acento {
+.recorrido :is(h1, h2) .acento {
   color: #7be0a2;
 }
 .recorrido__pasos li {
@@ -1822,8 +1821,10 @@ main > .seccion-isla:only-child > .isla {
 
 .pie {
   margin-top: clamp(8px, 1.4vw, 18px);
-  background: var(--suelo);
-  color: var(--texto-claro-suave);
+  background:
+    radial-gradient(60% 90% at 85% 0%, rgb(123 224 162 / 0.28) 0%, transparent 70%),
+    linear-gradient(115deg, var(--suelo) 0%, #17708a 32%, var(--hoja-oscura) 82%);
+  color: var(--texto-claro);
   padding-block: clamp(56px, 7vw, 96px) max(24px, env(safe-area-inset-bottom));
   overflow: hidden;
 }
@@ -1916,6 +1917,9 @@ main > .seccion-isla:only-child > .isla {
     --alto-cabecera: 72px;
     --margen-cabecera: 16px;
   }
+  .cabecera__logo img {
+    height: 54px;
+  }
   .cabecera__nav {
     display: flex;
     gap: 2px;
@@ -1974,7 +1978,7 @@ main > .seccion-isla:only-child > .isla {
   .gestiones .titulo-seccion {
     margin: 0;
   }
-  .gestiones .titulo-seccion h2 {
+  .gestiones .titulo-seccion :is(h1, h2) {
     font-size: clamp(2.2rem, 1.2rem + 2.6vw, 3.6rem);
   }
   .gestiones__lista li:nth-child(even) {
@@ -2140,7 +2144,7 @@ main > .seccion-isla:only-child > .isla {
   .recorrido {
     height: 360vh;
   }
-  .recorrido h2 {
+  .recorrido :is(h1, h2) {
     margin-bottom: 8px;
   }
   .recorrido .chip {
@@ -2428,7 +2432,7 @@ main > .seccion-isla:only-child > .isla {
     gap: 32px;
     padding-block: calc(var(--alto-cabecera) + 24px) 24px;
   }
-  .recorrido h2 {
+  .recorrido :is(h1, h2) {
     font-size: clamp(2.4rem, 1rem + 3.6vw, 4rem);
     margin-bottom: 10px;
   }
@@ -2464,7 +2468,7 @@ main > .seccion-isla:only-child > .isla {
     gap: 24px;
     padding-block: calc(var(--alto-cabecera) + 12px) 16px;
   }
-  .recorrido h2 {
+  .recorrido :is(h1, h2) {
     font-size: clamp(2.2rem, 1rem + 3vw, 3.2rem);
     margin-bottom: 6px;
   }

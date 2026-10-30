@@ -1,21 +1,21 @@
 {
   "fotovoltaicos": {
-    "foto": "/img/trabajo-cubierta-azul.webp",
-    "alt": "Módulos fotovoltaicos instalados sobre una cubierta metálica azul con montañas al fondo",
+    "foto": "/img/fv-estructura-suelo.webp",
+    "alt": "Arreglo de paneles solares sobre una estructura metálica en una ladera con vista al valle",
     "ancho": 1400,
-    "alto": 1400
+    "alto": 1050
   },
   "termicos": {
-    "foto": "/img/termosifones.webp",
-    "alt": "Tres calentadores solares de agua con colectores planos sobre un techo",
-    "ancho": 1280,
-    "alto": 916
+    "foto": "/img/termico-terraza-tubos.webp",
+    "alt": "Campo de colectores solares de tubos al vacío sobre una estructura negra en una terraza",
+    "ancho": 1400,
+    "alto": 662
   },
   "mantenimiento": {
-    "foto": "/img/bomba-solar.webp",
-    "alt": "Tubería y bomba roja de circulación de un sistema solar térmico",
-    "ancho": 900,
-    "alto": 1106
+    "foto": "/img/mant-control-piscina.webp",
+    "alt": "Tableros de control con medidores de voltaje y corriente de las bombas de la piscina y el jacuzzi",
+    "ancho": 1400,
+    "alto": 1400
   },
   "tramites": {
     "foto": "/img/inversor-blanco.webp",
@@ -24,9 +24,9 @@
     "alto": 1200
   },
   "carga-ev": {
-    "foto": "/img/carga-ev-auto.webp",
-    "alt": "Auto eléctrico blanco estacionado en una carretera junto a una colina",
+    "foto": "/img/ev-cargador-evinka.webp",
+    "alt": "Cargador de vehículo eléctrico instalado en la pared de un parqueadero con su tablero de protecciones",
     "ancho": 1400,
-    "alto": 933
+    "alto": 1050
   }
 }

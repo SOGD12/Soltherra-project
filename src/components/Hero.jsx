@@ -18,14 +18,14 @@ export default function Hero() {
       <div className="hero__velo" />
       <div className="contenedor hero__texto">
         <Chip claro>
-          <Icono nombre="location_on" /> Cali, Colombia · Energía limpia que nace del sol
+          <Icono nombre="location_on" /> Cali, Colombia · Energía sostenible
         </Chip>
         <h1 className="hero__titulo">
-          <em className="acento">Energía solar</em> para tu hogar, tu empresa o tu institución.
+          <em className="acento">Energía solar</em> para tu hogar, empresa o institución.
         </h1>
         <p className="hero__sub">
-          Diseñamos, instalamos y mantenemos sistemas solares fotovoltaicos y solares térmicos, con cumplimiento
-          normativo y soluciones a la medida.
+          Diseñamos e instalamos sistemas solares fotovoltaicos y solares térmicos, con cumplimiento
+          normativo e ingeniería de alta calidad.
         </p>
         <div className="hero__acciones">
           <BotonWA texto="Cotizar por WhatsApp" variante="boton--viva" />
