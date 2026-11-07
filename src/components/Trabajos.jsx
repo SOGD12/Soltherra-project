@@ -145,7 +145,6 @@ export default function Trabajos() {
               Nuestros <em className="acento">trabajos</em>
             </h1>
           </div>
-          <p>Elige el tipo de instalación y mira las obras realizadas por Soltherra.</p>
         </div>
         <div className="trabajos__barra">
           <div className="pestanas" role="tablist" aria-label="Tipo de trabajo">

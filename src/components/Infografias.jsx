@@ -135,7 +135,7 @@ export default function Infografias() {
             ))}
           </div>
           <p ref={frase} className="infografias__frase" aria-live="polite">
-            <strong>{actual.titulo}.</strong> {actual.texto}
+            <strong>{actual.titulo}:</strong> {actual.texto}
           </p>
         </div>
         <figure id="info-panel" className="infografias__marco" role="tabpanel" aria-labelledby={`info-tab-${clave}`}>
