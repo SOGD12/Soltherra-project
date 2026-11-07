@@ -106,7 +106,7 @@ export default function Servicios() {
         icono="build"
         chip="Mantenimiento"
         titulo="Mantenimiento preventivo y correctivo"
-        texto="Mantenemos tu sistema solar funcionando como el primer día: revisamos, medimos y corregimos para que siga rindiendo y cuidando tu inversión."
+        texto="Ejecutamos mediciones de control y mantenimiento preventivo para prevenir fallas operativas, buscando optimizar la generación energética y prolongar la vida útil de tus equipos."
         items={mantenimiento}
         cierre="Un sistema bien cuidado rinde más y dura más."
         mensaje="Hola Soltherra, quiero información sobre mantenimiento de mi sistema solar."

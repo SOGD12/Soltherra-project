@@ -1,27 +1,18 @@
 [
   {
-    "id": 2,
-    "titulo": "Colectores solares térmicos junto a la piscina",
-    "categoria": "piscina",
-    "foto": "/img/colectores.webp",
-    "alt": "Colectores solares térmicos de tubos al vacío instalados junto a una casa",
-    "ancho": 1600,
-    "alto": 1200
-  },
-  {
     "id": 4,
     "titulo": "Sistema fotovoltaico en cubierta",
     "categoria": "fotovoltaico",
-    "foto": "/img/trabajo-cubierta-blanca.webp",
+    "foto": "/img/trabajos/trabajo-cubierta-blanca.webp",
     "alt": "Paneles solares y soportes sobre una cubierta clara",
-    "ancho": 1000,
-    "alto": 1334
+    "ancho": 900,
+    "alto": 1201
   },
   {
     "id": 5,
-    "titulo": "Colectores térmicos en terraza",
+    "titulo": "Colectores en terraza con lago",
     "categoria": "termico",
-    "foto": "/img/trabajo-terraza-lago.webp",
+    "foto": "/img/trabajos/trabajo-terraza-lago.webp",
     "alt": "Colectores solares en una terraza con vista a un lago",
     "ancho": 1400,
     "alto": 1050
@@ -30,34 +21,34 @@
     "id": 6,
     "titulo": "Fotovoltaico y térmico en una misma cubierta",
     "categoria": "termico",
-    "foto": "/img/trabajo-mixto.webp",
+    "foto": "/img/trabajos/trabajo-mixto.webp",
     "alt": "Paneles fotovoltaicos y colectores de tubos al vacío sobre un mismo techo",
-    "ancho": 1400,
-    "alto": 1050
+    "ancho": 1448,
+    "alto": 1086
   },
   {
     "id": 8,
     "titulo": "Conexión y ajuste de inversor",
     "categoria": "fotovoltaico",
-    "foto": "/img/cableado.webp",
+    "foto": "/img/trabajos/cableado.webp",
     "alt": "Técnico ajustando las conexiones de un inversor solar",
     "ancho": 900,
     "alto": 1200
   },
   {
     "id": 9,
-    "titulo": "Instalación de colectores",
+    "titulo": "Montaje de colectores en cubierta",
     "categoria": "termico",
-    "foto": "/img/tubos-cubierta.webp",
+    "foto": "/img/trabajos/tubos-cubierta.webp",
     "alt": "Colectores solares de tubos al vacío sobre una cubierta azul",
-    "ancho": 1200,
-    "alto": 1200
+    "ancho": 1125,
+    "alto": 1125
   },
   {
     "id": 10,
     "titulo": "Inversor con canalización eléctrica",
     "categoria": "fotovoltaico",
-    "foto": "/img/inversor.webp",
+    "foto": "/img/trabajos/inversor.webp",
     "alt": "Inversor solar instalado en pared con canalización eléctrica",
     "ancho": 1000,
     "alto": 750
@@ -66,7 +57,7 @@
     "id": 12,
     "titulo": "Inversor y protecciones",
     "categoria": "fotovoltaico",
-    "foto": "/img/inversor-advertencia.webp",
+    "foto": "/img/trabajos/inversor-advertencia.webp",
     "alt": "Inversor solar con señalización de seguridad y protecciones eléctricas",
     "ancho": 1000,
     "alto": 750
@@ -75,7 +66,7 @@
     "id": 13,
     "titulo": "Medición con multímetro",
     "categoria": "mantenimiento",
-    "foto": "/img/multimetro.webp",
+    "foto": "/img/trabajos/multimetro.webp",
     "alt": "Multímetro midiendo el voltaje de un banco de baterías",
     "ancho": 900,
     "alto": 1200
@@ -84,7 +75,7 @@
     "id": 14,
     "titulo": "Análisis de calidad de energía",
     "categoria": "mantenimiento",
-    "foto": "/img/osciloscopio.webp",
+    "foto": "/img/trabajos/osciloscopio.webp",
     "alt": "Pantalla de un analizador de energía mostrando formas de onda",
     "ancho": 1400,
     "alto": 662
@@ -93,7 +84,7 @@
     "id": 15,
     "titulo": "Baterías de litio",
     "categoria": "fotovoltaico",
-    "foto": "/img/bateria.webp",
+    "foto": "/img/trabajos/bateria.webp",
     "alt": "Batería de litio LiFePO4 instalada en una pared sobre un riel metálico",
     "ancho": 396,
     "alto": 528
@@ -102,7 +93,7 @@
     "id": 16,
     "titulo": "Monitoreo de producción y consumo",
     "categoria": "mantenimiento",
-    "foto": "/img/monitoreo.webp",
+    "foto": "/img/trabajos/monitoreo.webp",
     "alt": "Panel de monitoreo con flujo de energía entre paneles, baterías, red y consumo",
     "ancho": 652,
     "alto": 590
@@ -111,7 +102,7 @@
     "id": 17,
     "titulo": "Bomba y tuberías del sistema térmico",
     "categoria": "mantenimiento",
-    "foto": "/img/bomba-solar.webp",
+    "foto": "/img/trabajos/bomba-solar.webp",
     "alt": "Tubería y bomba roja de circulación de un sistema solar térmico",
     "ancho": 900,
     "alto": 1106
@@ -120,160 +111,160 @@
     "id": 18,
     "titulo": "Inversor compacto en pared",
     "categoria": "fotovoltaico",
-    "foto": "/img/inversor-blanco.webp",
+    "foto": "/img/trabajos/inversor-blanco.webp",
     "alt": "Inversor solar blanco compacto montado en pared",
     "ancho": 900,
     "alto": 1200
   },
   {
     "id": 19,
-    "titulo": "Colectores solares junto a la piscina",
+    "titulo": "Colectores al lado de la piscina",
     "categoria": "piscina",
-    "foto": "/img/piscina.webp",
+    "foto": "/img/trabajos/piscina.webp",
     "alt": "Piscina con colectores solares térmicos sobre una estructura junto al agua",
     "ancho": 1600,
     "alto": 640
   },
   {
     "id": 20,
-    "titulo": "Punto de carga en pared de parqueadero",
+    "titulo": "Cargador en pared del parqueadero",
     "categoria": "ev",
-    "foto": "/img/ev-cargador-evinka.webp",
+    "foto": "/img/trabajos/ev-cargador-evinka.webp",
     "alt": "Cargador de vehículo eléctrico instalado en la pared de un parqueadero con su tablero de protecciones",
     "ancho": 1400,
     "alto": 1050
   },
   {
     "id": 21,
-    "titulo": "Punto de carga para vehículo eléctrico",
+    "titulo": "Carga de auto eléctrico",
     "categoria": "ev",
-    "foto": "/img/ev-punto-carga-auto-blanco.webp",
+    "foto": "/img/trabajos/ev-punto-carga-auto-blanco.webp",
     "alt": "Auto eléctrico conectado a un punto de carga instalado en el techo de un parqueadero",
-    "ancho": 1200,
-    "alto": 1600
+    "ancho": 900,
+    "alto": 1200
   },
   {
     "id": 22,
-    "titulo": "Cargador para vehículo eléctrico en parqueadero",
+    "titulo": "Cargador con cable recogido",
     "categoria": "ev",
-    "foto": "/img/ev-cargador-enelx.webp",
-    "alt": "Cargador de vehículo eléctrico con cable recogido, instalado en una placa bajo el techo de un parqueadero",
+    "foto": "/img/trabajos/ev-cargador-enelx-parqueadero.webp",
+    "alt": "Cargador Enel X para vehículo eléctrico sobre una placa con señal de riesgo eléctrico, con el cable recogido, en un parqueadero con autos",
     "ancho": 900,
-    "alto": 1600
+    "alto": 1200
   },
   {
     "id": 23,
     "titulo": "Revisión de inversor y protecciones",
     "categoria": "mantenimiento",
-    "foto": "/img/mant-inversor-huawei.webp",
+    "foto": "/img/trabajos/mant-inversor-huawei.webp",
     "alt": "Inversor solar blanco con cableado y cajas de protección señalizadas con aviso de riesgo eléctrico",
     "ancho": 1400,
     "alto": 1050
   },
   {
     "id": 24,
-    "titulo": "Mantenimiento de inversor híbrido y batería",
+    "titulo": "Revisión de inversor híbrido y batería",
     "categoria": "mantenimiento",
-    "foto": "/img/mant-inversor-bateria.webp",
+    "foto": "/img/trabajos/mant-inversor-bateria.webp",
     "alt": "Inversor híbrido y batería de litio instalados en una pared con tableros de protección",
-    "ancho": 1200,
-    "alto": 1600
+    "ancho": 900,
+    "alto": 1200
   },
   {
     "id": 25,
-    "titulo": "Control y medición de bombas de piscina y jacuzzi",
+    "titulo": "Tableros de bombas de piscina",
     "categoria": "mantenimiento",
-    "foto": "/img/mant-control-piscina.webp",
+    "foto": "/img/trabajos/mant-control-piscina.webp",
     "alt": "Tableros de control de la bomba de la piscina y del jacuzzi con medidores de voltaje y corriente",
-    "ancho": 1400,
-    "alto": 1400
+    "ancho": 1125,
+    "alto": 1125
   },
   {
     "id": 26,
-    "titulo": "Limpieza de colectores de tubos al vacío",
+    "titulo": "Lavado de colectores",
     "categoria": "mantenimiento",
-    "foto": "/img/mant-limpieza-colectores.webp",
+    "foto": "/img/trabajos/mant-limpieza-colectores.webp",
     "alt": "Colectores solares de tubos al vacío sobre una cubierta, parte de ellos ya limpios",
-    "ancho": 1200,
-    "alto": 1600
+    "ancho": 900,
+    "alto": 1200
   },
   {
     "id": 27,
-    "titulo": "Retiro de sedimentos en tubería del sistema térmico",
+    "titulo": "Limpieza de tubería con sedimentos",
     "categoria": "mantenimiento",
-    "foto": "/img/mant-sedimentos-tuberia.webp",
+    "foto": "/img/trabajos/mant-sedimentos-tuberia.webp",
     "alt": "Tubería desconectada del sistema solar térmico llena de arena y sedimentos",
-    "ancho": 1200,
-    "alto": 1600
+    "ancho": 900,
+    "alto": 1200
+  },
+  {
+    "id": 41,
+    "titulo": "Tablero de medición y control",
+    "categoria": "mantenimiento",
+    "foto": "/img/trabajos/mant-tablero-medicion.webp",
+    "alt": "Tablero eléctrico transparente con medidor de energía, temporizador y protecciones, con la etiqueta de Soltherra, instalado al aire libre",
+    "ancho": 900,
+    "alto": 1200
   },
   {
     "id": 28,
-    "titulo": "Climatización de piscina y jacuzzi con colectores solares",
+    "titulo": "Calentamiento de piscina y jacuzzi",
     "categoria": "piscina",
-    "foto": "/img/piscina-colectores-cubierta.webp",
+    "foto": "/img/trabajos/piscina-colectores-cubierta.webp",
     "alt": "Colectores solares de tubos al vacío sobre una estructura metálica junto a una piscina",
     "ancho": 1400,
     "alto": 1050
   },
   {
-    "id": 29,
-    "titulo": "Colectores térmicos para calentar piscina y jacuzzi",
-    "categoria": "piscina",
-    "foto": "/img/piscina-colectores-estructura.webp",
-    "alt": "Campo de colectores solares térmicos sobre una estructura metálica con vista a la piscina y al campo",
-    "ancho": 1400,
-    "alto": 1050
-  },
-  {
     "id": 30,
-    "titulo": "Cuarto de filtración y desinfección de piscina",
+    "titulo": "Cuarto de máquinas de piscina",
     "categoria": "piscina",
-    "foto": "/img/piscina-cuarto-filtracion.webp",
+    "foto": "/img/trabajos/piscina-cuarto-filtracion.webp",
     "alt": "Filtro de arena, válvulas, tuberías y equipo de luz ultravioleta en el cuarto de máquinas de una piscina",
-    "ancho": 1400,
-    "alto": 1400
+    "ancho": 1125,
+    "alto": 1125
   },
   {
     "id": 31,
-    "titulo": "Climatización de piscinas y jacuzzis con energía solar",
+    "titulo": "Colectores frente al lago",
     "categoria": "piscina",
-    "foto": "/img/piscina-colectores-lago.webp",
+    "foto": "/img/trabajos/piscina-colectores-lago.webp",
     "alt": "Colectores solares térmicos sobre una estructura metálica junto a un lago rodeado de cafetales",
-    "ancho": 1400,
-    "alto": 1400
+    "ancho": 1125,
+    "alto": 1125
   },
   {
     "id": 32,
-    "titulo": "Colectores solares térmicos en cubierta con vista a la montaña",
+    "titulo": "Colectores en cubierta metálica",
     "categoria": "termico",
-    "foto": "/img/termico-cubierta-montana.webp",
-    "alt": "Colectores solares de tubos al vacío sobre estructuras metálicas en una cubierta, con montañas al fondo",
-    "ancho": 1200,
-    "alto": 1600
+    "foto": "/img/trabajos/termico-cubierta-montana.webp",
+    "alt": "Colectores solares de tubos al vacío sobre estructuras metálicas en una cubierta, con cerros al fondo",
+    "ancho": 900,
+    "alto": 1200
   },
   {
     "id": 33,
-    "titulo": "Colectores térmicos sobre estructura en jardín",
+    "titulo": "Colectores sobre el césped",
     "categoria": "termico",
-    "foto": "/img/termico-estructura-jardin.webp",
+    "foto": "/img/trabajos/termico-estructura-jardin.webp",
     "alt": "Cuatro colectores solares térmicos montados en una estructura metálica sobre el césped",
-    "ancho": 1400,
-    "alto": 1400
+    "ancho": 1125,
+    "alto": 1125
   },
   {
     "id": 34,
-    "titulo": "Campo de colectores de tubos al vacío en terraza",
+    "titulo": "Tubos al vacío en terraza",
     "categoria": "termico",
-    "foto": "/img/termico-terraza-tubos.webp",
+    "foto": "/img/trabajos/termico-terraza-tubos.webp",
     "alt": "Vista aérea de varios colectores de tubos al vacío sobre una estructura negra en una terraza",
     "ancho": 1400,
     "alto": 662
   },
   {
     "id": 35,
-    "titulo": "Colectores solares inclinados en terraza",
+    "titulo": "Colectores inclinados en terraza",
     "categoria": "termico",
-    "foto": "/img/termico-terraza-colectores.webp",
+    "foto": "/img/trabajos/termico-terraza-colectores.webp",
     "alt": "Cuatro colectores solares térmicos inclinados sobre el piso de una terraza",
     "ancho": 1400,
     "alto": 662
@@ -282,26 +273,26 @@
     "id": 36,
     "titulo": "Paneles fotovoltaicos sobre teja",
     "categoria": "fotovoltaico",
-    "foto": "/img/fv-techo-verde.webp",
+    "foto": "/img/trabajos/fv-techo-verde.webp",
     "alt": "Paneles solares fotovoltaicos instalados sobre un techo de teja verde rodeado de vegetación",
     "ancho": 1400,
     "alto": 1050
   },
   {
     "id": 37,
-    "titulo": "Sistema fotovoltaico sobre estructura metálica",
+    "titulo": "Paneles sobre estructura en ladera",
     "categoria": "fotovoltaico",
-    "foto": "/img/fv-estructura-suelo.webp",
+    "foto": "/img/trabajos/fv-estructura-suelo.webp",
     "alt": "Arreglo de paneles solares sobre una estructura metálica en una ladera con vista al valle",
     "ancho": 1400,
     "alto": 1050
   },
   {
     "id": 38,
-    "titulo": "Paneles fotovoltaicos en terraza",
+    "titulo": "Paneles en terraza",
     "categoria": "fotovoltaico",
-    "foto": "/img/fv-terraza-paneles.webp",
-    "alt": "Paneles solares azules instalados en una terraza con montañas al fondo",
+    "foto": "/img/trabajos/fv-terraza-paneles.webp",
+    "alt": "Paneles solares azules instalados en una terraza con cerros al fondo",
     "ancho": 1280,
     "alto": 960
   },
@@ -309,18 +300,18 @@
     "id": 39,
     "titulo": "Luminaria solar autónoma",
     "categoria": "fotovoltaico",
-    "foto": "/img/fv-poste-solar.webp",
+    "foto": "/img/trabajos/fv-poste-solar.webp",
     "alt": "Poste con panel solar, reflector y caja de control para iluminación autónoma",
-    "ancho": 1280,
-    "alto": 1280
+    "ancho": 1125,
+    "alto": 1125
   },
   {
     "id": 40,
-    "titulo": "Punto de carga con protecciones eléctricas",
+    "titulo": "Cargador con tablero de protecciones",
     "categoria": "ev",
-    "foto": "/img/ev-punto-carga-auto-gris.webp",
+    "foto": "/img/trabajos/ev-punto-carga-auto-gris.webp",
     "alt": "Punto de carga con tablero de protecciones y señal de riesgo eléctrico junto a un auto eléctrico",
-    "ancho": 1200,
-    "alto": 1600
+    "ancho": 900,
+    "alto": 1200
   }
 ]

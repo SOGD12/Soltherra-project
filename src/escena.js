@@ -73,7 +73,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
       // En celulares estrechos, con el barrido de giro y los rayos del sol, 650 unidades no dan margen y la casita
       // se corta en los bordes: se reserva más ancho y algo más de alto.
       const estrecho = ancho < 500
-      this.zoom = Math.min(ancho / (estrecho ? 760 : 650), alto / (estrecho ? 500 : 460))
+      this.zoom = Math.min(ancho / (estrecho ? 690 : 650), alto / (estrecho ? 440 : 460))
       this.translate.x = 40
     },
   })
@@ -267,6 +267,7 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
   // ---------- Estado ----------
   let objetivo = reducido ? 1 : 0
   let progreso = objetivo
+  const VELOCIDAD_GIRO = 0.18 // rad/s, un giro completo cada ~35 s; el signo fija el lado (positivo = el frente de la casa se mueve a la izquierda)
   let giroUsuario = 0
   let giroInicio = 0
   let fase = 0
@@ -333,12 +334,12 @@ export function crearEscena(canvas, { reducido = false, tactil = false, baja = f
     const p = progreso
 
     // Cámara: gira de tres cuartos izquierdo a tres cuartos derecho mientras avanza la historia.
-    // Barrido lento y continuo para que la casa no se vea quieta (~20 s por ida y vuelta). Se detiene mientras
+    // Giro lento y continuo para que la casa no se vea quieta. Se detiene mientras
     // se arrastra y sigue desde donde quedó, así que la casa nunca da el salto. Va por tiempo real: igual a cualquier fps.
     if (!arrastrando && !reducido) fase += dt
-    // Al desactivar el giro manual en táctil, la casa vuelve suave al ángulo de la historia.
-    if (tactil && !libre && !arrastrando) giroUsuario *= Math.exp(-dt * 3)
-    const barrido = reducido ? 0 : Math.sin(fase * 0.32) * 0.5
+    // La casa gira siempre hacia el mismo lado. Lo que el visitante la mueva con el dedo o el ratón se conserva:
+    // al soltarla sigue girando hacia ese lado desde la posición en que quedó.
+    const barrido = reducido ? 0 : fase * VELOCIDAD_GIRO
     illo.rotate.y = -TAU / 9 + p * (TAU / 7) + barrido + giroUsuario
     illo.rotate.x = -TAU / 22 - p * 0.08
 

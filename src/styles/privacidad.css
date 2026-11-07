@@ -1,0 +1,28 @@
+/* Página de política de privacidad (/privacidad). */
+
+.legal a {
+  text-decoration: underline;
+}
+
+.legal {
+  padding: clamp(112px, 14vw, 168px) 0 clamp(56px, 8vw, 112px);
+}
+
+.legal__texto {
+  max-width: 760px;
+}
+
+.legal {
+  h1 {
+    font-size: clamp(2rem, 1.4rem + 2.4vw, 3.4rem);
+    line-height: 1.05;
+    margin-bottom: 12px;
+  }
+  h2 {
+    font-size: 1.25rem;
+    margin: 32px 0 8px;
+  }
+  p {
+    line-height: 1.65;
+  }
+}

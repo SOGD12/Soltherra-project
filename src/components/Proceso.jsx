@@ -9,7 +9,7 @@ export default function Proceso() {
         <div className="titulo-seccion titulo-seccion--fila">
           <div>
             <Chip>Proceso</Chip>
-            {/* Las palabras van en cajas para que el CSS las haga subir una a una (ver .pal en index.css) */}
+            {/* Las palabras van en cajas para que el CSS las haga subir una a una (ver .pal en src/styles/base.css) */}
             <h2 id="t-proceso" data-palabras>
               <span className="pal" style={{ '--i': 0 }}>
                 <span>Cómo</span>
@@ -21,7 +21,7 @@ export default function Proceso() {
               </em>
             </h2>
           </div>
-          <p>Te acompañamos desde la ingeniería hasta la puesta en marcha, y después del arranque también.</p>
+          {/* <p>Te acompañamos desde la ingeniería hasta la puesta en marcha, y después del arranque también.</p> */}
         </div>
         <div className="pasos__caja">
           <span className="pasos__linea" aria-hidden="true">

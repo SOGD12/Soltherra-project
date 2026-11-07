@@ -16,7 +16,7 @@ const observar = (opciones) => {
 const todos = (sel) => [...document.querySelectorAll(sel)]
 
 // Ritmo de las entradas: multiplica todas las duraciones y retrasos (más alto = más lento y suave).
-// El fundido de celular tiene su propio tiempo en index.css (--duracion-fundido).
+// El fundido de celular tiene su propio tiempo en src/styles/base.css (--duracion-fundido).
 const LENTITUD = 1.45
 const t = (ms) => Math.round(ms * LENTITUD)
 // 'outQuart' frena de forma más gradual que 'outExpo', que arranca muy rápido y parece brusco.
@@ -101,7 +101,7 @@ export function iniciarAnimaciones() {
     { rootMargin: '0px 0px -2% 0px' },
   )
   // paso: retraso entre elementos (ms). referencia: elemento que dispara a todo el grupo.
-  // desplazar y duracion cambian el recorrido y el tiempo del fundido (por defecto, los de index.css).
+  // desplazar y duracion cambian el recorrido y el tiempo del fundido (por defecto, los de src/styles/base.css).
   const fundir = (els, paso = 0, { referencia, desplazar, duracion } = {}) => {
     els.forEach((el, i) => {
       el.dataset.fade = ''
@@ -156,15 +156,15 @@ export function iniciarAnimaciones() {
       document.documentElement.classList.add('animado')
       animate(partido.words, { y: ['110%', '0%'], duration: t(1100), delay: stagger(t(70), { start: t(150) }), ease: SUAVE })
     }
-    animate('.hero .chip, .hero__sub, .hero__acciones, .hero__bajar', {
+    if (document.querySelector('.hero')) animate('.hero .chip, .hero__sub, .hero__acciones, .hero__bajar', {
       opacity: [0, 1],
       y: [24, 0],
       duration: t(1000),
       delay: stagger(t(120), { start: t(600) }),
       ease: SUAVE,
     })
-    animate('.hero__foto', { scale: [1.18, 1.04], duration: t(2600), ease: 'outQuart' })
-    if (!recortar) {
+    if (document.querySelector('.hero__foto')) animate('.hero__foto', { scale: [1.18, 1.04], duration: t(2600), ease: 'outQuart' })
+    if (!recortar && document.querySelector('.hero')) {
       animate('.hero__medio', { y: ['0%', '22%'], ease: 'linear', autoplay: atado('.hero', 'start start', 'end start') })
       animate('.hero__texto', {
         y: [0, -90],
@@ -180,13 +180,26 @@ export function iniciarAnimaciones() {
       if (!conserva(h)) return h.closest('#beneficios') ? undefined : fundir([h])
       const partido = splitText(h, { words: { wrap: 'clip' } })
       textos.push(partido)
-      animate(partido.words, {
+      // Con IntersectionObserver (no con el cruce de una marca de scroll): si la página se recarga ya bajada,
+      // o se entra por un ancla, el título arranca igual en vez de quedarse oculto.
+      const a = animate(partido.words, {
         y: ['105%', '0%'],
         duration: t(900),
         delay: stagger(t(55)),
         ease: SUAVE,
-        autoplay: observar({ target: h, enter: 'bottom-=8% top', repeat: false }),
+        autoplay: false,
       })
+      a.seek(0)
+      const io = new IntersectionObserver(
+        ([e]) => {
+          if (!e.isIntersecting) return
+          io.disconnect()
+          a.play()
+        },
+        { rootMargin: '0px 0px -8% 0px' },
+      )
+      io.observe(h)
+      ioEntradas.push(io)
     })
 
     if (movil) {
@@ -197,7 +210,7 @@ export function iniciarAnimaciones() {
       fundir(todos('.bento__tarjeta'), 80)
       fundir(todos('.gestiones__lista li'))
       fundir(todos('.servicio .filas li'))
-      fundir(todos('.carrusel, [data-franja]'))
+      fundir(todos('.carrusel, .infografias__marco'))
     } else {
       // ---------- Párrafos que se "llenan" de tinta palabra a palabra al hacer scroll ----------
       todos('[data-llenar]').forEach((p) => {
@@ -236,13 +249,9 @@ export function iniciarAnimaciones() {
       alEntrar('.filas li', '.filas', { por: '.servicio', x: -24, delay: 80 })
       alEntrar('.carrusel', '.carrusel', { y: 40, duracion: 1000 })
 
-      // ---------- Franja de la piscina: se abre de tarjeta a pantalla completa ----------
-      const franja = document.querySelector('[data-franja]')
-      if (franja) {
-        // Escala en vez de clip-path: el recorte no lo acelera la GPU y repintaba la foto en cada fotograma.
-        animate(franja, { scale: [0.86, 1], ease: 'linear', autoplay: atado(franja, 'end start', 'center center') })
-        animate(franja.querySelector('img'), { scale: [1.25, 1], ease: 'linear', autoplay: atado(franja, 'end start', 'end end') })
-      }
+      // Infografías: las pestañas suben una tras otra, la frase las sigue y el marco aparece creciendo
+      alEntrar('.infografias .chip, .infografias .pestanas__boton, .infografias__frase', '.infografias__texto', { y: 24, delay: 90 })
+      alEntrar('.infografias__marco', '.infografias__marco', { y: 60, delay: 0, duracion: 1200, escala: 0.92 })
 
       // ---------- Beneficios: cada fila se ilumina al pasar por el centro ----------
       todos('[data-fila]').forEach((fila) => {
@@ -255,7 +264,7 @@ export function iniciarAnimaciones() {
       })
 
       // ---------- Pie: el nombre gigante sube mientras aparece ----------
-      animate('.pie__gigante', { y: ['40%', '0%'], ease: 'linear', autoplay: atado('.pie', 'end start', 'end end') })
+      if (document.querySelector('.pie__gigante')) animate('.pie__gigante', { y: ['40%', '0%'], ease: 'linear', autoplay: atado('.pie', 'end start', 'end end') })
     }
 
     // Contacto solo se anima en escritorio
@@ -264,7 +273,7 @@ export function iniciarAnimaciones() {
 
   // ---------- Proceso: solo CSS, en todos los equipos ----------
   // Las tarjetas entran juntas, una tras otra, cuando la lista llega a pantalla (mismo recorrido y ritmo que
-  // tenía con Anime.js). El título y la línea que se dibuja con el scroll están resueltos en index.css.
+  // tenía con Anime.js). El título y la línea que se dibuja con el scroll están resueltos en src/styles/como-funciona.css.
   fundir(todos('.pasos li'), t(140), { referencia: document.querySelector('.pasos'), desplazar: '36px', duracion: `${t(900)}ms` })
 
   // Las fuentes y las imágenes terminan de cargar después: al cambiar el alto de la página se recalcula todo.

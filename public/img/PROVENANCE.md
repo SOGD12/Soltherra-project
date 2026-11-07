@@ -30,3 +30,10 @@ Fotos de ejemplo de Unsplash (licencia Unsplash), convertidas a WebP el 2026-10-
 
 | Archivo | Origen (Unsplash photo id) |
 |---|---|
+
+## Cómo están organizadas las carpetas
+
+- `public/img/`: fotos de las secciones del sitio (inicio, servicios, soluciones, cómo funciona). Una sola copia de cada una.
+- `public/img/trabajos/`: fotos de la galería «Nuestros trabajos», en una versión más liviana (≈ 900 px de ancho) que la de las secciones. Se listan en `src/data/imagenes/trabajos.json`.
+
+Solo se guardan las imágenes que el código usa. Antes de añadir una, se registra en el `.json` de `src/data/imagenes/` que le corresponde.

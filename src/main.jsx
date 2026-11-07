@@ -2,7 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import '@fontsource-variable/archivo/wdth.css'
 import '@fontsource-variable/hanken-grotesk'
-import './index.css'
+import './styles/base.css'
 import App from './App.jsx'
 
 const raiz = document.getElementById('root')

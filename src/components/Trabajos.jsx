@@ -7,6 +7,24 @@ import { sinMovimiento } from '../movimiento.js'
 
 const INTERVALO = 3000
 
+// Fotos ya pedidas: así cada una se descarga una sola vez y al cambiar de pestaña o de trabajo ya está en caché.
+const precargadas = new Set()
+const precargar = (fotos) =>
+  fotos.reduce(
+    (cadena, foto) =>
+      cadena.then(
+        () =>
+          new Promise((listo) => {
+            if (precargadas.has(foto)) return listo()
+            precargadas.add(foto)
+            const img = new Image()
+            img.onload = img.onerror = () => listo()
+            img.src = foto
+          }),
+      ),
+    Promise.resolve(),
+  )
+
 const calcVisibles = () =>
   window.matchMedia('(min-width: 900px)').matches ? 3 : window.matchMedia('(min-width: 640px)').matches ? 2 : 1
 const suscribirAncho = (aviso) => {
@@ -37,6 +55,18 @@ export default function Trabajos() {
   }, [])
 
   const lista = trabajos.filter((t) => t.categoria === categoria)
+
+  // Con la página en reposo se descargan las fotos de a una: primero las de la pestaña abierta y luego las de las demás.
+  useEffect(() => {
+    const orden = [categoria, ...categorias.map(([c]) => c).filter((c) => c !== categoria)]
+    const fotos = orden.flatMap((c) => trabajos.filter((t) => t.categoria === c).map((t) => t.foto))
+    const inicio = () => precargar(fotos)
+    const id = 'requestIdleCallback' in window ? requestIdleCallback(inicio, { timeout: 1500 }) : setTimeout(inicio, 400)
+    return () => ('cancelIdleCallback' in window ? cancelIdleCallback(id) : clearTimeout(id))
+    // Solo al montar: el orden de la cola no necesita rehacerse al cambiar de pestaña.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [trabajos])
+  const adelantar = (c) => precargar(trabajos.filter((t) => t.categoria === c).map((t) => t.foto))
   const maximo = Math.max(lista.length - visibles, 0)
   const posicion = Math.min(indice, maximo)
   const automatico = !reducido && !pausa && enVista && maximo > 0
@@ -131,6 +161,8 @@ export default function Trabajos() {
                 aria-controls="carrusel"
                 className="pestanas__boton"
                 onClick={() => elegir(clave)}
+                onPointerEnter={() => adelantar(clave)}
+                onFocus={() => adelantar(clave)}
               >
                 <Icono nombre={icono} />
                 <span>{texto}</span>
@@ -169,12 +201,13 @@ export default function Trabajos() {
             onPointerUp={terminarArrastre}
             onPointerCancel={terminarArrastre}
           >
-            <ul className="carrusel__pista">
+            <ul key={categoria} className="carrusel__pista">
               {lista.map((t, k) => {
                 const dentro = k >= posicion && k < posicion + visibles
+                const cerca = k < posicion + visibles + 2
                 return (
                   <li key={t.id} className="tarjeta" aria-hidden={!dentro} inert={!dentro}>
-                    <img src={t.foto} alt={t.alt} width={t.ancho} height={t.alto} loading="lazy" decoding="async" />
+                    <img src={t.foto} alt={t.alt} width={t.ancho} height={t.alto} loading={cerca ? 'eager' : 'lazy'} fetchPriority={dentro ? 'high' : undefined} decoding="async" />
                     <span className="tarjeta__velo" aria-hidden="true" />
                     <div className="tarjeta__texto">
                       <h3>{t.titulo}</h3>

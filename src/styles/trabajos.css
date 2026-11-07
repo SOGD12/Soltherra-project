@@ -1,0 +1,320 @@
+/* Página de trabajos (/trabajos): galería de obras y beneficios. */
+
+.trabajos__barra {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.carrusel__flechas {
+  display: none;
+  gap: 8px;
+  button {
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    background: var(--suelo);
+    color: var(--texto-claro);
+    border: 0;
+    border-radius: 50%;
+    cursor: pointer;
+    transition:
+    background-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+    &:hover {
+      background: var(--hoja);
+      transform: scale(1.06);
+    }
+    &:focus-visible {
+      border-radius: 50%;
+    }
+  }
+  .mi {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+}
+
+.carrusel {
+  --gap: 14px;
+}
+
+.carrusel__ventana {
+  overflow: hidden;
+  border-radius: var(--r-tarjeta);
+  /* El arrastre vertical sigue desplazando la página; el horizontal mueve el carrusel (ver Trabajos.jsx) */
+  touch-action: pan-y;
+  cursor: grab;
+}
+
+.carrusel[data-arrastrando] {
+  .carrusel__ventana {
+    cursor: grabbing;
+    user-select: none;
+  }
+  .carrusel__pista {
+    transition: none;
+  }
+  .tarjeta img {
+    pointer-events: none;
+  }
+}
+
+.tarjeta img {
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.carrusel__pista {
+  display: flex;
+  gap: var(--gap);
+  transform: translateX(
+    calc(var(--i) * -1 * ((100% - (var(--v) - 1) * var(--gap)) / var(--v) + var(--gap)) + var(--dx, 0px))
+  );
+  transition: transform 1s var(--ease);
+}
+
+.tarjeta {
+  position: relative;
+  flex: 0 0 calc((100% - (var(--v) - 1) * var(--gap)) / var(--v));
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--r-tarjeta);
+  background: var(--suelo);
+  color: var(--texto-claro);
+  isolation: isolate;
+  img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease);
+  }
+}
+
+.tarjeta__velo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    180deg,
+    color-mix(in srgb, var(--suelo) 0%, transparent) 40%,
+    color-mix(in srgb, var(--suelo) 90%, transparent) 100%
+  );
+}
+
+.tarjeta:hover img {
+  transform: scale(1.06);
+}
+
+.tarjeta__texto {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 22px;
+  display: grid;
+  gap: 6px;
+  h3 {
+    font-size: 1.1rem;
+    font-stretch: 104%;
+    line-height: 1.12;
+  }
+  p {
+    margin: 0;
+    color: var(--texto-claro);
+    /* --texto-claro-suave daba ~4.2:1 sobre el velo de --suelo */
+  }
+}
+
+.carrusel__puntos button:focus-visible {
+  border-radius: 2px;
+}
+
+.carrusel__puntos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
+  button {
+    position: relative;
+    width: 24px;
+    height: 44px;
+    padding: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    transition: width 0.4s var(--ease);
+  }
+}
+
+.carrusel__puntos button::before,
+.carrusel__puntos button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  height: 4px;
+  margin-top: -2px;
+  border-radius: 2px;
+}
+
+.carrusel__puntos {
+  button::before {
+    right: 0;
+    background: rgb(11 59 90 / 0.6);
+    /* indicador inactivo ≥3:1 sobre el fondo */
+  }
+  button[aria-current='true'] {
+    width: 56px;
+  }
+  button::after {
+    right: 0;
+    background: var(--hoja);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  button[aria-current='true']::after {
+    transform: scaleX(1);
+  }
+  button[data-auto='si']::after {
+    animation: llenar 3s linear both;
+  }
+}
+
+@keyframes llenar {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+/* Trabajos y Beneficios comparten fondo: sin esto el hueco entre ambos es el doble que el de las demás secciones */
+
+.seccion.trabajos + .seccion.beneficios {
+  padding-top: var(--sep-trabajos);
+}
+
+/* Primera sección de la página: arranca bajo la cabecera flotante (antes quedaba debajo de ella en móvil y tableta) */
+
+.seccion.trabajos {
+  --sep-trabajos: clamp(48px, 5vw, 72px);
+  padding-top: calc(var(--alto-cabecera) + var(--margen-cabecera) + clamp(36px, 4vw, 56px));
+  padding-bottom: var(--sep-trabajos);
+}
+
+.seccion.beneficios {
+  --sep-trabajos: clamp(48px, 5vw, 72px);
+}
+
+.beneficios__rejilla {
+  display: grid;
+  gap: 32px;
+}
+
+.beneficios h2 {
+  font-size: clamp(2rem, 1.1rem + 3vw, 3.4rem);
+  font-stretch: 108%;
+  letter-spacing: -0.035em;
+}
+
+.beneficios__lista {
+  li {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(1.05rem, 0.95rem + 0.7vw, 1.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--linea);
+    &:first-child {
+      border-top: 1px solid var(--linea);
+    }
+  }
+}
+
+.beneficios__icono {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--menta);
+  color: var(--hoja);
+  .mi {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+/* ---------- Tablet ---------- */
+
+@media (min-width: 640px) {
+  .trabajos__barra {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  .carrusel__flechas {
+    display: flex;
+  }
+}
+
+/* ---------- Escritorio ---------- */
+
+@media (min-width: 900px) {
+  .trabajos__barra {
+    margin-bottom: 32px;
+  }
+  .carrusel {
+    --gap: 20px;
+  }
+  .beneficios__rejilla {
+    grid-template-columns: 5fr 7fr;
+    gap: 96px;
+    align-items: start;
+  }
+  .beneficios__titulo {
+    position: sticky;
+    top: calc(var(--alto-cabecera) + 64px);
+  }
+}
+
+/* ---------- Móvil ---------- */
+
+@media (max-width: 899px) {
+  .trabajos {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+  .trabajos {
+    contain-intrinsic-size: auto 800px;
+  }
+}
+
+@media (max-width: 639px) {
+  .trabajos__barra {
+    .pestanas {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin-inline: calc(var(--gutter) * -1);
+      padding-inline: var(--gutter);
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+  .tarjeta {
+    aspect-ratio: 4 / 4.4;
+  }
+}

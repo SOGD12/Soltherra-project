@@ -1,0 +1,289 @@
+/* Página de servicios (/servicios): trámites, fotovoltaico, térmico, piscinas, carga EV y mantenimiento. */
+
+.servicios__intro + .servicio {
+  padding-top: clamp(24px, 3vw, 40px);
+}
+
+/* Primera isla de Servicios: el título arranca por debajo de la cabecera flotante */
+
+.gestiones {
+  padding-top: calc(var(--alto-cabecera) + var(--margen-cabecera, 12px) * 2 + 32px);
+}
+
+.gestiones__rejilla {
+  display: grid;
+  gap: 0;
+}
+
+.gestiones__lista {
+  display: grid;
+  gap: 14px;
+  li {
+    display: grid;
+    align-content: start;
+    gap: 10px;
+    padding: 26px;
+    background: var(--vidrio);
+    border: 1px solid var(--vidrio-borde);
+    border-radius: 22px;
+    transition:
+    background-color 0.4s var(--ease),
+    border-color 0.4s var(--ease),
+    translate 0.4s var(--ease);
+    &:hover {
+      background: rgb(255 255 255 / 0.09);
+      border-color: rgb(59 184 106 / 0.5);
+      translate: 0 -4px;
+    }
+  }
+}
+
+.gestiones__icono {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 14px;
+  border-radius: 16px;
+  background: var(--hoja-viva);
+  color: var(--texto);
+  .mi {
+    width: 1.6rem;
+    height: 1.6rem;
+  }
+}
+
+.gestiones__lista {
+  h3 {
+    font-size: 1.25rem;
+    font-stretch: 104%;
+    line-height: 1.15;
+  }
+  p {
+    margin: 0;
+    max-width: none;
+    color: var(--texto-claro);
+    font-size: 0.975rem;
+    line-height: 1.5;
+  }
+}
+
+/* ---------- Servicios ---------- */
+
+.servicio + .servicio {
+  padding-top: 0;
+}
+
+/* Último bloque de la página: cierra más cerca del pie, sin hueco de más */
+
+.servicio:last-child {
+  padding-bottom: clamp(48px, 7vw, 96px);
+}
+
+/* Tarjetas de gestiones compactas en móvil: icono a la izquierda, texto a la derecha */
+
+@media (max-width: 639px) {
+  .gestiones__lista li {
+    grid-template-columns: auto 1fr;
+    column-gap: 16px;
+    row-gap: 6px;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  .gestiones__icono {
+    grid-row: span 2;
+    width: 46px;
+    height: 56px;
+    margin-bottom: 0;
+  }
+}
+
+.servicio__rejilla {
+  display: grid;
+  gap: 56px;
+}
+
+@media (max-width: 639px) {
+  .servicio__rejilla {
+    gap: 40px;
+  }
+}
+
+.servicio__fotos {
+  position: relative;
+  padding-bottom: 56px;
+}
+
+.servicio__principal {
+  aspect-ratio: 4 / 3;
+}
+
+.servicio__inserto {
+  position: absolute;
+  right: -4px;
+  bottom: 0;
+  width: 40%;
+  aspect-ratio: 3 / 4;
+  border: 6px solid var(--fondo);
+  border-radius: 22px;
+  box-shadow: 0 30px 60px -24px color-mix(in srgb, var(--suelo) 45%, transparent);
+}
+
+.servicio--inversa .servicio__inserto {
+  right: auto;
+  left: -4px;
+}
+
+/* Foto panorámica (piscina 1600x640): marco apaisado para no recortarla a vertical */
+
+.servicio--panoramica {
+  .servicio__principal {
+    aspect-ratio: 16 / 9;
+  }
+  .servicio__inserto {
+    width: 30%;
+  }
+}
+
+.servicio h2 {
+  font-size: clamp(2rem, 1.2rem + 2.6vw, 3.4rem);
+  font-stretch: 106%;
+  letter-spacing: -0.035em;
+  margin-bottom: 24px;
+  max-width: 15ch;
+}
+
+.servicio__texto > p {
+  color: var(--texto-suave);
+}
+
+.filas {
+  margin: 32px 0 28px;
+  border-top: 1px solid var(--linea);
+  li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--linea);
+    font-weight: 600;
+    line-height: 1.35;
+  }
+  .mi {
+    color: var(--hoja);
+    margin-top: 1px;
+  }
+}
+
+.servicio__texto > .servicio__cierre {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--texto);
+  margin-bottom: 24px;
+}
+
+/* ---------- Tablet ---------- */
+
+@media (min-width: 640px) {
+  .gestiones__lista {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---------- Escritorio ---------- */
+
+@media (min-width: 900px) {
+  .gestiones {
+    /* Primera isla de Servicios: el contenido arranca por debajo de la cabecera flotante, con aire */
+    padding-top: calc(var(--alto-cabecera) + var(--margen-cabecera) * 2 + clamp(48px, 6vw, 88px));
+  }
+  .gestiones__rejilla {
+    grid-template-columns: 5fr 7fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .gestiones {
+    .titulo-seccion {
+      margin: 0;
+      :is(h1, h2) {
+        font-size: clamp(2.2rem, 1.2rem + 2.6vw, 3.6rem);
+      }
+    }
+  }
+  .gestiones__lista {
+    li:nth-child(even) {
+      translate: 0 48px;
+      &:hover {
+        translate: 0 44px;
+      }
+    }
+  }
+  .gestiones__lista {
+    padding-bottom: 48px;
+  }
+  .servicio__rejilla {
+    grid-template-columns: 6fr 5fr;
+    gap: 96px;
+    align-items: center;
+  }
+  .servicio--inversa {
+    .servicio__rejilla {
+      grid-template-columns: 5fr 6fr;
+    }
+    .servicio__fotos {
+      order: 2;
+    }
+  }
+  .servicio__principal {
+    aspect-ratio: 5 / 6;
+    max-height: min(72dvh, 640px);
+  }
+  .servicio--panoramica .servicio__principal {
+    aspect-ratio: 16 / 10;
+  }
+  .servicio__inserto {
+    right: -32px;
+    width: 42%;
+  }
+  .servicio--panoramica .servicio__inserto {
+    width: 30%;
+  }
+  .servicio--inversa .servicio__inserto {
+    left: -32px;
+  }
+}
+
+@media (max-width: 639px) {
+  .servicio__fotos {
+    padding-bottom: 40px;
+  }
+  .servicio__inserto {
+    width: 38%;
+    border-width: 4px;
+    border-radius: 16px;
+  }
+}
+
+/* ---------- Escritorio: tarjetas y formularios más compactos ---------- */
+
+@media (min-width: 900px) {
+  .gestiones__lista li {
+    padding: 20px;
+    gap: 8px;
+  }
+  .gestiones__icono {
+    width: 44px;
+    height: 44px;
+    margin-bottom: 8px;
+    border-radius: 14px;
+  }
+  .servicio__rejilla {
+    gap: 64px;
+  }
+  .servicio__principal {
+    aspect-ratio: 4 / 4.2;
+    max-height: 520px;
+  }
+}

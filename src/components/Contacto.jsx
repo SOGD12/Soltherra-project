@@ -1,18 +1,19 @@
 import { useState } from 'react'
 import { Icono, IconoWhatsApp } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
-import { TEL, TEL2, CORREO, DIRECCION, wa, MAPA } from '../data/contenido.js'
+import { TEL, TEL2, CORREO, DIRECCION, SERVICIOS_FORMULARIO, mensajeContacto, wa, MAPA } from '../data/contenido.js'
 
 function Formulario() {
   const [nombre, setNombre] = useState('')
-  const [servicio, setServicio] = useState('Sistema fotovoltaico')
+  const [servicio, setServicio] = useState(SERVICIOS_FORMULARIO[0])
   const [mensaje, setMensaje] = useState('')
+  const [acepta, setAcepta] = useState(false)
 
   const enviar = (e) => {
     e.preventDefault()
-    const texto =
-      `Hola Soltherra, soy ${nombre.trim()}. Me interesa: ${servicio}.` + (mensaje.trim() ? ` ${mensaje.trim()}` : '')
-    window.open(wa(texto), '_blank', 'noopener,noreferrer')
+    // Consentimiento explícito (ISO/IEC 27701): sin la casilla marcada no se arma ningún mensaje.
+    if (!acepta) return
+    window.open(wa(mensajeContacto({ nombre, servicio, mensaje })), '_blank', 'noopener,noreferrer')
   }
 
   return (
@@ -34,23 +35,30 @@ function Formulario() {
       <label>
         <span>Servicio de interés</span>
         <select name="servicio" value={servicio} onChange={(e) => setServicio(e.target.value)}>
-          <option>Sistema fotovoltaico</option>
-          <option>Sistema solar térmico</option>
-          <option>Climatización de piscinas y jacuzzis</option>
-          <option>Mantenimiento</option>
-          <option>Puntos de carga para vehículos eléctricos</option>
-          <option>Trámites y beneficios tributarios</option>
+          {SERVICIOS_FORMULARIO.map((opcion) => (
+            <option key={opcion}>{opcion}</option>
+          ))}
         </select>
       </label>
       <label>
         <span>Mensaje (opcional)</span>
         <textarea name="mensaje" rows="3" placeholder="Ej. casa de 4 personas en Cali, factura de $400.000" maxLength={500} value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
       </label>
+      <label className="formulario__acepto">
+        <input type="checkbox" name="acepto" required checked={acepta} onChange={(e) => setAcepta(e.target.checked)} />
+        <span>
+          Autorizo el tratamiento de mis datos para recibir una cotización, según la{' '}
+          <a href="/privacidad" target="_blank" rel="noopener noreferrer">
+            política de privacidad
+          </a>
+          .
+        </span>
+      </label>
       <button type="submit" className="boton">
         <IconoWhatsApp />
         <span>Enviar por WhatsApp</span>
       </button>
-      <p className="formulario__nota">Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+      <p className="formulario__nota">Esta página no guarda tus datos: se abrirá WhatsApp con tu mensaje listo para enviar.</p>
     </form>
   )
 }
@@ -98,7 +106,7 @@ export default function Contacto() {
                   title="Ubicación de Soltherra, Calle 28 N° 86-70, Cali"
                   src={MAPA}
                   loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
+                  referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen
                 />
                 <a

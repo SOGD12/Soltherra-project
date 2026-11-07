@@ -1,0 +1,619 @@
+/* Página de inicio (/home): portada, cinta, nosotros, misión y visión, soluciones y cierre. */
+
+.hero .acento {
+  color: var(--hoja-clara);
+}
+
+.hero__titulo span:has(> [data-word]) {
+  padding: 0 0.1em 0.12em;
+  margin: 0 -0.1em -0.12em;
+}
+
+/* ---------- Portada ---------- */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* svh y no dvh: en iPhone dvh cambia cada vez que Safari esconde o muestra su barra al hacer scroll,
+     y eso cambiaba el alto de la página y obligaba a recalcular todas las animaciones de scroll */
+  min-height: 100svh;
+  background: var(--suelo);
+  color: var(--texto-claro);
+  overflow: hidden;
+  isolation: isolate;
+  :focus-visible {
+    outline-color: var(--sol);
+  }
+}
+
+.hero__medio {
+  will-change: transform;
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+}
+
+.hero__foto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 60% 50%;
+  transform: scale(1.04);
+}
+
+.hero__velo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(180deg, rgb(7 42 65 / 0.55) 0%, rgb(7 42 65 / 0.3) 35%, rgb(7 42 65 / 0.9) 100%),
+    rgb(7 42 65 / 0.2);
+}
+
+.hero__texto {
+  padding-block: calc(var(--alto-cabecera) + 80px) clamp(72px, 10vw, 120px);
+}
+
+.hero__titulo {
+  font-size: clamp(2.7rem, 0.9rem + 7.4vw, 6.6rem);
+  font-stretch: 110%;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+  max-width: 13ch;
+  margin-bottom: clamp(20px, 3vw, 36px);
+  text-wrap: initial;
+}
+
+.hero__sub {
+  font-size: clamp(1.05rem, 0.9rem + 0.6vw, 1.35rem);
+  color: var(--texto-claro);
+  max-width: 48ch;
+  margin-bottom: 32px;
+  opacity: 0.92;
+}
+
+.hero__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero__bajar {
+  position: absolute;
+  left: 50%;
+  bottom: 24px;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-left: -24px;
+  border-radius: 50%;
+  border: 1px solid rgb(255 255 255 / 0.3);
+  color: var(--texto-claro);
+  .mi {
+    animation: rebote 2s var(--ease) infinite;
+  }
+}
+
+@keyframes rebote {
+  0%,
+  100% {
+    transform: translateY(-3px);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+/* Mientras carga Anime.js el titular no parpadea; si nunca carga, aparece igual a los 2 s */
+
+.js:not(.animado) .hero__titulo,
+.js:not(.animado) .hero .chip,
+.js:not(.animado) .hero__sub,
+.js:not(.animado) .hero__acciones {
+  visibility: hidden;
+  animation: mostrar 0s 2s forwards;
+}
+
+@keyframes mostrar {
+  to {
+    visibility: visible;
+  }
+}
+
+/* Portátiles y ventanas bajas: el titular se mide también por el alto para que el subtítulo y los botones queden a la vista */
+
+@media (min-width: 700px) and (max-height: 780px) {
+  .hero__texto {
+    padding-block: calc(var(--alto-cabecera) + 32px) clamp(48px, 9vh, 72px);
+  }
+  .hero__titulo {
+    font-size: min(clamp(2.7rem, 0.9rem + 7.4vw, 6.6rem), 10.5vh);
+    max-width: 18ch;
+    margin-bottom: 18px;
+  }
+  .hero__sub {
+    margin-bottom: 24px;
+  }
+}
+
+/* ---------- Cinta continua ---------- */
+
+.cinta {
+  background: var(--piedra);
+  border-bottom: 1px solid var(--linea);
+  overflow: hidden;
+  padding-block: 22px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.cinta__pista {
+  will-change: transform;
+  display: flex;
+  width: max-content;
+  animation: deslizar 48s linear infinite;
+}
+
+.cinta:hover .cinta__pista {
+  animation-play-state: paused;
+}
+
+.cinta__grupo {
+  display: flex;
+  flex: none;
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding-right: 18px;
+    font-family: var(--display);
+    font-weight: 600;
+    font-stretch: 106%;
+    font-size: clamp(1.25rem, 1rem + 1.2vw, 2rem);
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+  .mi {
+    color: var(--sol);
+    width: 1.1em;
+    height: 1.1em;
+  }
+}
+
+@keyframes deslizar {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---------- Nosotros ---------- */
+
+.nosotros__rejilla {
+  display: grid;
+  gap: 48px;
+}
+
+.destacado {
+  font-family: var(--display);
+  font-weight: 600;
+  font-stretch: 104%;
+  font-size: clamp(1.6rem, 1rem + 2.6vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  max-width: 22ch;
+  margin-bottom: 0.9em;
+}
+
+.nosotros__texto > p:not(.destacado) {
+  color: var(--texto-suave);
+}
+
+.para-quien {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 32px;
+  font-weight: 700;
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 0 20px 0 14px;
+    background: var(--piedra);
+    border-radius: 999px;
+  }
+  .mi {
+    color: var(--hoja);
+    width: 1.4em;
+    height: 1.4em;
+  }
+}
+
+.nosotros__foto {
+  aspect-ratio: 4 / 3;
+}
+
+/* ---------- Bento de soluciones ---------- */
+
+.nosotros + .soluciones {
+  padding-top: 0;
+}
+
+.bento {
+  display: grid;
+  gap: 14px;
+}
+
+.bento__tarjeta {
+  position: relative;
+  display: block;
+  min-height: 260px;
+  overflow: hidden;
+  border-radius: var(--r-tarjeta);
+  background: var(--suelo);
+  color: #ffffff;
+  text-decoration: none;
+  isolation: isolate;
+  img {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ease);
+  }
+}
+
+.bento__velo {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--suelo) 78%, transparent) 0%, color-mix(in srgb, var(--suelo) 35%, transparent) 45%, color-mix(in srgb, var(--suelo) 88%, transparent) 100%);
+  transition: opacity 0.5s var(--ease);
+}
+
+.bento__titulo {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  right: 84px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 106%;
+  font-size: clamp(1.4rem, 1.1rem + 1vw, 2rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.bento__flecha {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: var(--suelo);
+  transition:
+    background-color 0.4s var(--ease),
+    transform 0.5s var(--ease);
+  .mi {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.bento__tarjeta:hover {
+  img {
+    transform: scale(1.08);
+  }
+  .bento__flecha {
+    background: var(--hoja-viva);
+    color: var(--texto);
+    transform: rotate(45deg);
+  }
+}
+
+.bento__tarjeta--d img {
+  object-position: 50% 35%;
+}
+
+.bento__tarjeta--e img {
+  object-position: 50% 40%;
+}
+
+/* ---------- Misión y visión ---------- */
+
+.mision__rejilla {
+  display: grid;
+  gap: 56px;
+}
+
+.mision p:not(.chip) {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(1.15rem, 0.9rem + 1.3vw, 2.1rem);
+  line-height: 1.22;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+  /* Texto justificado: todas las líneas del mismo largo; la última queda a la izquierda */
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+@media (max-width: 639px) {
+  /* En columnas estrechas el justificado abre huecos entre palabras */
+  .mision p:not(.chip) {
+    text-align: left;
+    hyphens: none;
+  }
+}
+
+/* Soluciones y el cierre comparten fondo: el hueco entre ambos es uno solo, y el cierre queda cerca del pie */
+
+.soluciones:has(+ .cierre) {
+  padding-bottom: clamp(56px, 7vw, 96px);
+}
+
+.cierre {
+  padding-top: 0;
+  padding-bottom: clamp(56px, 8vw, 112px);
+}
+
+.cierre__cabeza {
+  display: grid;
+  gap: 24px;
+  justify-items: start;
+  margin-bottom: clamp(28px, 4vw, 48px);
+  h2 {
+    font-size: clamp(2rem, 1.1rem + 3.4vw, 3.6rem);
+    font-stretch: 108%;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    margin: 0;
+  }
+}
+
+.cierre__lista {
+  display: grid;
+  gap: 12px;
+}
+
+.cierre__enlace {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 88px;
+  padding: 0 14px 0 28px;
+  background: var(--piedra);
+  border-radius: var(--r-tarjeta);
+  color: var(--texto);
+  text-decoration: none;
+  font-family: var(--display);
+  font-weight: 700;
+  font-stretch: 106%;
+  font-size: clamp(1.3rem, 1.05rem + 1vw, 1.8rem);
+  letter-spacing: -0.025em;
+  transition:
+    background-color 0.4s var(--ease),
+    color 0.4s var(--ease);
+}
+
+.cierre__flecha {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--suelo);
+  color: #ffffff;
+  transition:
+    background-color 0.4s var(--ease),
+    transform 0.5s var(--ease);
+}
+
+.cierre__enlace:hover {
+  background: var(--suelo);
+  color: var(--texto-claro);
+  .cierre__flecha {
+    background: var(--hoja-viva);
+    color: var(--texto);
+    transform: rotate(45deg);
+  }
+}
+
+@media (min-width: 900px) {
+  .cierre__cabeza {
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    justify-items: stretch;
+  }
+  .cierre__lista {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .cierre__enlace {
+    min-height: 140px;
+    align-items: flex-end;
+    padding: 24px;
+  }
+}
+
+/* ---------- Tablet ---------- */
+
+@media (min-width: 640px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 260px;
+  }
+  .bento__tarjeta--a {
+    grid-row: span 2;
+  }
+  .mision__rejilla {
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+}
+
+/* ---------- Escritorio ---------- */
+
+@media (min-width: 900px) {
+  .nosotros__rejilla {
+    grid-template-columns: 7fr 5fr;
+    gap: 96px;
+    align-items: center;
+  }
+  .nosotros__foto {
+    aspect-ratio: 4 / 5;
+  }
+  .bento {
+    grid-template-columns: 1.25fr 1fr 1fr;
+    grid-template-rows: 300px 300px 240px;
+    grid-auto-rows: auto;
+    gap: 16px;
+  }
+  .bento__tarjeta--a {
+    grid-row: 1 / 3;
+  }
+  .bento__tarjeta--b {
+    grid-column: 2 / 4;
+  }
+  .bento__tarjeta--e {
+    grid-column: 1 / -1;
+  }
+  .mision__rejilla {
+    grid-template-columns: 6fr 5fr;
+    gap: 96px;
+    align-items: start;
+  }
+  .mision__bloque:last-child {
+    padding-top: 96px;
+  }
+}
+
+/* ---------- Móvil ---------- */
+
+@media (max-width: 899px) {
+  /* El navegador no calcula ni pinta estas secciones mientras están lejos de la pantalla. "auto" en el tamaño
+     reservado hace que, una vez vistas, recuerde su alto real y la barra de scroll no salte. */
+  .nosotros {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+  /* Alturas aproximadas medidas en un celular de 375 px, para que la barra de scroll casi no cambie */
+  .nosotros {
+    contain-intrinsic-size: auto 1000px;
+  }
+}
+
+@media (max-width: 639px) {
+  .bento {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .bento__tarjeta {
+    min-height: 0;
+    aspect-ratio: 1 / 1.1;
+    border-radius: 20px;
+  }
+  .bento__tarjeta--a {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 11;
+  }
+  .bento__titulo {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    font-size: 1.15rem;
+  }
+  .bento__tarjeta--a .bento__titulo {
+    font-size: 1.55rem;
+    right: 80px;
+    top: 20px;
+    left: 20px;
+  }
+  .bento__flecha {
+    top: auto;
+    bottom: 12px;
+    right: 12px;
+    width: 44px;
+    height: 44px;
+  }
+  .bento__tarjeta--a .bento__flecha {
+    top: 16px;
+    bottom: auto;
+    right: 16px;
+  }
+  .hero__texto {
+    padding-bottom: 96px;
+  }
+}
+
+@media (max-width: 520px) {
+  .hero__acciones .boton {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .bento__tarjeta:not(.bento__tarjeta--a) .bento__titulo {
+    font-size: 1rem;
+    line-height: 1.12;
+  }
+}
+
+.js [data-fade] {
+  opacity: 0;
+  translate: 0 var(--desplazar, 22px);
+}
+
+/* La transición va solo en el estado final: así, al marcar el elemento, se oculta de golpe y no hace un
+   fundido de salida; el fundido de entrada ocurre cuando se añade .visto. */
+
+.js [data-fade].visto {
+  opacity: 1;
+  translate: 0 0;
+  transition:
+    opacity var(--duracion-fundido) var(--curva-fundido) var(--retraso, 0ms),
+    translate var(--duracion-fundido) var(--curva-fundido) var(--retraso, 0ms);
+}
+
+/* ---------- Movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .js:not(.animado) .hero__titulo,
+  .js:not(.animado) .hero .chip,
+  .js:not(.animado) .hero__sub,
+  .js:not(.animado) .hero__acciones {
+    visibility: visible;
+  }
+  .cinta__pista {
+    width: auto;
+    flex-wrap: wrap;
+  }
+  .cinta__grupo {
+    flex-wrap: wrap;
+    row-gap: 8px;
+    &[aria-hidden] {
+      display: none;
+    }
+  }
+}
+
+/* En celular, el cierre conserva el mismo relleno que las demás secciones (antes lo daba el orden de las reglas en un solo archivo). */
+@media (max-width: 639px) {
+  .cierre {
+    padding-block: 64px;
+  }
+}

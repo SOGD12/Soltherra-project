@@ -8,6 +8,22 @@ export const MAPA =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.93033764012515!2d-76.5238692265609!3d3.3781739830128097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a11313ec31c5%3A0x2c183a56456f74e5!2sCl.%2028%20%2386-70%2C%20Comuna%2017%2C%20Cali%2C%20Valle%20del%20Cauca!5e0!3m2!1ses-419!2sco!4v1770853641815!5m2!1ses-419!2sco'
 export const INSTAGRAM = 'https://www.instagram.com/soltherra_energiasostenible/'
 export const FACEBOOK = 'https://web.facebook.com/profile.php?id=61587216064854'
+export const SERVICIOS_FORMULARIO = [
+  'Sistema fotovoltaico',
+  'Sistema solar térmico',
+  'Climatización de piscinas y jacuzzis',
+  'Mantenimiento',
+  'Puntos de carga para vehículos eléctricos',
+  'Trámites y beneficios tributarios',
+]
+
+/** Arma el mensaje de WhatsApp del formulario: solo usa lo que la persona escribió (ISO/IEC 27701, minimización de datos). */
+export const mensajeContacto = ({ nombre, servicio, mensaje }) => {
+  const limpiar = (texto) => texto.replace(/\s+/g, ' ').trim()
+  const extra = limpiar(mensaje)
+  return `Hola Soltherra, soy ${limpiar(nombre)}. Me interesa: ${servicio}.` + (extra ? ` ${extra}` : '')
+}
+
 export const MENSAJE = 'Hola Soltherra, quiero cotizar un sistema solar.'
 
 export const nav = [
@@ -83,17 +99,30 @@ export const tramites = [
 ]
 
 export const pasos = [
-  { icono: 'engineering', titulo: 'Ingeniería', texto: 'Diseñamos la solución solar según tu hogar, empresa o institución.' },
+  {
+    icono: 'engineering',
+    titulo: 'Ingeniería',
+    texto: 'Analizamos tus necesidades energéticas, niveles de tensión y la infraestructura eléctrica existente para diseñar tu solución ideal.',
+  },
   {
     icono: 'description',
     titulo: 'Trámites',
-    texto: 'Gestionamos la conexión ante el operador de red y los beneficios tributarios.',
+    texto: 'Gestionamos la disponibilidad con el operador de red y tramitamos los beneficios tributarios gubernamentales por ti.',
   },
-  { icono: 'solar_power', titulo: 'Instalación', texto: 'Instalamos y ponemos en marcha el sistema fotovoltaico o térmico.' },
+  {
+    icono: 'solar_power',
+    titulo: 'Instalación',
+    texto: 'Ejecutamos la implementación, montaje y puesta en marcha segura de tu sistema solar fotovoltaico.',
+  },
+  {
+    icono: 'monitoring',
+    titulo: 'Monitoreo',
+    texto: 'Supervisamos el rendimiento y la generación de energía de tu sistema en tiempo real a través de nuestra aplicación móvil.',
+  },
   {
     icono: 'build',
     titulo: 'Mantenimiento',
-    texto: 'Mantenimiento preventivo y correctivo para que el sistema siga rindiendo.',
+    texto: 'Brindamos mantenimiento preventivo y correctivo continuo para garantizar la máxima eficiencia operativa de tu sistema.',
   },
 ]
 
@@ -166,4 +195,38 @@ export const cinta = [
   'Trámites ante el operador de red',
   'Beneficios tributarios',
   'Mantenimiento preventivo y correctivo',
+]
+
+// Infografías de "Cómo funciona": [clave, pestaña, título, frase, foto, ancho, alto, alt]
+export const infografias = [
+  {
+    clave: 'presurizado',
+    pestana: 'Calentador presurizado',
+    titulo: 'Calentador solar presurizado',
+    texto: 'Agua caliente en tu hogar, de forma eficiente y segura.',
+    foto: '/img/infografia-calentador-presurizado.webp',
+    ancho: 880,
+    alto: 860,
+    alt: 'Infografía del calentador solar presurizado: capta, calienta y dispersa, con sus componentes',
+  },
+  {
+    clave: 'mariposa',
+    pestana: 'Colector mariposa',
+    titulo: 'Colector tipo mariposa',
+    texto: 'La forma más eficiente de calentar tu piscina o jacuzzi con energía del sol.',
+    foto: '/img/infografia-colector-mariposa.webp',
+    ancho: 1070,
+    alto: 1240,
+    alt: 'Infografía del colector tipo mariposa: qué es, cómo funciona y qué lo compone',
+  },
+  {
+    clave: 'hibrido',
+    pestana: 'Sistema híbrido',
+    titulo: 'Sistema solar híbrido',
+    texto: 'Genera, almacena y aprovecha tu propia energía, de día y de noche.',
+    foto: '/img/infografia-sistema-hibrido.webp',
+    ancho: 1448,
+    alto: 1086,
+    alt: 'Sistema solar híbrido instalado en pared: inversor, batería y cargador eléctrico',
+  },
 ]

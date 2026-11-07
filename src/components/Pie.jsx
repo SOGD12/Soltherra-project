@@ -45,7 +45,9 @@ export default function Pie() {
         Soltherra
       </p>
       <div className="contenedor">
-        <p className="pie__legal">© 2026 Soltherra S.A.S.</p>
+        <p className="pie__legal">
+          © 2026 Soltherra S.A.S. · <a href="/privacidad">Política de privacidad</a>
+        </p>
       </div>
     </footer>
   )

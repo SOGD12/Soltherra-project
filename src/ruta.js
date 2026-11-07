@@ -1,9 +1,9 @@
 import { useEffect, useSyncExternalStore } from 'react'
 
-// Páginas del sitio, con rutas limpias: /home, /servicios, /como-funciona, /trabajos, /contacto.
+// Páginas del sitio, con rutas limpias: /home, /servicios, /como-funciona, /trabajos, /contacto, /privacidad.
 // Un #ancla opcional (/servicios#termico) baja a un bloque de la página. Hace falta que el alojamiento
 // devuelva index.html en esas rutas (ver "rewrites" en vercel.json; Vite ya lo hace en desarrollo).
-export const PAGINAS = ['inicio', 'servicios', 'como-funciona', 'trabajos', 'contacto']
+export const PAGINAS = ['inicio', 'servicios', 'como-funciona', 'trabajos', 'contacto', 'privacidad']
 
 const RUTA_DE = (pagina) => (pagina === 'inicio' ? '/home' : `/${pagina}`)
 const PAGINA_DE = (ruta) => {

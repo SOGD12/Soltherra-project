@@ -1,15 +1,9 @@
 {
-  "hero": { "foto": "/img/hero.webp", "alt": "", "ancho": 1800, "alto": 1350 },
+  "hero": { "foto": "/img/hero.webp", "alt": "Paneles solares fotovoltaicos instalados sobre una cubierta metálica, con árboles y edificios al fondo", "ancho": 1800, "alto": 1350 },
   "nosotros": {
     "foto": "/img/fv-estructura-suelo.webp",
     "alt": "Arreglo de paneles solares sobre una estructura metálica en una ladera con vista al valle",
     "ancho": 1400,
     "alto": 1050
-  },
-  "franja": {
-    "foto": "/img/piscina.webp",
-    "alt": "Piscina en una finca con una estructura de colectores solares térmicos sobre la terraza",
-    "ancho": 1600,
-    "alto": 640
   }
 }
