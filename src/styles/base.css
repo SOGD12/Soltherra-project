@@ -101,6 +101,41 @@ p {
   text-wrap: pretty;
 }
 
+/* Texto corrido justificado, igual que en Misión y visión: todas las líneas del mismo largo y la última a la izquierda.
+   Va con :where() para no pesar en la cascada: cualquier clase de un componente puede cambiarlo. */
+:where(main, .pie) p {
+  text-align: justify;
+  text-align-last: left;
+  hyphens: auto;
+}
+
+/* Donde el texto no debe justificarse: etiquetas, textos grandes que hacen de título (.destacado y los del pie, que son <p>), columnas estrechas (pasos del proceso, trámites), tarjetas con foto, pies de foto y avisos. */
+.chip,
+.pie__nombre,
+.pie__titulo,
+.pie__gigante,
+.pie__legal,
+.experto p,
+.destacado,
+.pasos p,
+.gestiones__lista p,
+.tarjeta p,
+.bento__tarjeta p,
+.formulario__nota,
+figcaption {
+  text-align: inherit;
+  text-align-last: auto;
+  hyphens: manual;
+}
+
+@media (max-width: 639px) {
+  /* En columnas estrechas el justificado abre huecos entre palabras */
+  :where(main, .pie) p {
+    text-align: left;
+    hyphens: none;
+  }
+}
+
 ul,
 ol {
   margin: 0;
