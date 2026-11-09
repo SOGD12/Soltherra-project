@@ -646,3 +646,13 @@
     display: none;
   }
 }
+
+.pestanas__grupo {
+  flex-basis: 100%;
+  margin: 8px 0 0;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}

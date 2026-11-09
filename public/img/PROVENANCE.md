@@ -37,3 +37,14 @@ Fotos de ejemplo de Unsplash (licencia Unsplash), convertidas a WebP el 2026-10-
 - `public/img/trabajos/`: fotos de la galería «Nuestros trabajos», en una versión más liviana (≈ 900 px de ancho) que la de las secciones. Se listan en `src/data/imagenes/trabajos.json`.
 
 Solo se guardan las imágenes que el código usa. Antes de añadir una, se registra en el `.json` de `src/data/imagenes/` que le corresponde.
+
+## Galería «Nuestros trabajos»: fotovoltaico (agregadas el 2026-11-07)
+
+Fotos de obras de Soltherra entregadas por el equipo y convertidas a WebP (calidad 80, 900 px de ancho en vertical y 1000 px en horizontal), en `public/img/trabajos/`:
+
+| Archivo | Qué muestra |
+|---|---|
+| fv-inversor-huawei-tablero-dc.webp | Inversor Huawei con tablero DC y canalización |
+| fv-inversor-huawei-senalizado.webp | Inversor Huawei señalizado con tablero de protecciones DC |
+| fv-inversor-diagrama-unifilar.webp | Inversor con el diagrama unifilar del sistema |
+| fv-inversor-bateria-cargador.webp | Inversor, batería y cargador de vehículo eléctrico con tablero |

@@ -15,6 +15,7 @@ export const SERVICIOS_FORMULARIO = [
   'Mantenimiento',
   'Puntos de carga para vehículos eléctricos',
   'Trámites y beneficios tributarios',
+  'Venta de equipos para tu proyecto',
 ]
 
 /** Arma el mensaje de WhatsApp del formulario: solo usa lo que la persona escribió (ISO/IEC 27701, minimización de datos). */
@@ -128,12 +129,12 @@ export const pasos = [
 
 // Historia de la escena 3D: cada paso ocupa una parte del recorrido de scroll.
 export const historia = [
-  { icono: 'light_mode', titulo: 'Llega el sol', texto: 'La radiación solar cae sobre los módulos instalados en tu cubierta.' },
+  { icono: 'light_mode', titulo: 'Llega el sol', texto: 'La radiación solar incide sobre los módulos instalados en tu cubierta.' },
   { icono: 'solar_power', titulo: 'El panel la convierte', texto: 'Las celdas fotovoltaicas transforman la luz en electricidad.' },
   {
     icono: 'electrical_services',
     titulo: 'El inversor la adapta',
-    texto: 'El inversor deja la energía lista para los equipos de tu hogar, empresa o institución.',
+    texto: 'El inversor transforma la energía proveniente de los paneles para ser inyectada a los equipos de tu hogar, empresa o institución, y verter los excedentes a la red eléctrica.',
   },
   { icono: 'home', titulo: 'Tu casa se enciende', texto: 'Usas energía limpia y dependes menos de la red eléctrica.' },
 ]
@@ -197,10 +198,22 @@ export const cinta = [
   'Mantenimiento preventivo y correctivo',
 ]
 
-// Infografías de "Cómo funciona": [clave, pestaña, título, frase, foto, ancho, alto, alt]
+// Infografías de equipos (página Servicios), agrupadas en Fotovoltaico y Térmico: [clave, pestaña, título, frase, foto, ancho, alto, alt]
 export const infografias = [
   {
+    clave: 'hibrido',
+    grupo: 'Fotovoltaico',
+    pestana: 'Sistema híbrido',
+    titulo: 'Sistema solar híbrido',
+    texto: 'Genera, almacena y aprovecha tu propia energía, de día y de noche.',
+    foto: '/img/infografia-sistema-hibrido.webp',
+    ancho: 1448,
+    alto: 1086,
+    alt: 'Sistema solar híbrido instalado en pared: inversor, batería y cargador eléctrico',
+  },
+  {
     clave: 'presurizado',
+    grupo: 'Térmico',
     pestana: 'Calentador presurizado',
     titulo: 'Calentador solar presurizado',
     texto: 'Agua caliente en tu hogar, de forma eficiente y segura.',
@@ -211,6 +224,7 @@ export const infografias = [
   },
   {
     clave: 'mariposa',
+    grupo: 'Térmico',
     pestana: 'Colector mariposa',
     titulo: 'Colector tipo mariposa',
     texto: 'La forma más eficiente de calentar tu piscina o jacuzzi con energía del sol.',
@@ -218,15 +232,5 @@ export const infografias = [
     ancho: 1070,
     alto: 1240,
     alt: 'Infografía del colector tipo mariposa: qué es, cómo funciona y qué lo compone',
-  },
-  {
-    clave: 'hibrido',
-    pestana: 'Sistema híbrido',
-    titulo: 'Sistema solar híbrido',
-    texto: 'Genera, almacena y aprovecha tu propia energía, de día y de noche.',
-    foto: '/img/infografia-sistema-hibrido.webp',
-    ancho: 1448,
-    alto: 1086,
-    alt: 'Sistema solar híbrido instalado en pared: inversor, batería y cargador eléctrico',
   },
 ]

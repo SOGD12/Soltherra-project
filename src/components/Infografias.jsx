@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import { animate } from 'animejs/animation'
 import { sinMovimiento } from '../movimiento.js'
 import { Chip } from './Comunes.jsx'
@@ -114,24 +114,30 @@ export default function Infografias() {
         <div className="infografias__texto">
           <Chip>Nuestros equipos</Chip>
           <h2 data-titulo>
-            Así funciona cada <em className="acento">sistema</em>
+            Equipos para cada <em className="acento">sistema</em>
           </h2>
           <div className="pestanas" role="tablist" aria-label="Tipo de sistema">
-            {infografias.map((i) => (
-              <button
-                key={i.clave}
-                type="button"
-                role="tab"
-                id={`info-tab-${i.clave}`}
-                aria-selected={clave === i.clave}
-                aria-controls="info-panel"
-                tabIndex={clave === i.clave ? 0 : -1}
-                onKeyDown={teclas}
-                className="pestanas__boton"
-                onClick={() => setClave(i.clave)}
-              >
-                <span>{i.pestana}</span>
-              </button>
+            {infografias.map((i, k) => (
+              <Fragment key={i.clave}>
+                {(k === 0 || infografias[k - 1].grupo !== i.grupo) && (
+                  <span className="pestanas__grupo" role="presentation">
+                    {i.grupo}
+                  </span>
+                )}
+                <button
+                  type="button"
+                  role="tab"
+                  id={`info-tab-${i.clave}`}
+                  aria-selected={clave === i.clave}
+                  aria-controls="info-panel"
+                  tabIndex={clave === i.clave ? 0 : -1}
+                  onKeyDown={teclas}
+                  className="pestanas__boton"
+                  onClick={() => setClave(i.clave)}
+                >
+                  <span>{i.pestana}</span>
+                </button>
+              </Fragment>
             ))}
           </div>
           <p ref={frase} className="infografias__frase" aria-live="polite">

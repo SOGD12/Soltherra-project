@@ -739,7 +739,7 @@ a {
       text-decoration: underline;
       text-underline-offset: 4px;
       &:hover {
-        color: var(--piedra);
+        color: var(--sol);
         text-decoration: underline;
       }
     }

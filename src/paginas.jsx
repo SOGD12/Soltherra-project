@@ -13,7 +13,8 @@ import Trabajos from './components/Trabajos.jsx'
 import Beneficios from './components/Beneficios.jsx'
 import Contacto from './components/Contacto.jsx'
 import Privacidad from './components/Privacidad.jsx'
-import { LlamadaExperto } from './components/Comunes.jsx'
+import { LlamadaExperto } from './components/Comunes.jsx'
+
 // Cada página trae sus estilos desde src/styles/<página>.css; lo que se comparte está en src/styles/base.css (ver main.jsx).
 import './styles/inicio.css'
 import './styles/servicios.css'
@@ -39,13 +40,13 @@ export const CONTENIDO_DE_PAGINA = {
     <>
       <Gestiones />
       <Servicios />
+      <Infografias />
     </>
   ),
   'como-funciona': () => (
     <>
       <Recorrido />
       <Proceso />
-      <Infografias />
       <LlamadaExperto
         titulo="¿Quieres ver cómo quedaría en tu casa o empresa?"
         texto="Un experto de Soltherra te explica el proceso paso a paso y resuelve tus dudas."

@@ -1,12 +1,39 @@
 [
   {
-    "id": 4,
-    "titulo": "Sistema fotovoltaico en cubierta",
+    "id": 42,
+    "titulo": "Inversor Huawei con tablero DC",
     "categoria": "fotovoltaico",
-    "foto": "/img/trabajos/trabajo-cubierta-blanca.webp",
-    "alt": "Paneles solares y soportes sobre una cubierta clara",
+    "foto": "/img/trabajos/fv-inversor-huawei-tablero-dc.webp",
+    "alt": "Inversor solar Huawei en pared de ladrillo blanco con tablero DC y canalización metálica señalizada",
     "ancho": 900,
-    "alto": 1201
+    "alto": 1200
+  },
+  {
+    "id": 44,
+    "titulo": "Inversor Huawei señalizado",
+    "categoria": "fotovoltaico",
+    "foto": "/img/trabajos/fv-inversor-huawei-senalizado.webp",
+    "alt": "Inversor solar Huawei con señalización de riesgo eléctrico y tablero de protecciones DC bajo el equipo",
+    "ancho": 1000,
+    "alto": 750
+  },
+  {
+    "id": 45,
+    "titulo": "Inversor con diagrama unifilar",
+    "categoria": "fotovoltaico",
+    "foto": "/img/trabajos/fv-inversor-diagrama-unifilar.webp",
+    "alt": "Inversor solar Huawei con canalizaciones y el diagrama unifilar del sistema fotovoltaico pegado a la pared",
+    "ancho": 900,
+    "alto": 1200
+  },
+  {
+    "id": 47,
+    "titulo": "Inversor, batería y cargador",
+    "categoria": "fotovoltaico",
+    "foto": "/img/trabajos/fv-inversor-bateria-cargador.webp",
+    "alt": "Inversor solar y batería de litio instalados en una pared de ladrillo blanco con tablero de protecciones y un cargador de vehículo eléctrico",
+    "ancho": 1600,
+    "alto": 1200
   },
   {
     "id": 5,
@@ -25,15 +52,6 @@
     "alt": "Paneles fotovoltaicos y colectores de tubos al vacío sobre un mismo techo",
     "ancho": 1448,
     "alto": 1086
-  },
-  {
-    "id": 8,
-    "titulo": "Conexión y ajuste de inversor",
-    "categoria": "fotovoltaico",
-    "foto": "/img/trabajos/cableado.webp",
-    "alt": "Técnico ajustando las conexiones de un inversor solar",
-    "ancho": 900,
-    "alto": 1200
   },
   {
     "id": 9,
@@ -61,6 +79,15 @@
     "alt": "Inversor solar con señalización de seguridad y protecciones eléctricas",
     "ancho": 1000,
     "alto": 750
+  },
+  {
+    "id": 41,
+    "titulo": "Tablero de medición y control",
+    "categoria": "mantenimiento",
+    "foto": "/img/trabajos/mant-tablero-medicion.webp",
+    "alt": "Tablero eléctrico transparente con medidor de energía, temporizador y protecciones, con la etiqueta de Soltherra, instalado al aire libre",
+    "ancho": 900,
+    "alto": 1200
   },
   {
     "id": 13,
@@ -198,15 +225,6 @@
     "alto": 1200
   },
   {
-    "id": 41,
-    "titulo": "Tablero de medición y control",
-    "categoria": "mantenimiento",
-    "foto": "/img/trabajos/mant-tablero-medicion.webp",
-    "alt": "Tablero eléctrico transparente con medidor de energía, temporizador y protecciones, con la etiqueta de Soltherra, instalado al aire libre",
-    "ancho": 900,
-    "alto": 1200
-  },
-  {
     "id": 28,
     "titulo": "Calentamiento de piscina y jacuzzi",
     "categoria": "piscina",
@@ -275,15 +293,6 @@
     "categoria": "fotovoltaico",
     "foto": "/img/trabajos/fv-techo-verde.webp",
     "alt": "Paneles solares fotovoltaicos instalados sobre un techo de teja verde rodeado de vegetación",
-    "ancho": 1400,
-    "alto": 1050
-  },
-  {
-    "id": 37,
-    "titulo": "Paneles sobre estructura en ladera",
-    "categoria": "fotovoltaico",
-    "foto": "/img/trabajos/fv-estructura-suelo.webp",
-    "alt": "Arreglo de paneles solares sobre una estructura metálica en una ladera con vista al valle",
     "ancho": 1400,
     "alto": 1050
   },
