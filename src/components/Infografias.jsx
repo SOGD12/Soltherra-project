@@ -1,17 +1,21 @@
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { animate } from 'animejs/animation'
 import { sinMovimiento } from '../movimiento.js'
-import { Chip } from './Comunes.jsx'
 import { infografias } from '../data/contenido.js'
 
+// Pestañas: una por tipo de sistema (Fotovoltaico, Térmico); cada una muestra todas sus infografías.
+const grupos = [...new Set(infografias.map((i) => i.grupo))]
+const idGrupo = (g) => g.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+
 export default function Infografias() {
-  const [clave, setClave] = useState(infografias[0].clave)
-  const actual = infografias.find((i) => i.clave === clave)
-  const foto = useRef(null)
-  const frase = useRef(null)
+  const [grupo, setGrupo] = useState(grupos[0])
+  const items = infografias.filter((i) => i.grupo === grupo)
+  const imagenes = useRef(null)
   const primera = useRef(true)
   const visor = useRef(null)
-  const [abierta, setAbierta] = useState(false)
+  // Clave de la infografía ampliada (null = visor cerrado)
+  const [abierta, setAbierta] = useState(null)
+  const actual = infografias.find((i) => i.clave === abierta) ?? items[0]
   // Zoom con gestos (solo pantallas táctiles): pellizcar para ampliar, arrastrar para moverse, doble toque para alternar.
   const [vista, setVista] = useState({ s: 1, x: 0, y: 0 })
   const lienzo = useRef(null)
@@ -25,11 +29,11 @@ export default function Infografias() {
     if (!d) return
     if (abierta && !d.open) d.showModal()
     if (!abierta && d.open) d.close()
-    document.body.classList.toggle('sin-scroll', abierta)
+    document.body.classList.toggle('sin-scroll', Boolean(abierta))
     return () => document.body.classList.remove('sin-scroll')
   }, [abierta])
   const cerrar = () => {
-    setAbierta(false)
+    setAbierta(null)
     setVista({ s: 1, x: 0, y: 0 })
     punteros.current.clear()
     gesto.current = null
@@ -76,87 +80,70 @@ export default function Infografias() {
     gesto.current = punteros.current.size === 1 ? { px: [...punteros.current.values()][0].x, py: [...punteros.current.values()][0].y, vista } : null
   }
 
-  // Al cambiar de pestaña la infografía entra desde un lado creciendo, y la frase sube con un fundido.
+  // Al cambiar de pestaña las infografías entran desde un lado creciendo.
   useEffect(() => {
     if (primera.current) {
       primera.current = false
       return
     }
     if (sinMovimiento()) return
-    const a = animate(foto.current, {
+    const a = animate(imagenes.current, {
       opacity: [0, 1],
       x: [48, 0],
       scale: [0.94, 1],
       duration: 900,
       ease: 'outQuart',
     })
-    const b = animate(frase.current, { opacity: [0, 1], y: [14, 0], duration: 700, ease: 'outQuart' })
-    return () => {
-      a.cancel?.()
-      b.cancel?.()
-    }
-  }, [clave])
+    return () => a.cancel?.()
+  }, [grupo])
 
   // Patrón de pestañas: flechas, Inicio y Fin cambian de pestaña y mueven el foco
   const teclas = (e) => {
-    const k = infografias.findIndex((i) => i.clave === clave)
-    const n = infografias.length
+    const k = grupos.indexOf(grupo)
+    const n = grupos.length
     const nuevo = { ArrowRight: (k + 1) % n, ArrowLeft: (k - 1 + n) % n, Home: 0, End: n - 1 }[e.key]
     if (nuevo === undefined) return
     e.preventDefault()
-    setClave(infografias[nuevo].clave)
-    document.getElementById(`info-tab-${infografias[nuevo].clave}`)?.focus()
+    setGrupo(grupos[nuevo])
+    document.getElementById(`info-tab-${idGrupo(grupos[nuevo])}`)?.focus()
   }
 
   return (
     <section className="seccion infografias" id="equipos">
-      <div className="contenedor infografias__rejilla">
+      <div className={`contenedor infografias__rejilla ${items.length > 1 ? 'infografias__rejilla--varias' : ''}`}>
         <div className="infografias__texto">
-          <Chip>Nuestros equipos</Chip>
           <h2 data-titulo>
-            Equipos para cada <em className="acento">sistema</em>
+            Así funciona nuestro <em className="acento">sistema</em>
           </h2>
           <div className="pestanas" role="tablist" aria-label="Tipo de sistema">
-            {infografias.map((i, k) => (
-              <Fragment key={i.clave}>
-                {(k === 0 || infografias[k - 1].grupo !== i.grupo) && (
-                  <span className="pestanas__grupo" role="presentation">
-                    {i.grupo}
-                  </span>
-                )}
-                <button
-                  type="button"
-                  role="tab"
-                  id={`info-tab-${i.clave}`}
-                  aria-selected={clave === i.clave}
-                  aria-controls="info-panel"
-                  tabIndex={clave === i.clave ? 0 : -1}
-                  onKeyDown={teclas}
-                  className="pestanas__boton"
-                  onClick={() => setClave(i.clave)}
-                >
-                  <span>{i.pestana}</span>
-                </button>
-              </Fragment>
+            {grupos.map((g) => (
+              <button
+                key={g}
+                type="button"
+                role="tab"
+                id={`info-tab-${idGrupo(g)}`}
+                aria-selected={grupo === g}
+                aria-controls="info-panel"
+                tabIndex={grupo === g ? 0 : -1}
+                onKeyDown={teclas}
+                className="pestanas__boton"
+                onClick={() => setGrupo(g)}
+              >
+                <span>{g}</span>
+              </button>
             ))}
           </div>
-          <p ref={frase} className="infografias__frase" aria-live="polite">
-            <strong>{actual.titulo}:</strong> {actual.texto}
-          </p>
         </div>
-        <figure id="info-panel" className="infografias__marco" role="tabpanel" aria-labelledby={`info-tab-${clave}`}>
-          <button type="button" className="infografias__abrir" onClick={() => setAbierta(true)} aria-label={`Ampliar: ${actual.titulo}`}>
-            <img
-              ref={foto}
-              key={actual.clave}
-              src={actual.foto}
-              alt={actual.alt}
-              width={actual.ancho}
-              height={actual.alto}
-              loading="lazy"
-              decoding="async"
-            />
-          </button>
+        <figure id="info-panel" className="infografias__marco" role="tabpanel" aria-labelledby={`info-tab-${idGrupo(grupo)}`}>
+          <div ref={imagenes} key={grupo} className={`infografias__imagenes ${items.length > 1 ? 'infografias__imagenes--varias' : ''}`}>
+            {items.map((i) => (
+              <div key={i.clave} className={`infografias__tarjeta ${i.foto_completa ? 'infografias__tarjeta--foto' : ''}`}>
+                <button type="button" className="infografias__abrir" onClick={() => setAbierta(i.clave)} aria-label={`Ampliar: ${i.titulo}`}>
+                  <img src={i.foto} alt={i.alt} width={i.ancho} height={i.alto} loading="lazy" decoding="async" />
+                </button>
+              </div>
+            ))}
+          </div>
         </figure>
         <dialog ref={visor} className="visor" aria-label={actual.titulo} onClose={cerrar} onClick={(e) => e.target === visor.current && cerrar()}>
           <div className="visor__caja">

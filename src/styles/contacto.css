@@ -132,6 +132,7 @@ main {
   background: var(--fondo);
   color: var(--texto);
   font: inherit;
+  font-size: max(16px, 1rem); /* iOS hace zoom al enfocar campos <16px */
   font-weight: 400;
   border: 1px solid var(--linea);
   border-radius: 14px;

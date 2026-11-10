@@ -9,6 +9,7 @@ import Servicios from './components/Servicios.jsx'
 import Recorrido from './components/Recorrido.jsx'
 import Proceso from './components/Proceso.jsx'
 import Infografias from './components/Infografias.jsx'
+import Monitoreo from './components/Monitoreo.jsx'
 import Trabajos from './components/Trabajos.jsx'
 import Beneficios from './components/Beneficios.jsx'
 import Contacto from './components/Contacto.jsx'
@@ -40,13 +41,14 @@ export const CONTENIDO_DE_PAGINA = {
     <>
       <Gestiones />
       <Servicios />
-      <Infografias />
     </>
   ),
   'como-funciona': () => (
     <>
       <Recorrido />
       <Proceso />
+      <Infografias />
+      <Monitoreo />
       <LlamadaExperto
         titulo="¿Quieres ver cómo quedaría en tu casa o empresa?"
         texto="Un experto de Soltherra te explica el proceso paso a paso y resuelve tus dudas."

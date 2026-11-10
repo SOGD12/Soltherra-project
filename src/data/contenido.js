@@ -198,10 +198,22 @@ export const cinta = [
   'Mantenimiento preventivo y correctivo',
 ]
 
-// Infografías de equipos (página Servicios), agrupadas en Fotovoltaico y Térmico: [clave, pestaña, título, frase, foto, ancho, alto, alt]
+// Infografías de equipos (página Cómo funciona), agrupadas en Fotovoltaico y Térmico: [clave, pestaña, título, frase, foto, ancho, alto, alt]
 export const infografias = [
   {
+    clave: 'panel',
+    grupo: 'Fotovoltaico',
+    pestana: 'Panel solar',
+    titulo: 'Panel solar',
+    texto: 'Una placa que convierte la luz del sol en energía eléctrica mediante células fotovoltaicas.',
+    foto: '/img/infografia-panel-solar.webp',
+    ancho: 941,
+    alto: 1015,
+    alt: 'Infografía del panel solar: qué es, cómo funciona y qué lo compone',
+  },
+  {
     clave: 'hibrido',
+    foto_completa: true,
     grupo: 'Fotovoltaico',
     pestana: 'Sistema híbrido',
     titulo: 'Sistema solar híbrido',

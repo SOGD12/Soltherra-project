@@ -250,7 +250,7 @@ export function iniciarAnimaciones() {
       alEntrar('.carrusel', '.carrusel', { y: 40, duracion: 1000 })
 
       // Infografías: las pestañas suben una tras otra, la frase las sigue y el marco aparece creciendo
-      alEntrar('.infografias .chip, .infografias .pestanas__boton, .infografias__frase', '.infografias__texto', { y: 24, delay: 90 })
+      alEntrar('.infografias .pestanas__boton', '.infografias__texto', { y: 24, delay: 90 })
       alEntrar('.infografias__marco', '.infografias__marco', { y: 60, delay: 0, duracion: 1200, escala: 0.92 })
 
       // ---------- Beneficios: cada fila se ilumina al pasar por el centro ----------

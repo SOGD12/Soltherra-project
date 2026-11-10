@@ -433,6 +433,7 @@ a {
 }
 
 .cabecera__menu {
+  flex: 0 0 44px;
   width: 44px;
   height: 44px;
   display: grid;
@@ -517,7 +518,11 @@ a {
       padding-block: 12px;
       border-bottom: 1px solid var(--linea-claro);
       &[aria-current='page'] {
-        color: var(--sol);
+        color: var(--texto-claro);
+        text-decoration: underline;
+        text-decoration-color: var(--sol);
+        text-decoration-thickness: 3px;
+        text-underline-offset: 8px;
       }
     }
   }
@@ -758,7 +763,7 @@ a {
   font-family: var(--display);
   font-weight: 800;
   font-stretch: 125%;
-  font-size: 17vw;
+  font-size: min(17vw, 340px);
   line-height: 0.8;
   letter-spacing: -0.02em;
   text-align: center;
@@ -932,4 +937,7 @@ a {
 
 .pie__legal a {
   text-decoration: underline;
+  display: inline-block;
+  padding-block: 13px;
+  margin-block: -13px;
 }

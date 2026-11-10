@@ -78,10 +78,10 @@
     align-items: start;
     padding-block: 14px;
     border-top: 1px solid var(--linea-claro);
-    opacity: 0.32;
+    opacity: 0.6;
     transition: opacity 0.5s var(--ease);
     &[data-visto] {
-      opacity: 0.6;
+      opacity: 0.78;
     }
     &[aria-current] {
       opacity: 1;
@@ -270,25 +270,87 @@
   margin-bottom: 28px;
 }
 
-.infografias__frase {
-  margin: 24px 0 0;
-  max-width: 44ch;
-  color: var(--texto-suave);
-  strong {
-    color: var(--texto);
-  }
-}
-
 .infografias__marco {
   display: grid;
   place-items: center;
   margin: 0;
-  padding: clamp(8px, 1.5vw, 16px);
-  border-radius: var(--r-isla);
-  background: #f3f3ee;
-  /* mismo fondo crema de las infografías, para que no se vea el borde */
-  overflow: hidden;
+  overflow: clip; /* la entrada anima x:48 y empujaba la página en móvil */
 }
+
+.monitoreo {
+  background: var(--piedra);
+}
+.monitoreo__texto {
+  display: grid;
+  justify-items: start;
+  gap: 16px;
+  margin-bottom: clamp(28px, 4vw, 48px);
+}
+.monitoreo h2 {
+  font-size: clamp(2rem, 1.1rem + 3vw, 3.4rem);
+  font-stretch: 108%;
+  line-height: 1;
+  letter-spacing: -0.035em;
+  margin: 0;
+}
+.monitoreo__video {
+  display: grid;
+  justify-items: center;
+}
+.monitoreo__v {
+  display: block;
+  height: auto;
+  background: var(--texto);
+  border-radius: clamp(20px, 3vw, 36px);
+  box-shadow: 0 0 0 1px var(--linea);
+}
+.monitoreo__v--escritorio {
+  width: min(100%, calc(80svh * 16 / 9));
+  aspect-ratio: 16 / 9;
+}
+.monitoreo__v--movil {
+  display: none;
+  width: min(100%, 420px, calc(78svh * 9 / 16));
+  aspect-ratio: 9 / 16;
+  margin-inline: auto;
+}
+@media (max-width: 767px) {
+  .monitoreo__v--escritorio {
+    display: none;
+  }
+  .monitoreo__v--movil {
+    display: block;
+  }
+}
+@media (min-width: 900px) {
+  .monitoreo__texto {
+    margin-bottom: 40px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .pasos {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 32px;
+    li {
+      grid-template-columns: 1fr;
+      row-gap: 6px;
+    }
+  }
+  .pasos__marca {
+    grid-row: auto;
+    margin-bottom: 20px;
+  }
+  .pasos__linea {
+    top: 27px;
+    bottom: auto;
+    left: 28px;
+    right: calc((100% - 128px) / 5 - 28px);
+    width: auto;
+    height: 2px;
+  }
+}
+
 
 .infografias__abrir {
   display: block;
@@ -436,26 +498,6 @@
       font-size: min(clamp(1.05rem, 0.6rem + 0.7vw, 1.3rem), 2.7dvh);
       line-height: 1.4;
     }
-  }
-  .pasos {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 32px;
-    li {
-      grid-template-columns: 1fr;
-      row-gap: 6px;
-    }
-  }
-  .pasos__marca {
-    grid-row: auto;
-    margin-bottom: 20px;
-  }
-  .pasos__linea {
-    top: 27px;
-    bottom: auto;
-    left: 28px;
-    right: calc((100% - 128px) / 5 - 28px);
-    width: auto;
-    height: 2px;
   }
   .infografias__rejilla {
     grid-template-columns: 4fr 8fr;
@@ -647,12 +689,39 @@
   }
 }
 
-.pestanas__grupo {
-  flex-basis: 100%;
-  margin: 8px 0 0;
-  font-weight: 700;
-  font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--texto-suave);
+.infografias__imagenes {
+  display: grid;
+  gap: 12px;
+  width: 100%;
+}
+
+/* Cada infografía va en su propia tarjeta; en Térmico son dos, una al lado de la otra en la columna derecha */
+.infografias__imagenes--varias {
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .infografias__imagenes--varias {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
+
+.infografias__tarjeta {
+  display: grid;
+  place-items: center;
+  padding: clamp(8px, 1.5vw, 16px);
+  background: #ffffff;
+  border: 1px solid rgb(0 0 0 / 0.3);
+  border-radius: var(--r-isla);
+  overflow: hidden;
+}
+
+/* Foto (sin fondo propio): ocupa toda la tarjeta, sin marco blanco */
+.infografias__tarjeta--foto {
+  padding: 0;
+}
+
+.infografias__tarjeta--foto img {
+  border-radius: 0;
 }

@@ -126,7 +126,7 @@
 
 /* Portátiles y ventanas bajas: el titular se mide también por el alto para que el subtítulo y los botones queden a la vista */
 
-@media (min-width: 700px) and (max-height: 780px) {
+@media (min-width: 700px) and (max-height: 900px) {
   .hero__texto {
     padding-block: calc(var(--alto-cabecera) + 32px) clamp(48px, 9vh, 72px);
   }
@@ -348,6 +348,12 @@
   text-align: justify;
   text-align-last: left;
   hyphens: auto;
+}
+@media (max-width: 1023px) {
+  .mision p:not(.chip) {
+    text-align: left;
+    hyphens: none;
+  }
 }
 
 @media (max-width: 639px) {
