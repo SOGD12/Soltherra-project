@@ -1,48 +1,30 @@
 // Título, descripción y ruta de cada página. Los usan el pre-renderizado (vite.config.js) y el cambio de página en el navegador.
+import es from './languages/es/global.json'
+
 export const DOMINIO_POR_DEFECTO = 'https://soltherra.vercel.app'
 
-export const SEO = {
-  inicio: {
-    ruta: '/',
-    titulo: 'Energía solar fotovoltaica y térmica en Cali | Soltherra',
-    descripcion:
-      'Soltherra S.A.S. en Cali: diseño, instalación y mantenimiento de sistemas solares fotovoltaicos y solares térmicos para hogares, empresas e instituciones.',
-  },
-  servicios: {
-    ruta: '/servicios',
-    titulo: 'Servicios solares en Cali | Soltherra',
-    descripcion:
-      'Paneles solares, calentadores solares, climatización de piscinas, cargadores para vehículos eléctricos, mantenimiento y trámites ante el operador de red en Cali.',
-  },
-  'como-funciona': {
-    ruta: '/como-funciona',
-    titulo: 'Cómo funciona un sistema solar | Soltherra',
-    descripcion:
-      'Del sol a tu casa: así funciona un sistema solar y cuál es el proceso de Soltherra, desde la visita técnica y la ingeniería hasta la instalación y puesta en marcha.',
-  },
-  trabajos: {
-    ruta: '/trabajos',
-    titulo: 'Instalaciones solares reales en Cali | Soltherra',
-    descripcion:
-      'Obras reales de Soltherra en Cali y el Valle del Cauca: paneles fotovoltaicos, colectores solares térmicos, piscinas, cargadores de vehículos eléctricos y mantenimiento.',
-  },
-  contacto: {
-    ruta: '/contacto',
-    titulo: 'Cotiza energía solar en Cali | Soltherra',
-    descripcion:
-      'Escríbenos por WhatsApp al +57 313 813 0046 o visítanos en la Calle 28 N° 86-70, Cali, para cotizar tu sistema solar.',
-  },
-  privacidad: {
-    ruta: '/privacidad',
-    titulo: 'Política de privacidad | Soltherra',
-    descripcion:
-      'Cómo trata Soltherra S.A.S. los datos que dejas en el formulario de contacto: qué se usa, para qué, dónde queda y cómo ejercer tus derechos.',
-  },
+// Los textos en español viven en languages/es/global.json (sección "seo"); aquí solo la ruta de cada página.
+// El pre-renderizado (vite.config.js) y el sitemap usan el español; el navegador cambia al idioma elegido (ver aplicarSeo).
+const RUTAS = {
+  inicio: '/',
+  servicios: '/servicios',
+  'como-funciona': '/como-funciona',
+  trabajos: '/trabajos',
+  contacto: '/contacto',
+  privacidad: '/privacidad',
 }
 
-/** Actualiza descripción, canonical y vista previa para social al cambiar de página sin recargar. */
-export function aplicarSeo(pagina) {
-  const { titulo, descripcion, ruta } = SEO[pagina]
+export const SEO = Object.fromEntries(
+  Object.entries(RUTAS).map(([pagina, ruta]) => [
+    pagina,
+    { ruta, titulo: es.seo[pagina].title, descripcion: es.seo[pagina].description },
+  ]),
+)
+
+/** Actualiza descripción, canonical y vista previa para social al cambiar de página o de idioma sin recargar. */
+export function aplicarSeo(pagina, textos = SEO[pagina]) {
+  const { titulo, descripcion } = textos
+  const { ruta } = SEO[pagina]
   const canonical = document.querySelector('link[rel="canonical"]')
   const url = canonical ? new URL(ruta, canonical.href).href : null
   const poner = (selector, valor) => document.querySelector(selector)?.setAttribute('content', valor)

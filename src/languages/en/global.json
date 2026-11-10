@@ -1,0 +1,623 @@
+{
+  "menu": {
+    "home": "Home",
+    "services": "Services",
+    "how-it-works": "How it works",
+    "works": "Projects",
+    "contact": "Contact",
+    "open": "Open menu",
+    "close": "Close menu",
+    "main-label": "Main",
+    "mobile-label": "Mobile menu"
+  },
+  "header": {
+    "logo-label": "Soltherra S.A.S., go to home",
+    "logo-alt": "Soltherra S.A.S. Sustainable Energy",
+    "quote": "Get a quote",
+    "whatsapp": "Message us on WhatsApp"
+  },
+  "settings": {
+    "language": {
+      "label": "Language",
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "whatsapp": {
+    "default": "Hello Soltherra, I would like a quote for a solar system.",
+    "quote": "Get a quote on WhatsApp",
+    "expert": "Talk to an expert"
+  },
+  "footer": {
+    "tagline": "Sustainable Energy. Photovoltaic and solar thermal systems.",
+    "nav-label": "Footer",
+    "sections": "Sections",
+    "follow": "Follow us",
+    "legal": "© 2026 Soltherra S.A.S. ·",
+    "privacy": "Privacy policy"
+  },
+  "home": {
+    "hero": {
+      "chip": "Cali, Colombia · Sustainable energy",
+      "title-accent": "Solar energy",
+      "title-rest": " for your home, business or institution.",
+      "subtitle": "We design and install photovoltaic and solar thermal systems, with regulatory compliance and high-quality engineering.",
+      "services": "See services",
+      "scroll-down": "Scroll to content"
+    },
+    "ribbon": {
+      "label": "What we do",
+      "items": [
+        "Photovoltaic systems",
+        "Pool and jacuzzi heating",
+        "Domestic water heating",
+        "Detailed engineering",
+        "Grid operator procedures",
+        "Tax benefits",
+        "Preventive and corrective maintenance"
+      ]
+    },
+    "about": {
+      "chip": "Who are we?",
+      "highlight": "We are a company specialized in the design, installation and maintenance of photovoltaic and solar thermal systems.",
+      "text": "We offer sustainable, efficient and customized energy solutions for homes, businesses and institutions. Soltherra supports its clients from engineering through commissioning, ensuring regulatory compliance, economic savings and a lower environmental impact.",
+      "audience-label": "Who we work for",
+      "homes": "Homes",
+      "companies": "Businesses",
+      "institutions": "Institutions"
+    },
+    "mission-vision": {
+      "label": "Mission and vision",
+      "mission-chip": "Mission",
+      "mission": "To provide sustainable energy solutions through photovoltaic and solar thermal systems, contributing to economic savings, caring for the environment and the well-being of communities, with a reliable, innovative and high-quality service.",
+      "vision-chip": "Vision",
+      "vision": "To be a leading clean energy company in Colombia, recognized for its commitment to sustainability, technological innovation and the positive transformation of homes, businesses and communities toward a responsible energy future."
+    },
+    "solutions": {
+      "chip": "Solutions",
+      "title-before": "Explore what the ",
+      "title-accent": "sun",
+      "title-after": " can do for you",
+      "items": {
+        "photovoltaic": "Photovoltaic systems",
+        "thermal": "Solar thermal systems",
+        "maintenance": "Maintenance",
+        "procedures": "Procedures and grid connection",
+        "ev": "Electric vehicle charging"
+      }
+    },
+    "closing": {
+      "chip": "Keep exploring",
+      "title-before": "Learn more about ",
+      "title-accent": "Soltherra"
+    }
+  },
+  "engineering": {
+    "chip": "Engineering and procedures",
+    "title-before": "The technical work and the paperwork, ",
+    "title-accent": "solved",
+    "title-after": " by Soltherra",
+    "subtitle": "We take care of the technical side and the procedures so your system operates with regulatory backing.",
+    "items": [
+      {
+        "title": "Detailed engineering",
+        "text": "Detailed engineering for solar projects, tailored to homes, businesses and institutions."
+      },
+      {
+        "title": "Grid operator connection",
+        "text": "Connection procedures with the grid operator so the system operates in regulatory compliance."
+      },
+      {
+        "title": "Simplified connection study",
+        "text": "Simplified connection study for photovoltaic solar systems (AGPE and GD)."
+      },
+      {
+        "title": "Tax benefits",
+        "text": "Procedures to access the tax benefits of solar energy."
+      }
+    ]
+  },
+  "services": {
+    "intro": {
+      "chip": "Services",
+      "title-before": "Everything we do with ",
+      "title-accent": "solar energy"
+    },
+    "photovoltaic": {
+      "chip": "Photovoltaic",
+      "title": "Design and installation of photovoltaic systems",
+      "text": "Comprehensive solar energy solutions, from design to commissioning of photovoltaic systems tailored to homes, businesses and institutions, ensuring efficiency, safety and regulatory compliance.",
+      "list": [
+        "Detailed engineering for solar projects",
+        "Connection procedures with the grid operator",
+        "Simplified connection study for photovoltaic solar systems (AGPE and GD)",
+        "Installation and commissioning in regulatory compliance"
+      ],
+      "closing": "Reduce energy costs and dependence on the power grid.",
+      "message": "Hello Soltherra, I would like information about photovoltaic solar systems."
+    },
+    "thermal": {
+      "chip": "Thermal",
+      "title": "Design and installation of solar thermal systems",
+      "text": "We design and install solar thermal systems for the efficient use of solar radiation, offering sustainable solutions for heating and water heating in homes, businesses and institutions.",
+      "list": [
+        "Domestic water heating with solar thermal systems",
+        "Collectors and tanks sized to your hot water consumption",
+        "Space heating with solar thermal energy"
+      ],
+      "closing": "Sustainable energy savings with continuous thermal comfort.",
+      "message": "Hello Soltherra, I would like information about solar thermal systems."
+    },
+    "pool": {
+      "chip": "Pool and jacuzzi heating",
+      "title": "Pool and jacuzzi heating with solar energy",
+      "text": "We heat your pool and your jacuzzi using the sun: solar thermal systems sized for your pool or jacuzzi, with complete installation and commissioning.",
+      "list": [
+        "System design according to the size and use of the pool",
+        "Solar thermal collectors and pumping equipment",
+        "Installation and commissioning",
+        "Pleasant temperature all year round, without spending on gas or electricity"
+      ],
+      "closing": "Enjoy your pool and your jacuzzi all year round with clean energy.",
+      "message": "Hello Soltherra, I would like information about pool and jacuzzi heating with solar energy."
+    },
+    "ev": {
+      "chip": "Electric vehicle charging",
+      "title": "Charging points for electric vehicles",
+      "text": "We install charging points for your electric vehicle at home, in a building, business or parking lot, and we can power them with your own solar system so you can move with clean energy.",
+      "list": [
+        "Design and installation of charging points for electric vehicles",
+        "Chargers for homes, buildings, businesses and parking lots",
+        "Charging powered by solar energy for clean mobility",
+        "Electrical protections, commissioning and regulatory compliance"
+      ],
+      "closing": "Charge your vehicle with the sun and spend less on every trip.",
+      "message": "Hello Soltherra, I would like information about charging points for electric vehicles."
+    },
+    "maintenance": {
+      "chip": "Maintenance",
+      "title": "Preventive and corrective maintenance",
+      "text": "We carry out control measurements and preventive maintenance to prevent operational failures, seeking to optimize energy generation and extend the useful life of your equipment.",
+      "list": [
+        "Preventive and corrective maintenance of photovoltaic systems",
+        "Maintenance of solar thermal systems",
+        "Inspection of wiring, connections and inverter",
+        "Electrical measurements and performance monitoring"
+      ],
+      "closing": "A well-maintained system performs better and lasts longer.",
+      "message": "Hello Soltherra, I would like information about maintenance for my solar system."
+    },
+    "procedures": {
+      "chip": "Procedures and benefits",
+      "title": "Procedures and tax benefits",
+      "text": "Colombian law rewards those who invest in solar energy. We support you before the authorities so your project can access the tax incentives it is entitled to.",
+      "list": [
+        "Special income tax deduction for your solar energy investments",
+        "VAT exclusion on equipment and services for the project",
+        "Exemption from import tariffs on equipment",
+        "Accelerated depreciation of the system's assets"
+      ],
+      "closing": "Fewer taxes and an investment that pays for itself faster.",
+      "message": "Hello Soltherra, I would like information about procedures and tax benefits."
+    }
+  },
+  "how-it-works": {
+    "tour": {
+      "chip": "How it works",
+      "title-before": "From the ",
+      "title-accent": "sun",
+      "title-after": " to your home",
+      "scene-label": "3D scene: the sun lights up the solar panel on the roof, the energy passes through the inverter and the windows of the house light up",
+      "spin-on": "Slide the house · Tap to release",
+      "spin-off": "Tap to rotate the house",
+      "drag": "Drag to rotate the house",
+      "steps": [
+        {
+          "title": "The sun arrives",
+          "text": "Solar radiation strikes the modules installed on your roof."
+        },
+        {
+          "title": "The panel converts it",
+          "text": "Photovoltaic cells transform light into electricity."
+        },
+        {
+          "title": "The inverter adapts it",
+          "text": "The inverter transforms the energy coming from the panels so it can be fed to the equipment in your home, business or institution, and to pour the surplus into the power grid."
+        },
+        {
+          "title": "Your home lights up",
+          "text": "You use clean energy and depend less on the power grid."
+        }
+      ]
+    },
+    "process": {
+      "chip": "Process",
+      "title-1": "How we",
+      "title-2": "work",
+      "steps": [
+        {
+          "title": "Engineering",
+          "text": "We analyze your energy needs, voltage levels and the existing electrical infrastructure to design your ideal solution."
+        },
+        {
+          "title": "Procedures",
+          "text": "We manage availability with the grid operator and handle the government tax benefits for you."
+        },
+        {
+          "title": "Installation",
+          "text": "We carry out the implementation, mounting and safe commissioning of your photovoltaic solar system."
+        },
+        {
+          "title": "Monitoring",
+          "text": "We supervise the performance and energy generation of your system in real time through our mobile app."
+        },
+        {
+          "title": "Maintenance",
+          "text": "We provide continuous preventive and corrective maintenance to ensure the maximum operating efficiency of your system."
+        }
+      ]
+    },
+    "infographics": {
+      "title-before": "How our ",
+      "title-accent": "system",
+      "title-after": " works",
+      "tablist-label": "System type",
+      "enlarge": "Enlarge: {{title}}",
+      "close": "Close",
+      "groups": {
+        "photovoltaic": "Photovoltaic",
+        "thermal": "Thermal"
+      },
+      "items": {
+        "panel": {
+          "title": "Solar panel",
+          "alt": "Solar panel infographic: what it is, how it works and what it consists of"
+        },
+        "hybrid": {
+          "title": "Hybrid solar system",
+          "alt": "Hybrid solar system installed on a wall: inverter, battery and electric charger"
+        },
+        "pressurized": {
+          "title": "Pressurized solar water heater",
+          "alt": "Pressurized solar water heater infographic: captures, heats and distributes, with its components"
+        },
+        "butterfly": {
+          "title": "Butterfly-type collector",
+          "alt": "Butterfly-type collector infographic: what it is, how it works and what it consists of"
+        }
+      }
+    },
+    "monitoring": {
+      "title-before": "Monitoring in ",
+      "title-accent": "real time",
+      "aria-desktop": "Demonstration of the monitoring application, desktop version",
+      "aria-mobile": "Demonstration of the monitoring application, mobile version",
+      "download": "Download the demonstration video"
+    },
+    "expert": {
+      "title": "Want to see how it would look in your home or business?",
+      "text": "A Soltherra expert explains the process step by step and answers your questions.",
+      "button": "Talk to an expert",
+      "message": "Hello Soltherra, I saw the \"How it works\" section of your website and I would like to talk to an expert to have the process explained for my case."
+    }
+  },
+  "works": {
+    "chip": "Real projects",
+    "title-before": "Our ",
+    "title-accent": "projects",
+    "tablist-label": "Type of project",
+    "categories": {
+      "fotovoltaico": "Photovoltaic",
+      "termico": "Thermal",
+      "piscina": "Pool and jacuzzi heating",
+      "mantenimiento": "Maintenance and measurement",
+      "ev": "Electric vehicle charging"
+    },
+    "previous": "Previous project",
+    "next": "Next project",
+    "carousel-label": "carousel",
+    "choose-label": "Choose project",
+    "go-to": "Go to project {{n}}",
+    "benefits": {
+      "chip": "Benefits",
+      "title-before": "Why switch to the ",
+      "title-accent": "sun",
+      "items": [
+        "Significant reduction in energy costs.",
+        "Direct contribution to caring for the environment.",
+        "Full compliance with technical and legal regulations.",
+        "Customized solutions according to each need.",
+        "Greater energy independence and return on investment."
+      ]
+    },
+    "expert": {
+      "title": "Did you like any of these projects?",
+      "text": "Tell us what you have in mind and an expert will give you more information and a quote.",
+      "button": "Request information",
+      "message": "Hello Soltherra, I saw your projects on the website and I would like more information about the service. Can an expert advise me?"
+    },
+    "items": {
+      "42": {
+        "title": "Huawei inverter with DC panel",
+        "alt": "Huawei solar inverter on a white brick wall with DC panel and labeled metal conduit"
+      },
+      "44": {
+        "title": "Labeled Huawei inverter",
+        "alt": "Huawei solar inverter with electrical hazard signage and DC protection panel under the unit"
+      },
+      "45": {
+        "title": "Inverter with single-line diagram",
+        "alt": "Huawei solar inverter with conduits and the photovoltaic system's single-line diagram attached to the wall"
+      },
+      "47": {
+        "title": "Inverter, battery and charger",
+        "alt": "Solar inverter and lithium battery installed on a white brick wall with a protection panel and an electric vehicle charger"
+      },
+      "5": {
+        "title": "Collectors on terrace with lake view",
+        "alt": "Solar collectors on a terrace with a view of a lake"
+      },
+      "6": {
+        "title": "Photovoltaic and thermal on the same roof",
+        "alt": "Photovoltaic panels and evacuated-tube collectors on the same roof"
+      },
+      "9": {
+        "title": "Collector mounting on roof",
+        "alt": "Evacuated-tube solar collectors on a blue roof"
+      },
+      "10": {
+        "title": "Inverter with electrical conduit",
+        "alt": "Solar inverter installed on a wall with electrical conduit"
+      },
+      "12": {
+        "title": "Inverter and protections",
+        "alt": "Solar inverter with safety signage and electrical protections"
+      },
+      "41": {
+        "title": "Measurement and control panel",
+        "alt": "Transparent electrical panel with energy meter, timer and protections, with the Soltherra label, installed outdoors"
+      },
+      "13": {
+        "title": "Measurement with multimeter",
+        "alt": "Multimeter measuring the voltage of a battery bank"
+      },
+      "14": {
+        "title": "Power quality analysis",
+        "alt": "Energy analyzer screen showing waveforms"
+      },
+      "15": {
+        "title": "Lithium batteries",
+        "alt": "LiFePO4 lithium battery installed on a wall on a metal rail"
+      },
+      "16": {
+        "title": "Production and consumption monitoring",
+        "alt": "Monitoring panel with energy flow between panels, batteries, grid and consumption"
+      },
+      "17": {
+        "title": "Thermal system pump and pipes",
+        "alt": "Pipe and red circulation pump of a solar thermal system"
+      },
+      "18": {
+        "title": "Compact wall inverter",
+        "alt": "Compact white solar inverter mounted on a wall"
+      },
+      "19": {
+        "title": "Collectors next to the pool",
+        "alt": "Pool with solar thermal collectors on a structure next to the water"
+      },
+      "20": {
+        "title": "Wall charger in the parking lot",
+        "alt": "Electric vehicle charger installed on the wall of a parking lot with its protection panel"
+      },
+      "21": {
+        "title": "Electric car charging",
+        "alt": "Electric car connected to a charging point installed on the ceiling of a parking lot"
+      },
+      "22": {
+        "title": "Charger with coiled cable",
+        "alt": "Enel X electric vehicle charger on a plate with an electrical hazard sign, with the cable coiled, in a parking lot with cars"
+      },
+      "23": {
+        "title": "Inverter and protections inspection",
+        "alt": "White solar inverter with wiring and protection boxes labeled with an electrical hazard notice"
+      },
+      "24": {
+        "title": "Hybrid inverter and battery inspection",
+        "alt": "Hybrid inverter and lithium battery installed on a wall with protection panels"
+      },
+      "25": {
+        "title": "Pool pump panels",
+        "alt": "Control panels for the pool and jacuzzi pumps with voltage and current meters"
+      },
+      "26": {
+        "title": "Collector washing",
+        "alt": "Evacuated-tube solar collectors on a roof, some of them already clean"
+      },
+      "27": {
+        "title": "Cleaning of pipe with sediment",
+        "alt": "Pipe disconnected from the solar thermal system full of sand and sediment"
+      },
+      "28": {
+        "title": "Pool and jacuzzi heating",
+        "alt": "Evacuated-tube solar collectors on a metal structure next to a pool"
+      },
+      "30": {
+        "title": "Pool equipment room",
+        "alt": "Sand filter, valves, pipes and ultraviolet light equipment in a pool equipment room"
+      },
+      "31": {
+        "title": "Collectors facing the lake",
+        "alt": "Solar thermal collectors on a metal structure next to a lake surrounded by coffee plantations"
+      },
+      "32": {
+        "title": "Collectors on metal roof",
+        "alt": "Evacuated-tube solar collectors on metal structures on a roof, with hills in the background"
+      },
+      "33": {
+        "title": "Collectors on the lawn",
+        "alt": "Four solar thermal collectors mounted on a metal structure on the lawn"
+      },
+      "34": {
+        "title": "Evacuated tubes on terrace",
+        "alt": "Aerial view of several evacuated-tube collectors on a black structure on a terrace"
+      },
+      "35": {
+        "title": "Tilted collectors on terrace",
+        "alt": "Four tilted solar thermal collectors on a terrace floor"
+      },
+      "36": {
+        "title": "Photovoltaic panels on tile roof",
+        "alt": "Photovoltaic solar panels installed on a green tile roof surrounded by vegetation"
+      },
+      "38": {
+        "title": "Panels on terrace",
+        "alt": "Blue solar panels installed on a terrace with hills in the background"
+      },
+      "39": {
+        "title": "Autonomous solar light",
+        "alt": "Pole with solar panel, floodlight and control box for autonomous lighting"
+      },
+      "40": {
+        "title": "Charger with protection panel",
+        "alt": "Charging point with protection panel and electrical hazard sign next to an electric car"
+      }
+    }
+  },
+  "contact": {
+    "chip": "Contact",
+    "slogan-before": "Sustainable energy that ",
+    "slogan-accent": "transforms",
+    "slogan-after": " your future.",
+    "phone": "Mobile",
+    "email": "Email",
+    "address": "Address",
+    "map-title": "Soltherra location, Calle 28 N° 86-70, Cali",
+    "map-link": "Open in Google Maps",
+    "form": {
+      "title": "Tell us what you need",
+      "name": "Your name",
+      "name-placeholder": "First and last name",
+      "service": "Service of interest",
+      "services": [
+        "Photovoltaic system",
+        "Solar thermal system",
+        "Pool and jacuzzi heating",
+        "Maintenance",
+        "Charging points for electric vehicles",
+        "Procedures and tax benefits",
+        "Equipment sales for your project"
+      ],
+      "message": "Message (optional)",
+      "message-placeholder": "E.g. house of 4 people in Cali, bill of $400,000",
+      "consent-before": "I authorize the processing of my data to receive a quote, according to the",
+      "consent-link": "privacy policy",
+      "consent-after": ".",
+      "submit": "Send via WhatsApp",
+      "note": "This page does not store your data: WhatsApp will open with your message ready to send."
+    },
+    "whatsapp": "Hello Soltherra, I am {{name}}. I am interested in: {{service}}."
+  },
+  "privacy": {
+    "title": "Privacy policy",
+    "updated": "Last updated: November 2026.",
+    "sections": [
+      {
+        "title": "Who is responsible",
+        "text": "Soltherra S.A.S., {{address}}. Email for personal data matters:",
+        "email": true,
+        "after": "."
+      },
+      {
+        "title": "What data we use and why",
+        "text": "Only what you write in the contact form: your name, the service you are interested in and, if you wish, a message. We use it solely to reply to you and send you a quote."
+      },
+      {
+        "title": "Where your data ends up",
+        "text": "This page does not store what you write. When you submit the form, WhatsApp opens with your message already written, and you are the one who sends it. From that moment the message is handled by WhatsApp under its own terms, and we keep it in our WhatsApp only for the time needed to assist you."
+      },
+      {
+        "title": "Consent",
+        "text": "Before submitting the form you must check the authorization box. Without it, no message is generated. You can withdraw your authorization at any time."
+      },
+      {
+        "title": "Cookies and measurement",
+        "text": "We do not use advertising or tracking cookies. We measure visits with Google Analytics, which counts page views in aggregate, without cookies and without identifying you. The map on the contact page is loaded by Google Maps."
+      },
+      {
+        "title": "Your rights",
+        "text": "You can access, update, rectify and request that we delete your data, and revoke your authorization (Law 1581 of 2012). Write to us at",
+        "email": true,
+        "after": " and we will reply within a maximum of fifteen business days. You can also go to the Superintendence of Industry and Commerce."
+      },
+      {
+        "title": "Security",
+        "text": "The page is served only over HTTPS and with security headers. To report a security flaw, write to",
+        "email": true,
+        "after": "."
+      }
+    ]
+  },
+  "seo": {
+    "inicio": {
+      "title": "Photovoltaic and solar thermal energy in Cali | Soltherra",
+      "description": "Soltherra S.A.S. in Cali: design, installation and maintenance of photovoltaic and solar thermal systems for homes, businesses and institutions."
+    },
+    "servicios": {
+      "title": "Solar services in Cali | Soltherra",
+      "description": "Solar panels, solar water heaters, pool heating, electric vehicle chargers, maintenance and grid operator procedures in Cali."
+    },
+    "como-funciona": {
+      "title": "How a solar system works | Soltherra",
+      "description": "From the sun to your home: how a solar system works and what Soltherra's process is, from the technical visit and engineering to installation and commissioning."
+    },
+    "trabajos": {
+      "title": "Real solar installations in Cali | Soltherra",
+      "description": "Real Soltherra projects in Cali and Valle del Cauca: photovoltaic panels, solar thermal collectors, pools, electric vehicle chargers and maintenance."
+    },
+    "contacto": {
+      "title": "Get a solar energy quote in Cali | Soltherra",
+      "description": "Write to us on WhatsApp at +57 313 813 0046 or visit us at Calle 28 N° 86-70, Cali, to get a quote for your solar system."
+    },
+    "privacidad": {
+      "title": "Privacy policy | Soltherra",
+      "description": "How Soltherra S.A.S. handles the data you leave in the contact form: what is used, for what, where it ends up and how to exercise your rights."
+    }
+  },
+  "images": {
+    "hero": "Photovoltaic solar panels installed on a metal roof, with trees and buildings in the background",
+    "about": "Array of solar panels on a metal structure on a hillside with a view of the valley",
+    "services": {
+      "fotovoltaico": [
+        "Photovoltaic solar panels installed on a green tile roof surrounded by vegetation",
+        "Solar inverter installed on a wall with electrical conduit"
+      ],
+      "termico": [
+        "Evacuated-tube solar thermal collectors installed next to a house",
+        "Evacuated-tube solar collectors on metal structures on a roof, with hills in the background"
+      ],
+      "piscina": [
+        "Pool with solar thermal collectors on a structure next to the water",
+        "Water pump and pipes of a solar thermal system"
+      ],
+      "carga-ev": [
+        "Electric vehicle charger installed on the wall of a parking lot with its protection panel",
+        "Electric car connected to a charging point installed on the ceiling of a parking lot"
+      ],
+      "mantenimiento": [
+        "Multimeter measuring the voltage of a battery bank",
+        "Technician tightening the wiring of a solar system with a wrench"
+      ],
+      "tramites": [
+        "Solar inverter installed and labeled on the wall",
+        "Monitoring screen showing energy production and consumption"
+      ]
+    },
+    "solutions": {
+      "fotovoltaicos": "Array of solar panels on a metal structure on a hillside with a view of the valley",
+      "termicos": "Field of evacuated-tube solar collectors on a black structure on a terrace",
+      "mantenimiento": "Control panels with voltage and current meters for the pool and jacuzzi pumps",
+      "tramites": "Compact white solar inverter mounted on a wall",
+      "carga-ev": "Electric vehicle charger installed on the wall of a parking lot with its protection panel"
+    }
+  }
+}

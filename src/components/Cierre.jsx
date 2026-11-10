@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { BotonWA, Chip } from './Comunes.jsx'
 import { nav } from '../data/contenido.js'
@@ -6,23 +7,24 @@ import { nav } from '../data/contenido.js'
 const destinos = nav.filter(([, href]) => href !== '/home' && href !== '/contacto')
 
 export default function Cierre() {
+  const { t } = useTranslation('global')
   return (
     <section className="seccion cierre" aria-labelledby="t-cierre">
       <div className="contenedor">
         <div className="cierre__cabeza">
           <div>
-            <Chip>Sigue explorando</Chip>
+            <Chip>{t('home.closing.chip')}</Chip>
             <h2 id="t-cierre">
-              Conoce más de <em className="acento">Soltherra</em>
+              {t('home.closing.title-before')}<em className="acento">{t('home.closing.title-accent')}</em>
             </h2>
           </div>
-          <BotonWA texto="Cotizar por WhatsApp" />
+          <BotonWA texto={t('whatsapp.quote')} />
         </div>
         <ul className="cierre__lista">
-          {destinos.map(([etiqueta, href]) => (
+          {destinos.map(([clave, href]) => (
             <li key={href}>
               <a className="cierre__enlace" href={href}>
-                <span>{etiqueta}</span>
+                <span>{t(`menu.${clave}`)}</span>
                 <span className="cierre__flecha" aria-hidden="true">
                   <Icono nombre="arrow_outward" />
                 </span>

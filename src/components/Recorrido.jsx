@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { historia } from '../data/contenido.js'
@@ -10,6 +11,8 @@ const esTactil = () => window.matchMedia('(pointer: coarse)').matches
 const sinSuscripcion = () => () => {}
 
 export default function Recorrido() {
+  const { t } = useTranslation('global')
+  const textos = t('how-it-works.tour.steps', { returnObjects: true })
   const seccion = useRef(null)
   const lienzo = useRef(null)
   const [paso, setPaso] = useState(0)
@@ -76,18 +79,18 @@ export default function Recorrido() {
       <div className="recorrido__fijo">
         <div className="contenedor recorrido__rejilla">
           <div className="recorrido__texto">
-            <Chip claro>Cómo funciona</Chip>
+            <Chip claro>{t('how-it-works.tour.chip')}</Chip>
             <h1 id="t-recorrido" data-titulo>
-              Del <em className="acento">sol</em> a tu casa
+              {t('how-it-works.tour.title-before')}<em className="acento">{t('how-it-works.tour.title-accent')}</em>{t('how-it-works.tour.title-after')}
             </h1>
             <ol className="recorrido__pasos">
-              {historia.map((h, i) => (
-                <li key={h.titulo} aria-current={i === paso ? 'step' : undefined} data-visto={i <= paso || undefined}>
+              {historia.map((icono, i) => (
+                <li key={icono} aria-current={i === paso ? 'step' : undefined} data-visto={i <= paso || undefined}>
                   <span className="recorrido__icono">
-                    <Icono nombre={h.icono} />
+                    <Icono nombre={icono} />
                   </span>
                   <div>
-                    <p>{h.texto}</p>
+                    <p>{textos[i].text}</p>
                   </div>
                 </li>
               ))}
@@ -97,16 +100,16 @@ export default function Recorrido() {
             <canvas
               ref={lienzo}
               role="img"
-              aria-label="Escena en 3D: el sol ilumina el panel solar del techo, la energía pasa por el inversor y se encienden las ventanas de la casa"
+              aria-label={t('how-it-works.tour.scene-label')}
             />
             {tactil ? (
               // En el celular la casa solo se gira con el dedo después de tocar este botón, para que un roce al hacer scroll no la mueva.
               <button type="button" className="recorrido__girar" aria-pressed={girando} onClick={alternarGiro}>
-                <Icono nombre="rotate_360" /> {girando ? 'Desliza la casa · Toca para soltar' : 'Toca para girar la casa'}
+                <Icono nombre="rotate_360" /> {girando ? t('how-it-works.tour.spin-on') : t('how-it-works.tour.spin-off')}
               </button>
             ) : (
               <figcaption>
-                <Icono nombre="rotate_360" /> Arrastra para girar la casa
+                <Icono nombre="rotate_360" /> {t('how-it-works.tour.drag')}
               </figcaption>
             )}
           </figure>

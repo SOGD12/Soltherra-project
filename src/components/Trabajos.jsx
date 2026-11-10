@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { categorias } from '../data/contenido.js'
@@ -37,6 +38,7 @@ const suscribirAncho = (aviso) => {
 const useVisibles = () => useSyncExternalStore(suscribirAncho, calcVisibles, () => 3)
 
 export default function Trabajos() {
+  const { t } = useTranslation('global')
   const [trabajos, setTrabajos] = useState(trabajosIniciales)
   const [categoria, setCategoria] = useState('fotovoltaico')
   const [indice, setIndice] = useState(0)
@@ -140,15 +142,15 @@ export default function Trabajos() {
       <div className="contenedor">
         <div className="titulo-seccion titulo-seccion--fila">
           <div>
-            <Chip>Obras reales</Chip>
+            <Chip>{t('works.chip')}</Chip>
             <h1 data-titulo>
-              Nuestros <em className="acento">trabajos</em>
+              {t('works.title-before')}<em className="acento">{t('works.title-accent')}</em>
             </h1>
           </div>
         </div>
         <div className="trabajos__barra">
-          <div className="pestanas" role="tablist" aria-label="Tipo de trabajo">
-            {categorias.map(([clave, texto, icono]) => (
+          <div className="pestanas" role="tablist" aria-label={t('works.tablist-label')}>
+            {categorias.map(([clave, icono]) => (
               <button
                 key={clave}
                 type="button"
@@ -164,15 +166,15 @@ export default function Trabajos() {
                 onFocus={() => adelantar(clave)}
               >
                 <Icono nombre={icono} />
-                <span>{texto}</span>
+                <span>{t(`works.categories.${clave}`)}</span>
               </button>
             ))}
           </div>
           <div className="carrusel__flechas">
-            <button type="button" onClick={() => mover(-1)} aria-label="Trabajo anterior">
+            <button type="button" onClick={() => mover(-1)} aria-label={t('works.previous')}>
               <Icono nombre="arrow_back" />
             </button>
-            <button type="button" onClick={() => mover(1)} aria-label="Trabajo siguiente">
+            <button type="button" onClick={() => mover(1)} aria-label={t('works.next')}>
               <Icono nombre="arrow_forward" />
             </button>
           </div>
@@ -183,7 +185,7 @@ export default function Trabajos() {
           className="carrusel"
           role="tabpanel"
           aria-labelledby={`tab-${categoria}`}
-          aria-roledescription="carrusel"
+          aria-roledescription={t('works.carousel-label')}
           style={{ '--v': visibles, '--i': posicion, '--dx': `${arrastre}px` }}
           data-arrastrando={arrastrando || undefined}
           onMouseEnter={() => setPausa(true)}
@@ -201,28 +203,27 @@ export default function Trabajos() {
             onPointerCancel={terminarArrastre}
           >
             <ul key={categoria} className="carrusel__pista">
-              {lista.map((t, k) => {
+              {lista.map((w, k) => {
                 const dentro = k >= posicion && k < posicion + visibles
                 const cerca = k < posicion + visibles + 2
                 return (
-                  <li key={t.id} className="tarjeta" aria-hidden={!dentro} inert={!dentro}>
-                    <img src={t.foto} alt={t.alt} width={t.ancho} height={t.alto} loading={cerca ? 'eager' : 'lazy'} fetchPriority={dentro ? 'high' : undefined} decoding="async" />
+                  <li key={w.id} className="tarjeta" aria-hidden={!dentro} inert={!dentro}>
+                    <img src={w.foto} alt={t(`works.items.${w.id}.alt`, { defaultValue: w.alt })} width={w.ancho} height={w.alto} loading={cerca ? 'eager' : 'lazy'} fetchPriority={dentro ? 'high' : undefined} decoding="async" />
                     <span className="tarjeta__velo" aria-hidden="true" />
                     <div className="tarjeta__texto">
-                      <h3>{t.titulo}</h3>
-                      {t.cliente && <p>{t.cliente}</p>}
+                      <h3>{t(`works.items.${w.id}.title`, { defaultValue: w.titulo })}</h3>
                     </div>
                   </li>
                 )
               })}
             </ul>
           </div>
-          <div className="carrusel__puntos" role="group" aria-label="Elegir trabajo">
+          <div className="carrusel__puntos" role="group" aria-label={t('works.choose-label')}>
             {Array.from({ length: maximo + 1 }, (_, k) => (
               <button
                 key={k}
                 type="button"
-                aria-label={`Ir al trabajo ${k + 1}`}
+                aria-label={t('works.go-to', { n: k + 1 })}
                 aria-current={k === posicion}
                 data-auto={automatico && k === posicion ? 'si' : undefined}
                 onClick={() => setIndice(k)}

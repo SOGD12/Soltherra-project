@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 
 /** Carga Anime.js aparte, después del primer pintado, para no engordar el paquete inicial.
  *  Se vuelve a iniciar en cada página, porque cada una monta secciones distintas. */
-export default function useAnimaciones(pagina) {
+export default function useAnimaciones(pagina, idioma) {
   useEffect(() => {
     document.documentElement.classList.add('js')
     let vivo = true
@@ -14,5 +14,5 @@ export default function useAnimaciones(pagina) {
       vivo = false
       limpiar()
     }
-  }, [pagina])
+  }, [pagina, idioma])
 }

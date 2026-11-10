@@ -1,7 +1,7 @@
+import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { BotonWA, Chip } from './Comunes.jsx'
 import fotosServicio from '../data/imagenes/servicios.json'
-import { fotovoltaico, termico, piscina, cargaEV, mantenimiento, tramites } from '../data/contenido.js'
 
 function Lista({ items }) {
   return (
@@ -16,27 +16,33 @@ function Lista({ items }) {
   )
 }
 
-function Servicio({ id, inversa, panoramica, icono, chip, titulo, texto, items, cierre, mensaje, fotos }) {
+// `clave` es la sección de global.json (services.<clave>) con chip, title, text, list, closing y message.
+// `fotos` es la clave de servicios.json y de images.services.* (alt de cada foto).
+function Servicio({ id, clave, inversa, panoramica, icono, fotos }) {
+  const { t } = useTranslation('global')
+  const imagenes = fotosServicio[fotos]
+  // Español: alt del JSON de la foto; inglés: images.services.<fotos>.<posición> en global.json
+  const alt = (k) => t(`images.services.${fotos}.${k}`, { defaultValue: imagenes[k].alt })
   return (
     <section className={`seccion servicio ${inversa ? 'servicio--inversa' : ''} ${panoramica ? 'servicio--panoramica' : ''}`} id={id}>
       <div className="contenedor servicio__rejilla">
         <div className="servicio__fotos">
           <figure className="foto servicio__principal" data-parallax>
-            <img src={fotos[0].foto} alt={fotos[0].alt} width={fotos[0].ancho} height={fotos[0].alto} loading="lazy" />
+            <img src={imagenes[0].foto} alt={alt(0)} width={imagenes[0].ancho} height={imagenes[0].alto} loading="lazy" />
           </figure>
           <figure className="foto servicio__inserto" data-flotar>
-            <img src={fotos[1].foto} alt={fotos[1].alt} width={fotos[1].ancho} height={fotos[1].alto} loading="lazy" />
+            <img src={imagenes[1].foto} alt={alt(1)} width={imagenes[1].ancho} height={imagenes[1].alto} loading="lazy" />
           </figure>
         </div>
         <div className="servicio__texto">
           <Chip>
-            <Icono nombre={icono} /> {chip}
+            <Icono nombre={icono} /> {t(`services.${clave}.chip`)}
           </Chip>
-          <h2 data-titulo>{titulo}</h2>
-          <p>{texto}</p>
-          <Lista items={items} />
-          <p className="servicio__cierre">{cierre}</p>
-          <BotonWA texto="Hablar con un experto" mensaje={mensaje} />
+          <h2 data-titulo>{t(`services.${clave}.title`)}</h2>
+          <p>{t(`services.${clave}.text`)}</p>
+          <Lista items={t(`services.${clave}.list`, { returnObjects: true })} />
+          <p className="servicio__cierre">{t(`services.${clave}.closing`)}</p>
+          <BotonWA texto={t('whatsapp.expert')} mensaje={t(`services.${clave}.message`)} />
         </div>
       </div>
     </section>
@@ -44,86 +50,23 @@ function Servicio({ id, inversa, panoramica, icono, chip, titulo, texto, items, 
 }
 
 export default function Servicios() {
+  const { t } = useTranslation('global')
   return (
     <>
       <section className="seccion servicios__intro" id="servicios" aria-labelledby="t-servicios">
         <div className="contenedor titulo-seccion">
-          <Chip>Servicios</Chip>
+          <Chip>{t('services.intro.chip')}</Chip>
           <h2 id="t-servicios" data-titulo>
-            Todo lo que hacemos con <em className="acento">energía solar</em>
+            {t('services.intro.title-before')}<em className="acento">{t('services.intro.title-accent')}</em>
           </h2>
         </div>
       </section>
-      <Servicio
-        id="fotovoltaico"
-        icono="solar_power"
-        chip="Fotovoltaico"
-        titulo="Diseño e instalación de sistemas solares fotovoltaicos"
-        texto="Soluciones integrales en energía solar, desde el diseño hasta la puesta en marcha de sistemas fotovoltaicos adaptados a hogares, empresas e instituciones, garantizando eficiencia, seguridad y cumplimiento normativo."
-        items={fotovoltaico}
-        cierre="Reduce costos energéticos y dependencia de la red eléctrica."
-        mensaje="Hola Soltherra, quiero información sobre sistemas solares fotovoltaicos."
-        fotos={fotosServicio['fotovoltaico']}
-      />
-      <Servicio
-        id="termico"
-        inversa
-        icono="thermostat"
-        chip="Térmico"
-        titulo="Diseño e instalación de sistemas solares térmicos"
-        texto="Diseñamos e instalamos sistemas solares térmicos para el aprovechamiento eficiente de la radiación solar, ofreciendo soluciones sostenibles para climatización y calentamiento de agua en hogares, empresas e instituciones."
-        items={termico}
-        cierre="Ahorro energético sostenible con confort térmico continuo."
-        mensaje="Hola Soltherra, quiero información sobre sistemas solares térmicos."
-        fotos={fotosServicio['termico']}
-      />
-      <Servicio
-        id="piscina"
-        panoramica
-        icono="pool"
-        chip="Climatización de piscinas y jacuzzis"
-        titulo="Climatización de piscinas y jacuzzis con energía solar"
-        texto="Calentamos tu piscina y tu jacuzzi aprovechando el sol: sistemas solares térmicos dimensionados para tu piscina o jacuzzi, con instalación completa y puesta en marcha."
-        items={piscina}
-        cierre="Disfruta tu piscina y tu jacuzzi todo el año con energía limpia."
-        mensaje="Hola Soltherra, quiero información sobre climatización de piscinas y jacuzzis con energía solar."
-        fotos={fotosServicio['piscina']}
-      />
-      <Servicio
-        id="carga-ev"
-        inversa
-        icono="ev_station"
-        chip="Carga de vehículos eléctricos"
-        titulo="Puntos de carga para vehículos eléctricos"
-        texto="Instalamos puntos de carga para tu vehículo eléctrico en casa, edificio, empresa o parqueadero, y los podemos alimentar con tu propio sistema solar para moverte con energía limpia."
-        items={cargaEV}
-        cierre="Carga tu vehículo con el sol y gasta menos en cada recorrido."
-        mensaje="Hola Soltherra, quiero información sobre puntos de carga para vehículos eléctricos."
-        fotos={fotosServicio['carga-ev']}
-      />
-      <Servicio
-        id="mantenimiento"
-        icono="build"
-        chip="Mantenimiento"
-        titulo="Mantenimiento preventivo y correctivo"
-        texto="Ejecutamos mediciones de control y mantenimiento preventivo para prevenir fallas operativas, buscando optimizar la generación energética y prolongar la vida útil de tus equipos."
-        items={mantenimiento}
-        cierre="Un sistema bien cuidado rinde más y dura más."
-        mensaje="Hola Soltherra, quiero información sobre mantenimiento de mi sistema solar."
-        fotos={fotosServicio['mantenimiento']}
-      />
-      <Servicio
-        id="tramites"
-        inversa
-        icono="receipt_long"
-        chip="Trámites y beneficios"
-        titulo="Trámites y beneficios tributarios"
-        texto="La ley colombiana premia a quien invierte en energía solar. Te acompañamos ante las entidades para que tu proyecto acceda a los incentivos tributarios que le corresponden."
-        items={tramites}
-        cierre="Menos impuestos y una inversión que se paga más rápido."
-        mensaje="Hola Soltherra, quiero información sobre trámites y beneficios tributarios."
-        fotos={fotosServicio['tramites']}
-      />
+      <Servicio id="fotovoltaico" clave="photovoltaic" icono="solar_power" fotos="fotovoltaico" />
+      <Servicio id="termico" clave="thermal" inversa icono="thermostat" fotos="termico" />
+      <Servicio id="piscina" clave="pool" panoramica icono="pool" fotos="piscina" />
+      <Servicio id="carga-ev" clave="ev" inversa icono="ev_station" fotos="carga-ev" />
+      <Servicio id="mantenimiento" clave="maintenance" icono="build" fotos="mantenimiento" />
+      <Servicio id="tramites" clave="procedures" inversa icono="receipt_long" fotos="tramites" />
     </>
   )
 }

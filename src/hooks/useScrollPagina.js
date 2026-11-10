@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { useTranslation } from 'react-i18next'
 import { aplicarSeo } from '../seo.js'
 
 /** Baja al bloque pedido y lo mantiene en su sitio un instante mientras cargan fuentes e imágenes.
@@ -23,8 +24,12 @@ function irAlBloque(destino) {
 /** Al cambiar de página: actualiza el SEO, vuelve arriba (o baja al bloque pedido) y pasa el foco al contenido nuevo. */
 export default function useScrollPagina(pagina, ancla) {
   const anterior = useRef(pagina)
+  const { t, i18n } = useTranslation('global')
+  // El SEO se actualiza también al cambiar de idioma, sin mover el scroll.
   useEffect(() => {
-    aplicarSeo(pagina)
+    aplicarSeo(pagina, { titulo: t(`seo.${pagina}.title`), descripcion: t(`seo.${pagina}.description`) })
+  }, [pagina, i18n.language, t])
+  useEffect(() => {
     const destino = ancla && document.getElementById(ancla)
     let cancelar = () => {}
     if (destino) cancelar = irAlBloque(destino)

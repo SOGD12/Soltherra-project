@@ -1,26 +1,28 @@
+import { useTranslation } from 'react-i18next'
 import { WA, INSTAGRAM, FACEBOOK, nav } from '../data/contenido.js'
 
 export default function Pie() {
+  const { t } = useTranslation('global')
   return (
     <footer className="pie">
       <div className="contenedor pie__rejilla">
         <div className="pie__marca">
           <p className="pie__nombre">Soltherra S.A.S.</p>
-          <p>Energía Sostenible. Sistemas solares fotovoltaicos y solares térmicos.</p>
+          <p>{t('footer.tagline')}</p>
         </div>
         <div className="pie__cols">
-          <nav aria-label="Pie de página">
-            <p className="pie__titulo">Secciones</p>
+          <nav aria-label={t('footer.nav-label')}>
+            <p className="pie__titulo">{t('footer.sections')}</p>
             <ul>
-              {nav.map(([t, h]) => (
+              {nav.map(([clave, h]) => (
                 <li key={h}>
-                  <a href={h}>{t}</a>
+                  <a href={h}>{t(`menu.${clave}`)}</a>
                 </li>
               ))}
             </ul>
           </nav>
           <div>
-            <p className="pie__titulo">Síguenos</p>
+            <p className="pie__titulo">{t('footer.follow')}</p>
             <ul>
               <li>
                 <a href={INSTAGRAM} target="_blank" rel="noopener noreferrer">
@@ -46,7 +48,7 @@ export default function Pie() {
       </p>
       <div className="contenedor">
         <p className="pie__legal">
-          © 2026 Soltherra S.A.S. · <a href="/privacidad">Política de privacidad</a>
+          {t('footer.legal')} <a href="/privacidad">{t('footer.privacy')}</a>
         </p>
       </div>
     </footer>

@@ -1,22 +1,25 @@
+import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { pasos } from '../data/contenido.js'
 
 export default function Proceso() {
+  const { t } = useTranslation('global')
+  const textos = t('how-it-works.process.steps', { returnObjects: true })
   return (
     <section className="seccion proceso" id="proceso" aria-labelledby="t-proceso">
       <div className="contenedor">
         <div className="titulo-seccion titulo-seccion--fila">
           <div>
-            <Chip>Proceso</Chip>
+            <Chip>{t('how-it-works.process.chip')}</Chip>
             {/* Las palabras van en cajas para que el CSS las haga subir una a una (ver .pal en src/styles/base.css) */}
             <h2 id="t-proceso" data-palabras>
               <span className="pal" style={{ '--i': 0 }}>
-                <span>Cómo</span>
+                <span>{t('how-it-works.process.title-1')}</span>
               </span>{' '}
               <em className="acento">
                 <span className="pal" style={{ '--i': 1 }}>
-                  <span>trabajamos</span>
+                  <span>{t('how-it-works.process.title-2')}</span>
                 </span>
               </em>
             </h2>
@@ -28,16 +31,16 @@ export default function Proceso() {
             <span />
           </span>
           <ol className="pasos">
-            {pasos.map((p, i) => (
-              <li key={p.titulo}>
+            {pasos.map((icono, i) => (
+              <li key={icono}>
                 <span className="pasos__marca">
-                  <Icono nombre={p.icono} />
+                  <Icono nombre={icono} />
                 </span>
                 <span className="pasos__n" aria-hidden="true">
                   0{i + 1}
                 </span>
-                <h3>{p.titulo}</h3>
-                <p>{p.texto}</p>
+                <h3>{textos[i].title}</h3>
+                <p>{textos[i].text}</p>
               </li>
             ))}
           </ol>

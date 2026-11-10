@@ -49,24 +49,14 @@ export const CONTENIDO_DE_PAGINA = {
       <Proceso />
       <Infografias />
       <Monitoreo />
-      <LlamadaExperto
-        titulo="¿Quieres ver cómo quedaría en tu casa o empresa?"
-        texto="Un experto de Soltherra te explica el proceso paso a paso y resuelve tus dudas."
-        boton="Hablar con un experto"
-        mensaje="Hola Soltherra, vi la sección «Cómo funciona» de su página y quiero hablar con un experto para que me expliquen cómo sería el proceso en mi caso."
-      />
+      <LlamadaExperto clave="how-it-works.expert" />
     </>
   ),
   trabajos: () => (
     <>
       <Trabajos />
       <Beneficios />
-      <LlamadaExperto
-        titulo="¿Te gustó alguno de estos trabajos?"
-        texto="Cuéntanos qué tienes en mente y un experto te da más información y una cotización."
-        boton="Pedir información"
-        mensaje="Hola Soltherra, vi sus trabajos en la página y quiero más información sobre el servicio. ¿Me puede asesorar un experto?"
-      />
+      <LlamadaExperto clave="works.expert" />
     </>
   ),
   contacto: () => <Contacto />,

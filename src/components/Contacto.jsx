@@ -1,11 +1,15 @@
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Icono, IconoWhatsApp } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
-import { TEL, TEL2, CORREO, DIRECCION, SERVICIOS_FORMULARIO, mensajeContacto, wa, MAPA } from '../data/contenido.js'
+import { TEL, TEL2, CORREO, DIRECCION, mensajeContacto, wa, MAPA } from '../data/contenido.js'
 
 function Formulario() {
+  const { t } = useTranslation('global')
+  const servicios = t('contact.form.services', { returnObjects: true })
   const [nombre, setNombre] = useState('')
-  const [servicio, setServicio] = useState(SERVICIOS_FORMULARIO[0])
+  // Se guarda la posición del servicio (no el texto) para que siga elegido al cambiar de idioma.
+  const [servicio, setServicio] = useState(0)
   const [mensaje, setMensaje] = useState('')
   const [acepta, setAcepta] = useState(false)
 
@@ -13,72 +17,75 @@ function Formulario() {
     e.preventDefault()
     // Consentimiento explícito (ISO/IEC 27701): sin la casilla marcada no se arma ningún mensaje.
     if (!acepta) return
-    window.open(wa(mensajeContacto({ nombre, servicio, mensaje })), '_blank', 'noopener,noreferrer')
+    window.open(wa(mensajeContacto({ base: t('contact.whatsapp'), nombre, servicio: servicios[servicio], mensaje })), '_blank', 'noopener,noreferrer')
   }
 
   return (
     <form className="formulario" onSubmit={enviar}>
-      <h3>Cuéntanos qué necesitas</h3>
+      <h3>{t('contact.form.title')}</h3>
       <label>
-        <span>Tu nombre</span>
+        <span>{t('contact.form.name')}</span>
         <input
           type="text"
           name="nombre"
           required
           maxLength={80}
           autoComplete="name"
-          placeholder="Nombre y apellido"
+          placeholder={t('contact.form.name-placeholder')}
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
         />
       </label>
       <label>
-        <span>Servicio de interés</span>
-        <select name="servicio" value={servicio} onChange={(e) => setServicio(e.target.value)}>
-          {SERVICIOS_FORMULARIO.map((opcion) => (
-            <option key={opcion}>{opcion}</option>
+        <span>{t('contact.form.service')}</span>
+        <select name="servicio" value={servicio} onChange={(e) => setServicio(Number(e.target.value))}>
+          {servicios.map((opcion, i) => (
+            <option key={opcion} value={i}>
+              {opcion}
+            </option>
           ))}
         </select>
       </label>
       <label>
-        <span>Mensaje (opcional)</span>
-        <textarea name="mensaje" rows="3" placeholder="Ej. casa de 4 personas en Cali, factura de $400.000" maxLength={500} value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
+        <span>{t('contact.form.message')}</span>
+        <textarea name="mensaje" rows="3" placeholder={t('contact.form.message-placeholder')} maxLength={500} value={mensaje} onChange={(e) => setMensaje(e.target.value)} />
       </label>
       <label className="formulario__acepto">
         <input type="checkbox" name="acepto" required checked={acepta} onChange={(e) => setAcepta(e.target.checked)} />
         <span>
-          Autorizo el tratamiento de mis datos para recibir una cotización, según la{' '}
+          {t('contact.form.consent-before')}{' '}
           <a href="/privacidad" target="_blank" rel="noopener noreferrer">
-            política de privacidad
+            {t('contact.form.consent-link')}
           </a>
-          .
+          {t('contact.form.consent-after')}
         </span>
       </label>
       <button type="submit" className="boton">
         <IconoWhatsApp />
-        <span>Enviar por WhatsApp</span>
+        <span>{t('contact.form.submit')}</span>
       </button>
-      <p className="formulario__nota">Esta página no guarda tus datos: se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+      <p className="formulario__nota">{t('contact.form.note')}</p>
     </form>
   )
 }
 
 export default function Contacto() {
+  const { t } = useTranslation('global')
   return (
     <section className="seccion-isla" id="contacto">
       <div className="isla contacto" data-isla>
         <span className="isla__brillo" aria-hidden="true" />
         <div className="contenedor">
-          <Chip claro>Contacto</Chip>
+          <Chip claro>{t('contact.chip')}</Chip>
           <h1 className="contacto__lema" data-titulo>
-            Energía sostenible que <em className="acento">transforma</em> tu futuro.
+            {t('contact.slogan-before')}<em className="acento">{t('contact.slogan-accent')}</em>{t('contact.slogan-after')}
           </h1>
           <div className="contacto__rejilla">
             <div className="contacto__datos">
               <dl>
                 <div>
                   <dt>
-                    <Icono nombre="call" /> Celular
+                    <Icono nombre="call" /> {t('contact.phone')}
                   </dt>
                   <dd>
                     <a href="tel:+573138130046">{TEL}</a>
@@ -88,7 +95,7 @@ export default function Contacto() {
                 </div>
                 <div>
                   <dt>
-                    <Icono nombre="mail" /> Correo
+                    <Icono nombre="mail" /> {t('contact.email')}
                   </dt>
                   <dd>
                     <a href={`mailto:${CORREO}`}>{CORREO}</a>
@@ -96,14 +103,14 @@ export default function Contacto() {
                 </div>
                 <div>
                   <dt>
-                    <Icono nombre="location_on" /> Dirección
+                    <Icono nombre="location_on" /> {t('contact.address')}
                   </dt>
                   <dd>{DIRECCION}</dd>
                 </div>
               </dl>
               <div className="contacto__mapa">
                 <iframe
-                  title="Ubicación de Soltherra, Calle 28 N° 86-70, Cali"
+                  title={t('contact.map-title')}
                   src={MAPA}
                   loading="lazy"
                   referrerPolicy="strict-origin-when-cross-origin"
@@ -115,7 +122,7 @@ export default function Contacto() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  Abrir en Google Maps <Icono nombre="open_in_new" />
+                  {t('contact.map-link')} <Icono nombre="open_in_new" />
                 </a>
               </div>
             </div>

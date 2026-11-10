@@ -48,3 +48,18 @@ Fotos de obras de Soltherra entregadas por el equipo y convertidas a WebP (calid
 | fv-inversor-huawei-senalizado.webp | Inversor Huawei señalizado con tablero de protecciones DC |
 | fv-inversor-diagrama-unifilar.webp | Inversor con el diagrama unifilar del sistema |
 | fv-inversor-bateria-cargador.webp | Inversor, batería y cargador de vehículo eléctrico con tablero |
+
+## Infografías en inglés (sección "Así funciona nuestro sistema")
+
+Versiones en inglés de las cuatro infografías, entregadas por el cliente (2026-11-10), convertidas a WebP (máx. 1500 px). En las tres infografías de diseño se llevó el fondo a blanco puro, igual que en las versiones en español; la del sistema híbrido es una foto y no se tocó. Se muestran al elegir inglés (`en` en `infografias`, `src/data/contenido.js`).
+
+| Archivo | Versión en español |
+|---|---|
+| infografia-panel-solar-en.webp | infografia-panel-solar.webp |
+| infografia-sistema-hibrido-en.webp | infografia-sistema-hibrido.webp |
+| infografia-calentador-presurizado-en.webp | infografia-calentador-presurizado.webp |
+| infografia-colector-mariposa-en.webp | infografia-colector-mariposa.webp |
+
+## Videos de monitorización en inglés
+
+Versiones en inglés de los dos videos de la sección "Monitorización en tiempo real" (entregadas por el cliente, 2026-11-10): `monitoreo-escritorio-en.mp4` y `monitoreo-movil-en.mp4` en `public/video/`, recodificadas a H.264 (CRF 23, faststart) y con su póster `-en.webp` (fotograma al segundo 1). Se usan al elegir inglés (`src/components/Monitoreo.jsx`).

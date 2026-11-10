@@ -1,28 +1,31 @@
+import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { gestiones } from '../data/contenido.js'
 
 export default function Gestiones() {
+  const { t } = useTranslation('global')
+  const textos = t('engineering.items', { returnObjects: true })
   return (
     <section className="seccion-isla" id="gestiones" aria-labelledby="t-gestiones">
       <div className="isla gestiones" data-isla>
         <span className="isla__brillo" aria-hidden="true" />
         <div className="contenedor gestiones__rejilla">
           <div className="titulo-seccion">
-            <Chip claro>Ingeniería y trámites</Chip>
+            <Chip claro>{t('engineering.chip')}</Chip>
             <h1 id="t-gestiones" data-titulo>
-              Lo técnico y el papeleo, <em className="acento">resueltos</em> por Soltherra
+              {t('engineering.title-before')}<em className="acento">{t('engineering.title-accent')}</em>{t('engineering.title-after')}
             </h1>
-            <p>Nos encargamos de la parte técnica y de los trámites para que tu sistema opere con respaldo normativo.</p>
+            <p>{t('engineering.subtitle')}</p>
           </div>
           <ul className="gestiones__lista">
-            {gestiones.map((g) => (
-              <li key={g.titulo}>
+            {gestiones.map((icono, i) => (
+              <li key={icono}>
                 <span className="gestiones__icono">
-                  <Icono nombre={g.icono} />
+                  <Icono nombre={icono} />
                 </span>
-                <h3>{g.titulo}</h3>
-                <p>{g.texto}</p>
+                <h3>{textos[i].title}</h3>
+                <p>{textos[i].text}</p>
               </li>
             ))}
           </ul>

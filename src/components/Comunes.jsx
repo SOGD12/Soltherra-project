@@ -1,11 +1,13 @@
+import { useTranslation } from 'react-i18next'
 import { IconoWhatsApp } from './Iconos.jsx'
-import { wa, MENSAJE } from '../data/contenido.js'
+import { wa } from '../data/contenido.js'
 
-export function BotonWA({ texto, mensaje = MENSAJE, variante = '', corto = false }) {
+export function BotonWA({ texto, mensaje, variante = '', corto = false }) {
+  const { t } = useTranslation('global')
   return (
     <a
       className={`boton ${variante} ${corto ? 'boton--corto' : ''}`.trim()}
-      href={wa(mensaje)}
+      href={wa(mensaje ?? t('whatsapp.default'))}
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -15,17 +17,19 @@ export function BotonWA({ texto, mensaje = MENSAJE, variante = '', corto = false
   )
 }
 
-/** Cierre de sección: invitación a hablar con un experto por WhatsApp, con un mensaje propio de cada sección. */
-export function LlamadaExperto({ titulo, texto, boton, mensaje }) {
+/** Cierre de sección: invitación a hablar con un experto por WhatsApp, con un mensaje propio de cada sección.
+ *  `clave` es la sección de global.json con title, text, button y message (ej. 'works.expert'). */
+export function LlamadaExperto({ clave }) {
+  const { t } = useTranslation('global')
   return (
     <section className="experto-seccion">
       <div className="contenedor">
         <div className="experto">
           <div className="experto__texto">
-            <h3>{titulo}</h3>
-            <p>{texto}</p>
+            <h3>{t(`${clave}.title`)}</h3>
+            <p>{t(`${clave}.text`)}</p>
           </div>
-          <BotonWA texto={boton} mensaje={mensaje} variante="boton--viva" />
+          <BotonWA texto={t(`${clave}.button`)} mensaje={t(`${clave}.message`)} variante="boton--viva" />
         </div>
       </div>
     </section>

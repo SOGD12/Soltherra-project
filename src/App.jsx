@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import Header from './components/Header.jsx'
 import Pie from './components/Pie.jsx'
 import useProgresoScroll from './hooks/useProgresoScroll.js'
@@ -8,16 +9,19 @@ import { CONTENIDO_DE_PAGINA } from './paginas.jsx'
 
 export default function App() {
   const { pagina, ancla } = useRuta()
+  const { i18n } = useTranslation('global')
+  const idioma = i18n.language
   const Pagina = CONTENIDO_DE_PAGINA[pagina]
 
   useProgresoScroll()
-  useAnimaciones(pagina)
+  useAnimaciones(pagina, idioma)
   useScrollPagina(pagina, ancla)
 
   return (
     <>
       <Header pagina={pagina} />
-      <main id="contenido" tabIndex={-1} key={pagina}>
+      {/* Al cambiar de idioma el contenido se vuelve a montar: las animaciones de texto parten las palabras en el DOM. */}
+      <main id="contenido" tabIndex={-1} key={`${pagina}-${idioma}`}>
         <Pagina />
       </main>
       <Pie />

@@ -1,26 +1,86 @@
 {
   "fotovoltaico": [
-    { "foto": "/img/fv-techo-verde.webp", "alt": "Paneles solares fotovoltaicos instalados sobre un techo de teja verde rodeado de vegetación", "ancho": 1400, "alto": 1050 },
-    { "foto": "/img/inversor.webp", "alt": "Inversor solar instalado en pared con canalización eléctrica", "ancho": 1000, "alto": 1333 }
+    {
+      "foto": "/img/fv-techo-verde.webp",
+      "ancho": 1400,
+      "alto": 1050,
+      "alt": "Paneles solares fotovoltaicos instalados sobre un techo de teja verde rodeado de vegetación"
+    },
+    {
+      "foto": "/img/inversor.webp",
+      "ancho": 1000,
+      "alto": 1333,
+      "alt": "Inversor solar instalado en pared con canalización eléctrica"
+    }
   ],
   "termico": [
-    { "foto": "/img/colectores.webp", "alt": "Colectores solares térmicos de tubos al vacío instalados junto a una casa", "ancho": 1600, "alto": 1200 },
-    { "foto": "/img/termico-cubierta-montana.webp", "alt": "Colectores solares de tubos al vacío sobre estructuras metálicas en una cubierta, con cerros al fondo", "ancho": 1200, "alto": 1600 }
+    {
+      "foto": "/img/colectores.webp",
+      "ancho": 1600,
+      "alto": 1200,
+      "alt": "Colectores solares térmicos de tubos al vacío instalados junto a una casa"
+    },
+    {
+      "foto": "/img/termico-cubierta-montana.webp",
+      "ancho": 1200,
+      "alto": 1600,
+      "alt": "Colectores solares de tubos al vacío sobre estructuras metálicas en una cubierta, con cerros al fondo"
+    }
   ],
   "piscina": [
-    { "foto": "/img/piscina.webp", "alt": "Piscina con colectores solares térmicos sobre una estructura junto al agua", "ancho": 1600, "alto": 640 },
-    { "foto": "/img/bomba-solar.webp", "alt": "Bomba de agua y tuberías de un sistema solar térmico", "ancho": 900, "alto": 1106 }
+    {
+      "foto": "/img/piscina.webp",
+      "ancho": 1600,
+      "alto": 640,
+      "alt": "Piscina con colectores solares térmicos sobre una estructura junto al agua"
+    },
+    {
+      "foto": "/img/bomba-solar.webp",
+      "ancho": 900,
+      "alto": 1106,
+      "alt": "Bomba de agua y tuberías de un sistema solar térmico"
+    }
   ],
   "carga-ev": [
-    { "foto": "/img/ev-cargador-evinka.webp", "alt": "Cargador de vehículo eléctrico instalado en la pared de un parqueadero con su tablero de protecciones", "ancho": 1400, "alto": 1050 },
-    { "foto": "/img/ev-punto-carga-auto-blanco.webp", "alt": "Auto eléctrico conectado a un punto de carga instalado en el techo de un parqueadero", "ancho": 1200, "alto": 1600 }
+    {
+      "foto": "/img/ev-cargador-evinka.webp",
+      "ancho": 1400,
+      "alto": 1050,
+      "alt": "Cargador de vehículo eléctrico instalado en la pared de un parqueadero con su tablero de protecciones"
+    },
+    {
+      "foto": "/img/ev-punto-carga-auto-blanco.webp",
+      "ancho": 1200,
+      "alto": 1600,
+      "alt": "Auto eléctrico conectado a un punto de carga instalado en el techo de un parqueadero"
+    }
   ],
   "mantenimiento": [
-    { "foto": "/img/multimetro.webp", "alt": "Multímetro midiendo el voltaje de un banco de baterías", "ancho": 900, "alto": 1200 },
-    { "foto": "/img/cableado.webp", "alt": "Técnico ajustando el cableado de un sistema solar con una llave", "ancho": 900, "alto": 1200 }
+    {
+      "foto": "/img/multimetro.webp",
+      "ancho": 900,
+      "alto": 1200,
+      "alt": "Multímetro midiendo el voltaje de un banco de baterías"
+    },
+    {
+      "foto": "/img/cableado.webp",
+      "ancho": 900,
+      "alto": 1200,
+      "alt": "Técnico ajustando el cableado de un sistema solar con una llave"
+    }
   ],
   "tramites": [
-    { "foto": "/img/inversor-blanco.webp", "alt": "Inversor solar instalado y señalizado en la pared", "ancho": 900, "alto": 1200 },
-    { "foto": "/img/monitoreo.webp", "alt": "Pantalla de monitoreo con la producción y el consumo de energía", "ancho": 652, "alto": 590 }
+    {
+      "foto": "/img/inversor-blanco.webp",
+      "ancho": 900,
+      "alto": 1200,
+      "alt": "Inversor solar instalado y señalizado en la pared"
+    },
+    {
+      "foto": "/img/monitoreo.webp",
+      "ancho": 652,
+      "alto": 590,
+      "alt": "Pantalla de monitoreo con la producción y el consumo de energía"
+    }
   ]
 }

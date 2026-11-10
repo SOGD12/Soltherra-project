@@ -1,21 +1,26 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate } from 'animejs/animation'
 import { sinMovimiento } from '../movimiento.js'
+import { useTranslation } from 'react-i18next'
 import { infografias } from '../data/contenido.js'
 
 // Pestañas: una por tipo de sistema (Fotovoltaico, Térmico); cada una muestra todas sus infografías.
 const grupos = [...new Set(infografias.map((i) => i.grupo))]
-const idGrupo = (g) => g.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+const idGrupo = (g) => g
+
+// La infografía en el idioma elegido: en inglés se usa su versión `en` (si la tiene); en español, la original.
+const enIdioma = (i, idioma) => (idioma === 'en' && i.en ? { ...i, ...i.en } : i)
 
 export default function Infografias() {
+  const { t, i18n } = useTranslation('global')
   const [grupo, setGrupo] = useState(grupos[0])
-  const items = infografias.filter((i) => i.grupo === grupo)
+  const items = infografias.filter((i) => i.grupo === grupo).map((i) => enIdioma(i, i18n.language))
   const imagenes = useRef(null)
   const primera = useRef(true)
   const visor = useRef(null)
   // Clave de la infografía ampliada (null = visor cerrado)
   const [abierta, setAbierta] = useState(null)
-  const actual = infografias.find((i) => i.clave === abierta) ?? items[0]
+  const actual = enIdioma(infografias.find((i) => i.clave === abierta) ?? items[0], i18n.language)
   // Zoom con gestos (solo pantallas táctiles): pellizcar para ampliar, arrastrar para moverse, doble toque para alternar.
   const [vista, setVista] = useState({ s: 1, x: 0, y: 0 })
   const lienzo = useRef(null)
@@ -113,9 +118,9 @@ export default function Infografias() {
       <div className={`contenedor infografias__rejilla ${items.length > 1 ? 'infografias__rejilla--varias' : ''}`}>
         <div className="infografias__texto">
           <h2 data-titulo>
-            Así funciona nuestro <em className="acento">sistema</em>
+            {t('how-it-works.infographics.title-before')}<em className="acento">{t('how-it-works.infographics.title-accent')}</em>{t('how-it-works.infographics.title-after')}
           </h2>
-          <div className="pestanas" role="tablist" aria-label="Tipo de sistema">
+          <div className="pestanas" role="tablist" aria-label={t('how-it-works.infographics.tablist-label')}>
             {grupos.map((g) => (
               <button
                 key={g}
@@ -129,7 +134,7 @@ export default function Infografias() {
                 className="pestanas__boton"
                 onClick={() => setGrupo(g)}
               >
-                <span>{g}</span>
+                <span>{t(`how-it-works.infographics.groups.${g}`)}</span>
               </button>
             ))}
           </div>
@@ -138,20 +143,20 @@ export default function Infografias() {
           <div ref={imagenes} key={grupo} className={`infografias__imagenes ${items.length > 1 ? 'infografias__imagenes--varias' : ''}`}>
             {items.map((i) => (
               <div key={i.clave} className={`infografias__tarjeta ${i.foto_completa ? 'infografias__tarjeta--foto' : ''}`}>
-                <button type="button" className="infografias__abrir" onClick={() => setAbierta(i.clave)} aria-label={`Ampliar: ${i.titulo}`}>
-                  <img src={i.foto} alt={i.alt} width={i.ancho} height={i.alto} loading="lazy" decoding="async" />
+                <button type="button" className="infografias__abrir" onClick={() => setAbierta(i.clave)} aria-label={t('how-it-works.infographics.enlarge', { title: t(`how-it-works.infographics.items.${i.clave}.title`) })}>
+                  <img src={i.foto} alt={t(`how-it-works.infographics.items.${i.clave}.alt`)} width={i.ancho} height={i.alto} loading="lazy" decoding="async" />
                 </button>
               </div>
             ))}
           </div>
         </figure>
-        <dialog ref={visor} className="visor" aria-label={actual.titulo} onClose={cerrar} onClick={(e) => e.target === visor.current && cerrar()}>
+        <dialog ref={visor} className="visor" aria-label={t(`how-it-works.infographics.items.${actual.clave}.title`)} onClose={cerrar} onClick={(e) => e.target === visor.current && cerrar()}>
           <div className="visor__caja">
             <div className="visor__barra">
-              <strong>{actual.titulo}</strong>
+              <strong>{t(`how-it-works.infographics.items.${actual.clave}.title`)}</strong>
               <div className="visor__acciones">
                 <button type="button" onClick={cerrar} autoFocus>
-                  Cerrar
+                  {t('how-it-works.infographics.close')}
                 </button>
               </div>
             </div>
@@ -165,7 +170,7 @@ export default function Infografias() {
             >
               <img
                 src={actual.foto}
-                alt={actual.alt}
+                alt={t(`how-it-works.infographics.items.${actual.clave}.alt`)}
                 width={actual.ancho}
                 height={actual.alto}
                 draggable={false}

@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { BotonWA } from './Comunes.jsx'
+import Idioma from './Idioma.jsx'
 import { TEL, CORREO, nav } from '../data/contenido.js'
 
 const pagina_de = (h) => (h === '/home' ? 'inicio' : h.slice(1))
 
 export default function Header({ pagina }) {
+  const { t } = useTranslation('global')
   const [abierto, setAbierto] = useState(false)
   const botonMenu = useRef(null)
 
@@ -31,17 +34,18 @@ export default function Header({ pagina }) {
   return (
     <header className="cabecera" data-abierto={abierto}>
       <div className="cabecera__pildora">
-        <a className="cabecera__logo" href="/home" aria-label="Soltherra S.A.S., ir al inicio">
-          <img src="/img/logo-claro.webp" alt="Soltherra S.A.S. Energía Sostenible" width="103" height="48" />
+        <a className="cabecera__logo" href="/home" aria-label={t('header.logo-label')}>
+          <img src="/img/logo-claro.webp" alt={t('header.logo-alt')} width="103" height="48" />
         </a>
-        <nav className="cabecera__nav" aria-label="Principal">
-          {nav.map(([t, h]) => (
+        <nav className="cabecera__nav" aria-label={t('menu.main-label')}>
+          {nav.map(([clave, h]) => (
             <a key={h} href={h} aria-current={pagina_de(h) === pagina ? 'page' : undefined}>
-              {t}
+              {t(`menu.${clave}`)}
             </a>
           ))}
         </nav>
-        <BotonWA texto="Cotizar" variante="boton--viva" corto />
+        <Idioma className="idioma--cabecera" />
+        <BotonWA texto={t('header.quote')} variante="boton--viva" corto />
         <button
           type="button"
           ref={botonMenu}
@@ -50,23 +54,24 @@ export default function Header({ pagina }) {
           aria-controls="menu-movil"
           onClick={() => setAbierto((v) => !v)}
         >
-          <span className="sr">{abierto ? 'Cerrar menú' : 'Abrir menú'}</span>
+          <span className="sr">{abierto ? t('menu.close') : t('menu.open')}</span>
           <span className="cabecera__barras" aria-hidden="true" />
         </button>
         <span className="progreso" aria-hidden="true" />
       </div>
       <div id="menu-movil" className="menu-movil" hidden={!abierto}>
-        <nav aria-label="Menú móvil">
-          {nav.map(([t, h]) => (
+        <nav aria-label={t('menu.mobile-label')}>
+          {nav.map(([clave, h]) => (
             <a key={h} href={h} aria-current={pagina_de(h) === pagina ? 'page' : undefined} onClick={() => setAbierto(false)}>
-              {t}
+              {t(`menu.${clave}`)}
             </a>
           ))}
         </nav>
         <div className="menu-movil__pie">
           <a href="tel:+573138130046">{TEL}</a>
           <a href={`mailto:${CORREO}`}>{CORREO}</a>
-          <BotonWA texto="Escríbenos por WhatsApp" variante="boton--viva" />
+          <Idioma />
+          <BotonWA texto={t('header.whatsapp')} variante="boton--viva" />
         </div>
       </div>
     </header>

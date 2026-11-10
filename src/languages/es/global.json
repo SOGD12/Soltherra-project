@@ -1,0 +1,440 @@
+{
+  "menu": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "how-it-works": "Cómo funciona",
+    "works": "Trabajos",
+    "contact": "Contacto",
+    "open": "Abrir menú",
+    "close": "Cerrar menú",
+    "main-label": "Principal",
+    "mobile-label": "Menú móvil"
+  },
+  "header": {
+    "logo-label": "Soltherra S.A.S., ir al inicio",
+    "logo-alt": "Soltherra S.A.S. Energía Sostenible",
+    "quote": "Cotizar",
+    "whatsapp": "Escríbenos por WhatsApp"
+  },
+  "settings": {
+    "language": {
+      "label": "Idioma",
+      "es": "Español",
+      "en": "English"
+    }
+  },
+  "whatsapp": {
+    "default": "Hola Soltherra, quiero cotizar un sistema solar.",
+    "quote": "Cotizar por WhatsApp",
+    "expert": "Hablar con un experto"
+  },
+  "footer": {
+    "tagline": "Energía Sostenible. Sistemas solares fotovoltaicos y solares térmicos.",
+    "nav-label": "Pie de página",
+    "sections": "Secciones",
+    "follow": "Síguenos",
+    "legal": "© 2026 Soltherra S.A.S. ·",
+    "privacy": "Política de privacidad"
+  },
+  "home": {
+    "hero": {
+      "chip": "Cali, Colombia · Energía sostenible",
+      "title-accent": "Energía solar",
+      "title-rest": " para tu hogar, empresa o institución.",
+      "subtitle": "Diseñamos e instalamos sistemas solares fotovoltaicos y solares térmicos, con cumplimiento normativo e ingeniería de alta calidad.",
+      "services": "Ver servicios",
+      "scroll-down": "Bajar al contenido"
+    },
+    "ribbon": {
+      "label": "Lo que hacemos",
+      "items": [
+        "Sistemas fotovoltaicos",
+        "Climatización de piscinas y jacuzzis",
+        "Calentamiento de agua sanitaria",
+        "Ingeniería detallada",
+        "Trámites ante el operador de red",
+        "Beneficios tributarios",
+        "Mantenimiento preventivo y correctivo"
+      ]
+    },
+    "about": {
+      "chip": "¿Quiénes somos?",
+      "highlight": "Somos una empresa especializada en el diseño, instalación y mantenimiento de sistemas solares fotovoltaicos y sistemas solares térmicos.",
+      "text": "Ofrecemos soluciones energéticas sostenibles, eficientes y personalizadas para hogares, empresas e instituciones. Soltherra acompaña a sus clientes desde la ingeniería hasta la puesta en marcha, garantizando cumplimiento normativo, ahorro económico y reducción del impacto ambiental.",
+      "audience-label": "Para quién trabajamos",
+      "homes": "Hogares",
+      "companies": "Empresas",
+      "institutions": "Instituciones"
+    },
+    "mission-vision": {
+      "label": "Misión y visión",
+      "mission-chip": "Misión",
+      "mission": "Brindar soluciones energéticas sostenibles a través de sistemas solares fotovoltaicos y solares térmicos, contribuyendo al ahorro económico, al cuidado del medio ambiente y al bienestar de las comunidades, con un servicio confiable, innovador y de alta calidad.",
+      "vision-chip": "Visión",
+      "vision": "Ser una empresa líder en energías limpias en Colombia, reconocida por su compromiso con la sostenibilidad, la innovación tecnológica y la transformación positiva de los hogares, empresas y comunidades hacia un futuro energético responsable."
+    },
+    "solutions": {
+      "chip": "Soluciones",
+      "title-before": "Explora lo que el ",
+      "title-accent": "sol",
+      "title-after": " puede hacer por ti",
+      "items": {
+        "photovoltaic": "Sistemas fotovoltaicos",
+        "thermal": "Sistemas solares térmicos",
+        "maintenance": "Mantenimiento",
+        "procedures": "Trámites y conexión",
+        "ev": "Carga de vehículos eléctricos"
+      }
+    },
+    "closing": {
+      "chip": "Sigue explorando",
+      "title-before": "Conoce más de ",
+      "title-accent": "Soltherra"
+    }
+  },
+  "engineering": {
+    "chip": "Ingeniería y trámites",
+    "title-before": "Lo técnico y el papeleo, ",
+    "title-accent": "resueltos",
+    "title-after": " por Soltherra",
+    "subtitle": "Nos encargamos de la parte técnica y de los trámites para que tu sistema opere con respaldo normativo.",
+    "items": [
+      {
+        "title": "Ingeniería detallada",
+        "text": "Ingeniería detallada para proyectos solares, adaptada a hogares, empresas e instituciones."
+      },
+      {
+        "title": "Conexión ante el operador de red",
+        "text": "Trámites de conexión ante el operador de red para que el sistema opere con cumplimiento normativo."
+      },
+      {
+        "title": "Estudio de conexión simplificada",
+        "text": "Estudio de conexión simplificada para sistemas solares fotovoltaicos (AGPE y GD)."
+      },
+      {
+        "title": "Beneficios tributarios",
+        "text": "Trámites para acceder a los beneficios tributarios de la energía solar."
+      }
+    ]
+  },
+  "services": {
+    "intro": {
+      "chip": "Servicios",
+      "title-before": "Todo lo que hacemos con ",
+      "title-accent": "energía solar"
+    },
+    "photovoltaic": {
+      "chip": "Fotovoltaico",
+      "title": "Diseño e instalación de sistemas solares fotovoltaicos",
+      "text": "Soluciones integrales en energía solar, desde el diseño hasta la puesta en marcha de sistemas fotovoltaicos adaptados a hogares, empresas e instituciones, garantizando eficiencia, seguridad y cumplimiento normativo.",
+      "list": [
+        "Ingeniería detallada para proyectos solares",
+        "Trámites de conexión ante el operador de red",
+        "Estudio de conexión simplificada para sistemas solares fotovoltaicos (AGPE y GD)",
+        "Instalación y puesta en marcha con cumplimiento normativo"
+      ],
+      "closing": "Reduce costos energéticos y dependencia de la red eléctrica.",
+      "message": "Hola Soltherra, quiero información sobre sistemas solares fotovoltaicos."
+    },
+    "thermal": {
+      "chip": "Térmico",
+      "title": "Diseño e instalación de sistemas solares térmicos",
+      "text": "Diseñamos e instalamos sistemas solares térmicos para el aprovechamiento eficiente de la radiación solar, ofreciendo soluciones sostenibles para climatización y calentamiento de agua en hogares, empresas e instituciones.",
+      "list": [
+        "Calentamiento de aguas sanitarias con sistemas solares térmicos",
+        "Colectores y tanques dimensionados al consumo de agua caliente",
+        "Climatización de ambientes con energía solar térmica"
+      ],
+      "closing": "Ahorro energético sostenible con confort térmico continuo.",
+      "message": "Hola Soltherra, quiero información sobre sistemas solares térmicos."
+    },
+    "pool": {
+      "chip": "Climatización de piscinas y jacuzzis",
+      "title": "Climatización de piscinas y jacuzzis con energía solar",
+      "text": "Calentamos tu piscina y tu jacuzzi aprovechando el sol: sistemas solares térmicos dimensionados para tu piscina o jacuzzi, con instalación completa y puesta en marcha.",
+      "list": [
+        "Diseño del sistema según el tamaño y uso de la piscina",
+        "Colectores solares térmicos y equipo de bombeo",
+        "Instalación y puesta en marcha",
+        "Temperatura agradable durante todo el año, sin gastar en gas o electricidad"
+      ],
+      "closing": "Disfruta tu piscina y tu jacuzzi todo el año con energía limpia.",
+      "message": "Hola Soltherra, quiero información sobre climatización de piscinas y jacuzzis con energía solar."
+    },
+    "ev": {
+      "chip": "Carga de vehículos eléctricos",
+      "title": "Puntos de carga para vehículos eléctricos",
+      "text": "Instalamos puntos de carga para tu vehículo eléctrico en casa, edificio, empresa o parqueadero, y los podemos alimentar con tu propio sistema solar para moverte con energía limpia.",
+      "list": [
+        "Diseño e instalación de puntos de carga para vehículos eléctricos",
+        "Cargadores para casas, edificios, empresas y parqueaderos",
+        "Carga alimentada con energía solar para movilidad limpia",
+        "Protecciones eléctricas, puesta en marcha y cumplimiento normativo"
+      ],
+      "closing": "Carga tu vehículo con el sol y gasta menos en cada recorrido.",
+      "message": "Hola Soltherra, quiero información sobre puntos de carga para vehículos eléctricos."
+    },
+    "maintenance": {
+      "chip": "Mantenimiento",
+      "title": "Mantenimiento preventivo y correctivo",
+      "text": "Ejecutamos mediciones de control y mantenimiento preventivo para prevenir fallas operativas, buscando optimizar la generación energética y prolongar la vida útil de tus equipos.",
+      "list": [
+        "Mantenimiento preventivo y correctivo de sistemas fotovoltaicos",
+        "Mantenimiento de sistemas solares térmicos",
+        "Revisión del cableado, conexiones e inversor",
+        "Mediciones eléctricas y monitoreo del rendimiento"
+      ],
+      "closing": "Un sistema bien cuidado rinde más y dura más.",
+      "message": "Hola Soltherra, quiero información sobre mantenimiento de mi sistema solar."
+    },
+    "procedures": {
+      "chip": "Trámites y beneficios",
+      "title": "Trámites y beneficios tributarios",
+      "text": "La ley colombiana premia a quien invierte en energía solar. Te acompañamos ante las entidades para que tu proyecto acceda a los incentivos tributarios que le corresponden.",
+      "list": [
+        "Deducción especial de renta por tus inversiones en energía solar",
+        "Exclusión de IVA en equipos y servicios del proyecto",
+        "Exención de aranceles en la importación de equipos",
+        "Depreciación acelerada de los activos del sistema"
+      ],
+      "closing": "Menos impuestos y una inversión que se paga más rápido.",
+      "message": "Hola Soltherra, quiero información sobre trámites y beneficios tributarios."
+    }
+  },
+  "how-it-works": {
+    "tour": {
+      "chip": "Cómo funciona",
+      "title-before": "Del ",
+      "title-accent": "sol",
+      "title-after": " a tu casa",
+      "scene-label": "Escena en 3D: el sol ilumina el panel solar del techo, la energía pasa por el inversor y se encienden las ventanas de la casa",
+      "spin-on": "Desliza la casa · Toca para soltar",
+      "spin-off": "Toca para girar la casa",
+      "drag": "Arrastra para girar la casa",
+      "steps": [
+        {
+          "title": "Llega el sol",
+          "text": "La radiación solar incide sobre los módulos instalados en tu cubierta."
+        },
+        {
+          "title": "El panel la convierte",
+          "text": "Las celdas fotovoltaicas transforman la luz en electricidad."
+        },
+        {
+          "title": "El inversor la adapta",
+          "text": "El inversor transforma la energía proveniente de los paneles para ser inyectada a los equipos de tu hogar, empresa o institución, y verter los excedentes a la red eléctrica."
+        },
+        {
+          "title": "Tu casa se enciende",
+          "text": "Usas energía limpia y dependes menos de la red eléctrica."
+        }
+      ]
+    },
+    "process": {
+      "chip": "Proceso",
+      "title-1": "Cómo",
+      "title-2": "trabajamos",
+      "steps": [
+        {
+          "title": "Ingeniería",
+          "text": "Analizamos tus necesidades energéticas, niveles de tensión y la infraestructura eléctrica existente para diseñar tu solución ideal."
+        },
+        {
+          "title": "Trámites",
+          "text": "Gestionamos la disponibilidad con el operador de red y tramitamos los beneficios tributarios gubernamentales por ti."
+        },
+        {
+          "title": "Instalación",
+          "text": "Ejecutamos la implementación, montaje y puesta en marcha segura de tu sistema solar fotovoltaico."
+        },
+        {
+          "title": "Monitoreo",
+          "text": "Supervisamos el rendimiento y la generación de energía de tu sistema en tiempo real a través de nuestra aplicación móvil."
+        },
+        {
+          "title": "Mantenimiento",
+          "text": "Brindamos mantenimiento preventivo y correctivo continuo para garantizar la máxima eficiencia operativa de tu sistema."
+        }
+      ]
+    },
+    "infographics": {
+      "title-before": "Así funciona nuestro ",
+      "title-accent": "sistema",
+      "tablist-label": "Tipo de sistema",
+      "enlarge": "Ampliar: {{title}}",
+      "close": "Cerrar",
+      "groups": {
+        "photovoltaic": "Fotovoltaico",
+        "thermal": "Térmico"
+      },
+      "items": {
+        "panel": {
+          "title": "Panel solar",
+          "alt": "Infografía del panel solar: qué es, cómo funciona y qué lo compone"
+        },
+        "hybrid": {
+          "title": "Sistema solar híbrido",
+          "alt": "Sistema solar híbrido instalado en pared: inversor, batería y cargador eléctrico"
+        },
+        "pressurized": {
+          "title": "Calentador solar presurizado",
+          "alt": "Infografía del calentador solar presurizado: capta, calienta y dispersa, con sus componentes"
+        },
+        "butterfly": {
+          "title": "Colector tipo mariposa",
+          "alt": "Infografía del colector tipo mariposa: qué es, cómo funciona y qué lo compone"
+        }
+      },
+      "title-after": ""
+    },
+    "monitoring": {
+      "title-before": "Monitorización en ",
+      "title-accent": "tiempo real",
+      "aria-desktop": "Demostración de la aplicación de monitorización, versión de escritorio",
+      "aria-mobile": "Demostración de la aplicación de monitorización, versión móvil",
+      "download": "Descargar el video de demostración"
+    },
+    "expert": {
+      "title": "¿Quieres ver cómo quedaría en tu casa o empresa?",
+      "text": "Un experto de Soltherra te explica el proceso paso a paso y resuelve tus dudas.",
+      "button": "Hablar con un experto",
+      "message": "Hola Soltherra, vi la sección «Cómo funciona» de su página y quiero hablar con un experto para que me expliquen cómo sería el proceso en mi caso."
+    }
+  },
+  "works": {
+    "chip": "Obras reales",
+    "title-before": "Nuestros ",
+    "title-accent": "trabajos",
+    "tablist-label": "Tipo de trabajo",
+    "categories": {
+      "fotovoltaico": "Fotovoltaico",
+      "termico": "Térmico",
+      "piscina": "Climatización de piscinas y jacuzzis",
+      "mantenimiento": "Mantenimiento y medición",
+      "ev": "Carga de vehículos eléctricos"
+    },
+    "previous": "Trabajo anterior",
+    "next": "Trabajo siguiente",
+    "carousel-label": "carrusel",
+    "choose-label": "Elegir trabajo",
+    "go-to": "Ir al trabajo {{n}}",
+    "benefits": {
+      "chip": "Beneficios",
+      "title-before": "Por qué pasarte al ",
+      "title-accent": "sol",
+      "items": [
+        "Reducción significativa en costos de energía.",
+        "Contribución directa al cuidado del medio ambiente.",
+        "Cumplimiento total de normativas técnicas y legales.",
+        "Soluciones personalizadas según cada necesidad.",
+        "Mayor independencia energética y retorno de inversión."
+      ]
+    },
+    "expert": {
+      "title": "¿Te gustó alguno de estos trabajos?",
+      "text": "Cuéntanos qué tienes en mente y un experto te da más información y una cotización.",
+      "button": "Pedir información",
+      "message": "Hola Soltherra, vi sus trabajos en la página y quiero más información sobre el servicio. ¿Me puede asesorar un experto?"
+    }
+  },
+  "contact": {
+    "chip": "Contacto",
+    "slogan-before": "Energía sostenible que ",
+    "slogan-accent": "transforma",
+    "slogan-after": " tu futuro.",
+    "phone": "Celular",
+    "email": "Correo",
+    "address": "Dirección",
+    "map-title": "Ubicación de Soltherra, Calle 28 N° 86-70, Cali",
+    "map-link": "Abrir en Google Maps",
+    "form": {
+      "title": "Cuéntanos qué necesitas",
+      "name": "Tu nombre",
+      "name-placeholder": "Nombre y apellido",
+      "service": "Servicio de interés",
+      "services": [
+        "Sistema fotovoltaico",
+        "Sistema solar térmico",
+        "Climatización de piscinas y jacuzzis",
+        "Mantenimiento",
+        "Puntos de carga para vehículos eléctricos",
+        "Trámites y beneficios tributarios",
+        "Venta de equipos para tu proyecto"
+      ],
+      "message": "Mensaje (opcional)",
+      "message-placeholder": "Ej. casa de 4 personas en Cali, factura de $400.000",
+      "consent-before": "Autorizo el tratamiento de mis datos para recibir una cotización, según la",
+      "consent-link": "política de privacidad",
+      "consent-after": ".",
+      "submit": "Enviar por WhatsApp",
+      "note": "Esta página no guarda tus datos: se abrirá WhatsApp con tu mensaje listo para enviar."
+    },
+    "whatsapp": "Hola Soltherra, soy {{name}}. Me interesa: {{service}}."
+  },
+  "privacy": {
+    "title": "Política de privacidad",
+    "updated": "Última actualización: noviembre de 2026.",
+    "sections": [
+      {
+        "title": "Quién es el responsable",
+        "text": "Soltherra S.A.S., {{address}}. Correo para temas de datos personales:",
+        "email": true,
+        "after": "."
+      },
+      {
+        "title": "Qué datos usamos y para qué",
+        "text": "Solo los que escribes en el formulario de contacto: tu nombre, el servicio que te interesa y, si quieres, un mensaje. Los usamos únicamente para responderte y enviarte una cotización."
+      },
+      {
+        "title": "Dónde quedan tus datos",
+        "text": "Esta página no guarda lo que escribes. Al enviar el formulario se abre WhatsApp con tu mensaje ya escrito, y el envío lo haces tú. Desde ese momento el mensaje lo trata WhatsApp según sus propias condiciones, y nosotros lo conservamos en nuestro WhatsApp solo el tiempo necesario para atenderte."
+      },
+      {
+        "title": "Consentimiento",
+        "text": "Antes de enviar el formulario debes marcar la casilla de autorización. Sin ella no se genera el mensaje. Puedes retirar tu autorización cuando quieras."
+      },
+      {
+        "title": "Cookies y medición",
+        "text": "No usamos cookies de publicidad ni de seguimiento. Medimos las visitas con Google Analytics, que cuenta páginas vistas de forma agregada, sin cookies y sin identificarte. El mapa de la página de contacto lo carga Google Maps."
+      },
+      {
+        "title": "Tus derechos",
+        "text": "Puedes conocer, actualizar, rectificar y pedir que suprimamos tus datos, y revocar tu autorización (Ley 1581 de 2012). Escríbenos a",
+        "email": true,
+        "after": " y respondemos en un máximo de quince días hábiles. También puedes acudir a la Superintendencia de Industria y Comercio."
+      },
+      {
+        "title": "Seguridad",
+        "text": "La página se sirve solo por HTTPS y con cabeceras de seguridad. Para reportar una falla de seguridad, escribe a",
+        "email": true,
+        "after": "."
+      }
+    ]
+  },
+  "seo": {
+    "inicio": {
+      "title": "Energía solar fotovoltaica y térmica en Cali | Soltherra",
+      "description": "Soltherra S.A.S. en Cali: diseño, instalación y mantenimiento de sistemas solares fotovoltaicos y solares térmicos para hogares, empresas e instituciones."
+    },
+    "servicios": {
+      "title": "Servicios solares en Cali | Soltherra",
+      "description": "Paneles solares, calentadores solares, climatización de piscinas, cargadores para vehículos eléctricos, mantenimiento y trámites ante el operador de red en Cali."
+    },
+    "como-funciona": {
+      "title": "Cómo funciona un sistema solar | Soltherra",
+      "description": "Del sol a tu casa: así funciona un sistema solar y cuál es el proceso de Soltherra, desde la visita técnica y la ingeniería hasta la instalación y puesta en marcha."
+    },
+    "trabajos": {
+      "title": "Instalaciones solares reales en Cali | Soltherra",
+      "description": "Obras reales de Soltherra en Cali y el Valle del Cauca: paneles fotovoltaicos, colectores solares térmicos, piscinas, cargadores de vehículos eléctricos y mantenimiento."
+    },
+    "contacto": {
+      "title": "Cotiza energía solar en Cali | Soltherra",
+      "description": "Escríbenos por WhatsApp al +57 313 813 0046 o visítanos en la Calle 28 N° 86-70, Cali, para cotizar tu sistema solar."
+    },
+    "privacidad": {
+      "title": "Política de privacidad | Soltherra",
+      "description": "Cómo trata Soltherra S.A.S. los datos que dejas en el formulario de contacto: qué se usa, para qué, dónde queda y cómo ejercer tus derechos."
+    }
+  }
+}

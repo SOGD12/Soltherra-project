@@ -1,32 +1,32 @@
 {
   "fotovoltaicos": {
     "foto": "/img/fv-estructura-suelo.webp",
-    "alt": "Arreglo de paneles solares sobre una estructura metálica en una ladera con vista al valle",
     "ancho": 1400,
-    "alto": 1050
+    "alto": 1050,
+    "alt": "Arreglo de paneles solares sobre una estructura metálica en una ladera con vista al valle"
   },
   "termicos": {
     "foto": "/img/termico-terraza-tubos.webp",
-    "alt": "Campo de colectores solares de tubos al vacío sobre una estructura negra en una terraza",
     "ancho": 1400,
-    "alto": 662
+    "alto": 662,
+    "alt": "Campo de colectores solares de tubos al vacío sobre una estructura negra en una terraza"
   },
   "mantenimiento": {
     "foto": "/img/mant-control-piscina.webp",
-    "alt": "Tableros de control con medidores de voltaje y corriente de las bombas de la piscina y el jacuzzi",
     "ancho": 1400,
-    "alto": 1400
+    "alto": 1400,
+    "alt": "Tableros de control con medidores de voltaje y corriente de las bombas de la piscina y el jacuzzi"
   },
   "tramites": {
     "foto": "/img/inversor-blanco.webp",
-    "alt": "Inversor solar blanco compacto montado en pared",
     "ancho": 900,
-    "alto": 1200
+    "alto": 1200,
+    "alt": "Inversor solar blanco compacto montado en pared"
   },
   "carga-ev": {
     "foto": "/img/ev-cargador-evinka.webp",
-    "alt": "Cargador de vehículo eléctrico instalado en la pared de un parqueadero con su tablero de protecciones",
     "ancho": 1400,
-    "alto": 1050
+    "alto": 1050,
+    "alt": "Cargador de vehículo eléctrico instalado en la pared de un parqueadero con su tablero de protecciones"
   }
 }
