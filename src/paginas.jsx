@@ -23,6 +23,7 @@ import './styles/como-funciona.css'
 import './styles/trabajos.css'
 import './styles/contacto.css'
 import './styles/privacidad.css'
+import './styles/plegables.css' // al final: ajustes para plegables y doble pantalla
 
 // Qué secciones forman cada página. Para añadir una página: una entrada aquí, otra en seo.js y su nombre en ruta.js.
 // Cada pestaña del menú es una página: solo se monta lo suyo, así no carga todo en un mismo lugar.

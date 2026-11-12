@@ -1,0 +1,176 @@
+/* Plegables y doble pantalla (Galaxy Z Fold, Surface Duo, iPhone plegable y similares).
+   Va al final de los estilos de cada página (ver paginas.jsx): solo ajusta lo que hace falta en estos dispositivos. */
+
+/* ---------- Pantalla exterior muy angosta (Galaxy Fold cerrado: 280 px) ---------- */
+
+@media (max-width: 299px) {
+  /* El botón de la cabecera queda solo con el icono (el texto sigue disponible para lectores de pantalla); el menú tiene el botón completo de WhatsApp */
+  .cabecera .boton--corto {
+    padding: 0 12px;
+  }
+  .cabecera .boton--corto span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .cabecera .boton--corto .ico {
+    display: block;
+  }
+  /* Los titulares grandes no caben en 240 px de ancho útil */
+  .hero__titulo {
+    font-size: 2.2rem;
+  }
+  h2 {
+    font-size: min(2.2rem, 11vw);
+  }
+}
+
+/* ---------- Doble pantalla en horizontal (dos pantallas lado a lado con bisagra vertical) ----------
+   Cuando el navegador reparte la página entre las dos pantallas, nada importante debe quedar sobre la bisagra:
+   la cabecera y el texto de portada van en la pantalla izquierda y los bloques de dos columnas pasan
+   cada columna a su pantalla. Las variables traen un valor de respaldo para poder probarlo en un navegador normal. */
+
+@media (horizontal-viewport-segments: 2) {
+  :root {
+    --pantalla-1: env(viewport-segment-width 0 0, 540px);
+    --pantalla-2: env(viewport-segment-width 1 0, 540px);
+    --bisagra: calc(env(viewport-segment-left 1 0, 574px) - env(viewport-segment-right 0 0, 540px));
+    --margen-pildora: clamp(10px, 2vw, 24px);
+  }
+
+  /* Cabecera: logo y botón de menú en la pantalla izquierda (el menú de pantalla completa se abre igual de ancho) */
+  .cabecera .cabecera__pildora,
+  [data-desplazado='si'] .cabecera__pildora {
+    max-width: calc(var(--pantalla-1) - 2 * var(--margen-pildora));
+    margin-inline: 0;
+  }
+  .cabecera .cabecera__nav,
+  .cabecera .idioma--cabecera {
+    display: none;
+  }
+  .cabecera .cabecera__menu {
+    display: grid;
+  }
+  .menu-movil {
+    right: auto;
+    width: calc(var(--pantalla-1) - 2 * var(--margen-pildora));
+  }
+
+  /* Portada: el texto en la pantalla izquierda (la foto de fondo sí ocupa las dos) */
+  .hero .contenedor {
+    max-width: var(--pantalla-1);
+    margin-inline: 0;
+  }
+
+  /* Bloques de dos columnas: una columna por pantalla, con el hueco de la bisagra en medio */
+  .contenedor.nosotros__rejilla,
+  .contenedor.mision__rejilla,
+  .contenedor.servicio__rejilla,
+  .contenedor.gestiones__rejilla,
+  .contenedor.recorrido__rejilla,
+  .contenedor.beneficios__rejilla,
+  .contenedor.infografias__rejilla,
+  .contenedor.pie__rejilla,
+  .contacto__rejilla {
+    max-width: none;
+    grid-template-columns: var(--pantalla-1) var(--pantalla-2);
+    column-gap: var(--bisagra);
+    padding-inline: 0;
+  }
+  .contenedor.nosotros__rejilla > *,
+  .contenedor.mision__rejilla > *,
+  .contenedor.servicio__rejilla > *,
+  .contenedor.gestiones__rejilla > *,
+  .contenedor.recorrido__rejilla > *,
+  .contenedor.beneficios__rejilla > *,
+  .contenedor.infografias__rejilla > *,
+  .contenedor.pie__rejilla > *,
+  .contacto__rejilla > * {
+    min-width: 0;
+    padding-inline: var(--gutter);
+  }
+
+  /* Contacto: el título arriba va en la pantalla izquierda y el formulario y los datos, cada uno en la suya */
+  .contenedor:has(> .contacto__rejilla) {
+    max-width: none;
+    padding-inline: 0;
+  }
+  .contenedor:has(> .contacto__rejilla) > :not(.contacto__rejilla) {
+    max-width: var(--pantalla-1);
+    padding-inline: var(--gutter);
+  }
+
+  /* Títulos y texto corrido: caben en una pantalla (no se parten por la bisagra) */
+  main :is(h1, h2) {
+    /* !important: varias secciones fijan su propio ancho máximo y aquí manda la bisagra */
+    max-width: calc(var(--pantalla-1) - 2 * var(--gutter)) !important;
+  }
+  .hero__bajar {
+    left: calc(var(--pantalla-1) / 2);
+  }
+  .cierre__lista {
+    grid-template-columns: 1fr;
+    max-width: calc(var(--pantalla-1) - 2 * var(--gutter));
+  }
+  .experto-seccion .contenedor {
+    max-width: var(--pantalla-1);
+    margin-inline: 0;
+  }
+
+  /* Cómo trabajamos: los 5 pasos en dos columnas (una por pantalla) y sin la línea de tiempo horizontal */
+  .pasos {
+    grid-template-columns: calc(var(--pantalla-1) - var(--gutter)) calc(var(--pantalla-2) - var(--gutter));
+    column-gap: var(--bisagra);
+    row-gap: 40px;
+  }
+  .pasos__linea {
+    display: none;
+  }
+  .legal__texto {
+    margin-inline: 0;
+    max-width: var(--pantalla-1);
+  }
+  .pie .contenedor:not(.pie__rejilla) {
+    max-width: var(--pantalla-1);
+    margin-inline: 0;
+  }
+
+  /* Soluciones: dos columnas, una por pantalla (cada columna mide una pantalla menos el margen del contenedor) */
+  .bento {
+    grid-template-columns: calc(var(--pantalla-1) - var(--gutter)) calc(var(--pantalla-2) - var(--gutter));
+    grid-template-rows: none;
+    grid-auto-rows: 270px;
+    column-gap: var(--bisagra);
+  }
+  .bento__tarjeta--a {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+  .bento__tarjeta--b {
+    grid-column: 2;
+    grid-row: 1;
+  }
+  .bento__tarjeta--c {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  .bento__tarjeta--d {
+    grid-column: 1;
+    grid-row: 3;
+  }
+  .bento__tarjeta--e {
+    grid-column: 2;
+    grid-row: 3;
+  }
+
+  /* Trabajos: el carrusel muestra 2 tarjetas (ver Trabajos.jsx) y el hueco entre ellas es la bisagra */
+  .carrusel {
+    --gap: var(--bisagra);
+  }
+  .trabajos__barra {
+    max-width: calc(var(--pantalla-1) - 2 * var(--gutter));
+  }
+}

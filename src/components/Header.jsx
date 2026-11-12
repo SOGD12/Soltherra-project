@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { BotonWA } from './Comunes.jsx'
 import Idioma from './Idioma.jsx'
-import { TEL, CORREO, nav } from '../data/contenido.js'
+import { nav } from '../data/contenido.js'
 
 const pagina_de = (h) => (h === '/home' ? 'inicio' : h.slice(1))
 
@@ -68,8 +68,6 @@ export default function Header({ pagina }) {
           ))}
         </nav>
         <div className="menu-movil__pie">
-          <a href="tel:+573138130046">{TEL}</a>
-          <a href={`mailto:${CORREO}`}>{CORREO}</a>
           <Idioma />
           <BotonWA texto={t('header.whatsapp')} variante="boton--viva" />
         </div>

@@ -7,6 +7,8 @@ export const DIRECCION = 'Calle 28 N° 86 - 70, Cali'
 export const wa = (texto) => `${WA}?text=${encodeURIComponent(texto)}`
 export const MAPA =
   'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248.93033764012515!2d-76.5238692265609!3d3.3781739830128097!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e30a11313ec31c5%3A0x2c183a56456f74e5!2sCl.%2028%20%2386-70%2C%20Comuna%2017%2C%20Cali%2C%20Valle%20del%20Cauca!5e0!3m2!1ses-419!2sco!4v1770853641815!5m2!1ses-419!2sco'
+/** Mapa en el idioma elegido: el parámetro 1s<idioma> del embed cambia los textos de la interfaz de Google Maps. */
+export const mapa = (idioma) => (idioma === 'en' ? MAPA.replaceAll('1ses-419', '1sen') : MAPA)
 export const INSTAGRAM = 'https://www.instagram.com/soltherra_energiasostenible/'
 export const FACEBOOK = 'https://web.facebook.com/profile.php?id=61587216064854'
 /** Arma el mensaje de WhatsApp del formulario: solo usa lo que la persona escribió (ISO/IEC 27701, minimización de datos).

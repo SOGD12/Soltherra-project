@@ -26,10 +26,12 @@ const precargar = (fotos) =>
     Promise.resolve(),
   )
 
+// En una doble pantalla repartida (dos pantallas con bisagra) se ven 2 tarjetas, una en cada pantalla
+const DOBLE_PANTALLA = '(horizontal-viewport-segments: 2)'
 const calcVisibles = () =>
-  window.matchMedia('(min-width: 900px)').matches ? 3 : window.matchMedia('(min-width: 640px)').matches ? 2 : 1
+  window.matchMedia(DOBLE_PANTALLA).matches ? 2 : window.matchMedia('(min-width: 900px)').matches ? 3 : window.matchMedia('(min-width: 640px)').matches ? 2 : 1
 const suscribirAncho = (aviso) => {
-  const qs = [window.matchMedia('(min-width: 900px)'), window.matchMedia('(min-width: 640px)')]
+  const qs = [window.matchMedia('(min-width: 900px)'), window.matchMedia('(min-width: 640px)'), window.matchMedia(DOBLE_PANTALLA)]
   qs.forEach((m) => m.addEventListener('change', aviso))
   return () => qs.forEach((m) => m.removeEventListener('change', aviso))
 }

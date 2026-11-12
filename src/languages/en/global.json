@@ -508,7 +508,7 @@
         "Equipment sales for your project"
       ],
       "message": "Message (optional)",
-      "message-placeholder": "E.g. house of 4 people in Cali, bill of $400,000",
+      "message-placeholder": "E.g. house of 4 people in Cali",
       "consent-before": "I authorize the processing of my data to receive a quote, according to the",
       "consent-link": "privacy policy",
       "consent-after": ".",

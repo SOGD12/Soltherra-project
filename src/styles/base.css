@@ -117,9 +117,19 @@ main p {
 .gestiones__lista p,
 .tarjeta p,
 .bento__tarjeta p,
+.servicio__cierre,
 .formulario__nota,
 figcaption {
   text-align: inherit;
+  text-align-last: auto;
+  hyphens: manual;
+}
+
+/* En inglés las palabras son más cortas y hay muchas con guion: justificar abre huecos grandes, así que estos textos van a la izquierda */
+:lang(en) .hero__sub,
+:lang(en) .recorrido__pasos p,
+:lang(en) .mision p:not(.chip) {
+  text-align: left;
   text-align-last: auto;
   hyphens: manual;
 }
@@ -325,6 +335,8 @@ a {
 .boton--corto {
   min-height: 44px;
   padding: 0 18px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .enlace {
@@ -383,9 +395,15 @@ a {
   background: rgb(7 42 65 / 0.86);
 }
 
+/* Sin foto oscura detrás (política de privacidad): fondo más firme para que el texto blanco se lea */
+body:has(.legal) .cabecera__pildora {
+  background: rgb(7 42 65 / 0.88);
+}
+
 .cabecera__logo {
   display: grid;
   place-items: center;
+  flex: 0 0 auto;
   height: 100%;
   padding: 0 12px 0 14px;
   margin-right: auto;
@@ -393,6 +411,7 @@ a {
   img {
     height: 48px;
     width: auto;
+    max-width: none;
     filter: drop-shadow(0 1px 3px rgb(0 0 0 / 0.35));
   }
 }
@@ -403,6 +422,7 @@ a {
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
+    white-space: nowrap;
     padding: 10px 14px;
     border-radius: 999px;
     position: relative;
@@ -436,11 +456,11 @@ a {
   border: 1px solid rgb(255 255 255 / 0.22);
   border-radius: 999px;
   button {
-    min-width: 40px;
-    min-height: 34px;
-    padding: 0 10px;
+    min-width: 48px;
+    min-height: 40px;
+    padding: 0 14px;
     font: inherit;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     font-weight: 700;
     letter-spacing: 0.04em;
     color: var(--texto-claro);
@@ -839,6 +859,22 @@ a {
   .idioma--cabecera {
     display: inline-flex;
   }
+}
+
+@media (min-width: 900px) and (max-width: 1100px) {
+  .cabecera__pildora {
+    gap: 8px;
+  }
+  .cabecera__nav a {
+    padding: 10px 9px;
+    font-size: 0.9rem;
+  }
+  .cabecera__logo img {
+    height: 46px;
+  }
+}
+
+@media (min-width: 900px) {
   .titulo-seccion--fila {
     display: grid;
     grid-template-columns: 7fr 5fr;
@@ -982,4 +1018,24 @@ a {
   display: inline-block;
   padding-block: 13px;
   margin-block: -13px;
+}
+
+@media (max-width: 420px) {
+  .cabecera__pildora {
+    gap: 8px;
+  }
+  .cabecera .boton--corto {
+    padding: 0 12px;
+    gap: 6px;
+  }
+}
+
+/* 320-359 px: sin el icono de WhatsApp en la cabecera y con el logo más pegado, para que el menú no se salga de la píldora */
+@media (max-width: 359px) {
+  .cabecera .boton--corto .ico {
+    display: none;
+  }
+  .cabecera__logo {
+    padding: 0 4px 0 10px;
+  }
 }

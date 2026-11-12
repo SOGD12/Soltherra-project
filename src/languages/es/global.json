@@ -362,7 +362,7 @@
         "Venta de equipos para tu proyecto"
       ],
       "message": "Mensaje (opcional)",
-      "message-placeholder": "Ej. casa de 4 personas en Cali, factura de $400.000",
+      "message-placeholder": "Ej. casa de 4 personas en Cali",
       "consent-before": "Autorizo el tratamiento de mis datos para recibir una cotización, según la",
       "consent-link": "política de privacidad",
       "consent-after": ".",

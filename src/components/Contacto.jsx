@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icono, IconoWhatsApp } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
-import { TEL, TEL2, CORREO, DIRECCION, mensajeContacto, wa, MAPA } from '../data/contenido.js'
+import { TEL, TEL2, CORREO, DIRECCION, mensajeContacto, wa, mapa } from '../data/contenido.js'
 
 function Formulario() {
   const { t } = useTranslation('global')
@@ -70,7 +70,7 @@ function Formulario() {
 }
 
 export default function Contacto() {
-  const { t } = useTranslation('global')
+  const { t, i18n } = useTranslation('global')
   return (
     <section className="seccion-isla" id="contacto">
       <div className="isla contacto" data-isla>
@@ -111,7 +111,7 @@ export default function Contacto() {
               <div className="contacto__mapa">
                 <iframe
                   title={t('contact.map-title')}
-                  src={MAPA}
+                  src={mapa(i18n.language)}
                   loading="lazy"
                   referrerPolicy="strict-origin-when-cross-origin"
                   allowFullScreen

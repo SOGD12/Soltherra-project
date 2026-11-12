@@ -1,5 +1,5 @@
 // Título, descripción y ruta de cada página. Los usan el pre-renderizado (vite.config.js) y el cambio de página en el navegador.
-import es from './languages/es/global.json'
+import es from './languages/es/global.json' with { type: 'json' }
 
 export const DOMINIO_POR_DEFECTO = 'https://soltherra.vercel.app'
 
