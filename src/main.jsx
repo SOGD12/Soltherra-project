@@ -23,7 +23,3 @@ else createRoot(raiz).render(app)
 // Idioma elegido antes (cookie): se aplica ya hidratado, porque el HTML pre-renderizado viene en español.
 aplicarIdiomaGuardado()
 
-// Analítica de Vercel: se carga cuando la página ya terminó, para no competir con la carga inicial.
-if (import.meta.env.PROD) {
-  addEventListener('load', () => import('@vercel/analytics').then(({ inject }) => inject()), { once: true })
-}

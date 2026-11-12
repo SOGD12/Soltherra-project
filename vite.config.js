@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { readFileSync, writeFileSync } from 'node:fs'
+import { writeFileSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { createServer, defineConfig, loadEnv } from 'vite'
 import { SEO, DOMINIO_POR_DEFECTO as SEO_DOMINIO } from './src/seo.js'
@@ -7,7 +7,7 @@ import { SEO, DOMINIO_POR_DEFECTO as SEO_DOMINIO } from './src/seo.js'
 const DOMINIO_POR_DEFECTO = SEO_DOMINIO
 
 // SEO que depende del dominio: canonical, sitemap.xml y robots.txt. El dominio sale de VITE_SITE_URL
-// (ej. https://soltherra.com en .env.production); si no existe se usa el de Vercel que ya está en index.html.
+// (ej. https://soltherra.co en .env.production); si no existe se usa https://soltherra.co, que ya está en index.html.
 function seo(siteUrl) {
   const base = (siteUrl || DOMINIO_POR_DEFECTO).replace(/\/$/, '')
   return {
@@ -35,8 +35,8 @@ function seo(siteUrl) {
 
 // Pre-renderiza cada página al compilar: el HTML ya trae títulos y textos, sin esperar al JavaScript.
 // Buscadores y vistas previas de redes lo leen directo; en el navegador React lo hidrata (ver src/main.jsx).
-// index.html lleva el inicio; las demás páginas se escriben como servicios.html, trabajos.html, etc. (vercel.json
-// usa cleanUrls, así que /servicios sirve servicios.html) con su propio título, descripción y canonical.
+// index.html lleva el inicio; las demás páginas se escriben como servicios.html, trabajos.html, etc. (el .htaccess
+// que genera cabeceras() hace que /servicios sirva servicios.html) con su propio título, descripción y canonical.
 const renders = {}
 
 function prerender() {
@@ -93,24 +93,72 @@ function paginas() {
   }
 }
 
-// Cabeceras de seguridad: vercel.json es la fuente única. Aquí se usan para dos cosas:
+// Cabeceras de seguridad: esta es la fuente única. Se usan para tres cosas:
+//  - Al compilar se escribe dist/.htaccess (Hostinger / LiteSpeed) con estas cabeceras, la caché y las rutas limpias.
 //  - `vite preview` las envía igual que producción, así la CSP se puede probar en local.
-//  - Al compilar se comprueba que cada script en línea de index.html tenga su hash en la CSP; si alguien edita
+//  - Se comprueba que cada script en línea de index.html tenga su hash en la CSP; si alguien edita
 //    ese script sin actualizar el hash, el navegador lo bloquearía en producción y el build avisa antes.
+const CABECERAS = {
+  'Content-Security-Policy':
+    "default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests",
+  'Strict-Transport-Security': 'max-age=63072000',
+  'X-Content-Type-Options': 'nosniff',
+  'X-Frame-Options': 'DENY',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+}
+
+// Al recargar /servicios el servidor busca un archivo "servicios" que no existe y daba 404.
+// Con estas reglas sirve servicios.html (pre-renderizada) y cualquier otra ruta cae en index.html.
+const htaccess = () => `# Generado por vite.config.js al compilar: no editar a mano.
+Options -MultiViews
+DirectoryIndex index.html
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # Rutas limpias: /servicios o /servicios/ -> servicios.html
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([^.]+?)/?$ $1.html [L]
+
+  # Cualquier otra ruta que no sea un archivo real -> index.html (la app la lleva a /home)
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ index.html [L]
+</IfModule>
+
+<IfModule mod_headers.c>
+${Object.entries(CABECERAS)
+  .map(([clave, valor]) => `  Header always set ${clave} "${valor}"`)
+  .join('\n')}
+
+  SetEnvIf Request_URI "^/assets/" CACHE_LARGA
+  SetEnvIf Request_URI "^/img/" CACHE_MEDIA
+  SetEnvIf Request_URI "^/(favicon\\.ico|icon-192\\.png|apple-touch-icon\\.png|og\\.webp|og-logo\\.png|icons\\.svg|robots\\.txt|sitemap\\.xml)$" CACHE_CORTA
+  Header set Cache-Control "public, max-age=31536000, immutable" env=CACHE_LARGA
+  Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400" env=CACHE_MEDIA
+  Header set Cache-Control "public, max-age=86400" env=CACHE_CORTA
+</IfModule>
+`
+
 function cabeceras() {
-  const config = JSON.parse(readFileSync('vercel.json', 'utf8'))
-  const globales = Object.fromEntries(config.headers.find((h) => h.source === '/(.*)').headers.map((h) => [h.key, h.value]))
   return {
     name: 'soltherra-cabeceras',
-    config: () => ({ preview: { headers: globales } }),
+    config: () => ({ preview: { headers: CABECERAS } }),
+    generateBundle() {
+      this.emitFile({ type: 'asset', fileName: '.htaccess', source: htaccess() })
+    },
     transformIndexHtml: {
       order: 'post',
       handler(html, ctx) {
         if (ctx.server) return html
         for (const [, js] of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
           const hash = `'sha256-${createHash('sha256').update(js).digest('base64')}'`
-          if (!globales['Content-Security-Policy'].includes(hash)) {
-            throw new Error(`El script en línea de index.html cambió: actualiza su hash en la CSP de vercel.json a ${hash}`)
+          if (!CABECERAS['Content-Security-Policy'].includes(hash)) {
+            throw new Error(`El script en línea de index.html cambió: actualiza su hash en la CSP (CABECERAS en vite.config.js) a ${hash}`)
           }
         }
         return html

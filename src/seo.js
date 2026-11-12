@@ -1,7 +1,7 @@
 // Título, descripción y ruta de cada página. Los usan el pre-renderizado (vite.config.js) y el cambio de página en el navegador.
 import es from './languages/es/global.json' with { type: 'json' }
 
-export const DOMINIO_POR_DEFECTO = 'https://soltherra.vercel.app'
+export const DOMINIO_POR_DEFECTO = 'https://soltherra.co'
 
 // Los textos en español viven en languages/es/global.json (sección "seo"); aquí solo la ruta de cada página.
 // El pre-renderizado (vite.config.js) y el sitemap usan el español; el navegador cambia al idioma elegido (ver aplicarSeo).
