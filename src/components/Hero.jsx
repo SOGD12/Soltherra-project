@@ -1,10 +1,30 @@
+import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { BotonWA, Chip } from './Comunes.jsx'
 import inicio from '../data/imagenes/inicio.json'
 
+/** Parte un texto en palabras, cada una en su caja .pal (--i es su turno en la entrada).
+ *  En celular las hace subir el CSS (src/styles/inicio.css); en escritorio, Anime.js (src/animaciones.js). */
+function palabras(texto, desde) {
+  return texto
+    .trim()
+    .split(/\s+/)
+    .map((palabra, k) => (
+      <Fragment key={k}>
+        {k > 0 && ' '}
+        <span className="pal" style={{ '--i': desde + k }}>
+          <span>{palabra}</span>
+        </span>
+      </Fragment>
+    ))
+}
+
 export default function Hero() {
   const { t } = useTranslation('global')
+  const acento = t('home.hero.title-accent')
+  const resto = t('home.hero.title-rest')
+  const enAcento = acento.trim().split(/\s+/).length
   return (
     <section className="hero" id="inicio">
       <div className="hero__medio" aria-hidden="true">
@@ -27,8 +47,9 @@ export default function Hero() {
           <Icono nombre="location_on" /> {t('home.hero.chip')}
         </Chip>
         <h1 className="hero__titulo">
-          <em className="acento">{t('home.hero.title-accent')}</em>
-          {t('home.hero.title-rest')}
+          <em className="acento">{palabras(acento, 0)}</em>
+          {/^\s/.test(resto) && ' '}
+          {palabras(resto, enAcento)}
         </h1>
         <p className="hero__sub">
           {t('home.hero.subtitle')}

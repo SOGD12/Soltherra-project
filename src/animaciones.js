@@ -4,7 +4,6 @@ import { onScroll } from 'animejs/events'
 import { stagger } from 'animejs/utils'
 import { splitText } from 'animejs/text'
 import { sinMovimiento } from './movimiento.js'
-import { gama } from './rendimiento.js'
 
 // Todos los observadores de scroll, para recalcular sus posiciones si la página cambia de alto.
 let observadores = []
@@ -71,8 +70,6 @@ export function iniciarAnimaciones() {
   // (ver fundir). El escritorio las lleva todas.
   const movil = ligero()
   const conserva = (el) => !movil || el.closest('#recorrido, #proceso')
-  // Equipos de baja gama: en las partes que sí se animan se omiten además las atadas al scroll.
-  const recortar = movil && gama() === 'baja'
   const textos = []
   observadores = []
   ioEntradas.length = 0
@@ -148,23 +145,23 @@ export function iniciarAnimaciones() {
   todos('.bento').forEach((el) => precarga.observe(el))
 
   const ambito = createScope().add(() => {
-    // ---------- Hero: titular palabra a palabra, foto con zoom lento y salida atada al scroll ----------
-    const titulo = document.querySelector('.hero__titulo')
-    if (titulo) {
-      const partido = splitText(titulo, { words: { wrap: 'clip' } })
-      textos.push(partido)
+    // ---------- Hero (solo escritorio): titular palabra a palabra, foto con zoom lento y salida atada al scroll ----------
+    // En celular la portada entra con CSS puro (ver src/styles/inicio.css), sin Anime.js.
+    // Las palabras ya vienen en cajas .pal desde Hero.jsx: no hace falta partir el texto.
+    const palabrasHero = todos('.hero__titulo .pal > span')
+    if (!movil && palabrasHero.length) {
       document.documentElement.classList.add('animado')
-      animate(partido.words, { y: ['110%', '0%'], duration: t(1100), delay: stagger(t(70), { start: t(150) }), ease: SUAVE })
+      animate(palabrasHero, { y: ['110%', '0%'], duration: t(1100), delay: stagger(t(70), { start: t(150) }), ease: SUAVE })
     }
-    if (document.querySelector('.hero')) animate('.hero .chip, .hero__sub, .hero__acciones, .hero__bajar', {
+    if (!movil && document.querySelector('.hero')) animate('.hero .chip, .hero__sub, .hero__acciones, .hero__bajar', {
       opacity: [0, 1],
       y: [24, 0],
       duration: t(1000),
       delay: stagger(t(120), { start: t(600) }),
       ease: SUAVE,
     })
-    if (document.querySelector('.hero__foto')) animate('.hero__foto', { scale: [1.18, 1.04], duration: t(2600), ease: 'outQuart' })
-    if (!recortar && document.querySelector('.hero')) {
+    if (!movil && document.querySelector('.hero__foto')) animate('.hero__foto', { scale: [1.18, 1.04], duration: t(2600), ease: 'outQuart' })
+    if (!movil && document.querySelector('.hero')) {
       animate('.hero__medio', { y: ['0%', '22%'], ease: 'linear', autoplay: atado('.hero', 'start start', 'end start') })
       animate('.hero__texto', {
         y: [0, -90],

@@ -4,10 +4,6 @@
   color: var(--hoja-clara);
 }
 
-.hero__titulo span:has(> [data-word]) {
-  padding: 0 0.1em 0.12em;
-  margin: 0 -0.1em -0.12em;
-}
 
 /* ---------- Portada ---------- */
 
@@ -108,19 +104,98 @@
   }
 }
 
-/* Mientras carga Anime.js el titular no parpadea; si nunca carga, aparece igual a los 2 s */
+/* Escritorio: mientras carga Anime.js el titular no parpadea; si nunca carga, aparece igual a los 2 s.
+   (Mismo criterio que ligero() en src/animaciones.js: celular = ancho < 900 px o pantalla táctil.) */
 
-.js:not(.animado) .hero__titulo,
-.js:not(.animado) .hero .chip,
-.js:not(.animado) .hero__sub,
-.js:not(.animado) .hero__acciones {
-  visibility: hidden;
-  animation: mostrar 0s 2s forwards;
+@media not ((max-width: 899px) or (pointer: coarse)) {
+  .js:not(.animado) .hero__titulo,
+  .js:not(.animado) .hero .chip,
+  .js:not(.animado) .hero__sub,
+  .js:not(.animado) .hero__acciones {
+    visibility: hidden;
+    animation: mostrar 0s 2s forwards;
+  }
 }
 
 @keyframes mostrar {
   to {
     visibility: visible;
+  }
+}
+
+/* Celular: la entrada de la portada es CSS puro, sin Anime.js. Arranca con el primer pintado (no espera
+   al JavaScript) y repite los tiempos de escritorio: palabras que suben, foto que se acerca y el resto
+   que aparece después. La salida al hacer scroll usa animaciones atadas al scroll donde el navegador las tiene. */
+
+@media ((max-width: 899px) or (pointer: coarse)) and (prefers-reduced-motion: no-preference) {
+  .hero__titulo .pal > span {
+    animation: hero-subir 1.6s cubic-bezier(0.25, 1, 0.5, 1) calc(220ms + var(--i) * 100ms) both;
+  }
+  .hero__foto {
+    animation: hero-acercar 3.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+  }
+  .hero .chip,
+  .hero__sub,
+  .hero__acciones,
+  .hero__bajar {
+    animation: hero-aparecer 1.45s cubic-bezier(0.25, 1, 0.5, 1) both;
+  }
+  .hero .chip {
+    animation-delay: 870ms;
+  }
+  .hero__sub {
+    animation-delay: 1045ms;
+  }
+  .hero__acciones {
+    animation-delay: 1220ms;
+  }
+  .hero__bajar {
+    animation-delay: 1395ms;
+  }
+
+  @supports (animation-timeline: scroll()) {
+    .hero__medio {
+      animation: hero-medio linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100svh;
+    }
+    .hero__texto {
+      animation: hero-salir linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 100svh;
+    }
+  }
+}
+
+@keyframes hero-subir {
+  from {
+    transform: translateY(110%);
+  }
+}
+
+@keyframes hero-acercar {
+  from {
+    transform: scale(1.18);
+  }
+}
+
+@keyframes hero-aparecer {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+}
+
+@keyframes hero-medio {
+  to {
+    translate: 0 22%;
+  }
+}
+
+@keyframes hero-salir {
+  to {
+    translate: 0 -90px;
+    opacity: 0;
   }
 }
 
