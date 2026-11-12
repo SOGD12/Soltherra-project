@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { WA, INSTAGRAM, FACEBOOK, nav } from '../data/contenido.js'
+import { EVENTO_ABRIR } from '../analitica.js'
 
 export default function Pie() {
   const { t } = useTranslation('global')
@@ -48,7 +49,10 @@ export default function Pie() {
       </p>
       <div className="contenedor">
         <p className="pie__legal">
-          {t('footer.legal')} <a href="/privacidad">{t('footer.privacy')}</a>
+          {t('footer.legal')} <a href="/privacidad">{t('footer.privacy')}</a> ·{' '}
+          <button type="button" className="pie__cookies" onClick={() => window.dispatchEvent(new Event(EVENTO_ABRIR))}>
+            {t('footer.cookies')}
+          </button>
         </p>
       </div>
     </footer>

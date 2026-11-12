@@ -34,7 +34,8 @@
     "sections": "Sections",
     "follow": "Follow us",
     "legal": "© 2026 Soltherra S.A.S. ·",
-    "privacy": "Privacy policy"
+    "privacy": "Privacy policy",
+    "cookies": "Cookie preferences"
   },
   "home": {
     "hero": {
@@ -543,7 +544,7 @@
       },
       {
         "title": "Cookies and measurement",
-        "text": "We do not use advertising or tracking cookies. We measure visits with Google Analytics, which counts page views in aggregate, without cookies and without identifying you. The map on the contact page is loaded by Google Maps."
+        "text": "We do not use advertising cookies. If you accept measurement cookies in the site notice, we use Google Analytics (through Google Tag Manager) to count visits and see which sections are viewed; to do so Google stores cookies such as _ga in your browser and processes technical data such as device type and approximate location. If you reject, nothing from Google Analytics is loaded. You can change your choice at any time from \"Cookie preferences\" in the footer. We remember your language with our own cookie, and the map on the contact page is loaded by Google Maps."
       },
       {
         "title": "Your rights",
@@ -851,5 +852,12 @@
         }
       ]
     }
+  },
+  "cookies": {
+    "title": "Measurement cookies",
+    "text": "With your permission we use Google Analytics to see how many people visit the site and which sections are useful to them. We do not use advertising cookies. You can change your choice at any time from the footer. More details in the",
+    "link": "privacy policy",
+    "accept": "Accept",
+    "reject": "Reject"
   }
 }

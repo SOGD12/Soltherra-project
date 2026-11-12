@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { aplicarIdiomaGuardado } from './i18n.js'
 import Header from './components/Header.jsx'
 import Pie from './components/Pie.jsx'
+import AvisoCookies from './components/AvisoCookies.jsx'
 import useProgresoScroll from './hooks/useProgresoScroll.js'
 import useAnimaciones from './hooks/useAnimaciones.js'
 import useScrollPagina from './hooks/useScrollPagina.js'
@@ -30,6 +31,7 @@ export default function App() {
         <Pagina />
       </main>
       <Pie />
+      <AvisoCookies />
     </>
   )
 }

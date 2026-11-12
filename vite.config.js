@@ -104,7 +104,8 @@ function paginas() {
 //    ese script sin actualizar el hash, el navegador lo bloquearía en producción y el build avisa antes.
 const CABECERAS = {
   'Content-Security-Policy':
-    "default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo='; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self' data:; connect-src 'self'; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests",
+    // Google Tag Manager + Google Analytics 4 (solo se cargan con consentimiento, ver src/analitica.js).
+    "default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests",
   'Strict-Transport-Security': 'max-age=63072000',
   'X-Content-Type-Options': 'nosniff',
   'X-Frame-Options': 'DENY',
