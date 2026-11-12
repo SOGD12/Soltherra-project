@@ -11,6 +11,10 @@ export default function Hero() {
         <img
           className="hero__foto"
           src={inicio.hero.foto}
+          // Celular en vertical: recorte vertical más liviano (mismo encuadre que deja ver object-fit: cover).
+          // En horizontal la foto cubre el alto (4:3), así que el ancho mostrado es el mayor entre 100vw y 133svh.
+          srcSet={`${inicio.hero.movil} ${inicio.hero.ancho_movil}w, ${inicio.hero.foto} ${inicio.hero.ancho}w`}
+          sizes="(max-aspect-ratio: 3/4) 100vw, max(100vw, 133svh)"
           alt={t('images.hero', { defaultValue: inicio.hero.alt })}
           width={inicio.hero.ancho}
           height={inicio.hero.alto}

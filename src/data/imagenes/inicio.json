@@ -1,8 +1,10 @@
 {
   "hero": {
     "foto": "/img/hero.webp",
-    "ancho": 1800,
-    "alto": 1350,
+    "ancho": 1600,
+    "alto": 1200,
+    "movil": "/img/hero-movil.webp",
+    "ancho_movil": 810,
     "alt": "Paneles solares fotovoltaicos instalados sobre una cubierta metálica, con árboles y edificios al fondo"
   },
   "nosotros": {

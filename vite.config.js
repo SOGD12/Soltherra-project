@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto'
-import { writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { createServer, defineConfig, loadEnv } from 'vite'
 import { SEO, DOMINIO_POR_DEFECTO as SEO_DOMINIO, datosEstructurados } from './src/seo.js'
@@ -66,7 +66,6 @@ function prerender() {
 }
 
 function paginas() {
-  let final = ''
   let salida = 'dist'
   const poner = (html, patron, valor) => html.replace(patron, (_, antes) => `${antes}${valor}`)
   return {
@@ -75,8 +74,11 @@ function paginas() {
     configResolved: (config) => {
       salida = config.build.outDir
     },
-    transformIndexHtml: { order: 'post', handler: (html) => ((final = html), html) },
     closeBundle() {
+      // Se parte del index.html ya escrito en disco: ahí Vite ya resolvió las rutas de los srcset
+      // (en transformIndexHtml todavía llevan marcadores __VITE_PUBLIC_ASSET__).
+      const final = readFileSync(`${salida}/index.html`, 'utf8')
+      if (!final.includes(renders.inicio)) throw new Error('soltherra-paginas: el HTML final no contiene el inicio pre-renderizado')
       const base = final.match(/<link rel="canonical" href="([^"]*?)\/"/)[1]
       for (const [pagina, { titulo, descripcion, ruta }] of Object.entries(SEO)) {
         let html = final.split(renders.inicio).join(renders[pagina])
@@ -159,6 +161,11 @@ ${Object.entries(CABECERAS)
   Header set Cache-Control "public, max-age=31536000, immutable" env=CACHE_LARGA
   Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400" env=CACHE_MEDIA
   Header set Cache-Control "public, max-age=86400" env=CACHE_CORTA
+
+  # El HTML se revalida siempre: tras cada despliegue apunta a los /assets/ nuevos (con hash) y nunca a los borrados.
+  <FilesMatch "\\.html$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
 </IfModule>
 `
 
