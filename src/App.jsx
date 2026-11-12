@@ -1,4 +1,6 @@
+import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
+import { aplicarIdiomaGuardado } from './i18n.js'
 import Header from './components/Header.jsx'
 import Pie from './components/Pie.jsx'
 import useProgresoScroll from './hooks/useProgresoScroll.js'
@@ -12,6 +14,9 @@ export default function App() {
   const { i18n } = useTranslation('global')
   const idioma = i18n.language
   const Pagina = CONTENIDO_DE_PAGINA[pagina]
+
+  // Idioma elegido antes (cookie): se cambia después de hidratar, para que el HTML en español coincida al hidratar.
+  useEffect(aplicarIdiomaGuardado, [])
 
   useProgresoScroll()
   useAnimaciones(pagina, idioma)

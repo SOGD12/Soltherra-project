@@ -110,7 +110,7 @@ main {
   :focus-visible {
     outline-color: var(--hoja);
   }
-  h3 {
+  h2 {
     font-size: clamp(1.5rem, 1.1rem + 1.2vw, 2.2rem);
     font-stretch: 106%;
     line-height: 1.05;
@@ -229,7 +229,7 @@ main {
     gap: 14px;
     padding: clamp(22px, 2.4vw, 32px);
     border-radius: 24px;
-    h3 {
+    h2 {
       font-size: clamp(1.4rem, 1rem + 0.9vw, 1.8rem);
     }
   }

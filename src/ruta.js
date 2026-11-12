@@ -1,21 +1,22 @@
 import { useEffect, useSyncExternalStore } from 'react'
 
-// Páginas del sitio, con rutas limpias: /home, /servicios, /como-funciona, /trabajos, /contacto, /privacidad.
+// Páginas del sitio, con rutas limpias: / (inicio), /servicios, /como-funciona, /trabajos, /contacto, /privacidad.
 // Un #ancla opcional (/servicios#termico) baja a un bloque de la página. Hace falta que el alojamiento
 // devuelva index.html en esas rutas (ver el .htaccess que genera vite.config.js; Vite ya lo hace en desarrollo).
 export const PAGINAS = ['inicio', 'servicios', 'como-funciona', 'trabajos', 'contacto', 'privacidad']
 
-const RUTA_DE = (pagina) => (pagina === 'inicio' ? '/home' : `/${pagina}`)
+const RUTA_DE = (pagina) => (pagina === 'inicio' ? '/' : `/${pagina}`)
 const PAGINA_DE = (ruta) => {
   const tramo = ruta.replace(/^\/+|\/+$/g, '')
   return tramo === 'home' || !tramo ? 'inicio' : PAGINAS.includes(tramo) ? tramo : 'inicio'
 }
 
-// La raíz "/" y las rutas desconocidas se muestran como /home.
+// Las rutas desconocidas se muestran como el inicio "/" (el servidor ya redirige /home a / con un 301).
+const RUTAS_SITIO = ['', ...PAGINAS.filter((p) => p !== 'inicio')]
 if (typeof window !== 'undefined') {
   const { pathname, search, hash } = window.location
-  const conocida = ['home', ...PAGINAS].includes(pathname.replace(/^\/+|\/+$/g, ''))
-  if (!conocida) window.history.replaceState(null, '', `/home${search}${hash}`)
+  const conocida = RUTAS_SITIO.includes(pathname.replace(/^\/+|\/+$/g, ''))
+  if (!conocida) window.history.replaceState(null, '', `/${search}${hash}`)
 }
 
 // Página que se pinta en el servidor (pre-renderizado); la fija entry-server.jsx antes de cada render.
@@ -54,7 +55,7 @@ function interceptar(e) {
   const url = new URL(a.href, window.location.href)
   if (url.origin !== window.location.origin || a.getAttribute('href').startsWith('#')) return
   // Solo las rutas del sitio; un enlace a /img/ficha.pdf o similar se deja al navegador.
-  if (!['home', ...PAGINAS].includes(url.pathname.replace(/^\/+|\/+$/g, ''))) return
+  if (!RUTAS_SITIO.includes(url.pathname.replace(/^\/+|\/+$/g, ''))) return
   e.preventDefault()
   navegar(url.pathname + url.hash)
 }

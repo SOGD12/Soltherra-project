@@ -1039,3 +1039,102 @@ body:has(.legal) .cabecera__pildora {
     padding: 0 4px 0 10px;
   }
 }
+
+/* Guía al final de cada página: texto de apoyo y preguntas frecuentes (Guia.jsx). */
+
+.guia__rejilla {
+  display: grid;
+  gap: clamp(40px, 6vw, 88px);
+  @media (min-width: 1000px) {
+    grid-template-columns: 1.1fr 1fr;
+    align-items: start;
+  }
+}
+
+.guia {
+  h2 {
+    font-size: clamp(1.8rem, 1.1rem + 2.4vw, 3rem);
+    font-stretch: 106%;
+    line-height: 1.02;
+    max-width: 20ch;
+    margin: 20px 0 24px;
+  }
+  h3 {
+    font-size: clamp(1.15rem, 1rem + 0.5vw, 1.4rem);
+    line-height: 1.2;
+    margin: 32px 0 12px;
+  }
+  p,
+  li {
+    color: var(--texto-suave);
+  }
+  ul,
+  ol {
+    display: grid;
+    gap: 8px;
+    max-width: 62ch;
+    margin: 0 0 1em;
+    padding-left: 1.4em;
+  }
+  ul {
+    list-style: disc;
+  }
+  ol {
+    list-style: decimal;
+  }
+  li::marker {
+    color: var(--hoja);
+    font-weight: 700;
+  }
+  a {
+    color: var(--hoja-oscura);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+}
+
+.guia__faq {
+  h2 {
+    margin-top: 0;
+  }
+  details {
+    border-top: 1px solid var(--linea);
+    padding-block: 18px;
+    &:last-of-type {
+      border-bottom: 1px solid var(--linea);
+    }
+  }
+  summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    list-style: none;
+    &::-webkit-details-marker {
+      display: none;
+    }
+    &::after {
+      content: '+';
+      flex: none;
+      font-family: var(--display);
+      font-size: 1.6rem;
+      line-height: 1;
+      color: var(--hoja);
+      transition: transform 0.3s var(--ease);
+    }
+    h3 {
+      margin: 0;
+      font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.25rem);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+  }
+  details[open] summary::after {
+    transform: rotate(45deg);
+  }
+  details p {
+    margin: 12px 0 0;
+  }
+}

@@ -22,7 +22,7 @@ function Formulario() {
 
   return (
     <form className="formulario" onSubmit={enviar}>
-      <h3>{t('contact.form.title')}</h3>
+      <h2>{t('contact.form.title')}</h2>
       <label>
         <span>{t('contact.form.name')}</span>
         <input

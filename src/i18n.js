@@ -1,5 +1,4 @@
 import i18next from 'i18next'
-import Cookies from 'js-cookie'
 
 import global_es from './languages/es/global.json'
 import global_en from './languages/en/global.json'
@@ -8,8 +7,16 @@ import global_en from './languages/en/global.json'
 export const IDIOMAS = ['es', 'en']
 const HTML_LANG = { es: 'es-CO', en: 'en' }
 
+// Cookie "language" con el idioma elegido. Solo se aceptan los valores de IDIOMAS, al leer y al guardar.
+const leerCookie = () => document.cookie.match(/(?:^|;\s*)language=([^;]*)/)?.[1]
+
+const guardarCookie = (idioma) => {
+  const segura = location.protocol === 'https:' ? '; Secure' : ''
+  document.cookie = `language=${idioma}; Max-Age=31536000; Path=/; SameSite=Lax${segura}`
+}
+
 const idiomaGuardado = () => {
-  const guardado = typeof document === 'undefined' ? undefined : Cookies.get('language')
+  const guardado = typeof document === 'undefined' ? undefined : leerCookie()
   return IDIOMAS.includes(guardado) ? guardado : 'es'
 }
 
@@ -35,7 +42,8 @@ export const aplicarIdiomaGuardado = () => {
 }
 
 export const cambiarIdioma = (idioma) => {
-  Cookies.set('language', idioma, { expires: 365, sameSite: 'lax' })
+  if (!IDIOMAS.includes(idioma)) return Promise.resolve()
+  guardarCookie(idioma)
   return i18next.changeLanguage(idioma)
 }
 

@@ -46,8 +46,8 @@ Soltherra diseña, instala y mantiene **sistemas solares fotovoltaicos** y **sis
 ## Desarrollo
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Stack: React 19 + Vite, Anime.js 4 (animaciones de scroll), Zdog (escena 3D), Material Symbols (iconos en SVG en línea), fuentes Archivo y Hanken Grotesk locales. El SEO que depende del dominio se activa con `VITE_SITE_URL` (ver `vite.config.js`).

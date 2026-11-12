@@ -39,7 +39,7 @@
   "home": {
     "hero": {
       "chip": "Cali, Colombia · Energía sostenible",
-      "title-accent": "Energía solar",
+      "title-accent": "Energía solar en Cali",
       "title-rest": " para tu hogar, empresa o institución.",
       "subtitle": "Diseñamos e instalamos sistemas solares fotovoltaicos y solares térmicos, con cumplimiento normativo e ingeniería de alta calidad.",
       "services": "Ver servicios",
@@ -94,9 +94,9 @@
   },
   "engineering": {
     "chip": "Ingeniería y trámites",
-    "title-before": "Lo técnico y el papeleo, ",
-    "title-accent": "resueltos",
-    "title-after": " por Soltherra",
+    "title-before": "Paneles solares en Cali, ",
+    "title-accent": "con ingeniería",
+    "title-after": " y trámites",
     "subtitle": "Nos encargamos de la parte técnica y de los trámites para que tu sistema opere con respaldo normativo.",
     "items": [
       {
@@ -115,7 +115,8 @@
         "title": "Beneficios tributarios",
         "text": "Trámites para acceder a los beneficios tributarios de la energía solar."
       }
-    ]
+    ],
+    "list-title": "Qué incluye cada proyecto"
   },
   "services": {
     "intro": {
@@ -204,9 +205,9 @@
   "how-it-works": {
     "tour": {
       "chip": "Cómo funciona",
-      "title-before": "Del ",
-      "title-accent": "sol",
-      "title-after": " a tu casa",
+      "title-before": "Así funciona la energía ",
+      "title-accent": "solar",
+      "title-after": "",
       "scene-label": "Escena en 3D: el sol ilumina el panel solar del techo, la energía pasa por el inversor y se encienden las ventanas de la casa",
       "spin-on": "Desliza la casa · Toca para soltar",
       "spin-off": "Toca para girar la casa",
@@ -303,8 +304,8 @@
   },
   "works": {
     "chip": "Obras reales",
-    "title-before": "Nuestros ",
-    "title-accent": "trabajos",
+    "title-before": "Nuestros proyectos solares en ",
+    "title-accent": "Cali",
     "tablist-label": "Tipo de trabajo",
     "categories": {
       "fotovoltaico": "Fotovoltaico",
@@ -335,13 +336,14 @@
       "text": "Cuéntanos qué tienes en mente y un experto te da más información y una cotización.",
       "button": "Pedir información",
       "message": "Hola Soltherra, vi sus trabajos en la página y quiero más información sobre el servicio. ¿Me puede asesorar un experto?"
-    }
+    },
+    "gallery-title": "Obras por tipo de sistema"
   },
   "contact": {
     "chip": "Contacto",
-    "slogan-before": "Energía sostenible que ",
-    "slogan-accent": "transforma",
-    "slogan-after": " tu futuro.",
+    "slogan-before": "Cotiza tu sistema ",
+    "slogan-accent": "solar",
+    "slogan-after": " en Cali.",
     "phone": "Celular",
     "email": "Correo",
     "address": "Dirección",
@@ -413,28 +415,258 @@
   },
   "seo": {
     "inicio": {
-      "title": "Soltherra - Energía solar",
-      "description": "Soltherra S.A.S. en Cali: diseño, instalación y mantenimiento de sistemas solares fotovoltaicos y solares térmicos para hogares, empresas e instituciones."
+      "title": "Empresa de energía solar en Cali | Soltherra",
+      "description": "Soltherra diseña, instala y mantiene sistemas de energía solar en Cali: paneles fotovoltaicos, calentadores solares y climatización de piscinas."
     },
     "servicios": {
-      "title": "Servicios solares en Cali | Soltherra",
-      "description": "Paneles solares, calentadores solares, climatización de piscinas, cargadores para vehículos eléctricos, mantenimiento y trámites ante el operador de red en Cali."
+      "title": "Instalación de paneles solares en Cali | Soltherra",
+      "description": "Instalamos paneles solares, calentadores solares, climatización de piscinas y cargadores eléctricos en Cali, con trámites y mantenimiento."
     },
     "como-funciona": {
-      "title": "Cómo funciona un sistema solar | Soltherra",
-      "description": "Del sol a tu casa: así funciona un sistema solar y cuál es el proceso de Soltherra, desde la visita técnica y la ingeniería hasta la instalación y puesta en marcha."
+      "title": "Cómo funciona un sistema solar fotovoltaico | Soltherra",
+      "description": "Así convierte un sistema solar la luz en electricidad para tu casa o empresa, y así trabajamos: ingeniería, trámites, instalación y monitoreo."
     },
     "trabajos": {
-      "title": "Instalaciones solares reales en Cali | Soltherra",
-      "description": "Obras reales de Soltherra en Cali y el Valle del Cauca: paneles fotovoltaicos, colectores solares térmicos, piscinas, cargadores de vehículos eléctricos y mantenimiento."
+      "title": "Proyectos de paneles solares en Cali | Soltherra",
+      "description": "Fotos de instalaciones reales de Soltherra en Cali y el Valle del Cauca: paneles, inversores, baterías, colectores térmicos y mantenimiento."
     },
     "contacto": {
-      "title": "Cotiza energía solar en Cali | Soltherra",
-      "description": "Escríbenos por WhatsApp al +57 313 813 0046 o visítanos en la Calle 28 N° 86-70, Cali, para cotizar tu sistema solar."
+      "title": "Cotización de sistema solar en Cali | Soltherra",
+      "description": "Pide la cotización de tu sistema solar por WhatsApp al +57 313 813 0046 o visítanos en la Calle 28 N.º 86-70, Cali. Respuesta de un experto."
     },
     "privacidad": {
       "title": "Política de privacidad | Soltherra",
       "description": "Cómo trata Soltherra S.A.S. los datos que dejas en el formulario de contacto: qué se usa, para qué, dónde queda y cómo ejercer tus derechos."
+    }
+  },
+  "guide": {
+    "inicio": {
+      "chip": "Energía solar en Cali",
+      "title": "De la ingeniería a la puesta en marcha, con una empresa de Cali",
+      "intro": [
+        "Cali tiene una ventaja que pocas ciudades aprovechan del todo: sol durante todo el año. Por estar tan cerca de la línea del ecuador, la radiación solar cambia poco de un mes a otro, y eso hace de la energía solar una inversión predecible para hogares, empresas e instituciones del Valle del Cauca.",
+        "En Soltherra somos una empresa de energía solar con sede en Cali que se encarga del proyecto completo: estudiamos tu consumo, diseñamos el sistema, hacemos los trámites ante el operador de red, lo instalamos y lo mantenemos. Un solo equipo responde por todo."
+      ],
+      "sections": [
+        {
+          "title": "Qué podemos instalar en tu casa, empresa o institución",
+          "items": [
+            "Paneles solares fotovoltaicos para generar tu propia electricidad y pagar menos en la factura. Conoce la [instalación de paneles solares](/servicios) en detalle.",
+            "Calentadores solares para el agua caliente de duchas y cocinas.",
+            "Climatización solar de piscinas y jacuzzis.",
+            "Puntos de carga para vehículos eléctricos, que también se pueden alimentar con tu sistema solar.",
+            "Mantenimiento preventivo y correctivo de sistemas fotovoltaicos y solares térmicos."
+          ]
+        },
+        {
+          "title": "Por qué elegir una empresa local",
+          "text": [
+            "Trabajar con una empresa con sede en Cali significa visitas técnicas más ágiles, conocimiento de los trámites locales ante el operador de red y soporte cercano cuando lo necesites. Mira algunas obras en nuestros [proyectos solares en Cali y el Valle](/trabajos)."
+          ]
+        }
+      ],
+      "faq-title": "Preguntas frecuentes sobre energía solar en Cali",
+      "faq": [
+        {
+          "q": "¿Cuánto cuesta instalar paneles solares en Cali?",
+          "a": "Depende de tu consumo mensual de energía (kWh), del espacio disponible en el techo y de si quieres baterías. Por eso cotizamos cada proyecto después de revisar tu factura de energía: así el sistema queda del tamaño justo para ti."
+        },
+        {
+          "q": "¿Cuánto puedo ahorrar con un sistema solar?",
+          "a": "El ahorro depende de cuánta energía consumes durante el día y del tamaño del sistema. En la cotización te mostramos la generación estimada frente a tu consumo actual, para que veas el ahorro esperado antes de invertir."
+        },
+        {
+          "q": "¿Necesito permisos para instalar paneles solares?",
+          "a": "Para conectar el sistema a la red se hace un trámite ante el operador de red, con el estudio de conexión simplificada para autogeneradores (AGPE) y generación distribuida (GD). Nosotros lo gestionamos por ti."
+        },
+        {
+          "q": "¿Hay beneficios tributarios por invertir en energía solar?",
+          "a": "Sí. La Ley 1715 de 2014 contempla incentivos como la deducción especial de renta, la exclusión de IVA, la exención de aranceles y la depreciación acelerada. Te acompañamos en los [trámites y beneficios tributarios](/servicios#tramites); confirma con tu contador cuáles aplican a tu caso."
+        }
+      ]
+    },
+    "servicios": {
+      "chip": "Preguntas frecuentes",
+      "title": "Lo que más nos preguntan sobre nuestros servicios",
+      "intro": [
+        "Somos una [empresa de energía solar en Cali](/) que diseña, instala y mantiene sistemas solares para hogares, empresas e instituciones. Si quieres entender primero la tecnología, lee [cómo funciona un sistema fotovoltaico](/como-funciona); si prefieres ver resultados, mira los [paneles y calentadores solares que ya instalamos](/trabajos)."
+      ],
+      "faq-title": "Dudas sobre la instalación de paneles solares",
+      "faq": [
+        {
+          "q": "¿Instalan sistemas solares con baterías?",
+          "a": "Sí. Diseñamos sistemas conectados a la red y sistemas con baterías de litio, para tener respaldo durante cortes de luz o usar de noche la energía generada en el día."
+        },
+        {
+          "q": "¿Qué incluye el mantenimiento de un sistema solar?",
+          "a": "Mediciones eléctricas de control, revisión del cableado, las conexiones y el inversor, y monitoreo del rendimiento, tanto en sistemas fotovoltaicos como en sistemas solares térmicos."
+        },
+        {
+          "q": "¿Puedo cargar mi carro eléctrico con energía solar?",
+          "a": "Sí. Instalamos puntos de carga en casas, edificios, empresas y parqueaderos, y los podemos alimentar con tu propio sistema solar."
+        },
+        {
+          "q": "¿Cómo pido una cotización?",
+          "a": "Escríbenos por WhatsApp o usa el formulario para pedir la [cotización de tu sistema solar](/contacto). Con tu factura de energía podemos darte una propuesta ajustada a tu consumo."
+        }
+      ]
+    },
+    "como-funciona": {
+      "chip": "Paso a paso",
+      "title": "Cómo funciona un sistema solar fotovoltaico",
+      "intro": [
+        "Un sistema solar fotovoltaico convierte la luz del sol en electricidad que puedes usar en tu casa, empresa o institución. Tiene cuatro partes principales:"
+      ],
+      "sections": [
+        {
+          "ordered": true,
+          "items": [
+            "Paneles solares (módulos): se instalan en el techo o en una estructura, y sus celdas fotovoltaicas convierten la luz en electricidad de corriente continua.",
+            "Inversor: transforma la corriente continua en corriente alterna, la misma que usan los electrodomésticos, las máquinas y la iluminación.",
+            "Protecciones y tablero: interruptores, puesta a tierra y señalización que protegen la instalación y a las personas, conforme a la normativa técnica.",
+            "Medición y conexión a la red: cuando generas más de lo que consumes, los excedentes se pueden entregar a la red; cuando necesitas más, la red te respalda."
+          ]
+        },
+        {
+          "title": "¿Y las baterías?",
+          "text": [
+            "Si quieres energía de noche o durante cortes de luz, el sistema puede incluir baterías, que guardan parte de la energía producida durante el día."
+          ]
+        },
+        {
+          "title": "¿Y un sistema solar térmico?",
+          "text": [
+            "Funciona distinto: no produce electricidad, sino calor. Los colectores solares calientan agua que se guarda en un tanque, para duchas y cocinas o para la climatización de piscinas y jacuzzis."
+          ]
+        }
+      ],
+      "faq-title": "Preguntas frecuentes sobre sistemas solares",
+      "faq": [
+        {
+          "q": "¿Un sistema solar funciona en días nublados?",
+          "a": "Sí, aunque produce menos. Los paneles también aprovechan la luz difusa, y el diseño del sistema tiene en cuenta los días de menor radiación."
+        },
+        {
+          "q": "¿Qué pasa por la noche?",
+          "a": "Sin baterías, de noche usas la energía de la red como siempre. Con baterías, usas la energía guardada durante el día."
+        },
+        {
+          "q": "¿Cuánto tarda el proceso completo?",
+          "a": "Depende del tamaño del proyecto y de los tiempos de respuesta del operador de red para la conexión. En la visita técnica te damos un cronograma para tu caso; para empezar, [pide tu cotización](/contacto)."
+        },
+        {
+          "q": "¿Cómo sé si mi sistema está funcionando bien?",
+          "a": "Con el monitoreo en tiempo real ves desde el celular cuánta energía generas cada día. Si la generación baja, se detecta a tiempo y se programa el mantenimiento."
+        },
+        {
+          "q": "¿Dónde puedo ver instalaciones reales?",
+          "a": "En nuestra galería de [proyectos de paneles solares en Cali](/trabajos) hay fotos de obras fotovoltaicas, térmicas y de mantenimiento."
+        }
+      ]
+    },
+    "trabajos": {
+      "chip": "Sobre nuestras obras",
+      "title": "Instalaciones solares hechas en Cali y el Valle del Cauca",
+      "intro": [
+        "Estos son proyectos reales de Soltherra. Cada foto corresponde a una obra que diseñamos, instalamos o mantenemos: paneles fotovoltaicos sobre teja y en terraza, inversores, bancos de baterías de litio, colectores solares térmicos y luminarias solares autónomas.",
+        "Mostramos el detalle técnico a propósito (tableros DC, canalizaciones, diagramas unifilares, señalización) porque en una instalación solar la calidad está en lo que no se ve desde la calle: protecciones bien dimensionadas, cableado ordenado y cumplimiento de la normativa eléctrica."
+      ],
+      "sections": [
+        {
+          "title": "Qué tipo de proyectos de paneles solares hacemos",
+          "items": [
+            "Sistemas fotovoltaicos para hogares, empresas e instituciones, conectados a la red o con baterías.",
+            "Sistemas solares térmicos para agua caliente y climatización de piscinas y jacuzzis.",
+            "Puntos de carga para vehículos eléctricos en casas, edificios y parqueaderos.",
+            "Mantenimiento y medición para que cada sistema siga rindiendo con los años."
+          ]
+        },
+        {
+          "title": "Cómo se construye cada proyecto",
+          "text": [
+            "Cada obra sigue el mismo proceso: visita técnica e ingeniería, trámites ante el operador de red cuando el sistema se conecta a la red, instalación y puesta en marcha, y monitoreo del rendimiento. Así el resultado de estas fotos no depende de la suerte, sino de un método que repetimos en cada casa, empresa o institución.",
+            "Si estás comparando opciones, mira más allá de los paneles: cómo se fijó la estructura al techo, por dónde va el cableado, si las protecciones están señalizadas y si el inversor quedó en un lugar ventilado y accesible para el mantenimiento. Son justo los detalles que mostramos aquí."
+          ]
+        },
+        {
+          "text": [
+            "Si quieres saber más del equipo detrás de estas obras, conoce [quiénes somos en Soltherra](/)."
+          ]
+        }
+      ],
+      "faq-title": "Preguntas sobre nuestros proyectos",
+      "faq": [
+        {
+          "q": "¿Todas las fotos son de obras de Soltherra?",
+          "a": "Sí. Son instalaciones reales en Cali y el Valle del Cauca, no imágenes de catálogo."
+        },
+        {
+          "q": "¿Pueden hacer un proyecto parecido en mi casa o empresa?",
+          "a": "Sí. Cada sistema se diseña según tu consumo y tu espacio, así que el resultado se adapta a tu caso. Escríbenos y pide la [cotización de tu sistema solar](/contacto)."
+        },
+        {
+          "q": "¿También hacen mantenimiento?",
+          "a": "Sí, hacemos [mantenimiento de sistemas solares](/servicios#mantenimiento) preventivo y correctivo, con mediciones de control para optimizar la generación y prolongar la vida útil de los equipos."
+        },
+        {
+          "q": "¿En qué zonas trabajan?",
+          "a": "Trabajamos en Cali y en el Valle del Cauca. Cuéntanos dónde está tu proyecto y revisamos la visita técnica."
+        }
+      ]
+    },
+    "contacto": {
+      "chip": "Antes de escribirnos",
+      "title": "Cómo pedir la cotización de tu sistema solar",
+      "intro": [
+        "Para darte una cotización ajustada a tu caso nos ayudan tres datos:"
+      ],
+      "sections": [
+        {
+          "ordered": true,
+          "items": [
+            "Tu factura de energía o tu consumo mensual en kWh: es la base para dimensionar el sistema.",
+            "Dónde se instalaría: tipo de techo (teja, losa o terraza) y espacio disponible.",
+            "Qué buscas: pagar menos de energía, tener respaldo ante cortes con baterías, calentar agua o una piscina, o cargar un vehículo eléctrico."
+          ]
+        },
+        {
+          "text": [
+            "Con esa información preparamos una propuesta pensada para tu consumo real, no un sistema genérico. Escríbenos por WhatsApp con esos datos y un experto de Soltherra te responde. Si el proyecto lo requiere, programamos una visita técnica en Cali y sus alrededores para revisar el techo, el tablero eléctrico y la infraestructura existente."
+          ]
+        },
+        {
+          "text": [
+            "Si prefieres hablar directamente, llámanos o escríbenos al celular. Atendemos proyectos de hogares, empresas e instituciones, y también puedes cotizar un solo servicio, como el mantenimiento de un sistema que ya tienes."
+          ]
+        }
+      ],
+      "faq-title": "Preguntas frecuentes antes de cotizar",
+      "faq": [
+        {
+          "q": "¿Qué servicios puedo cotizar?",
+          "a": "Sistemas fotovoltaicos, sistemas solares térmicos, climatización de piscinas y jacuzzis, mantenimiento, puntos de carga para vehículos eléctricos, trámites y beneficios tributarios, y venta de equipos para tu proyecto. Revisa el detalle en [nuestros servicios de energía solar](/servicios)."
+        },
+        {
+          "q": "¿Hacen visita técnica antes de cotizar?",
+          "a": "En los proyectos que lo requieren, sí: revisamos el techo, el tablero eléctrico y la infraestructura existente antes de entregar la propuesta final."
+        },
+        {
+          "q": "¿Dónde están ubicados?",
+          "a": "Nuestra oficina está en la Calle 28 N.º 86-70, en Cali, Valle del Cauca. También puedes llamarnos o escribirnos al +57 313 813 0046 o al correo soltherra23@gmail.com."
+        },
+        {
+          "q": "¿Puedo cotizar solo el mantenimiento o los trámites?",
+          "a": "Sí. Puedes cotizar cada servicio por separado: mantenimiento de un sistema existente, trámites ante el operador de red, beneficios tributarios o venta de equipos para tu proyecto."
+        },
+        {
+          "q": "¿Atienden empresas e instituciones?",
+          "a": "Sí. Diseñamos sistemas para hogares, empresas e instituciones; en los proyectos más grandes analizamos también los niveles de tensión y la infraestructura eléctrica existente."
+        },
+        {
+          "q": "¿Qué pasa con mis datos?",
+          "a": "El formulario no guarda tus datos: abre WhatsApp con tu mensaje listo para enviar. Puedes leer el detalle en la [política de privacidad](/privacidad)."
+        }
+      ]
     }
   }
 }

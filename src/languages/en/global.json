@@ -39,7 +39,7 @@
   "home": {
     "hero": {
       "chip": "Cali, Colombia · Sustainable energy",
-      "title-accent": "Solar energy",
+      "title-accent": "Solar energy in Cali",
       "title-rest": " for your home, business or institution.",
       "subtitle": "We design and install photovoltaic and solar thermal systems, with regulatory compliance and high-quality engineering.",
       "services": "See services",
@@ -94,9 +94,9 @@
   },
   "engineering": {
     "chip": "Engineering and procedures",
-    "title-before": "The technical work and the paperwork, ",
-    "title-accent": "solved",
-    "title-after": " by Soltherra",
+    "title-before": "Solar panels in Cali, ",
+    "title-accent": "with engineering",
+    "title-after": " and permits",
     "subtitle": "We take care of the technical side and the procedures so your system operates with regulatory backing.",
     "items": [
       {
@@ -115,7 +115,8 @@
         "title": "Tax benefits",
         "text": "Procedures to access the tax benefits of solar energy."
       }
-    ]
+    ],
+    "list-title": "What every project includes"
   },
   "services": {
     "intro": {
@@ -204,9 +205,9 @@
   "how-it-works": {
     "tour": {
       "chip": "How it works",
-      "title-before": "From the ",
-      "title-accent": "sun",
-      "title-after": " to your home",
+      "title-before": "How ",
+      "title-accent": "solar energy",
+      "title-after": " works",
       "scene-label": "3D scene: the sun lights up the solar panel on the roof, the energy passes through the inverter and the windows of the house light up",
       "spin-on": "Slide the house · Tap to release",
       "spin-off": "Tap to rotate the house",
@@ -303,8 +304,8 @@
   },
   "works": {
     "chip": "Real projects",
-    "title-before": "Our ",
-    "title-accent": "projects",
+    "title-before": "Our solar projects in ",
+    "title-accent": "Cali",
     "tablist-label": "Type of project",
     "categories": {
       "fotovoltaico": "Photovoltaic",
@@ -481,13 +482,14 @@
         "title": "Charger with protection panel",
         "alt": "Charging point with protection panel and electrical hazard sign next to an electric car"
       }
-    }
+    },
+    "gallery-title": "Projects by system type"
   },
   "contact": {
     "chip": "Contact",
-    "slogan-before": "Sustainable energy that ",
-    "slogan-accent": "transforms",
-    "slogan-after": " your future.",
+    "slogan-before": "Get a quote for your ",
+    "slogan-accent": "solar system",
+    "slogan-after": " in Cali.",
     "phone": "Mobile",
     "email": "Email",
     "address": "Address",
@@ -559,24 +561,24 @@
   },
   "seo": {
     "inicio": {
-      "title": "Soltherra - Solar energy",
-      "description": "Soltherra S.A.S. in Cali: design, installation and maintenance of photovoltaic and solar thermal systems for homes, businesses and institutions."
+      "title": "Solar energy company in Cali | Soltherra",
+      "description": "Soltherra designs, installs and maintains solar energy systems in Cali: photovoltaic panels, solar water heaters and pool heating."
     },
     "servicios": {
-      "title": "Solar services in Cali | Soltherra",
-      "description": "Solar panels, solar water heaters, pool heating, electric vehicle chargers, maintenance and grid operator procedures in Cali."
+      "title": "Solar panel installation in Cali | Soltherra",
+      "description": "We install solar panels, solar water heaters, pool heating and EV chargers in Cali, including permits and maintenance."
     },
     "como-funciona": {
-      "title": "How a solar system works | Soltherra",
-      "description": "From the sun to your home: how a solar system works and what Soltherra's process is, from the technical visit and engineering to installation and commissioning."
+      "title": "How a photovoltaic solar system works | Soltherra",
+      "description": "How a solar system turns sunlight into electricity for your home or business, and how we work: engineering, permits, installation and monitoring."
     },
     "trabajos": {
-      "title": "Real solar installations in Cali | Soltherra",
-      "description": "Real Soltherra projects in Cali and Valle del Cauca: photovoltaic panels, solar thermal collectors, pools, electric vehicle chargers and maintenance."
+      "title": "Solar panel projects in Cali | Soltherra",
+      "description": "Photos of real Soltherra installations in Cali and Valle del Cauca: panels, inverters, batteries, solar thermal collectors and maintenance."
     },
     "contacto": {
-      "title": "Get a solar energy quote in Cali | Soltherra",
-      "description": "Write to us on WhatsApp at +57 313 813 0046 or visit us at Calle 28 N° 86-70, Cali, to get a quote for your solar system."
+      "title": "Solar system quote in Cali | Soltherra",
+      "description": "Request a quote for your solar system on WhatsApp at +57 313 813 0046 or visit us at Calle 28 N.º 86-70, Cali. An expert will reply."
     },
     "privacidad": {
       "title": "Privacy policy | Soltherra",
@@ -618,6 +620,236 @@
       "mantenimiento": "Control panels with voltage and current meters for the pool and jacuzzi pumps",
       "tramites": "Compact white solar inverter mounted on a wall",
       "carga-ev": "Electric vehicle charger installed on the wall of a parking lot with its protection panel"
+    }
+  },
+  "guide": {
+    "inicio": {
+      "chip": "Solar energy in Cali",
+      "title": "From engineering to commissioning, with a company based in Cali",
+      "intro": [
+        "Cali has an advantage few cities fully use: sunshine all year round. Being so close to the equator, solar radiation changes little from one month to the next, which makes solar energy a predictable investment for homes, businesses and institutions in Valle del Cauca.",
+        "Soltherra is a solar energy company based in Cali that handles the whole project: we study your consumption, design the system, handle the procedures with the grid operator, install it and maintain it. One team is responsible for everything."
+      ],
+      "sections": [
+        {
+          "title": "What we can install in your home, business or institution",
+          "items": [
+            "Photovoltaic solar panels to generate your own electricity and lower your bill. See our [solar panel installation](/servicios) in detail.",
+            "Solar water heaters for showers and kitchens.",
+            "Solar heating for pools and hot tubs.",
+            "Electric vehicle charging points, which can also run on your solar system.",
+            "Preventive and corrective maintenance of photovoltaic and solar thermal systems."
+          ]
+        },
+        {
+          "title": "Why choose a local company",
+          "text": [
+            "Working with a company based in Cali means faster technical visits, knowledge of local procedures with the grid operator and nearby support whenever you need it. See some of our work in [solar projects in Cali and Valle](/trabajos)."
+          ]
+        }
+      ],
+      "faq-title": "Frequently asked questions about solar energy in Cali",
+      "faq": [
+        {
+          "q": "How much does it cost to install solar panels in Cali?",
+          "a": "It depends on your monthly energy consumption (kWh), the space available on your roof and whether you want batteries. That is why we quote each project after reviewing your energy bill, so the system is the right size for you."
+        },
+        {
+          "q": "How much can I save with a solar system?",
+          "a": "Savings depend on how much energy you use during the day and on the size of the system. In the quote we show the estimated generation against your current consumption, so you can see the expected savings before investing."
+        },
+        {
+          "q": "Do I need permits to install solar panels?",
+          "a": "Connecting the system to the grid requires a procedure with the grid operator, including the simplified connection study for self-generators (AGPE) and distributed generation (GD). We handle it for you."
+        },
+        {
+          "q": "Are there tax benefits for investing in solar energy?",
+          "a": "Yes. Colombian Law 1715 of 2014 provides incentives such as a special income tax deduction, VAT exclusion, tariff exemption and accelerated depreciation. We support you with the [procedures and tax benefits](/servicios#tramites); check with your accountant which ones apply to you."
+        }
+      ]
+    },
+    "servicios": {
+      "chip": "Frequently asked questions",
+      "title": "What people ask us most about our services",
+      "intro": [
+        "We are a [solar energy company in Cali](/) that designs, installs and maintains solar systems for homes, businesses and institutions. If you want to understand the technology first, read [how a photovoltaic system works](/como-funciona); if you prefer to see results, look at the [solar panels and water heaters we have installed](/trabajos)."
+      ],
+      "faq-title": "Questions about solar panel installation",
+      "faq": [
+        {
+          "q": "Do you install solar systems with batteries?",
+          "a": "Yes. We design grid-connected systems and systems with lithium batteries, so you have backup during power cuts or can use at night the energy generated during the day."
+        },
+        {
+          "q": "What does solar system maintenance include?",
+          "a": "Electrical control measurements, inspection of wiring, connections and the inverter, and performance monitoring, for both photovoltaic and solar thermal systems."
+        },
+        {
+          "q": "Can I charge my electric car with solar energy?",
+          "a": "Yes. We install charging points in homes, buildings, businesses and parking lots, and we can power them with your own solar system."
+        },
+        {
+          "q": "How do I request a quote?",
+          "a": "Message us on WhatsApp or use the form to request a [quote for your solar system](/contacto). With your energy bill we can give you a proposal that fits your consumption."
+        }
+      ]
+    },
+    "como-funciona": {
+      "chip": "Step by step",
+      "title": "How a photovoltaic solar system works",
+      "intro": [
+        "A photovoltaic solar system turns sunlight into electricity you can use in your home, business or institution. It has four main parts:"
+      ],
+      "sections": [
+        {
+          "ordered": true,
+          "items": [
+            "Solar panels (modules): installed on the roof or on a structure, their photovoltaic cells turn light into direct current electricity.",
+            "Inverter: converts direct current into alternating current, the same one used by appliances, machines and lighting.",
+            "Protections and switchboard: breakers, grounding and signage that protect the installation and people, in line with technical regulations.",
+            "Metering and grid connection: when you generate more than you use, the surplus can be fed into the grid; when you need more, the grid backs you up."
+          ]
+        },
+        {
+          "title": "What about batteries?",
+          "text": [
+            "If you want power at night or during outages, the system can include batteries that store part of the energy produced during the day."
+          ]
+        },
+        {
+          "title": "And a solar thermal system?",
+          "text": [
+            "It works differently: it does not produce electricity but heat. Solar collectors heat water that is stored in a tank, for showers and kitchens or for heating pools and hot tubs."
+          ]
+        }
+      ],
+      "faq-title": "Frequently asked questions about solar systems",
+      "faq": [
+        {
+          "q": "Does a solar system work on cloudy days?",
+          "a": "Yes, although it produces less. Panels also use diffuse light, and the system design accounts for days with lower radiation."
+        },
+        {
+          "q": "What happens at night?",
+          "a": "Without batteries, at night you use grid power as usual. With batteries, you use the energy stored during the day."
+        },
+        {
+          "q": "How long does the whole process take?",
+          "a": "It depends on the size of the project and on the grid operator's response times for the connection. During the technical visit we give you a schedule for your case; to get started, [request your quote](/contacto)."
+        },
+        {
+          "q": "How do I know my system is working well?",
+          "a": "With real-time monitoring you can see on your phone how much energy you generate every day. If generation drops, it is detected early and maintenance is scheduled."
+        },
+        {
+          "q": "Where can I see real installations?",
+          "a": "Our gallery of [solar panel projects in Cali](/trabajos) has photos of photovoltaic, thermal and maintenance work."
+        }
+      ]
+    },
+    "trabajos": {
+      "chip": "About our work",
+      "title": "Solar installations built in Cali and Valle del Cauca",
+      "intro": [
+        "These are real Soltherra projects. Each photo shows a job we designed, installed or maintain: photovoltaic panels on tile roofs and terraces, inverters, lithium battery banks, solar thermal collectors and standalone solar lights.",
+        "We show the technical detail on purpose (DC panels, conduits, single-line diagrams, signage) because in a solar installation quality lies in what you cannot see from the street: properly sized protections, tidy wiring and compliance with electrical regulations."
+      ],
+      "sections": [
+        {
+          "title": "The kinds of solar panel projects we do",
+          "items": [
+            "Photovoltaic systems for homes, businesses and institutions, grid-connected or with batteries.",
+            "Solar thermal systems for hot water and for heating pools and hot tubs.",
+            "Electric vehicle charging points in homes, buildings and parking lots.",
+            "Maintenance and measurement so every system keeps performing over the years."
+          ]
+        },
+        {
+          "title": "How each project is built",
+          "text": [
+            "Every job follows the same process: technical visit and engineering, procedures with the grid operator when the system connects to the grid, installation and commissioning, and performance monitoring. That way the results in these photos do not depend on luck, but on a method we repeat in every home, business or institution.",
+            "If you are comparing options, look beyond the panels: how the structure was fixed to the roof, where the wiring runs, whether the protections are labeled and whether the inverter sits in a ventilated place that is easy to reach for maintenance. Those are exactly the details we show here."
+          ]
+        },
+        {
+          "text": [
+            "If you want to know more about the team behind these projects, find out [who we are at Soltherra](/)."
+          ]
+        }
+      ],
+      "faq-title": "Questions about our projects",
+      "faq": [
+        {
+          "q": "Are all the photos of Soltherra projects?",
+          "a": "Yes. They are real installations in Cali and Valle del Cauca, not catalog images."
+        },
+        {
+          "q": "Can you do a similar project in my home or business?",
+          "a": "Yes. Each system is designed around your consumption and your space, so the result fits your case. Message us and request a [quote for your solar system](/contacto)."
+        },
+        {
+          "q": "Do you also do maintenance?",
+          "a": "Yes, we provide preventive and corrective [solar system maintenance](/servicios#mantenimiento), with control measurements to optimize generation and extend the life of the equipment."
+        },
+        {
+          "q": "Which areas do you work in?",
+          "a": "We work in Cali and Valle del Cauca. Tell us where your project is and we will arrange the technical visit."
+        }
+      ]
+    },
+    "contacto": {
+      "chip": "Before you write",
+      "title": "How to request a quote for your solar system",
+      "intro": [
+        "Three pieces of information help us give you a quote that fits your case:"
+      ],
+      "sections": [
+        {
+          "ordered": true,
+          "items": [
+            "Your energy bill or your monthly consumption in kWh: it is the basis for sizing the system.",
+            "Where it would be installed: roof type (tile, slab or terrace) and available space.",
+            "What you are looking for: lower energy costs, backup during outages with batteries, heating water or a pool, or charging an electric vehicle."
+          ]
+        },
+        {
+          "text": [
+            "With that information we prepare a proposal designed around your real consumption, not a generic system. Message us on WhatsApp with that information and a Soltherra expert will reply. If the project requires it, we schedule a technical visit in Cali and the surrounding area to check the roof, the electrical panel and the existing infrastructure."
+          ]
+        },
+        {
+          "text": [
+            "If you prefer to talk directly, call or message us on our mobile numbers. We handle projects for homes, businesses and institutions, and you can also get a quote for a single service, such as maintenance of a system you already have."
+          ]
+        }
+      ],
+      "faq-title": "Frequently asked questions before getting a quote",
+      "faq": [
+        {
+          "q": "Which services can I get a quote for?",
+          "a": "Photovoltaic systems, solar thermal systems, pool and hot tub heating, maintenance, electric vehicle charging points, procedures and tax benefits, and equipment sales for your project. See the details in [our solar energy services](/servicios)."
+        },
+        {
+          "q": "Do you do a technical visit before quoting?",
+          "a": "For projects that need it, yes: we check the roof, the electrical panel and the existing infrastructure before delivering the final proposal."
+        },
+        {
+          "q": "Where are you located?",
+          "a": "Our office is at Calle 28 N.º 86-70, in Cali, Valle del Cauca. You can also call or message us at +57 313 813 0046 or email soltherra23@gmail.com."
+        },
+        {
+          "q": "Can I get a quote just for maintenance or procedures?",
+          "a": "Yes. You can get a quote for each service separately: maintenance of an existing system, procedures with the grid operator, tax benefits or equipment sales for your project."
+        },
+        {
+          "q": "Do you work with businesses and institutions?",
+          "a": "Yes. We design systems for homes, businesses and institutions; in larger projects we also analyze voltage levels and the existing electrical infrastructure."
+        },
+        {
+          "q": "What happens to my data?",
+          "a": "The form does not store your data: it opens WhatsApp with your message ready to send. You can read the details in the [privacy policy](/privacidad)."
+        }
+      ]
     }
   }
 }

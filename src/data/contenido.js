@@ -24,7 +24,7 @@ export const mensajeContacto = ({ base, nombre, servicio, mensaje }) => {
 
 // [clave en menu.*, ruta]
 export const nav = [
-  ['home', '/home'],
+  ['home', '/'],
   ['services', '/servicios'],
   ['how-it-works', '/como-funciona'],
   ['works', '/trabajos'],

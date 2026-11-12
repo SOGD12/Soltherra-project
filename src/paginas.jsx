@@ -15,6 +15,7 @@ import Beneficios from './components/Beneficios.jsx'
 import Contacto from './components/Contacto.jsx'
 import Privacidad from './components/Privacidad.jsx'
 import { LlamadaExperto } from './components/Comunes.jsx'
+import Guia from './components/Guia.jsx'
 
 // Cada página trae sus estilos desde src/styles/<página>.css; lo que se comparte está en src/styles/base.css (ver main.jsx).
 import './styles/inicio.css'
@@ -35,6 +36,7 @@ export const CONTENIDO_DE_PAGINA = {
       <Nosotros />
       <MisionVision />
       <Soluciones />
+      <Guia pagina="inicio" />
       <Cierre />
     </>
   ),
@@ -42,6 +44,7 @@ export const CONTENIDO_DE_PAGINA = {
     <>
       <Gestiones />
       <Servicios />
+      <Guia pagina="servicios" />
     </>
   ),
   'como-funciona': () => (
@@ -50,6 +53,7 @@ export const CONTENIDO_DE_PAGINA = {
       <Proceso />
       <Infografias />
       <Monitoreo />
+      <Guia pagina="como-funciona" />
       <LlamadaExperto clave="how-it-works.expert" />
     </>
   ),
@@ -57,9 +61,15 @@ export const CONTENIDO_DE_PAGINA = {
     <>
       <Trabajos />
       <Beneficios />
+      <Guia pagina="trabajos" />
       <LlamadaExperto clave="works.expert" />
     </>
   ),
-  contacto: () => <Contacto />,
+  contacto: () => (
+    <>
+      <Contacto />
+      <Guia pagina="contacto" />
+    </>
+  ),
   privacidad: () => <Privacidad />,
 }

@@ -150,6 +150,7 @@ export default function Trabajos() {
             </h1>
           </div>
         </div>
+        <h2 className="sr">{t('works.gallery-title')}</h2>
         <div className="trabajos__barra">
           <div className="pestanas" role="tablist" aria-label={t('works.tablist-label')}>
             {categorias.map(([clave, icono]) => (

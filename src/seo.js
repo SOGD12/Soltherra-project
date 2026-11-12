@@ -40,3 +40,49 @@ export function aplicarSeo(pagina, textos = SEO[pagina]) {
     poner('meta[name="twitter:url"]', url)
   }
 }
+
+// Datos estructurados propios de cada página (el LocalBusiness global va en index.html y llega a todas).
+// FAQPage sale de las mismas preguntas visibles en la guía (guide.<página>.faq), sin el formato de enlaces.
+
+// Páginas que muestran la guía (texto + preguntas frecuentes, Guia.jsx). Vacía mientras el cliente revisa los textos;
+// para activarla en una página, añade su nombre aquí (ej. 'inicio'): aparece la sección y su JSON-LD FAQPage.
+export const GUIAS_ACTIVAS = []
+const SIN_ENLACES = (texto) => texto.replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
+
+const SERVICIOS = [
+  ['fotovoltaico', 'Instalación de paneles solares fotovoltaicos', 'Sistema solar fotovoltaico'],
+  ['termico', 'Calentadores solares y sistemas solares térmicos', 'Sistema solar térmico'],
+  ['piscina', 'Climatización solar de piscinas y jacuzzis', 'Climatización solar de piscinas'],
+  ['carga-ev', 'Puntos de carga para vehículos eléctricos', 'Instalación de cargadores para vehículos eléctricos'],
+  ['mantenimiento', 'Mantenimiento preventivo y correctivo de sistemas solares', 'Mantenimiento de sistemas solares'],
+  ['tramites', 'Trámites ante el operador de red y beneficios tributarios', 'Gestión de trámites de energía solar'],
+]
+
+/** Lista de objetos JSON-LD para la página (vacía si no tiene). `base` es el dominio sin barra final. */
+export function datosEstructurados(pagina, base) {
+  const datos = []
+  const empresa = { '@id': `${base}/#empresa` }
+  if (pagina === 'servicios') {
+    datos.push({
+      '@context': 'https://schema.org',
+      '@graph': SERVICIOS.map(([id, name, serviceType]) => ({
+        '@type': 'Service',
+        '@id': `${base}/servicios#${id}`,
+        name,
+        serviceType,
+        provider: empresa,
+        areaServed: { '@type': 'City', name: 'Cali' },
+        url: `${base}/servicios#${id}`,
+      })),
+    })
+  }
+  const faq = GUIAS_ACTIVAS.includes(pagina) ? es.guide?.[pagina]?.faq : null
+  if (faq?.length) {
+    datos.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faq.map(({ q, a }) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: SIN_ENLACES(a) } })),
+    })
+  }
+  return datos
+}

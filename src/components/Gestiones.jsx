@@ -18,6 +18,7 @@ export default function Gestiones() {
             </h1>
             <p>{t('engineering.subtitle')}</p>
           </div>
+          <h2 className="sr">{t('engineering.list-title')}</h2>
           <ul className="gestiones__lista">
             {gestiones.map((icono, i) => (
               <li key={icono}>

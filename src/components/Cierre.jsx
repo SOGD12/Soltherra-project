@@ -4,7 +4,7 @@ import { BotonWA, Chip } from './Comunes.jsx'
 import { nav } from '../data/contenido.js'
 
 // Cierre de Inicio: lleva a las otras páginas del menú (sin repetir Inicio ni Contacto) y deja el WhatsApp a mano.
-const destinos = nav.filter(([, href]) => href !== '/home' && href !== '/contacto')
+const destinos = nav.filter(([, href]) => href !== '/' && href !== '/contacto')
 
 export default function Cierre() {
   const { t } = useTranslation('global')

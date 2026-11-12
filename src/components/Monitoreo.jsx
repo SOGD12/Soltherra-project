@@ -27,7 +27,7 @@ export default function Monitoreo() {
             aria-label={t('how-it-works.monitoring.aria-desktop')}
           >
             <source src={`/video/monitoreo-escritorio${sufijo}.mp4`} type="video/mp4" />
-            <a href={`/video/monitoreo-escritorio${sufijo}.mp4`}>{t('how-it-works.monitoring.download')}</a>
+            <a href={`/video/monitoreo-escritorio${sufijo}.mp4`} rel="nofollow" download>{t('how-it-works.monitoring.download')}</a>
           </video>
           <video
             key={`movil${sufijo}`}
@@ -41,7 +41,7 @@ export default function Monitoreo() {
             aria-label={t('how-it-works.monitoring.aria-mobile')}
           >
             <source src={`/video/monitoreo-movil${sufijo}.mp4`} type="video/mp4" />
-            <a href={`/video/monitoreo-movil${sufijo}.mp4`}>{t('how-it-works.monitoring.download')}</a>
+            <a href={`/video/monitoreo-movil${sufijo}.mp4`} rel="nofollow" download>{t('how-it-works.monitoring.download')}</a>
           </video>
         </div>
       </div>

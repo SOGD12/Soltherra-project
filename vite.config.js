@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 import { writeFileSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { createServer, defineConfig, loadEnv } from 'vite'
-import { SEO, DOMINIO_POR_DEFECTO as SEO_DOMINIO } from './src/seo.js'
+import { SEO, DOMINIO_POR_DEFECTO as SEO_DOMINIO, datosEstructurados } from './src/seo.js'
 
 const DOMINIO_POR_DEFECTO = SEO_DOMINIO
 
@@ -80,14 +80,16 @@ function paginas() {
       const base = final.match(/<link rel="canonical" href="([^"]*?)\/"/)[1]
       for (const [pagina, { titulo, descripcion, ruta }] of Object.entries(SEO)) {
         let html = final.split(renders.inicio).join(renders[pagina])
-        html = html.replace(/<title>[^<]*<\/title>/, `<title>${titulo}</title>`)
+        // El <title> (texto de la pestaña) es fijo en todo el sitio, el de index.html; el título de cada página va en og/twitter.
         html = poner(html, /(<meta (?:name="title"|property="og:title"|name="twitter:title") content=")[^"]*/g, titulo)
         html = poner(html, /(<meta (?:name="description"|property="og:description"|name="twitter:description") content=")[^"]*/g, descripcion)
         const url = base + ruta
         html = poner(html, /(<meta (?:property="og:url"|name="twitter:url") content=")[^"]*/g, url)
         html = poner(html, /(<link rel="canonical" href=")[^"]*/, url)
-        const archivos = pagina === 'inicio' ? ['home'] : [pagina]
-        for (const nombre of archivos) writeFileSync(`${salida}/${nombre}.html`, html)
+        const scripts = datosEstructurados(pagina, base).map((d) => `<script type="application/ld+json">${JSON.stringify(d)}</script>`)
+        html = html.replace('</head>', `${scripts.join('\n')}\n</head>`)
+        // El inicio es index.html; las demás se escriben como servicios.html, trabajos.html, etc.
+        writeFileSync(`${salida}/${pagina === 'inicio' ? 'index' : pagina}.html`, html)
       }
     },
   }
@@ -119,16 +121,32 @@ DirectoryIndex index.html
   RewriteEngine On
   RewriteBase /
 
-  # Rutas limpias: /servicios o /servicios/ -> servicios.html
+  # Una sola versión del sitio: www -> sin www
+  RewriteCond %{HTTP_HOST} ^www\\.soltherra\\.co$ [NC]
+  RewriteRule ^ https://soltherra.co%{REQUEST_URI} [R=301,L]
+
+  # Inicio duplicado: /home, /home.html y /index.html -> /
+  RewriteRule ^home(\\.html)?/?$ / [R=301,L]
+  RewriteCond %{THE_REQUEST} \\s/index\\.html[\\s?]
+  RewriteRule ^ / [R=301,L]
+
+  # /servicios.html -> /servicios
+  RewriteCond %{THE_REQUEST} \\s/([^.?\\s]+)\\.html[\\s?]
+  RewriteRule ^ /%1 [R=301,L]
+
+  # Barra final: /servicios/ -> /servicios
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.+)/$ /$1 [R=301,L]
+
+  # Rutas limpias: /servicios -> servicios.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
-  RewriteRule ^([^.]+?)/?$ $1.html [L]
+  RewriteRule ^([^./]+)$ $1.html [L]
 
-  # Cualquier otra ruta que no sea un archivo real -> index.html (la app la lleva a /home)
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteRule ^ index.html [L]
 </IfModule>
+
+# Cualquier otra ruta: el inicio con estado 404 (no un 200 falso para /wp-admin, /.env, etc.)
+ErrorDocument 404 /index.html
 
 <IfModule mod_headers.c>
 ${Object.entries(CABECERAS)
