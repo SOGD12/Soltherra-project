@@ -1149,7 +1149,7 @@ body:has(.legal) .cabecera__pildora {
   bottom: max(12px, env(safe-area-inset-bottom));
   display: grid;
   gap: 10px;
-  max-width: 440px;
+  max-width: 520px;
   padding: 20px 22px;
   background: var(--piedra);
   color: var(--texto);
