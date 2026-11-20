@@ -2,7 +2,8 @@ export const TEL = '+57 313 813 0046'
 export const TEL2 = '+57 312 878 7181'
 export const WA ='https://wa.me/573138130046'
 export const CORREO = 'soltherra23@gmail.com'
-export const DIRECCION = 'Calle 28 N° 86 - 70, Cali'
+// Una sola forma de escribir la dirección en todo el sitio (en el JSON-LD va como "Calle 28 # 86-70", ver seo.js).
+export const DIRECCION = 'Calle 28 N.º 86-70, Cali'
 /** Enlace de WhatsApp con el texto ya escrito (el texto sale de global.json en el idioma elegido). */
 export const wa = (texto) => `${WA}?text=${encodeURIComponent(texto)}`
 export const MAPA =
@@ -10,7 +11,7 @@ export const MAPA =
 /** Mapa en el idioma elegido: el parámetro 1s<idioma> del embed cambia los textos de la interfaz de Google Maps. */
 export const mapa = (idioma) => (idioma === 'en' ? MAPA.replaceAll('1ses-419', '1sen') : MAPA)
 export const INSTAGRAM = 'https://www.instagram.com/soltherra_energiasostenible/'
-export const FACEBOOK = 'https://web.facebook.com/profile.php?id=61587216064854'
+export const FACEBOOK = 'https://www.facebook.com/profile.php?id=61587216064854'
 /** Arma el mensaje de WhatsApp del formulario: solo usa lo que la persona escribió (ISO/IEC 27701, minimización de datos).
  *  `base` es el texto de contact.whatsapp en el idioma elegido, con {{name}} y {{service}}. */
 export const mensajeContacto = ({ base, nombre, servicio, mensaje }) => {
@@ -45,7 +46,7 @@ export const beneficios = ['trending_down', 'eco', 'verified_user', 'tune', 'sav
 
 // clave en home.solutions.items, clase, enlace e imagen (soluciones.json)
 export const soluciones = [
-  { clave: 'photovoltaic', clase: 'bento__tarjeta--a', href: '/servicios#servicios', imagen: 'fotovoltaicos' },
+  { clave: 'photovoltaic', clase: 'bento__tarjeta--a', href: '/servicios#fotovoltaico', imagen: 'fotovoltaicos' },
   { clave: 'thermal', clase: 'bento__tarjeta--b', href: '/servicios#termico', imagen: 'termicos' },
   { clave: 'maintenance', clase: 'bento__tarjeta--c', href: '/servicios#mantenimiento', imagen: 'mantenimiento' },
   { clave: 'procedures', clase: 'bento__tarjeta--d', href: '/servicios#tramites', imagen: 'tramites' },

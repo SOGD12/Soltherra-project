@@ -1,6 +1,4 @@
-import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { aplicarIdiomaGuardado } from './i18n.js'
 import Header from './components/Header.jsx'
 import Pie from './components/Pie.jsx'
 import AvisoCookies from './components/AvisoCookies.jsx'
@@ -11,13 +9,11 @@ import useRuta from './ruta.js'
 import { CONTENIDO_DE_PAGINA } from './paginas.jsx'
 
 export default function App() {
+  // El idioma lo fija la dirección (/en/... en inglés): ruta.js lo pone antes de pintar la página nueva.
   const { pagina, ancla } = useRuta()
   const { i18n } = useTranslation('global')
   const idioma = i18n.language
   const Pagina = CONTENIDO_DE_PAGINA[pagina]
-
-  // Idioma elegido antes (cookie): se cambia después de hidratar, para que el HTML en español coincida al hidratar.
-  useEffect(aplicarIdiomaGuardado, [])
 
   useProgresoScroll()
   useAnimaciones(pagina, idioma)

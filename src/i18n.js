@@ -2,27 +2,18 @@ import i18next from 'i18next'
 
 import global_es from './languages/es/global.json'
 import global_en from './languages/en/global.json'
+import { IDIOMAS, idiomaDeRuta } from './rutas.js'
 
-
-export const IDIOMAS = ['es', 'en']
+export { IDIOMAS }
 const HTML_LANG = { es: 'es-CO', en: 'en' }
 
-// Cookie "language" con el idioma elegido. Solo se aceptan los valores de IDIOMAS, al leer y al guardar.
-const leerCookie = () => document.cookie.match(/(?:^|;\s*)language=([^;]*)/)?.[1]
-
-const guardarCookie = (idioma) => {
-  const segura = location.protocol === 'https:' ? '; Secure' : ''
-  document.cookie = `language=${idioma}; Max-Age=31536000; Path=/; SameSite=Lax${segura}`
-}
-
-const idiomaGuardado = () => {
-  const guardado = typeof document === 'undefined' ? undefined : leerCookie()
-  return IDIOMAS.includes(guardado) ? guardado : 'es'
-}
+// El idioma lo decide la dirección: /en/... en inglés, todo lo demás en español (ver rutas.js). Así cada idioma
+// tiene su propia URL, que los buscadores pueden indexar. En el servidor se fija al pre-renderizar (entry-server.jsx).
+const idiomaInicial = () => (typeof window === 'undefined' ? 'es' : idiomaDeRuta(window.location.pathname))
 
 i18next.init({
   interpolation: { escapeValue: false },
-  lng: 'es',
+  lng: idiomaInicial(),
   fallbackLng: 'es',
   initAsync: false,
   react: { useSuspense: false },
@@ -36,15 +27,10 @@ i18next.on('languageChanged', (lng) => {
   if (typeof document !== 'undefined') document.documentElement.lang = HTML_LANG[lng] ?? lng
 })
 
-export const aplicarIdiomaGuardado = () => {
-  const idioma = idiomaGuardado()
+/** Pone el idioma que corresponde a la dirección actual (al navegar entre /servicios y /en/services, o con el botón atrás). */
+export const sincronizarIdioma = (pathname) => {
+  const idioma = idiomaDeRuta(pathname)
   if (idioma !== i18next.language) i18next.changeLanguage(idioma)
-}
-
-export const cambiarIdioma = (idioma) => {
-  if (!IDIOMAS.includes(idioma)) return Promise.resolve()
-  guardarCookie(idioma)
-  return i18next.changeLanguage(idioma)
 }
 
 export default i18next

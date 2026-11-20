@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next'
 import { Icono, IconoWhatsApp } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { TEL, TEL2, CORREO, DIRECCION, mensajeContacto, wa, mapa } from '../data/contenido.js'
+import useEnlace from '../hooks/useEnlace.js'
 
 function Formulario() {
   const { t } = useTranslation('global')
+  const enlace = useEnlace()
   const servicios = t('contact.form.services', { returnObjects: true })
   const [nombre, setNombre] = useState('')
   // Se guarda la posición del servicio (no el texto) para que siga elegido al cambiar de idioma.
@@ -54,7 +56,7 @@ function Formulario() {
         <input type="checkbox" name="acepto" required checked={acepta} onChange={(e) => setAcepta(e.target.checked)} />
         <span>
           {t('contact.form.consent-before')}{' '}
-          <a href="/privacidad" target="_blank" rel="noopener noreferrer">
+          <a href={enlace('/privacidad')} target="_blank" rel="noopener noreferrer">
             {t('contact.form.consent-link')}
           </a>
           {t('contact.form.consent-after')}

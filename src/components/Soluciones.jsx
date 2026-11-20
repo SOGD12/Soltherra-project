@@ -3,9 +3,11 @@ import { Icono } from './Iconos.jsx'
 import { Chip } from './Comunes.jsx'
 import { soluciones } from '../data/contenido.js'
 import fotos from '../data/imagenes/soluciones.json'
+import useEnlace from '../hooks/useEnlace.js'
 
 export default function Soluciones() {
   const { t } = useTranslation('global')
+  const enlace = useEnlace()
   return (
     <section className="seccion soluciones" id="soluciones" aria-labelledby="t-soluciones">
       <div className="contenedor">
@@ -19,7 +21,7 @@ export default function Soluciones() {
           {soluciones.map((s) => {
             const f = fotos[s.imagen]
             return (
-            <a key={s.clave} className={`bento__tarjeta ${s.clase}`} href={s.href}>
+            <a key={s.clave} className={`bento__tarjeta ${s.clase}`} href={enlace(s.href)}>
               <img src={f.foto} alt={t(`images.solutions.${s.imagen}`, { defaultValue: f.alt })} width={f.ancho} height={f.alto} loading="lazy" decoding="async" />
               <span className="bento__velo" aria-hidden="true" />
               <span className="bento__titulo">{t(`home.solutions.items.${s.clave}`)}</span>

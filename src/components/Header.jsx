@@ -3,11 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { BotonWA } from './Comunes.jsx'
 import Idioma from './Idioma.jsx'
 import { nav } from '../data/contenido.js'
+import useEnlace from '../hooks/useEnlace.js'
 
 const pagina_de = (h) => (h === '/' ? 'inicio' : h.slice(1))
 
 export default function Header({ pagina }) {
   const { t } = useTranslation('global')
+  const enlace = useEnlace()
   const [abierto, setAbierto] = useState(false)
   const botonMenu = useRef(null)
 
@@ -34,12 +36,12 @@ export default function Header({ pagina }) {
   return (
     <header className="cabecera" data-abierto={abierto}>
       <div className="cabecera__pildora">
-        <a className="cabecera__logo" href="/" aria-label={t('header.logo-label')}>
+        <a className="cabecera__logo" href={enlace('/')} aria-label={t('header.logo-label')}>
           <img src="/img/logo-claro.webp" alt={t('header.logo-alt')} width="103" height="48" />
         </a>
         <nav className="cabecera__nav" aria-label={t('menu.main-label')}>
           {nav.map(([clave, h]) => (
-            <a key={h} href={h} aria-current={pagina_de(h) === pagina ? 'page' : undefined}>
+            <a key={h} href={enlace(h)} aria-current={pagina_de(h) === pagina ? 'page' : undefined}>
               {t(`menu.${clave}`)}
             </a>
           ))}
@@ -62,7 +64,7 @@ export default function Header({ pagina }) {
       <div id="menu-movil" className="menu-movil" hidden={!abierto}>
         <nav aria-label={t('menu.mobile-label')}>
           {nav.map(([clave, h]) => (
-            <a key={h} href={h} aria-current={pagina_de(h) === pagina ? 'page' : undefined} onClick={() => setAbierto(false)}>
+            <a key={h} href={enlace(h)} aria-current={pagina_de(h) === pagina ? 'page' : undefined} onClick={() => setAbierto(false)}>
               {t(`menu.${clave}`)}
             </a>
           ))}

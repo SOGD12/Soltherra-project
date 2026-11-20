@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { BotonWA, Chip } from './Comunes.jsx'
 import inicio from '../data/imagenes/inicio.json'
+import useEnlace from '../hooks/useEnlace.js'
 
 /** Parte un texto en palabras, cada una en su caja .pal (--i es su turno en la entrada).
  *  En celular las hace subir el CSS (src/styles/inicio.css); en escritorio, Anime.js (src/animaciones.js). */
@@ -22,6 +23,7 @@ function palabras(texto, desde) {
 
 export default function Hero() {
   const { t } = useTranslation('global')
+  const enlace = useEnlace()
   const acento = t('home.hero.title-accent')
   const resto = t('home.hero.title-rest')
   const enAcento = acento.trim().split(/\s+/).length
@@ -56,7 +58,7 @@ export default function Hero() {
         </p>
         <div className="hero__acciones">
           <BotonWA texto={t('whatsapp.quote')} variante="boton--viva" />
-          <a className="boton boton--vidrio" href="/servicios">
+          <a className="boton boton--vidrio" href={enlace('/servicios')}>
             <span>{t('home.hero.services')}</span>
             <Icono nombre="arrow_forward" />
           </a>

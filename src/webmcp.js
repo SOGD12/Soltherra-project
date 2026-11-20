@@ -1,53 +1,53 @@
 import { TEL, TEL2, CORREO, DIRECCION, WA, wa } from './data/contenido.js'
 import { PAGINAS, navegar } from './ruta.js'
 
-// WebMCP: expone herramientas a agentes del navegador (navigator.modelContext). Si el navegador no lo soporta, no hace nada.
-// Solo lectura y navegación: no envía datos ni escribe nada por la persona; el contacto se hace por un enlace de WhatsApp.
-const respuesta = (datos) => ({ content: [{ type: 'text', text: JSON.stringify(datos) }] })
+// WebMCP: exposes tools to in-browser agents (navigator.modelContext). Does nothing if the browser lacks support.
+// Read-only and navigation only: it never submits data on the visitor's behalf; contact goes through a WhatsApp link.
+const reply = (data) => ({ content: [{ type: 'text', text: JSON.stringify(data) }] })
 
-export function registrarHerramientasWebMCP() {
-  const contexto = typeof navigator === 'undefined' ? null : navigator.modelContext
-  if (!contexto?.registerTool) return
+export function registerWebMcpTools() {
+  const context = typeof navigator === 'undefined' ? null : navigator.modelContext
+  if (!context?.registerTool) return
 
-  const herramientas = [
+  const tools = [
     {
-      name: 'obtener_datos_de_contacto',
-      description: 'Devuelve el teléfono, WhatsApp, correo y dirección de Soltherra S.A.S. (energía solar en Cali, Colombia).',
+      name: 'get_contact_details',
+      description: 'Returns the phone numbers, WhatsApp link, email and address of Soltherra S.A.S. (solar energy company in Cali, Colombia).',
       inputSchema: { type: 'object', properties: {} },
       annotations: { readOnlyHint: true },
-      execute: async () => respuesta({ telefono: TEL, telefono2: TEL2, whatsapp: WA, correo: CORREO, direccion: DIRECCION }),
+      execute: async () => reply({ phone: TEL, phone2: TEL2, whatsapp: WA, email: CORREO, address: DIRECCION }),
     },
     {
-      name: 'ir_a_pagina',
-      description: 'Abre una página del sitio de Soltherra: inicio, servicios, como-funciona, trabajos, contacto, privacidad o terminos.',
+      name: 'go_to_page',
+      description: 'Opens a page of the Soltherra website: inicio (home), servicios, como-funciona, trabajos, contacto, privacidad or terminos.',
       inputSchema: {
         type: 'object',
-        properties: { pagina: { type: 'string', enum: PAGINAS, description: 'Página a abrir' } },
-        required: ['pagina'],
+        properties: { page: { type: 'string', enum: PAGINAS, description: 'Page to open' } },
+        required: ['page'],
       },
-      execute: async ({ pagina }) => {
-        if (!PAGINAS.includes(pagina)) return respuesta({ error: 'Página desconocida', paginas: PAGINAS })
-        navegar(pagina === 'inicio' ? '/' : `/${pagina}`)
-        return respuesta({ ok: true, pagina })
+      execute: async ({ page }) => {
+        if (!PAGINAS.includes(page)) return reply({ error: 'Unknown page', pages: PAGINAS })
+        navegar(page === 'inicio' ? '/' : `/${page}`)
+        return reply({ ok: true, page })
       },
     },
     {
-      name: 'enlace_de_cotizacion_whatsapp',
-      description: 'Devuelve un enlace de WhatsApp con un mensaje ya escrito para pedir una cotización de energía solar. La persona decide si lo abre y lo envía.',
+      name: 'get_whatsapp_quote_link',
+      description: 'Returns a WhatsApp link with a prefilled message to request a solar energy quote. The person decides whether to open and send it.',
       inputSchema: {
         type: 'object',
-        properties: { servicio: { type: 'string', description: 'Servicio de interés, por ejemplo "paneles solares"' } },
+        properties: { service: { type: 'string', description: 'Service of interest, for example "solar panels"' } },
       },
       annotations: { readOnlyHint: true },
-      execute: async ({ servicio } = {}) =>
-        respuesta({ url: wa(`Hola Soltherra, quiero una cotización${servicio ? ` de ${String(servicio).slice(0, 120)}` : ''}.`) }),
+      execute: async ({ service } = {}) =>
+        reply({ url: wa(`Hola Soltherra, quiero una cotización${service ? ` de ${String(service).slice(0, 120)}` : ''}.`) }),
     },
   ]
-  for (const herramienta of herramientas) {
+  for (const tool of tools) {
     try {
-      contexto.registerTool(herramienta)
+      context.registerTool(tool)
     } catch {
-      // ya registrada (p. ej. recarga en desarrollo)
+      // already registered (e.g. hot reload in development)
     }
   }
 }

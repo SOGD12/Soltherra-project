@@ -2,12 +2,14 @@ import { useTranslation } from 'react-i18next'
 import { Icono } from './Iconos.jsx'
 import { BotonWA, Chip } from './Comunes.jsx'
 import { nav } from '../data/contenido.js'
+import useEnlace from '../hooks/useEnlace.js'
 
 // Cierre de Inicio: lleva a las otras páginas del menú (sin repetir Inicio ni Contacto) y deja el WhatsApp a mano.
 const destinos = nav.filter(([, href]) => href !== '/' && href !== '/contacto')
 
 export default function Cierre() {
   const { t } = useTranslation('global')
+  const enlace = useEnlace()
   return (
     <section className="seccion cierre" aria-labelledby="t-cierre">
       <div className="contenedor">
@@ -23,7 +25,7 @@ export default function Cierre() {
         <ul className="cierre__lista">
           {destinos.map(([clave, href]) => (
             <li key={href}>
-              <a className="cierre__enlace" href={href}>
+              <a className="cierre__enlace" href={enlace(href)}>
                 <span>{t(`menu.${clave}`)}</span>
                 <span className="cierre__flecha" aria-hidden="true">
                   <Icono nombre="arrow_outward" />

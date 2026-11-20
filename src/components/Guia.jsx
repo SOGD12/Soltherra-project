@@ -2,13 +2,15 @@ import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Chip } from './Comunes.jsx'
 import { GUIAS_ACTIVAS } from '../seo.js'
+import useEnlace from '../hooks/useEnlace.js'
 
 // Convierte "[texto](/ruta)" en enlaces internos (ruta.js los intercepta y cambia de página sin recargar).
 function ConEnlaces({ texto }) {
+  const aIdioma = useEnlace()
   return texto.split(/(\[[^\]]+\]\([^)]+\))/g).map((parte, i) => {
     const enlace = parte.match(/^\[([^\]]+)\]\(([^)]+)\)$/)
     return enlace ? (
-      <a key={i} href={enlace[2]}>
+      <a key={i} href={aIdioma(enlace[2])}>
         {enlace[1]}
       </a>
     ) : (

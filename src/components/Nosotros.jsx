@@ -9,7 +9,7 @@ export default function Nosotros() {
     <section className="seccion nosotros" id="nosotros">
       <div className="contenedor nosotros__rejilla">
         <div className="nosotros__texto">
-          <Chip>{t('home.about.chip')}</Chip>
+          <Chip as="h2">{t('home.about.chip')}</Chip>
           <p className="destacado" data-llenar>
             {t('home.about.highlight')}
           </p>

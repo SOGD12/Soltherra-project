@@ -14,7 +14,8 @@ import Trabajos from './components/Trabajos.jsx'
 import Beneficios from './components/Beneficios.jsx'
 import Contacto from './components/Contacto.jsx'
 import Privacidad from './components/Privacidad.jsx'
-import Terminos from './components/Terminos.jsx'
+import Terms from './components/Terms.jsx'
+import NoEncontrada from './components/NoEncontrada.jsx'
 import { LlamadaExperto } from './components/Comunes.jsx'
 import Guia from './components/Guia.jsx'
 
@@ -73,5 +74,7 @@ export const CONTENIDO_DE_PAGINA = {
     </>
   ),
   privacidad: () => <Privacidad />,
-  terminos: () => <Terminos />,
+  terminos: () => <Terms />,
+  // Cualquier dirección que no existe (el servidor la entrega con estado 404, ver ruta.js)
+  noencontrada: () => <NoEncontrada />,
 }

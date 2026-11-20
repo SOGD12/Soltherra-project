@@ -263,6 +263,16 @@ a {
   }
 }
 
+/* Una etiqueta que también es el encabezado de su sección (<h2 class="chip">) se ve igual que las demás */
+h1.chip,
+h2.chip,
+h3.chip {
+  font-family: inherit;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-wrap: wrap;
+}
+
 .chip--claro {
   border-color: var(--vidrio-borde);
   background: rgb(255 255 255 / 0.08);
@@ -455,7 +465,11 @@ body:has(.legal) .cabecera__pildora {
   padding: 3px;
   border: 1px solid rgb(255 255 255 / 0.22);
   border-radius: 999px;
-  button {
+  /* Cada idioma es un enlace a su dirección (/ y /en/), no un botón: los buscadores y quien navega con teclado lo siguen igual */
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     min-width: 48px;
     min-height: 40px;
     padding: 0 14px;
@@ -464,6 +478,7 @@ body:has(.legal) .cabecera__pildora {
     font-weight: 700;
     letter-spacing: 0.04em;
     color: var(--texto-claro);
+    text-decoration: none;
     background: transparent;
     border: 0;
     border-radius: 999px;
@@ -472,7 +487,7 @@ body:has(.legal) .cabecera__pildora {
     &:hover {
       background: rgb(255 255 255 / 0.1);
     }
-    &[aria-pressed='true'] {
+    &[aria-current='true'] {
       background: rgb(255 255 255 / 0.18);
     }
   }
@@ -816,6 +831,19 @@ body:has(.legal) .cabecera__pildora {
   gap: 32px;
 }
 
+/* Datos de contacto: en celular ocupan todo el ancho bajo las dos columnas de enlaces */
+.pie__contacto {
+  grid-column: 1 / -1;
+  font-style: normal;
+  overflow-wrap: anywhere;
+}
+
+.pie__direccion {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
 .pie__gigante {
   max-width: none;
   margin: clamp(32px, 5vw, 64px) 0 0;
@@ -890,6 +918,12 @@ body:has(.legal) .cabecera__pildora {
   .pie__rejilla {
     grid-template-columns: 5fr 7fr;
     gap: 96px;
+  }
+  .pie__cols {
+    grid-template-columns: 1fr 1fr 1.5fr;
+  }
+  .pie__contacto {
+    grid-column: auto;
   }
 }
 

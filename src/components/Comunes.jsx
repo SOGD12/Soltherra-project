@@ -35,7 +35,8 @@ export function LlamadaExperto({ clave }) {
     </section>
   )
 }
-
-export function Chip({ children, claro = false }) {
-  return <p className={`chip ${claro ? 'chip--claro' : ''}`.trim()}>{children}</p>
+/** Pill label. With `as="h2"` it is also the heading of its section (looks the same: see .chip in base.css). */
+/** Pill label. With `as="h2"` it is also the section heading de su sección (se ve igual: ver .chip en base.css). */
+export function Chip({ children, claro = false, as: Tag = 'p' }) {
+  return <Tag className={`chip ${claro ? 'chip--claro' : ''}`.trim()}>{children}</Tag>
 }

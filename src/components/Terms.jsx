@@ -2,17 +2,17 @@ import { Fragment } from 'react'
 import { useTranslation } from 'react-i18next'
 import { CORREO, DIRECCION } from '../data/contenido.js'
 
-// Términos y condiciones de uso del sitio. Textos en languages/<idioma>/global.json (sección "terms"); revisar con el cliente.
-export default function Terminos() {
+// Website terms of use. Texts live in languages/<lang>/global.json (section "terms"); review them with the client.
+export default function Terms() {
   const { t } = useTranslation('global')
-  const secciones = t('terms.sections', { returnObjects: true })
+  const sections = t('terms.sections', { returnObjects: true })
   return (
     <section className="legal">
       <div className="contenedor legal__texto">
         <h1>{t('terms.title')}</h1>
         <p>{t('terms.updated')}</p>
 
-        {secciones.map((s) => (
+        {sections.map((s) => (
           <Fragment key={s.title}>
             <h2>{s.title}</h2>
             <p>

@@ -26,3 +26,26 @@
     line-height: 1.65;
   }
 }
+
+/* Página 404 (src/components/NoEncontrada.jsx): comparte el aspecto de las páginas legales */
+.no-encontrada {
+  min-height: 70svh;
+}
+
+.no-encontrada__enlaces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 24px;
+  margin-top: 24px;
+  padding: 0;
+  list-style: none;
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
+
+.legal a.boton {
+  text-decoration: none;
+}

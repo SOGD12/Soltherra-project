@@ -33,6 +33,7 @@
     "nav-label": "Footer",
     "sections": "Sections",
     "follow": "Follow us",
+    "contact": "Contact",
     "legal": "© 2026 Soltherra S.A.S. ·",
     "about": "About us",
     "privacy": "Privacy policy",
@@ -97,7 +98,7 @@
   },
   "engineering": {
     "chip": "Engineering and procedures",
-    "title-before": "Solar panels in Cali, ",
+    "title-before": "Solar panels and water heaters from Cali, ",
     "title-accent": "with engineering",
     "title-after": " and permits",
     "subtitle": "We take care of the technical side and the procedures so your system operates with regulatory backing.",
@@ -160,7 +161,7 @@
         "System design according to the size and use of the pool",
         "Solar thermal collectors and pumping equipment",
         "Installation and commissioning",
-        "Pleasant temperature all year round, without spending on gas or electricity"
+        "Warmer water all year round, without gas and with minimal electricity use (just the pump)"
       ],
       "closing": "Enjoy your pool and your jacuzzi all year round with clean energy.",
       "message": "Hello Soltherra, I would like information about pool and jacuzzi heating with solar energy."
@@ -329,7 +330,7 @@
       "items": [
         "Significant reduction in energy costs.",
         "Direct contribution to caring for the environment.",
-        "Full compliance with technical and legal regulations.",
+        "Installation in line with technical regulations and grid operator requirements.",
         "Customized solutions according to each need.",
         "Greater energy independence and return on investment."
       ]
@@ -492,11 +493,11 @@
     "chip": "Contact",
     "slogan-before": "Get a quote for your ",
     "slogan-accent": "solar system",
-    "slogan-after": " in Cali.",
+    "slogan-after": " in Colombia",
     "phone": "Mobile",
     "email": "Email",
     "address": "Address",
-    "map-title": "Soltherra location, Calle 28 N° 86-70, Cali",
+    "map-title": "Soltherra location, Calle 28 N.º 86-70, Cali",
     "map-link": "Open in Google Maps",
     "form": {
       "title": "Tell us what you need",
@@ -582,7 +583,7 @@
       },
       {
         "title": "Cookies and measurement",
-        "text": "We do not use advertising cookies. If you accept measurement cookies in the site notice, we use Google Analytics (through Google Tag Manager) to count visits and see which sections are viewed; to do so Google stores cookies such as _ga in your browser and processes technical data such as device type and approximate location. If you reject, nothing from Google Analytics is loaded. You can change your choice at any time from \"Cookie preferences\" in the footer. We remember your language with our own cookie, and the map on the contact page is loaded by Google Maps."
+        "text": "We do not use advertising cookies. If you accept measurement cookies in the site notice, we use Google Analytics (through Google Tag Manager) to count visits and see which sections are viewed; to do so Google stores cookies such as _ga in your browser and processes technical data such as device type and approximate location. If you reject, nothing from Google Analytics is loaded. You can change your choice at any time from \"Cookie preferences\" in the footer. The map on the contact page is loaded by Google Maps."
       },
       {
         "title": "Your rights",
@@ -598,18 +599,27 @@
       }
     ]
   },
+  "notfound": {
+    "title": "We could not find this page",
+    "text": "The address you opened does not exist or has moved. You can go back to the home page or to one of the sections of the site.",
+    "home": "Back to home"
+  },
   "seo": {
+    "social-alt": "Soltherra S.A.S. logo, sustainable energy",
+    "noencontrada": {
+      "title": "Page not found | Soltherra"
+    },
     "terminos": {
       "title": "Terms and conditions | Soltherra",
       "description": "Terms of use for the Soltherra S.A.S. website: scope of the information, quotes, intellectual property and governing law."
     },
     "inicio": {
-      "title": "Solar panels in Cali and Valle del Cauca | Soltherra",
-      "description": "Soltherra, solar energy company in Cali, Colombia. We install solar panels, solar water heaters and pool heating across Valle del Cauca."
+      "title": "Solar panels in Cali and across Colombia | Soltherra",
+      "description": "Soltherra, solar energy company based in Cali, Colombia. We install solar panels, solar water heaters and pool heating across the country."
     },
     "servicios": {
       "title": "Solar panel installation in Cali | Soltherra",
-      "description": "We install solar panels, solar water heaters, pool heating and EV chargers in Cali and Valle del Cauca, including permits and maintenance."
+      "description": "We install solar panels, solar water heaters, pool heating and EV chargers in Cali and across Colombia, including permits and maintenance."
     },
     "como-funciona": {
       "title": "How a photovoltaic solar system works | Soltherra",
@@ -617,7 +627,7 @@
     },
     "trabajos": {
       "title": "Solar panel projects in Cali | Soltherra",
-      "description": "Photos of real Soltherra installations in Cali and Valle del Cauca: panels, inverters, batteries, solar thermal collectors and maintenance."
+      "description": "Photos of real Soltherra installations, a company based in Cali: panels, inverters, batteries, solar thermal collectors and maintenance."
     },
     "contacto": {
       "title": "Solar panel quote in Cali | Soltherra",
@@ -670,7 +680,7 @@
       "chip": "Solar energy in Cali",
       "title": "From engineering to commissioning, with a company based in Cali",
       "intro": [
-        "Cali has an advantage few cities fully use: sunshine all year round. Being so close to the equator, solar radiation changes little from one month to the next, which makes solar energy a predictable investment for homes, businesses and institutions in Valle del Cauca.",
+        "Cali has an advantage few cities fully use: sunshine all year round. Being so close to the equator, solar radiation changes little from one month to the next, which makes solar energy a predictable investment for homes, businesses and institutions in Cali and across the country.",
         "Soltherra is a solar energy company based in Cali that handles the whole project: we study your consumption, design the system, handle the procedures with the grid operator, install it and maintain it. One team is responsible for everything."
       ],
       "sections": [
@@ -687,7 +697,7 @@
         {
           "title": "Why choose a local company",
           "text": [
-            "Working with a company based in Cali means faster technical visits, knowledge of local procedures with the grid operator and nearby support whenever you need it. See some of our work in [solar projects in Cali and Valle](/trabajos)."
+            "Working with a company based in Cali means faster technical visits, knowledge of local procedures with the grid operator and nearby support whenever you need it. See some of our work in [Soltherra solar projects](/trabajos)."
           ]
         }
       ],
@@ -792,7 +802,7 @@
     },
     "trabajos": {
       "chip": "About our work",
-      "title": "Solar installations built in Cali and Valle del Cauca",
+      "title": "Solar installations built by Soltherra",
       "intro": [
         "These are real Soltherra projects. Each photo shows a job we designed, installed or maintain: photovoltaic panels on tile roofs and terraces, inverters, lithium battery banks, solar thermal collectors and standalone solar lights.",
         "We show the technical detail on purpose (DC panels, conduits, single-line diagrams, signage) because in a solar installation quality lies in what you cannot see from the street: properly sized protections, tidy wiring and compliance with electrical regulations."
@@ -824,7 +834,7 @@
       "faq": [
         {
           "q": "Are all the photos of Soltherra projects?",
-          "a": "Yes. They are real installations in Cali and Valle del Cauca, not catalog images."
+          "a": "Yes. They are real Soltherra installations, not catalog images."
         },
         {
           "q": "Can you do a similar project in my home or business?",
@@ -836,7 +846,7 @@
         },
         {
           "q": "Which areas do you work in?",
-          "a": "We work in Cali and Valle del Cauca. Tell us where your project is and we will arrange the technical visit."
+          "a": "We are based in Cali and install anywhere in the country. Tell us where your project is and we will arrange the technical visit."
         }
       ]
     },

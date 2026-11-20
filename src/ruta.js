@@ -1,40 +1,40 @@
 import { useEffect, useSyncExternalStore } from 'react'
+import { sincronizarIdioma } from './i18n.js'
+import { PAGINAS, idiomaDeRuta, resolverRuta, rutaDe } from './rutas.js'
 
-// Páginas del sitio, con rutas limpias: / (inicio), /servicios, /como-funciona, /trabajos, /contacto, /privacidad, /terminos.
-// Un #ancla opcional (/servicios#termico) baja a un bloque de la página. Hace falta que el alojamiento
-// devuelva index.html en esas rutas (ver el .htaccess que genera vite.config.js; Vite ya lo hace en desarrollo).
-export const PAGINAS = ['inicio', 'servicios', 'como-funciona', 'trabajos', 'contacto', 'privacidad', 'terminos']
+// Páginas del sitio, con rutas limpias por idioma (ver rutas.js): / (inicio), /servicios, /como-funciona, /trabajos,
+// /contacto, /privacidad, /terminos y sus equivalentes en inglés bajo /en. Un #ancla opcional (/servicios#termico) baja a
+// un bloque de la página. Hace falta que el alojamiento devuelva la página pre-renderizada de cada ruta (ver el .htaccess
+// que genera vite.config.js; Vite ya lo hace en desarrollo).
+export { PAGINAS }
 
-const RUTA_DE = (pagina) => (pagina === 'inicio' ? '/' : `/${pagina}`)
-const PAGINA_DE = (ruta) => {
-  const tramo = ruta.replace(/^\/+|\/+$/g, '')
-  return tramo === 'home' || !tramo ? 'inicio' : PAGINAS.includes(tramo) ? tramo : 'inicio'
-}
+// Cualquier otra dirección es la página "noencontrada": el servidor la entrega con estado 404 (404.html).
+const PAGINA_NO_ENCONTRADA = 'noencontrada'
+const paginaDe = (pathname) => resolverRuta(pathname)?.pagina ?? PAGINA_NO_ENCONTRADA
 
-// Las rutas desconocidas se muestran como el inicio "/" (el servidor ya redirige /home a / con un 301).
-const RUTAS_SITIO = ['', ...PAGINAS.filter((p) => p !== 'inicio')]
-if (typeof window !== 'undefined') {
-  const { pathname, search, hash } = window.location
-  const conocida = RUTAS_SITIO.includes(pathname.replace(/^\/+|\/+$/g, ''))
-  if (!conocida) window.history.replaceState(null, '', `/${search}${hash}`)
-}
-
-// Página que se pinta en el servidor (pre-renderizado); la fija entry-server.jsx antes de cada render.
+// Página e idioma que se pintan en el servidor (pre-renderizado); los fija entry-server.jsx antes de cada render.
 let paginaServidor = 'inicio'
-export const fijarPaginaServidor = (pagina) => {
+let idiomaServidor = 'es'
+export const fijarPaginaServidor = (pagina, idioma = 'es') => {
   paginaServidor = pagina
+  idiomaServidor = idioma
 }
 
-const leer = () => `${PAGINA_DE(window.location.pathname)}|${window.location.hash.slice(1)}`
+const leer = () => `${paginaDe(window.location.pathname)}|${idiomaDeRuta(window.location.pathname)}|${window.location.hash.slice(1)}`
 
 const suscribir = (aviso) => {
-  window.addEventListener('popstate', aviso)
+  // Antes de avisar de la nueva dirección se pone su idioma, para que la página nueva se pinte ya en él.
+  const alNavegar = () => {
+    sincronizarIdioma(window.location.pathname)
+    aviso()
+  }
+  window.addEventListener('popstate', alNavegar)
+  window.addEventListener('navegar', alNavegar)
   window.addEventListener('hashchange', aviso)
-  window.addEventListener('navegar', aviso)
   return () => {
-    window.removeEventListener('popstate', aviso)
+    window.removeEventListener('popstate', alNavegar)
+    window.removeEventListener('navegar', alNavegar)
     window.removeEventListener('hashchange', aviso)
-    window.removeEventListener('navegar', aviso)
   }
 }
 
@@ -43,7 +43,8 @@ export function navegar(destino) {
   const url = new URL(destino, window.location.href)
   const igual = url.pathname === window.location.pathname && url.hash === window.location.hash
   if (igual) return window.scrollTo({ top: 0, behavior: 'instant' })
-  window.history.pushState(null, '', RUTA_DE(PAGINA_DE(url.pathname)) + url.hash)
+  const sitio = resolverRuta(url.pathname)
+  window.history.pushState(null, '', (sitio ? rutaDe(sitio.pagina, sitio.idioma) : url.pathname) + url.hash)
   window.dispatchEvent(new Event('navegar'))
 }
 
@@ -55,20 +56,29 @@ function interceptar(e) {
   const url = new URL(a.href, window.location.href)
   if (url.origin !== window.location.origin || a.getAttribute('href').startsWith('#')) return
   // Solo las rutas del sitio; un enlace a /img/ficha.pdf o similar se deja al navegador.
-  if (!RUTAS_SITIO.includes(url.pathname.replace(/^\/+|\/+$/g, ''))) return
+  if (!resolverRuta(url.pathname)) return
   e.preventDefault()
   navegar(url.pathname + url.hash)
 }
 
 // En el servidor, la página fijada; al hidratar en el navegador, la de la dirección actual (coincide con el HTML pre-renderizado de esa ruta).
-const leerServidor = () => `${typeof window === 'undefined' ? paginaServidor : PAGINA_DE(window.location.pathname)}|`
+const leerServidor = () =>
+  typeof window === 'undefined'
+    ? `${paginaServidor}|${idiomaServidor}|`
+    : `${paginaDe(window.location.pathname)}|${idiomaDeRuta(window.location.pathname)}|`
 
-/** Devuelve { pagina, ancla }. */
+/** Devuelve { pagina, idioma, ancla } de la dirección actual. Sin efectos: sirve para cualquier componente. */
+export function usePaginaActual() {
+  const [pagina, idioma, ...resto] = useSyncExternalStore(suscribir, leer, leerServidor).split('|')
+  return { pagina, idioma, ancla: resto.join('|') }
+}
+
+/** Igual que usePaginaActual, y además hace que los enlaces internos cambien de página sin recargar (solo lo usa App). */
 export default function useRuta() {
-  const [pagina, ancla] = useSyncExternalStore(suscribir, leer, leerServidor).split('|')
+  const ruta = usePaginaActual()
   useEffect(() => {
     document.addEventListener('click', interceptar)
     return () => document.removeEventListener('click', interceptar)
   }, [])
-  return { pagina, ancla }
+  return ruta
 }

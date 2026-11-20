@@ -24,11 +24,11 @@ function irAlBloque(destino) {
 /** Al cambiar de página: actualiza el SEO, vuelve arriba (o baja al bloque pedido) y pasa el foco al contenido nuevo. */
 export default function useScrollPagina(pagina, ancla) {
   const anterior = useRef(pagina)
-  const { t, i18n } = useTranslation('global')
-  // El SEO se actualiza también al cambiar de idioma, sin mover el scroll.
+  const { i18n } = useTranslation('global')
+  // El SEO (título, descripción, canonical, hreflang) se actualiza también al cambiar de idioma, sin mover el scroll.
   useEffect(() => {
-    aplicarSeo(pagina, { titulo: t(`seo.${pagina}.title`), descripcion: t(`seo.${pagina}.description`) })
-  }, [pagina, i18n.language, t])
+    aplicarSeo(pagina, i18n.language)
+  }, [pagina, i18n.language])
   useEffect(() => {
     const destino = ancla && document.getElementById(ancla)
     let cancelar = () => {}

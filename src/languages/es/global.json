@@ -33,6 +33,7 @@
     "nav-label": "Pie de página",
     "sections": "Secciones",
     "follow": "Síguenos",
+    "contact": "Contacto",
     "legal": "© 2026 Soltherra S.A.S. ·",
     "about": "Quiénes somos",
     "privacy": "Política de privacidad",
@@ -97,7 +98,7 @@
   },
   "engineering": {
     "chip": "Ingeniería y trámites",
-    "title-before": "Paneles solares en Cali, ",
+    "title-before": "Paneles y calentadores solares desde Cali, ",
     "title-accent": "con ingeniería",
     "title-after": " y trámites",
     "subtitle": "Nos encargamos de la parte técnica y de los trámites para que tu sistema opere con respaldo normativo.",
@@ -160,7 +161,7 @@
         "Diseño del sistema según el tamaño y uso de la piscina",
         "Colectores solares térmicos y equipo de bombeo",
         "Instalación y puesta en marcha",
-        "Temperatura agradable durante todo el año, sin gastar en gas o electricidad"
+        "Agua más tibia durante todo el año, sin gas y con un consumo eléctrico mínimo (solo la bomba)"
       ],
       "closing": "Disfruta tu piscina y tu jacuzzi todo el año con energía limpia.",
       "message": "Hola Soltherra, quiero información sobre climatización de piscinas y jacuzzis con energía solar."
@@ -329,7 +330,7 @@
       "items": [
         "Reducción significativa en costos de energía.",
         "Contribución directa al cuidado del medio ambiente.",
-        "Cumplimiento total de normativas técnicas y legales.",
+        "Instalación conforme a la normativa técnica y a los requisitos del operador de red.",
         "Soluciones personalizadas según cada necesidad.",
         "Mayor independencia energética y retorno de inversión."
       ]
@@ -346,11 +347,11 @@
     "chip": "Contacto",
     "slogan-before": "Cotiza tu sistema ",
     "slogan-accent": "solar",
-    "slogan-after": " en Cali.",
+    "slogan-after": " en Colombia",
     "phone": "Celular",
     "email": "Correo",
     "address": "Dirección",
-    "map-title": "Ubicación de Soltherra, Calle 28 N° 86-70, Cali",
+    "map-title": "Ubicación de Soltherra, Calle 28 N.º 86-70, Cali",
     "map-link": "Abrir en Google Maps",
     "form": {
       "title": "Cuéntanos qué necesitas",
@@ -436,7 +437,7 @@
       },
       {
         "title": "Cookies y medición",
-        "text": "No usamos cookies de publicidad. Si aceptas las cookies de medición en el aviso de la página, usamos Google Analytics (a través de Google Tag Manager) para contar visitas y saber qué secciones se consultan; para eso Google guarda cookies como _ga en tu navegador y procesa datos técnicos como el tipo de dispositivo y la ubicación aproximada. Si rechazas, no se carga nada de Google Analytics. Puedes cambiar tu decisión en cualquier momento desde «Preferencias de cookies», en el pie de página. Recordamos tu idioma con una cookie propia, y el mapa de la página de contacto lo carga Google Maps."
+        "text": "No usamos cookies de publicidad. Si aceptas las cookies de medición en el aviso de la página, usamos Google Analytics (a través de Google Tag Manager) para contar visitas y saber qué secciones se consultan; para eso Google guarda cookies como _ga en tu navegador y procesa datos técnicos como el tipo de dispositivo y la ubicación aproximada. Si rechazas, no se carga nada de Google Analytics. Puedes cambiar tu decisión en cualquier momento desde «Preferencias de cookies», en el pie de página. El mapa de la página de contacto lo carga Google Maps."
       },
       {
         "title": "Tus derechos",
@@ -452,14 +453,23 @@
       }
     ]
   },
+  "notfound": {
+    "title": "No encontramos esta página",
+    "text": "La dirección que abriste no existe o cambió de lugar. Puedes volver al inicio o ir a una de las secciones del sitio.",
+    "home": "Volver al inicio"
+  },
   "seo": {
+    "social-alt": "Logo de Soltherra S.A.S. Energía Sostenible",
+    "noencontrada": {
+      "title": "Página no encontrada | Soltherra"
+    },
     "inicio": {
-      "title": "Paneles solares en Cali y Valle del Cauca | Soltherra",
-      "description": "Soltherra, empresa de energía solar en Cali. Instalamos paneles solares, calentadores solares y climatización de piscinas en todo el Valle del Cauca."
+      "title": "Paneles solares en Cali y toda Colombia | Soltherra",
+      "description": "Soltherra, empresa de energía solar con sede en Cali. Instalamos paneles solares, calentadores solares y climatización de piscinas en todo el país."
     },
     "servicios": {
       "title": "Instalación de paneles solares en Cali | Soltherra",
-      "description": "Instalamos paneles solares, calentadores solares, climatización de piscinas y cargadores eléctricos en Cali y el Valle del Cauca, con trámites y mantenimiento."
+      "description": "Instalamos paneles solares, calentadores solares, climatización de piscinas y cargadores eléctricos en Cali y en todo el país, con trámites y mantenimiento."
     },
     "como-funciona": {
       "title": "Cómo funciona un sistema solar fotovoltaico | Soltherra",
@@ -467,7 +477,7 @@
     },
     "trabajos": {
       "title": "Proyectos de paneles solares en Cali | Soltherra",
-      "description": "Fotos de instalaciones reales de Soltherra en Cali y el Valle del Cauca: paneles, inversores, baterías, colectores térmicos y mantenimiento."
+      "description": "Fotos de instalaciones reales de Soltherra, empresa con sede en Cali: paneles, inversores, baterías, colectores térmicos y mantenimiento."
     },
     "contacto": {
       "title": "Cotización de paneles solares en Cali | Soltherra",
@@ -487,7 +497,7 @@
       "chip": "Energía solar en Cali",
       "title": "De la ingeniería a la puesta en marcha, con una empresa de Cali",
       "intro": [
-        "Cali tiene una ventaja que pocas ciudades aprovechan del todo: sol durante todo el año. Por estar tan cerca de la línea del ecuador, la radiación solar cambia poco de un mes a otro, y eso hace de la energía solar una inversión predecible para hogares, empresas e instituciones del Valle del Cauca.",
+        "Cali tiene una ventaja que pocas ciudades aprovechan del todo: sol durante todo el año. Por estar tan cerca de la línea del ecuador, la radiación solar cambia poco de un mes a otro, y eso hace de la energía solar una inversión predecible para hogares, empresas e instituciones de Cali y de todo el país.",
         "En Soltherra somos una empresa de energía solar con sede en Cali que se encarga del proyecto completo: estudiamos tu consumo, diseñamos el sistema, hacemos los trámites ante el operador de red, lo instalamos y lo mantenemos. Un solo equipo responde por todo."
       ],
       "sections": [
@@ -504,7 +514,7 @@
         {
           "title": "Por qué elegir una empresa local",
           "text": [
-            "Trabajar con una empresa con sede en Cali significa visitas técnicas más ágiles, conocimiento de los trámites locales ante el operador de red y soporte cercano cuando lo necesites. Mira algunas obras en nuestros [proyectos solares en Cali y el Valle](/trabajos)."
+            "Trabajar con una empresa con sede en Cali significa visitas técnicas más ágiles, conocimiento de los trámites locales ante el operador de red y soporte cercano cuando lo necesites. Mira algunas obras en nuestros [proyectos solares de Soltherra](/trabajos)."
           ]
         }
       ],
@@ -609,7 +619,7 @@
     },
     "trabajos": {
       "chip": "Sobre nuestras obras",
-      "title": "Instalaciones solares hechas en Cali y el Valle del Cauca",
+      "title": "Instalaciones solares hechas por Soltherra",
       "intro": [
         "Estos son proyectos reales de Soltherra. Cada foto corresponde a una obra que diseñamos, instalamos o mantenemos: paneles fotovoltaicos sobre teja y en terraza, inversores, bancos de baterías de litio, colectores solares térmicos y luminarias solares autónomas.",
         "Mostramos el detalle técnico a propósito (tableros DC, canalizaciones, diagramas unifilares, señalización) porque en una instalación solar la calidad está en lo que no se ve desde la calle: protecciones bien dimensionadas, cableado ordenado y cumplimiento de la normativa eléctrica."
@@ -641,7 +651,7 @@
       "faq": [
         {
           "q": "¿Todas las fotos son de obras de Soltherra?",
-          "a": "Sí. Son instalaciones reales en Cali y el Valle del Cauca, no imágenes de catálogo."
+          "a": "Sí. Son instalaciones reales de Soltherra, no imágenes de catálogo."
         },
         {
           "q": "¿Pueden hacer un proyecto parecido en mi casa o empresa?",
@@ -653,7 +663,7 @@
         },
         {
           "q": "¿En qué zonas trabajan?",
-          "a": "Trabajamos en Cali y en el Valle del Cauca. Cuéntanos dónde está tu proyecto y revisamos la visita técnica."
+          "a": "Tenemos sede en Cali e instalamos en cualquier parte del país. Cuéntanos dónde está tu proyecto y coordinamos la visita técnica."
         }
       ]
     },

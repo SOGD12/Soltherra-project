@@ -9,13 +9,13 @@ export default function MisionVision() {
         <span className="isla__brillo isla__brillo--der" aria-hidden="true" />
         <div className="contenedor mision__rejilla">
           <div className="mision__bloque">
-            <Chip claro>{t('home.mission-vision.mission-chip')}</Chip>
+            <Chip claro as="h2">{t('home.mission-vision.mission-chip')}</Chip>
             <p data-llenar>
               {t('home.mission-vision.mission')}
             </p>
           </div>
           <div className="mision__bloque">
-            <Chip claro>{t('home.mission-vision.vision-chip')}</Chip>
+            <Chip claro as="h2">{t('home.mission-vision.vision-chip')}</Chip>
             <p data-llenar>
               {t('home.mission-vision.vision')}
             </p>

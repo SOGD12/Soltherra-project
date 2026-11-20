@@ -1,6 +1,7 @@
 import { useEffect, useState, useSyncExternalStore } from 'react'
 import { useTranslation } from 'react-i18next'
 import { EVENTO_ABRIR, cargarGTM, guardarConsentimiento, leerConsentimiento, suscribirConsentimiento } from '../analitica.js'
+import useEnlace from '../hooks/useEnlace.js'
 
 // En el pre-renderizado no hay respuesta que leer: el aviso no va en el HTML y aparece al hidratar si hace falta.
 const enServidor = () => 'servidor'
@@ -8,6 +9,7 @@ const enServidor = () => 'servidor'
 /** Aviso de cookies de medición. Aparece hasta que la persona responde; desde el pie se puede volver a abrir. */
 export default function AvisoCookies() {
   const { t } = useTranslation('global')
+  const enlace = useEnlace()
   const respuesta = useSyncExternalStore(suscribirConsentimiento, leerConsentimiento, enServidor)
   const [abierto, setAbierto] = useState(false)
 
@@ -35,7 +37,7 @@ export default function AvisoCookies() {
         {t('cookies.title')}
       </p>
       <p className="aviso-cookies__texto">
-        {t('cookies.text')} <a href="/privacidad">{t('cookies.link')}</a>.
+        {t('cookies.text')} <a href={enlace('/privacidad')}>{t('cookies.link')}</a>.
       </p>
       <div className="aviso-cookies__acciones">
         <button type="button" className="boton boton--viva" onClick={() => responder('si')}>
