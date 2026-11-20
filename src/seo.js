@@ -12,6 +12,7 @@ const RUTAS = {
   trabajos: '/trabajos',
   contacto: '/contacto',
   privacidad: '/privacidad',
+  terminos: '/terminos',
 }
 
 export const SEO = Object.fromEntries(
@@ -62,7 +63,19 @@ const SERVICIOS = [
 export function datosEstructurados(pagina, base) {
   const datos = []
   const empresa = { '@id': `${base}/#empresa` }
-  if (pagina === 'servicios') {
+  const tipoPagina = pagina === 'contacto' ? 'ContactPage' : 'WebPage'
+  datos.push({
+    '@context': 'https://schema.org',
+    '@type': tipoPagina,
+    '@id': `${base}${SEO[pagina].ruta}#pagina`,
+    url: `${base}${SEO[pagina].ruta}`,
+    name: SEO[pagina].titulo,
+    description: SEO[pagina].descripcion,
+    inLanguage: 'es-CO',
+    isPartOf: { '@id': `${base}/#web` },
+    about: empresa,
+  })
+  if (pagina === 'servicios' || pagina === 'inicio') {
     datos.push({
       '@context': 'https://schema.org',
       '@graph': SERVICIOS.map(([id, name, serviceType]) => ({

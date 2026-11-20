@@ -34,7 +34,9 @@
     "sections": "Secciones",
     "follow": "Síguenos",
     "legal": "© 2026 Soltherra S.A.S. ·",
+    "about": "Quiénes somos",
     "privacy": "Política de privacidad",
+    "terms": "Términos y condiciones",
     "cookies": "Preferencias de cookies"
   },
   "home": {
@@ -374,6 +376,42 @@
     },
     "whatsapp": "Hola Soltherra, soy {{name}}. Me interesa: {{service}}."
   },
+  "terms": {
+    "title": "Términos y condiciones",
+    "updated": "Última actualización: noviembre de 2026.",
+    "sections": [
+      {
+        "title": "Quién ofrece este sitio",
+        "text": "Este sitio web es de Soltherra S.A.S., empresa de energía solar con sede en {{address}}. Al usarlo aceptas estas condiciones."
+      },
+      {
+        "title": "Información del sitio",
+        "text": "Los textos, imágenes y datos del sitio son informativos y no constituyen una oferta vinculante. El ahorro, la producción de energía y los plazos dependen de cada inmueble y de cada instalación."
+      },
+      {
+        "title": "Cotizaciones y servicios",
+        "text": "La cotización definitiva se entrega después de conocer tu consumo y, cuando hace falta, de una visita técnica. La prestación del servicio se acuerda en un contrato o propuesta aparte, que prevalece sobre lo publicado aquí."
+      },
+      {
+        "title": "Propiedad intelectual",
+        "text": "El nombre, el logotipo, los textos y las imágenes propias de Soltherra no se pueden copiar ni reutilizar sin autorización escrita."
+      },
+      {
+        "title": "Enlaces y servicios de terceros",
+        "text": "El sitio enlaza a WhatsApp, Instagram, Facebook y Google Maps. Esos servicios se rigen por sus propias condiciones y Soltherra no responde por ellos."
+      },
+      {
+        "title": "Limitación de responsabilidad",
+        "text": "Hacemos lo posible por mantener la información al día, pero no garantizamos que esté libre de errores ni disponible sin interrupciones."
+      },
+      {
+        "title": "Datos personales y ley aplicable",
+        "text": "El tratamiento de tus datos se explica en la política de privacidad. Estas condiciones se rigen por las leyes de Colombia. Para dudas, escríbenos a",
+        "email": true,
+        "after": "."
+      }
+    ]
+  },
   "privacy": {
     "title": "Política de privacidad",
     "updated": "Última actualización: noviembre de 2026.",
@@ -434,6 +472,10 @@
     "contacto": {
       "title": "Cotización de paneles solares en Cali | Soltherra",
       "description": "Pide la cotización de tu sistema solar por WhatsApp al +57 313 813 0046 o visítanos en la Calle 28 N.º 86-70, Cali. Respuesta de un experto."
+    },
+    "terminos": {
+      "title": "Términos y condiciones | Soltherra",
+      "description": "Condiciones de uso del sitio web de Soltherra S.A.S.: alcance de la información, cotizaciones, propiedad intelectual y ley aplicable."
     },
     "privacidad": {
       "title": "Política de privacidad | Soltherra",

@@ -63,15 +63,6 @@
     "alt": "Colectores solares de tubos al vacío sobre una cubierta azul"
   },
   {
-    "id": 10,
-    "categoria": "fotovoltaico",
-    "foto": "/img/trabajos/inversor.webp",
-    "ancho": 1000,
-    "alto": 750,
-    "titulo": "Inversor con canalización eléctrica",
-    "alt": "Inversor solar instalado en pared con canalización eléctrica"
-  },
-  {
     "id": 12,
     "categoria": "fotovoltaico",
     "foto": "/img/trabajos/inversor-advertencia.webp",
@@ -286,15 +277,6 @@
     "alto": 662,
     "titulo": "Colectores inclinados en terraza",
     "alt": "Cuatro colectores solares térmicos inclinados sobre el piso de una terraza"
-  },
-  {
-    "id": 36,
-    "categoria": "fotovoltaico",
-    "foto": "/img/trabajos/fv-techo-verde.webp",
-    "ancho": 1400,
-    "alto": 1050,
-    "titulo": "Paneles fotovoltaicos sobre teja",
-    "alt": "Paneles solares fotovoltaicos instalados sobre un techo de teja verde rodeado de vegetación"
   },
   {
     "id": 38,

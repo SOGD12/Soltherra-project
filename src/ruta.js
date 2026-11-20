@@ -1,9 +1,9 @@
 import { useEffect, useSyncExternalStore } from 'react'
 
-// Páginas del sitio, con rutas limpias: / (inicio), /servicios, /como-funciona, /trabajos, /contacto, /privacidad.
+// Páginas del sitio, con rutas limpias: / (inicio), /servicios, /como-funciona, /trabajos, /contacto, /privacidad, /terminos.
 // Un #ancla opcional (/servicios#termico) baja a un bloque de la página. Hace falta que el alojamiento
 // devuelva index.html en esas rutas (ver el .htaccess que genera vite.config.js; Vite ya lo hace en desarrollo).
-export const PAGINAS = ['inicio', 'servicios', 'como-funciona', 'trabajos', 'contacto', 'privacidad']
+export const PAGINAS = ['inicio', 'servicios', 'como-funciona', 'trabajos', 'contacto', 'privacidad', 'terminos']
 
 const RUTA_DE = (pagina) => (pagina === 'inicio' ? '/' : `/${pagina}`)
 const PAGINA_DE = (ruta) => {

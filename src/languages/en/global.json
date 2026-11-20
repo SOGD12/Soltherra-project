@@ -34,7 +34,9 @@
     "sections": "Sections",
     "follow": "Follow us",
     "legal": "© 2026 Soltherra S.A.S. ·",
+    "about": "About us",
     "privacy": "Privacy policy",
+    "terms": "Terms and conditions",
     "cookies": "Cookie preferences"
   },
   "home": {
@@ -520,6 +522,42 @@
     },
     "whatsapp": "Hello Soltherra, I am {{name}}. I am interested in: {{service}}."
   },
+  "terms": {
+    "title": "Terms and conditions",
+    "updated": "Last updated: November 2026.",
+    "sections": [
+      {
+        "title": "Who offers this site",
+        "text": "This website belongs to Soltherra S.A.S., a solar energy company based at {{address}}. By using it you accept these terms."
+      },
+      {
+        "title": "Site information",
+        "text": "The texts, images and data on the site are informational and are not a binding offer. Savings, energy output and timelines depend on each property and each installation."
+      },
+      {
+        "title": "Quotes and services",
+        "text": "The final quote is delivered after we know your consumption and, when needed, after a technical visit. The service is agreed in a separate contract or proposal, which prevails over what is published here."
+      },
+      {
+        "title": "Intellectual property",
+        "text": "Soltherra's name, logo, texts and own images may not be copied or reused without written permission."
+      },
+      {
+        "title": "Third-party links and services",
+        "text": "The site links to WhatsApp, Instagram, Facebook and Google Maps. Those services are governed by their own terms and Soltherra is not responsible for them."
+      },
+      {
+        "title": "Limitation of liability",
+        "text": "We do our best to keep the information up to date, but we do not guarantee that it is error-free or available without interruption."
+      },
+      {
+        "title": "Personal data and governing law",
+        "text": "How we handle your data is explained in the privacy policy. These terms are governed by the laws of Colombia. For questions, write to",
+        "email": true,
+        "after": "."
+      }
+    ]
+  },
   "privacy": {
     "title": "Privacy policy",
     "updated": "Last updated: November 2026.",
@@ -561,6 +599,10 @@
     ]
   },
   "seo": {
+    "terminos": {
+      "title": "Terms and conditions | Soltherra",
+      "description": "Terms of use for the Soltherra S.A.S. website: scope of the information, quotes, intellectual property and governing law."
+    },
     "inicio": {
       "title": "Solar panels in Cali and Valle del Cauca | Soltherra",
       "description": "Soltherra, solar energy company in Cali, Colombia. We install solar panels, solar water heaters and pool heating across Valle del Cauca."

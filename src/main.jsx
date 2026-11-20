@@ -6,6 +6,7 @@ import './styles/base.css'
 import { I18nextProvider } from 'react-i18next'
 import i18n from './i18n.js'
 import App from './App.jsx'
+import { registrarHerramientasWebMCP } from './webmcp.js'
 
 const raiz = document.getElementById('root')
 const app = (
@@ -21,3 +22,4 @@ if (raiz.hasChildNodes()) hydrateRoot(raiz, app)
 else createRoot(raiz).render(app)
 // El idioma guardado (cookie) se aplica en App.jsx al terminar de hidratar: el HTML pre-renderizado viene en español.
 
+registrarHerramientasWebMCP()

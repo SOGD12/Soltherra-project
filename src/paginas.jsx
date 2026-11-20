@@ -14,6 +14,7 @@ import Trabajos from './components/Trabajos.jsx'
 import Beneficios from './components/Beneficios.jsx'
 import Contacto from './components/Contacto.jsx'
 import Privacidad from './components/Privacidad.jsx'
+import Terminos from './components/Terminos.jsx'
 import { LlamadaExperto } from './components/Comunes.jsx'
 import Guia from './components/Guia.jsx'
 
@@ -72,4 +73,5 @@ export const CONTENIDO_DE_PAGINA = {
     </>
   ),
   privacidad: () => <Privacidad />,
+  terminos: () => <Terminos />,
 }

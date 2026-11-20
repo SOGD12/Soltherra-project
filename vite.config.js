@@ -1,4 +1,5 @@
 import { createHash } from 'node:crypto'
+import { execSync } from 'node:child_process'
 import { readFileSync, writeFileSync } from 'node:fs'
 import react from '@vitejs/plugin-react'
 import { createServer, defineConfig, loadEnv } from 'vite'
@@ -21,9 +22,16 @@ function seo(siteUrl) {
       this.emitFile({
         type: 'asset',
         fileName: 'robots.txt',
-        source: `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`,
+        source: `User-agent: *\nAllow: /\nContent-Signal: search=yes, ai-input=yes, ai-train=no\n\nSitemap: ${base}/sitemap.xml\n`,
       })
-      const urls = Object.values(SEO).map(({ ruta }) => `  <url><loc>${base}${ruta}</loc></url>`)
+      // lastmod: fecha del último commit (cambia solo cuando el sitio cambia); sin git, la fecha del build.
+      let lastmod = new Date().toISOString().slice(0, 10)
+      try {
+        lastmod = execSync('git log -1 --format=%cs', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim() || lastmod
+      } catch {
+        // sin git: se queda la fecha del build
+      }
+      const urls = Object.values(SEO).map(({ ruta }) => `  <url><loc>${base}${ruta}</loc><lastmod>${lastmod}</lastmod></url>`)
       this.emitFile({
         type: 'asset',
         fileName: 'sitemap.xml',
@@ -65,6 +73,27 @@ function prerender() {
   }
 }
 
+// HTML pre-renderizado -> Markdown sencillo, para los agentes que piden `Accept: text/markdown` (ver .htaccess).
+const ENTIDADES = { '&amp;': '&', '&lt;': '<', '&gt;': '>', '&quot;': '"', '&nbsp;': ' ', '&#x27;': "'", '&#39;': "'" }
+function aMarkdown(html, base) {
+  return html
+    .replace(/<(svg|script|style|button|header|picture|video)\b[\s\S]*?<\/\1>/g, '')
+    .replace(/<img\b[^>]*>/g, '')
+    .replace(/<h([1-6])\b[^>]*>([\s\S]*?)<\/h\1>/g, (_, n, t) => `\n\n${'#'.repeat(n)} ${t.replace(/<[^>]+>/g, '')}\n\n`)
+    .replace(/<a\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/g, (_, h, t) => {
+      const texto = t.replace(/<[^>]+>/g, '').trim()
+      return texto ? `[${texto}](${h.startsWith('/') ? base + h : h})` : ''
+    })
+    .replace(/<li\b[^>]*>/g, '\n- ')
+    .replace(/<br\s*\/?>/g, '\n')
+    .replace(/<\/(p|div|section|ul|ol|footer|figure|article|nav|form)>/g, '\n\n')
+    .replace(/<[^>]+>/g, '')
+    .replace(/&(?:amp|lt|gt|quot|nbsp|#x27|#39);/g, (e) => ENTIDADES[e])
+    .replace(/[ \t]+\n/g, '\n')
+    .replace(/\n{3,}/g, '\n\n')
+    .trim()
+}
+
 function paginas() {
   let salida = 'dist'
   const poner = (html, patron, valor) => html.replace(patron, (_, antes) => `${antes}${valor}`)
@@ -89,10 +118,36 @@ function paginas() {
         html = poner(html, /(<meta (?:property="og:url"|name="twitter:url") content=")[^"]*/g, url)
         html = poner(html, /(<link rel="canonical" href=")[^"]*/, url)
         const scripts = datosEstructurados(pagina, base).map((d) => `<script type="application/ld+json">${JSON.stringify(d)}</script>`)
-        html = html.replace('</head>', `${scripts.join('\n')}\n</head>`)
+        const md = pagina === 'inicio' ? 'index' : pagina
+        const alterna = `<link rel="alternate" type="text/markdown" href="${base}/${md}.md" />`
+        html = html.replace('</head>', `${alterna}\n${scripts.join('\n')}\n</head>`)
+        writeFileSync(`${salida}/${md}.md`, `# ${titulo}\n\n> ${descripcion}\n\nFuente: ${url}\n\n${aMarkdown(renders[pagina], base)}\n`)
         // El inicio es index.html; las demás se escriben como servicios.html, trabajos.html, etc.
         writeFileSync(`${salida}/${pagina === 'inicio' ? 'index' : pagina}.html`, html)
       }
+      const enlaces = Object.values(SEO).map(({ ruta, titulo, descripcion }) => `- [${titulo}](${base}${ruta}): ${descripcion}`)
+      writeFileSync(
+        `${salida}/llms.txt`,
+        `# Soltherra S.A.S.
+
+> Empresa de energía solar en Cali, Colombia: diseño, instalación y mantenimiento de sistemas solares fotovoltaicos y solares térmicos, climatización solar de piscinas y puntos de carga para vehículos eléctricos, para hogares, empresas e instituciones en Cali y el Valle del Cauca.
+
+## Páginas
+
+${enlaces.join('\n')}
+
+## Contacto
+
+- WhatsApp: +57 313 813 0046
+- Dirección: Calle 28 # 86-70, Cali, Valle del Cauca, Colombia
+
+## Más
+
+- [Sitemap](${base}/sitemap.xml)
+- Cada página tiene versión en Markdown: pídela con la cabecera "Accept: text/markdown" o añade .md a la ruta (inicio: ${base}/index.md).
+- Uso del contenido: ver Content-Signal en robots.txt.
+`,
+      )
     },
   }
 }
@@ -141,6 +196,13 @@ DirectoryIndex index.html
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule ^(.+)/$ /$1 [R=301,L]
 
+  # Agentes: con "Accept: text/markdown" se sirve la versión en Markdown de la página
+  RewriteCond %{HTTP:Accept} text/markdown [NC]
+  RewriteRule ^$ index.md [L]
+  RewriteCond %{HTTP:Accept} text/markdown [NC]
+  RewriteCond %{DOCUMENT_ROOT}/$1.md -f
+  RewriteRule ^([^./]+)$ $1.md [L]
+
   # Rutas limpias: /servicios -> servicios.html
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{DOCUMENT_ROOT}/$1.html -f
@@ -156,15 +218,21 @@ ${Object.entries(CABECERAS)
   .map(([clave, valor]) => `  Header always set ${clave} "${valor}"`)
   .join('\n')}
 
+  # RFC 8288: recursos para agentes. El HTML y el Markdown cambian según la cabecera Accept.
+  Header always set Link "</llms.txt>; rel=\\"describedby\\"; type=\\"text/plain\\", </sitemap.xml>; rel=\\"sitemap\\"; type=\\"application/xml\\", </index.md>; rel=\\"alternate\\"; type=\\"text/markdown\\""
+  Header append Vary Accept
+
   SetEnvIf Request_URI "^/assets/" CACHE_LARGA
   SetEnvIf Request_URI "^/img/" CACHE_MEDIA
-  SetEnvIf Request_URI "^/(favicon\\.ico|icon-192\\.png|apple-touch-icon\\.png|og\\.webp|og-logo\\.png|icons\\.svg|robots\\.txt|sitemap\\.xml)$" CACHE_CORTA
+  SetEnvIf Request_URI "^/(favicon\\.ico|icon-192\\.png|apple-touch-icon\\.png|og\\.webp|og-logo\\.png|icons\\.svg|robots\\.txt|sitemap\\.xml|llms\\.txt)$" CACHE_CORTA
   Header set Cache-Control "public, max-age=31536000, immutable" env=CACHE_LARGA
   Header set Cache-Control "public, max-age=604800, stale-while-revalidate=86400" env=CACHE_MEDIA
   Header set Cache-Control "public, max-age=86400" env=CACHE_CORTA
 
   # El HTML se revalida siempre: tras cada despliegue apunta a los /assets/ nuevos (con hash) y nunca a los borrados.
-  <FilesMatch "\\.html$">
+  AddType "text/markdown; charset=utf-8" .md
+  AddType "text/plain; charset=utf-8" .txt
+  <FilesMatch "\\.(html|md)$">
     Header set Cache-Control "no-cache"
   </FilesMatch>
 </IfModule>

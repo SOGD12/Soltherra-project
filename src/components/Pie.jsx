@@ -49,7 +49,9 @@ export default function Pie() {
       </p>
       <div className="contenedor">
         <p className="pie__legal">
-          {t('footer.legal')} <a href="/privacidad">{t('footer.privacy')}</a> ·{' '}
+          {t('footer.legal')} <a href="/#nosotros">{t('footer.about')}</a> ·{' '}
+          <a href="/privacidad">{t('footer.privacy')}</a> ·{' '}
+          <a href="/terminos">{t('footer.terms')}</a> ·{' '}
           <button type="button" className="pie__cookies" onClick={() => window.dispatchEvent(new Event(EVENTO_ABRIR))}>
             {t('footer.cookies')}
           </button>
